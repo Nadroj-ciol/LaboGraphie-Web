@@ -1,0 +1,413 @@
+import contact from "@/assets/contact-1.png";
+import FadeIn from "@/components/FadeIn";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { services } from "@/data/services";
+import { useAuth } from "@/hooks/useAuth";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import { supabase } from "@/integrations/supabase/client";
+import { Clock, DollarSign, Mail, MapPin, Phone, Wrench } from "lucide-react";
+import { site } from "@/data/site";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { toast } from "sonner";
+import type { QuoteData } from "./QuoteCalculator";
+
+const contactInfo = [
+  {
+    icon: Mail,
+    title: "Écrivez-nous",
+    description: "Envoyez-nous un email pour toute demande",
+    value: site.email,
+    href: `mailto:${site.email}`,
+  },
+  {
+    icon: MapPin,
+    title: "Visitez nos locaux",
+    description: "Rendez-nous visite sur rendez-vous",
+    value: site.address,
+    href: "https://www.google.com/maps",
+  },
+  {
+    icon: Phone,
+    title: "Appelez-nous",
+    description: "Appelez-nous ou écrivez-nous sur WhatsApp",
+    value: site.phone,
+    href: site.phoneHref,
+  },
+];
+
+const Contact = () => {
+  const location = useLocation();
+  const { user } = useAuth();
+  const { data: profile } = useUserProfile(user?.id);
+
+  const quoteData = location.state?.quoteData as QuoteData | undefined;
+  const planData = location.state?.planData as { planName: string; planType: string; price: number } | undefined;
+
+  const [formData, setFormData] = useState({
+    fullName: "",
+    phone: "",
+    email: "",
+    service: quoteData?.serviceSlug || "",
+    notes: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Pre-fill form with user data when logged in
+  useEffect(() => {
+    if (user) {
+      setFormData(prev => ({
+        ...prev,
+        fullName: profile?.full_name || prev.fullName,
+        email: user.email || prev.email,
+        phone: profile?.phone || prev.phone,
+      }));
+    }
+  }, [user, profile]);
+
+  useEffect(() => {
+    if (quoteData) {
+      setFormData(prev => ({
+        ...prev,
+        service: quoteData.serviceSlug,
+      }));
+    }
+  }, [quoteData]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.fullName || !formData.phone) {
+      toast.error("Veuillez remplir tous les champs obligatoires");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      if (quoteData) {
+        // Submit quote request to database
+        const { error } = await supabase.from("quote_requests").insert({
+          full_name: formData.fullName,
+          phone: formData.phone,
+          email: formData.email || null,
+          service_slug: quoteData.serviceSlug,
+          service_title: quoteData.serviceTitle,
+          complexity_label: quoteData.complexityLabel,
+          complexity_multiplier: quoteData.complexityMultiplier,
+          estimated_hours: quoteData.estimatedHours,
+          urgency: quoteData.urgency,
+          base_price: quoteData.basePrice,
+          estimated_min: quoteData.estimatedMin,
+          estimated_max: quoteData.estimatedMax,
+          notes: formData.notes || null,
+        });
+
+        if (error) throw error;
+
+        toast.success("Demande de devis envoyée avec succès ! Nous vous contacterons bientôt.");
+      } else if (planData) {
+        // Submit plan inquiry to database
+        const { error } = await supabase.from("quote_requests").insert({
+          full_name: formData.fullName,
+          phone: formData.phone,
+          email: formData.email || null,
+          service_slug: `${planData.planType}-plan`,
+          service_title: `${planData.planName} (${planData.planType})`,
+          complexity_label: "Plan Inquiry",
+          complexity_multiplier: 1,
+          estimated_hours: 1,
+          urgency: "standard",
+          base_price: planData.price,
+          estimated_min: planData.price,
+          estimated_max: planData.price,
+          notes: formData.notes || null,
+        });
+
+        if (error) throw error;
+
+        toast.success("Demande envoyée avec succès ! Nous vous contacterons bientôt.");
+      } else {
+        // Regular contact form - save to contacts table
+        const { error } = await supabase.from("contacts").insert({
+          full_name: formData.fullName,
+          phone: formData.phone,
+          email: formData.email || null,
+          service: formData.service || null,
+          notes: formData.notes || null,
+        });
+
+        if (error) throw error;
+
+        toast.success("Message envoyé avec succès ! Nous vous répondrons rapidement.");
+      }
+
+      // Reset form
+      setFormData({
+        fullName: "",
+        phone: "",
+        email: "",
+        service: "",
+        notes: "",
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Une erreur est survenue. Veuillez réessayer.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 px-4">
+        <div className="container-custom mx-auto text-center">
+          <FadeIn>
+            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-4">
+              <Link to="/" className="hover:text-primary transition-colors">Accueil</Link>
+              <span>/</span>
+              <span className="text-primary">Contact</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6">
+              {quoteData ? "Demande de devis officiel" : planData ? "Demande de formule" : "Contactez-nous"}
+            </h1>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              {quoteData
+                ? "Complétez vos informations ci-dessous et nous vous enverrons un devis officiel basé sur votre estimation."
+                : planData
+                  ? "Renseignez vos coordonnées et nous vous contacterons au sujet de la formule sélectionnée."
+                  : "Contactez notre équipe pour toute question ou pour démarrer un projet."}
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Quote Summary (if coming from calculator or pricing) */}
+      {(quoteData || planData) && (
+        <section className="pb-8 px-4">
+          <div className="container mx-auto section-padding">
+            <FadeIn>
+              <div className="max-w-4xl mx-auto bg-primary rounded-2xl p-6 text-primary-foreground">
+                <h3 className="text-xl font-bold mb-4">
+                  {quoteData ? "Récapitulatif de votre devis" : "Formule sélectionnée"}
+                </h3>
+                {quoteData ? (
+                  <div className="grid md:grid-cols-4 gap-4">
+                    <div className="flex items-center gap-3">
+                      <Wrench className="w-5 h-5 text-accent" />
+                      <div>
+                        <p className="text-sm text-primary-foreground/70">Service</p>
+                        <p className="font-medium">{quoteData.serviceTitle}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Clock className="w-5 h-5 text-accent" />
+                      <div>
+                        <p className="text-sm text-primary-foreground/70">Heures</p>
+                        <p className="font-medium">{quoteData.estimatedHours} h</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Clock className="w-5 h-5 text-accent" />
+                      <div>
+                        <p className="text-sm text-primary-foreground/70">Urgence</p>
+                        <p className="font-medium capitalize">{quoteData.urgency}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <DollarSign className="w-5 h-5 text-accent" />
+                      <div>
+                        <p className="text-sm text-primary-foreground/70">Estimation</p>
+                        <p className="font-bold text-lg">{quoteData.estimatedMin.toLocaleString("fr-FR")} - {quoteData.estimatedMax.toLocaleString("fr-FR")} FCFA</p>
+                      </div>
+                    </div>
+                  </div>
+                ) : planData ? (
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div>
+                      <p className="text-sm text-primary-foreground/70">Nom de la formule</p>
+                      <p className="font-medium">{planData.planName}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-primary-foreground/70">Type</p>
+                      <p className="font-medium capitalize">{planData.planType}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-primary-foreground/70">Tarif</p>
+                      <p className="font-bold text-lg">{planData.price.toLocaleString("fr-FR")} FCFA/h</p>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      )}
+
+      {/* Contact Form Section */}
+      <section className="pb-20 px-4">
+        <div className="container mx-auto section-padding">
+          <FadeIn>
+            <div className="grid lg:grid-cols-2 gap-12 mx-auto">
+              {/* Image */}
+              <div className="rounded-2xl overflow-hidden">
+                <img
+                  src={contact}
+                  alt="Équipe Labographie au travail"
+                  className="w-full h-full object-cover min-h-[400px]"
+                />
+              </div>
+
+              {/* Form */}
+              <div className="bg-[#f4f4f7] rounded-2xl p-8">
+                <h2 className="text-3xl font-bold text-black mb-6">
+                  {quoteData || planData ? "Vos informations" : "Contactez-nous"}
+                </h2>
+
+                <form className="space-y-5" onSubmit={handleSubmit}>
+                  <div>
+                    <label className="block font-medium text-black mb-2">
+                      Nom complet <span className="text-destructive">*</span>
+                    </label>
+                    <Input
+                      className="bg-transparent h-12"
+                      value={formData.fullName}
+                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block font-medium text-black mb-2">
+                      Téléphone <span className="text-destructive">*</span>
+                    </label>
+                    <Input
+                      type="number"
+                      placeholder="Ex. +237 6XX XXX XXX"
+                      className="bg-transparent border-border"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block font-medium text-black mb-2">
+                      Email
+                    </label>
+                    <Input
+                      type="email"
+                      placeholder="your@email.com"
+                      className="bg-transparent border-border"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    />
+                  </div>
+
+                  {!quoteData && !planData && (
+                    <div>
+                      <label className="block font-medium text-black mb-2">
+                        Service souhaité
+                      </label>
+                      <Select
+                        value={formData.service}
+                        onValueChange={(value) => setFormData({ ...formData, service: value })}
+                      >
+                        <SelectTrigger className="bg-transparent border-border">
+                          <SelectValue placeholder="Choisissez un service..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {services.map((service) => (
+                            <SelectItem key={service.slug} value={service.slug}>
+                              {service.title}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
+
+                  <div>
+                    <label className="block font-medium text-black mb-2">
+                      {quoteData || planData ? "Notes complémentaires" : "Message"}
+                    </label>
+                    <Textarea
+                      placeholder="Écrivez ici..."
+                      className="bg-transparent border-border min-h-[120px]"
+                      value={formData.notes}
+                      onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-primary hover:text-accent/80 text-primary-foreground py-6"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting
+                      ? "Envoi en cours..."
+                      : quoteData
+                        ? "Envoyer la demande de devis"
+                        : planData
+                          ? "Envoyer la demande"
+                          : "Envoyer"}
+                  </Button>
+                </form>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Contact Info Cards */}
+      <section className="pb-20 px-4">
+        <div className="container-custom section-padding">
+          <FadeIn>
+            <div className="grid md:grid-cols-3 gap-6">
+              {contactInfo.map((info, index) => (
+                <div
+                  key={index}
+                  className="bg-[#f4f4f7] rounded-2xl p-6"
+                >
+                  <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center mb-4">
+                    <info.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-black mb-1">
+                    {info.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-2">
+                    {info.description}
+                  </p>
+                  <a
+                    href={info.href}
+                    className="font-medium text-primary hover:underline"
+                  >
+                    {info.value}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Contact;

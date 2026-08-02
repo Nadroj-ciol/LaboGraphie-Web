@@ -1,0 +1,987 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Meta SEO -->
+    <title>Services | Labographie - Design Graphique, Développement Web & Solutions IT</title>
+    <meta name="description" content="Découvrez nos services complets : Design graphique, développement web, formations IT, infrastructure réseau et maintenance informatique à Yaoundé.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Services | Labographie - Solutions Digitales Complètes">
+    <meta property="og:description" content="Laboratoire d'innovation & cabinet IT. Tous nos services pour votre transformation digitale.">
+    <meta property="og:image" content="https://labographie.com/assets/images/og/services-og.jpg">
+    <meta property="og:url" content="https://labographie.com/services.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Services | Labographie">
+    <meta name="twitter:description" content="Votre partenaire digital à Yaoundé">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://labographie.com/services.html">
+    
+    <!-- Preload -->
+    <link rel="preload" href="assets/css/global.css" as="style">
+    <link rel="preload" href="assets/css/pages/services.css" as="style">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/pages/services.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+</head>
+<body>
+    <!-- Ticker -->
+    <div class="ticker-container">
+        <div class="ticker-content">
+            <span class="ticker-item">🚀 <strong>Offre Spéciale</strong> : -20% sur les forfaits développement web jusqu'au 31 janvier</span>
+            <span class="ticker-item">🎓 <strong>Formation</strong> : Prochaine session Design Graphique démarre le 15 février</span>
+            <span class="ticker-item">🛡️ <strong>Sécurité</strong> : Audit gratuit de votre infrastructure IT</span>
+            <span class="ticker-item">🤝 <strong>Support</strong> : Assistance technique 7j/7 pour nos clients</span>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="container">
+            <div class="nav-inner">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <svg width="40" height="40" viewBox="0 0 100 100">
+                        <path d="M30 30 L70 30 L65 70 L35 70 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <circle cx="50" cy="40" r="8" fill="currentColor" class="fill-accent"/>
+                        <rect x="55" y="45" width="30" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+                    </svg>
+                    <span>Labo<span>Graphie</span></span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="#laboratoire" class="nav-link active">Services</a></li>
+                    <li><a href="formations.html" class="nav-link">Formations</a></li>
+                    <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li><a href="equipe.html" class="nav-link">Équipe</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <!-- CTA Desktop -->
+                <a href="#contact" class="nav-cta">
+                    <i class="fas fa-comment-dots"></i>
+                    Demander un devis
+                </a>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu-links">
+            <li><a href="index.html" class="mobile-menu-link">Accueil</a></li>
+            <li><a href="services.html" class="mobile-menu-link">Services</a></li>
+            <li><a href="formations.html" class="mobile-menu-link">Formations</a></li>
+            <li><a href="portfolio.html" class="mobile-menu-link">Portfolio</a></li>
+            <li><a href="equipe.html" class="mobile-menu-link">Équipe</a></li>
+            <li><a href="contact.html" class="mobile-menu-link">Contact</a></li>
+        </ul>
+        
+        <div style="padding: 2rem;">
+            <a href="tel:+237621317408" class="btn btn-accent" style="width: 100%; text-align: center;">
+                <i class="fas fa-phone"></i>
+                Appeler maintenant
+            </a>
+        </div>
+    </div>
+    
+    <!-- Hero Services -->
+    <section class="services-hero" id="hero">
+        <div class="container">
+            <div class="services-hero-content">
+                <div class="services-hero-badge">
+                    <i class="fas fa-star"></i>
+                    Solutions Digitales Complètes
+                </div>
+                
+                <h1 class="services-hero-title">
+                    Nos <span class="text-gradient">Services</span> :<br>
+                    Votre succès digital assuré
+                </h1>
+                
+                <p class="services-hero-subtitle">
+                    Du design créatif à l'infrastructure technique, nous couvrons tous les aspects 
+                    de votre transformation digitale. Chaque service est conçu pour maximiser 
+                    votre impact et votre croissance.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-calendar-check"></i>
+                        Réserver une consultation
+                    </a>
+                    <a href="https://wa.me/237621317408" class="btn btn-secondary">
+                        <i class="fab fa-whatsapp"></i>
+                        Discuter sur WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background Elements -->
+        <div class="hero-visual">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+        </div>
+    </section>
+    
+    <!-- Services Navigation -->
+    <nav class="services-nav" id="servicesNav">
+        <div class="container">
+            <div class="services-nav-inner">
+                <a href="#laboratoire" class="services-nav-link active" data-category="laboratoire">
+                    <i class="fas fa-flask"></i>
+                    Laboratoire d'Innovation
+                </a>
+                <a href="#design" class="services-nav-link" data-category="design">
+                    <i class="fas fa-palette"></i>
+                    Design Graphique
+                </a>
+                <a href="#developpement" class="services-nav-link" data-category="developpement">
+                    <i class="fas fa-code"></i>
+                    Développement Web
+                </a>
+                <a href="#formations" class="services-nav-link" data-category="formations">
+                    <i class="fas fa-graduation-cap"></i>
+                    Formations IT
+                </a>
+                <a href="#infrastructure" class="services-nav-link" data-category="infrastructure">
+                    <i class="fas fa-server"></i>
+                    Infrastructure IT
+                </a>
+                <a href="#support" class="services-nav-link" data-category="support">
+                    <i class="fas fa-headset"></i>
+                    Support & Maintenance
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Laboratoire d'Innovation -->
+    <section class="service-category" id="laboratoire">
+        <div class="container">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h2 class="category-title">Laboratoire d'<span class="text-gradient">Innovation</span></h2>
+                <p class="category-description">
+                    L'espace où les idées prennent vie. Notre laboratoire combine créativité, 
+                    technologie et méthodologie pour créer des solutions digitales innovantes.
+                </p>
+            </div>
+            
+            <div class="services-cards-grid">
+                <!-- Service 1 -->
+                <div class="service-detail-card" data-aos="fade-up">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="service-detail-title">Stratégie & Innovation</h3>
+                    <p class="service-detail-description">
+                        Accompagnement stratégique pour identifier les opportunités digitales 
+                        et développer des solutions innovantes adaptées à votre marché.
+                    </p>
+                    <ul class="service-features">
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Audit digital complet
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Stratégie d'innovation
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Roadmap technologique
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Veille technologique
+                        </li>
+                    </ul>
+                    <div class="service-pricing">
+                        <div class="price-range">À partir de 500.000 FCFA</div>
+                        <div class="price-note">Forfait sur mesure selon le projet</div>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-detail-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3 class="service-detail-title">Transformation Digitale</h3>
+                    <p class="service-detail-description">
+                        Accompagnement complet dans la transformation de vos processus 
+                        métier grâce aux technologies digitales.
+                    </p>
+                    <ul class="service-features">
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Digitalisation des processus
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Automatisation intelligente
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Solutions cloud
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Formation des équipes
+                        </li>
+                    </ul>
+                    <div class="service-pricing">
+                        <div class="price-range">Sur devis personnalisé</div>
+                        <div class="price-note">Étude approfondie requise</div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-detail-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-detail-title">R&D & Prototypage</h3>
+                    <p class="service-detail-description">
+                        Recherche et développement de prototypes fonctionnels pour tester 
+                        vos concepts innovants avant le développement complet.
+                    </p>
+                    <ul class="service-features">
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Prototypes interactifs
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Tests utilisateurs
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Validation de concepts
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            MVP (Minimum Viable Product)
+                        </li>
+                    </ul>
+                    <div class="service-pricing">
+                        <div class="price-range">250.000 - 1.000.000 FCFA</div>
+                        <div class="price-note">Selon complexité du prototype</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Design Graphique -->
+    <section class="service-category" id="design">
+        <div class="container">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h2 class="category-title">Design <span class="text-gradient">Graphique</span></h2>
+                <p class="category-description">
+                    Créez une identité visuelle forte qui captive et convertit. 
+                    Du logo à la charte graphique complète, nous donnons vie à votre marque.
+                </p>
+            </div>
+            
+            <div class="services-cards-grid">
+                <!-- Service 1 -->
+                <div class="service-detail-card" data-aos="fade-up">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-brush"></i>
+                    </div>
+                    <h3 class="service-detail-title">Identité Visuelle</h3>
+                    <p class="service-detail-description">
+                        Création complète de votre identité visuelle : logo, palette de couleurs, 
+                        typographie et charte graphique.
+                    </p>
+                    <ul class="service-features">
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Logo & variations
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Charte graphique complète
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Guide d'utilisation
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Formats print & digital
+                        </li>
+                    </ul>
+                    <div class="service-pricing">
+                        <div class="price-range">150.000 - 500.000 FCFA</div>
+                        <div class="price-note">Packages selon complexité</div>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-detail-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3 class="service-detail-title">UI/UX Design</h3>
+                    <p class="service-detail-description">
+                        Design d'interfaces utilisateur intuitives et d'expériences utilisateur 
+                        optimisées pour vos applications et sites web.
+                    </p>
+                    <ul class="service-features">
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Wireframes & prototypes
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Design system complet
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Tests d'utilisabilité
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Design responsive
+                        </li>
+                    </ul>
+                    <div class="service-pricing">
+                        <div class="price-range">200.000 - 800.000 FCFA</div>
+                        <div class="price-note">Par projet ou forfait mensuel</div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-detail-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3 class="service-detail-title">Motion Design</h3>
+                    <p class="service-detail-description">
+                        Animations et vidéos motion design pour dynamiser votre communication 
+                        et captiver votre audience.
+                    </p>
+                    <ul class="service-features">
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Vidéos explicatives
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Animations logo
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Présentations animées
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Contenu pour réseaux sociaux
+                        </li>
+                    </ul>
+                    <div class="service-pricing">
+                        <div class="price-range">100.000 - 300.000 FCFA</div>
+                        <div class="price-note">Par minute d'animation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Développement Web -->
+    <section class="service-category" id="developpement">
+        <div class="container">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h2 class="category-title">Développement <span class="text-gradient">Web</span></h2>
+                <p class="category-description">
+                    Sites web performants, applications sur mesure et solutions e-commerce 
+                    développées avec les dernières technologies.
+                </p>
+            </div>
+            
+            <div class="services-cards-grid">
+                <!-- Service 1 -->
+                <div class="service-detail-card" data-aos="fade-up">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="service-detail-title">Sites Vitrines</h3>
+                    <p class="service-detail-description">
+                        Sites web modernes et performants pour présenter votre activité 
+                        et générer des leads qualifiés.
+                    </p>
+                    <ul class="service-features">
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Design responsive
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            SEO optimisé
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            CMS personnalisé
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Hébergement inclus
+                        </li>
+                    </ul>
+                    <div class="service-pricing">
+                        <div class="price-range">300.000 - 1.000.000 FCFA</div>
+                        <div class="price-note">Forfait tout compris</div>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-detail-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="service-detail-title">E-commerce</h3>
+                    <p class="service-detail-description">
+                        Boutiques en ligne complètes avec gestion de produits, paiements 
+                        sécurisés et intégration logistique.
+                    </p>
+                    <ul class="service-features">
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Plateforme sur mesure
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Paiements en ligne
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Gestion de stock
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Analytics intégré
+                        </li>
+                    </ul>
+                    <div class="service-pricing">
+                        <div class="price-range">500.000 - 2.000.000 FCFA</div>
+                        <div class="price-note">+ Commission sur les ventes</div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-detail-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-detail-title">Applications Mobiles</h3>
+                    <p class="service-detail-description">
+                        Applications natives et cross-platform pour iOS et Android, 
+                        conçues pour offrir la meilleure expérience utilisateur.
+                    </p>
+                    <ul class="service-features">
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            iOS & Android
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Applications natives
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Push notifications
+                        </li>
+                        <li class="service-feature">
+                            <i class="fas fa-check"></i>
+                            Publication stores inclus
+                        </li>
+                    </ul>
+                    <div class="service-pricing">
+                        <div class="price-range">1.000.000 - 5.000.000 FCFA</div>
+                        <div class="price-note">Développement sur mesure</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="process-header">
+                <span class="section-label">📋 Notre Processus</span>
+                <h2>Comment nous <span class="text-gradient">travaillons</span></h2>
+                <p class="lead" style="color: var(--gray-300);">
+                    Une méthodologie éprouvée qui garantit la qualité et le succès de chaque projet.
+                </p>
+            </div>
+            
+            <div class="process-steps">
+                <!-- Step 1 -->
+                <div class="process-step" data-aos="fade-up">
+                    <div class="process-step-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="process-step-title">Découverte</h3>
+                    <p class="process-step-description">
+                        Nous analysons vos besoins, objectifs et contraintes pour comprendre 
+                        parfaitement votre projet.
+                    </p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="process-step-icon">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h3 class="process-step-title">Conception</h3>
+                    <p class="process-step-description">
+                        Création de wireframes, prototypes et design de l'expérience utilisateur 
+                        pour valider l'approche.
+                    </p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-step-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="process-step-title">Développement</h3>
+                    <p class="process-step-description">
+                        Implémentation technique avec les meilleures pratiques et technologies 
+                        modernes.
+                    </p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="process-step-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="process-step-title">Livraison</h3>
+                    <p class="process-step-description">
+                        Tests complets, formation et déploiement avec un support post-lancement 
+                        garanti.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Comparison Table -->
+    <section class="comparison" id="comparison">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">📊 Choisissez votre formule</span>
+                <h2>Nos <span class="text-gradient">Formules</span> de Services</h2>
+                <p class="lead">
+                    Des solutions adaptées à chaque besoin et budget. Comparez nos formules 
+                    pour trouver celle qui vous convient.
+                </p>
+            </div>
+            
+            <table class="comparison-table" data-aos="fade-up">
+                <thead>
+                    <tr>
+                        <th>Fonctionnalités</th>
+                        <th>Essentiel</th>
+                        <th>Professionnel</th>
+                        <th>Entreprise</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="feature">Design personnalisé</td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature">Responsive design</td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature">SEO de base</td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature">Formulaire de contact</td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature">CMS personnalisé</td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature">Intégration réseaux sociaux</td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature">Analytics avancé</td>
+                        <td class="cross">✗</td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature">Support 24/7</td>
+                        <td class="cross">✗</td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature">Formation équipe</td>
+                        <td class="cross">✗</td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature">Prix</td>
+                        <td><strong>300.000 FCFA</strong></td>
+                        <td><strong>600.000 FCFA</strong></td>
+                        <td><strong>1.200.000 FCFA</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="text-center mt-4xl">
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-file-contract"></i>
+                    Demander un devis personnalisé
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">❓ Questions Fréquentes</span>
+                <h2>Questions sur nos <span class="text-gradient">Services</span></h2>
+                <p class="lead">
+                    Trouvez des réponses aux questions les plus fréquentes concernant 
+                    nos services et notre méthodologie.
+                </p>
+            </div>
+            
+            <div class="faq-grid">
+                <!-- FAQ 1 -->
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <span>Combien de temps prend un projet de développement web ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Le délai dépend de la complexité du projet. Un site vitrine simple prend généralement 2-4 semaines, tandis qu'une application web complexe peut nécessiter 2-4 mois. Nous fournissons un calendrier détaillé lors de l'analyse initiale.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-question">
+                        <span>Proposez-vous un support après la livraison ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oui, tous nos projets incluent une période de garantie de 3 mois. Nous proposons également des contrats de maintenance mensuels ou annuels pour les mises à jour, la sécurité et le support technique.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-question">
+                        <span>Puis-je modifier mon site web moi-même ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolument. Nous développons la plupart de nos sites avec un CMS personnalisé et intuitif qui vous permet de modifier le contenu, ajouter des pages, gérer les produits (pour l'e-commerce) sans aucune connaissance technique.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="faq-question">
+                        <span>Quels sont vos tarifs pour les services récurrents ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nos services récurrents (hébergement, maintenance, support) commencent à 50.000 FCFA/mois pour les sites vitrines et jusqu'à 300.000 FCFA/mois pour les solutions d'entreprise complètes avec support 24/7.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Services -->
+    <section class="cta-services" id="contact">
+        <div class="container">
+            <div class="cta-services-content">
+                <h2>Prêt à lancer votre projet ?</h2>
+                <p>
+                    Contactez-nous pour une consultation gratuite et obtenez un devis 
+                    personnalisé adapté à vos besoins et à votre budget.
+                </p>
+                
+                <div class="cta-services-buttons">
+                    <a href="tel:+237621317408" class="btn btn-light">
+                        <i class="fas fa-phone"></i>
+                        Appeler maintenant
+                    </a>
+                    <a href="https://wa.me/237621317408" class="btn btn-accent">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp
+                    </a>
+                    <a href="mailto:labographie@gmail.com" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Envoyer un email
+                    </a>
+                </div>
+                
+                <div style="margin-top: var(--space-2xl);">
+                    <p style="font-size: 0.875rem; opacity: 0.8;">
+                        <i class="fas fa-clock"></i>
+                        Réponse garantie sous 24h • Devis gratuit • Premier appel découverte offert
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Colonne 1 -->
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <svg width="40" height="40" viewBox="0 0 100 100">
+                            <path d="M30 30 L70 30 L65 70 L35 70 Z" fill="none" stroke="white" stroke-width="3"/>
+                            <circle cx="50" cy="40" r="8" fill="white"/>
+                            <rect x="55" y="45" width="30" height="20" rx="3" fill="none" stroke="white" stroke-width="2.5"/>
+                        </svg>
+                        <span>Labo<span>Graphie</span></span>
+                    </div>
+                    <p class="footer-description">
+                        Laboratoire d'innovation & cabinet IT. Nous transformons vos idées 
+                        en solutions digitales performantes.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Colonne 2 -->
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#laboratoire" class="footer-link">Laboratoire d'Innovation</a></li>
+                        <li><a href="#design" class="footer-link">Design Graphique</a></li>
+                        <li><a href="#developpement" class="footer-link">Développement Web</a></li>
+                        <li><a href="formations.html" class="footer-link">Formations IT</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Colonne 3 -->
+                <div class="footer-section">
+                    <h3>Entreprise</h3>
+                    <ul class="footer-links">
+                        <li><a href="a-propos.html" class="footer-link">À propos</a></li>
+                        <li><a href="equipe.html" class="footer-link">Notre équipe</a></li>
+                        <li><a href="portfolio.html" class="footer-link">Portfolio</a></li>
+                        <li><a href="blog.html" class="footer-link">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Colonne 4 -->
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Yaoundé, Cameroun</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+237621317408">+237 621 317 408</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:labographie@gmail.com">labographie@gmail.com</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Lun-Sam: 8h-18h</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 Labographie. Tous droits réservés.</p>
+                <div class="footer-legal">
+                    <a href="mentions-legales.html">Mentions légales</a>
+                    <a href="confidentialite.html">Politique de confidentialité</a>
+                    <a href="cookies.html">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/pages/services.js"></script>
+    
+    <script>
+        // Initialisation AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+        
+        // Menu mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileOverlay = document.getElementById('mobileMenuOverlay');
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                    mobileOverlay.classList.toggle('active');
+                });
+                
+                mobileOverlay.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    mobileOverlay.classList.remove('active');
+                });
+            }
+            
+            // Navigation services
+            const serviceNavLinks = document.querySelectorAll('.services-nav-link');
+            const serviceSections = document.querySelectorAll('.service-category');
+            
+            // Scroll spy pour la navigation services
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                serviceSections.forEach(section => {
+                    const sectionTop = section.offsetTop - 150;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                serviceNavLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            // Smooth scroll pour la navigation services
+            serviceNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Mettre à jour la navigation active
+                        serviceNavLinks.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+            
+            // FAQ accordéon
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Fermer tous les autres items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Ouvrir/fermer cet item
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
