@@ -6,14 +6,9 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { useBlog, usePublishedBlogs } from "@/hooks/useBlogs";
 import DOMPurify from "dompurify";
-import { Facebook, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Linkedin, Twitter, Link2 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-
-const socialLinks = [
-  { icon: Facebook, href: "#" },
-  { icon: Twitter, href: "#" },
-  { icon: Linkedin, href: "#" },
-];
+import { toast } from "sonner";
 
 const BlogDetail = () => {
   const { slug } = useParams();
@@ -50,6 +45,14 @@ const BlogDetail = () => {
     day: 'numeric',
     year: 'numeric'
   });
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    toast.success("Lien copié dans le presse-papiers !");
+  };
+
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const shareTitle = post.title;
 
   return (
     <div className="min-h-screen bg-white">
@@ -134,7 +137,7 @@ const BlogDetail = () => {
                     <div className="rounded-2xl overflow-hidden">
                       <img
                         src={heroGrid2}
-                        alt="Équipe Labographie au travail"
+                        alt="Équipe LaboGraphie au travail"
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -144,17 +147,42 @@ const BlogDetail = () => {
 
               {/* Share Section */}
               <div className="flex items-center justify-between py-6 px-4 rounded-lg bg-[#F4F4F7]">
-                <span className="text-muted-foreground text-sm">Partager l'article</span>
+                <span className="text-muted-foreground text-sm font-semibold">Partager l'article</span>
                 <div className="flex gap-3">
-                  {socialLinks.map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.href}
-                      className="w-10 h-10 rounded-full group bg-muted flex items-center justify-center text-muted-foreground hover:bg-accent hover:text-white transition-colors"
-                    >
-                      <social.icon className="h-4 w-4 text-white group-hover:text-black" />
-                    </a>
-                  ))}
+                  <a
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full group bg-muted flex items-center justify-center hover:bg-[#1877F2] transition-colors"
+                    title="Partager sur Facebook"
+                  >
+                    <Facebook className="h-4 w-4 text-slate-500 group-hover:text-white" />
+                  </a>
+                  <a
+                    href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareTitle)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full group bg-muted flex items-center justify-center hover:bg-[#1DA1F2] transition-colors"
+                    title="Partager sur X (Twitter)"
+                  >
+                    <Twitter className="h-4 w-4 text-slate-500 group-hover:text-white" />
+                  </a>
+                  <a
+                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full group bg-muted flex items-center justify-center hover:bg-[#0A66C2] transition-colors"
+                    title="Partager sur LinkedIn"
+                  >
+                    <Linkedin className="h-4 w-4 text-slate-500 group-hover:text-white" />
+                  </a>
+                  <button
+                    onClick={handleCopyLink}
+                    className="w-10 h-10 rounded-full group bg-muted flex items-center justify-center hover:bg-slate-700 transition-colors cursor-pointer"
+                    title="Copier le lien"
+                  >
+                    <Link2 className="h-4 w-4 text-slate-500 group-hover:text-white" />
+                  </button>
                 </div>
               </div>
             </div>

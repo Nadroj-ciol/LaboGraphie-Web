@@ -38,11 +38,11 @@ const About = () => {
         <FadeIn>
           <div className="relative">
             <div className="rounded-3xl overflow-hidden">
-              <img src={plumberTeam} alt="Équipe Labographie" className="w-full h-auto object-cover" />
+              <img src={plumberTeam} alt="Équipe LaboGraphie" className="w-full h-auto object-cover" />
             </div>
             {/* Experience Badge */}
             <div className="absolute -bottom-12 w-[240px] h-[240px] -right-12 overflow-hidden rounded-xl text-white">
-              <img src={plumberTeam1} alt="Équipe Labographie" className="h-full object-cover " />
+              <img src={plumberTeam1} alt="Équipe LaboGraphie" className="h-full object-cover " />
             </div>
           </div>
         </FadeIn>
@@ -59,7 +59,7 @@ const About = () => {
           </FadeIn>
           <FadeIn delay={300}>
             <p className="text-muted-foreground mb-8 font-semibold">
-              Labographie est née de la volonté de fusionner la créativité d'un laboratoire technique avec la rigueur d'un cabinet de conseil. Basée à Bastos, Yaoundé, notre agence accompagne entreprises et institutions dans leur transformation digitale.
+              LaboGraphie est née de la volonté de fusionner la créativité d'un laboratoire technique avec la rigueur d'un cabinet de conseil. Basée à Bastos, Yaoundé, notre agence accompagne entreprises et institutions dans leur transformation digitale.
             </p>
           </FadeIn>
 

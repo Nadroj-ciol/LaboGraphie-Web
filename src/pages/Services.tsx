@@ -22,7 +22,7 @@ const Services = () => {
         <div className="grid lg:grid-cols-2 gap-8 mb-16">
           <h1 className="text-black text-7xl font-bold">Nos Services</h1>
           <p className="text-muted-foreground text-lg lg:pt-4">
-            Laboratoire d'innovation et cabinet informatique, Labographie accompagne entreprises et institutions camerounaises avec des solutions digitales sur mesure, du design à la cybersécurité.
+            Laboratoire d'innovation et cabinet informatique, LaboGraphie accompagne entreprises et institutions camerounaises avec des solutions digitales sur mesure, du design à la cybersécurité.
           </p>
         </div>
 

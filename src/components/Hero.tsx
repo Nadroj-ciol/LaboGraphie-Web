@@ -54,7 +54,7 @@ const Hero = () => {
     className: "rounded-2xl"
   }, {
     src: heroGrid6,
-    alt: "Équipe Labographie en réunion",
+    alt: "Équipe LaboGraphie en réunion",
     className: "rounded-full"
   }];
   return <section className="relative bg-primary overflow-hidden">
@@ -76,7 +76,7 @@ const Hero = () => {
           <p style={{
             animationDelay: "0.1s"
           }} className="text-white text-lg mb-8 max-w-[800px] animate-fade-up md:text-base">
-            De l'identité visuelle à la sécurité informatique, Labographie accompagne votre
+            De l'identité visuelle à la sécurité informatique, LaboGraphie accompagne votre
             croissance avec des solutions technologiques de pointe : design, développement web
             et mobile, marketing digital, cybersécurité et formations professionnelles.
           </p>
@@ -100,9 +100,9 @@ const Hero = () => {
           }}>
             <div className="flex items-center">
               <div className="flex -space-x-3">
-                <img src={avatar1} alt="Client Labographie" className="w-12 h-12 rounded-full border-2 border-secondary object-cover" />
-                <img src={avatar2} alt="Cliente Labographie" className="w-12 h-12 rounded-full border-2 border-secondary object-cover" />
-                <img src={avatar3} alt="Partenaire Labographie" className="w-12 h-12 rounded-full border-2 border-secondary object-cover" />
+                <img src={avatar1} alt="Client LaboGraphie" className="w-12 h-12 rounded-full border-2 border-secondary object-cover" />
+                <img src={avatar2} alt="Cliente LaboGraphie" className="w-12 h-12 rounded-full border-2 border-secondary object-cover" />
+                <img src={avatar3} alt="Partenaire LaboGraphie" className="w-12 h-12 rounded-full border-2 border-secondary object-cover" />
                 <div className="w-12 h-12 rounded-full bg-tertiary flex items-center justify-center text-primary text-sm font-bold border-2 border-secondary">
                   100+
                 </div>

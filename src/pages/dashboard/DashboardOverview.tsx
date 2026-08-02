@@ -72,18 +72,20 @@ function AdminOverview() {
 
       {/* Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-        {stats.map((stat) => (
-          <Card key={stat.title} className="bg-white border border-gray-200">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
+        {stats.map((stat, i) => (
+          <Card key={stat.title} className="group bg-white border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300">
+            <CardHeader className="flex flex-row items-center justify-between pb-4">
+              <CardTitle className="text-sm font-medium text-slate-600">
                 {stat.title}
               </CardTitle>
-              <stat.icon className="h-4 w-4 text-muted-foreground" />
+              <div className="h-10 w-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-500 group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
+                <stat.icon className="h-5 w-5" />
+              </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
-              <div className="flex items-center gap-2 mt-1">
-                <span className="text-xs text-muted-foreground">{stat.description}</span>
+              <div className="text-3xl font-bold tracking-tight text-slate-900">{stat.value}</div>
+              <div className="flex items-center gap-2 mt-2">
+                <span className="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded-md">{stat.description}</span>
               </div>
             </CardContent>
           </Card>
@@ -92,7 +94,7 @@ function AdminOverview() {
 
       {/* Recent Activity */}
       <div className="grid gap-6 md:grid-cols-2">
-        <Card className="bg-white border border-gray-200">
+        <Card className="bg-white border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl overflow-hidden">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Mail className="h-5 w-5" />
@@ -127,7 +129,7 @@ function AdminOverview() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white border border-gray-200">
+        <Card className="bg-white border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl overflow-hidden">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <DollarSign className="h-5 w-5" />
@@ -162,7 +164,7 @@ function AdminOverview() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white border border-gray-200">
+        <Card className="bg-white border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl overflow-hidden">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Briefcase className="h-5 w-5" />
@@ -226,12 +228,14 @@ function UserOverview() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="bg-white border border-gray-200">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+        <Card className="group bg-white border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300">
+          <CardHeader className="flex flex-row items-center justify-between pb-4">
+            <CardTitle className="text-sm font-medium text-slate-600">
               Mes devis
             </CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <div className="h-10 w-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-500 group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
+              <DollarSign className="h-5 w-5" />
+            </div>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{totalQuotes}</div>
@@ -241,12 +245,14 @@ function UserOverview() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white border border-gray-200">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+        <Card className="group bg-white border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300">
+          <CardHeader className="flex flex-row items-center justify-between pb-4">
+            <CardTitle className="text-sm font-medium text-slate-600">
               Demandes en attente
             </CardTitle>
-            <Clock className="h-4 w-4 text-muted-foreground" />
+            <div className="h-10 w-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-500 group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
+              <Clock className="h-5 w-5" />
+            </div>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{pendingQuotes}</div>
@@ -256,12 +262,14 @@ function UserOverview() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white border border-gray-200">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+        <Card className="group bg-white border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300">
+          <CardHeader className="flex flex-row items-center justify-between pb-4">
+            <CardTitle className="text-sm font-medium text-slate-600">
               Statut du compte
             </CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <div className="h-10 w-10 rounded-xl bg-slate-50 flex items-center justify-center text-green-500 group-hover:bg-green-100 transition-colors duration-300">
+              <Users className="h-5 w-5" />
+            </div>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-green-600">Actif</div>
@@ -272,29 +280,35 @@ function UserOverview() {
         </Card>
       </div>
 
-      <Card className="bg-white border border-gray-200">
+      <Card className="bg-white border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl">
         <CardHeader>
           <CardTitle>Actions rapides</CardTitle>
           <CardDescription>Tâches courantes que vous pourriez vouloir effectuer</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4 md:grid-cols-3">
-            <a href="/quote" className="flex items-center gap-4 p-4 rounded-lg border border-gray-200 hover:bg-black/5 transition-colors">
-              <DollarSign className="h-8 w-8 text-primary" />
+            <a href="/quote" className="group flex items-center gap-4 p-4 rounded-xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-md hover:shadow-primary/5 transition-all duration-300">
+              <div className="h-12 w-12 rounded-full bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                <DollarSign className="h-6 w-6 text-primary" />
+              </div>
               <div>
                 <p className="font-medium">Demander un devis</p>
                 <p className="text-sm text-muted-foreground">Obtenez une estimation pour votre projet</p>
               </div>
             </a>
-            <a href="/contact" className="flex items-center gap-4 p-4 rounded-lg border border-gray-200 hover:bg-black/5 transition-colors">
-              <Mail className="h-8 w-8 text-primary" />
+            <a href="/contact" className="group flex items-center gap-4 p-4 rounded-xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-md hover:shadow-primary/5 transition-all duration-300">
+              <div className="h-12 w-12 rounded-full bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                <Mail className="h-6 w-6 text-primary" />
+              </div>
               <div>
                 <p className="font-medium">Contactez-nous</p>
                 <p className="text-sm text-muted-foreground">Entrez en contact avec notre équipe</p>
               </div>
             </a>
-            <a href="/services" className="flex items-center gap-4 p-4 rounded-lg border border-gray-200 hover:bg-black/5 transition-colors">
-              <FileText className="h-8 w-8 text-primary" />
+            <a href="/services" className="group flex items-center gap-4 p-4 rounded-xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-md hover:shadow-primary/5 transition-all duration-300">
+              <div className="h-12 w-12 rounded-full bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                <FileText className="h-6 w-6 text-primary" />
+              </div>
               <div>
                 <p className="font-medium">Voir les services</p>
                 <p className="text-sm text-muted-foreground">Découvrez ce que nous proposons</p>

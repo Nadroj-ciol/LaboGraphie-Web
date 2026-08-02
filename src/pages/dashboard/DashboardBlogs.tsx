@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -8,6 +7,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -21,14 +31,15 @@ import {
   useDeleteBlog,
   useUpdateBlog,
 } from "@/hooks/useBlogs";
-import { Edit2, Eye, EyeOff, FileText, Plus, Trash2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Edit2, Eye, EyeOff, FileText, Plus, Trash2, Calendar, Clock, LayoutGrid, Search, Filter } from "lucide-react";
+import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { BlogImageUpload } from "@/components/dashboard/BlogImageUpload";
 
-const categories = ["Plumbing Tips", "Tips & Tricks", "Repair Tips", "Cleaning", "Maintenance"];
+const categories = ["Design & Branding", "Marketing Digital", "Cyber-sécurité", "Maintenance", "Réseau"];
 
 // Quill editor configuration
 const modules = {
@@ -64,6 +75,8 @@ export default function DashboardBlogs() {
   const updateBlog = useUpdateBlog();
   const deleteBlog = useDeleteBlog();
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterCategory, setFilterCategory] = useState("Toutes");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingBlog, setEditingBlog] = useState<Blog | null>(null);
   const [formData, setFormData] = useState<Partial<BlogInsert>>({
@@ -72,7 +85,7 @@ export default function DashboardBlogs() {
     excerpt: "",
     content: "",
     image_url: "",
-    category: "Plumbing Tips",
+    category: "Design & Branding",
     read_time: "5 min read",
     is_featured: false,
     published: false,
@@ -91,7 +104,7 @@ export default function DashboardBlogs() {
       excerpt: "",
       content: "",
       image_url: "",
-      category: "Plumbing Tips",
+      category: "Design & Branding",
       read_time: "5 min read",
       is_featured: false,
       published: false,
@@ -142,8 +155,6 @@ export default function DashboardBlogs() {
   };
 
   const handleDeleteBlog = async (id: string) => {
-    if (!confirm("Êtes-vous sûr de vouloir supprimer cet article ?")) return;
-
     try {
       await deleteBlog.mutateAsync(id);
       toast.success("Article supprimé avec succès");
@@ -155,9 +166,20 @@ export default function DashboardBlogs() {
   const generateSlug = (title: string) => {
     return title
       .toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remove accents
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)/g, "");
   };
+
+  const filteredBlogs = useMemo(() => {
+    if (!blogs) return [];
+    return blogs.filter((blog) => {
+      const matchesSearch = blog.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                            (blog.excerpt && blog.excerpt.toLowerCase().includes(searchQuery.toLowerCase()));
+      const matchesCategory = filterCategory === "Toutes" || blog.category === filterCategory;
+      return matchesSearch && matchesCategory;
+    });
+  }, [blogs, searchQuery, filterCategory]);
 
   if (!isAdmin) return null;
 
@@ -178,150 +200,20 @@ export default function DashboardBlogs() {
           }}
         >
           <DialogTrigger asChild>
-            <Button className="rounded-full">
+            <Button className="rounded-full shadow-sm">
               <Plus className="w-4 h-4 mr-2" />
               Nouvel article
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-white border border-gray-200">
-            <DialogHeader>
-              <DialogTitle>
-                {editingBlog ? "Modifier l'article" : "Créer un nouvel article"}
-              </DialogTitle>
-            </DialogHeader>
-            <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+          <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto bg-white border-0 shadow-2xl rounded-2xl p-0">
+            <div className="sticky top-0 z-20 bg-white/90 backdrop-blur-md border-b px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <Label htmlFor="title">Titre *</Label>
-                <Input
-                  id="title"
-                  value={formData.title}
-                  onChange={(e) => {
-                    setFormData({
-                      ...formData,
-                      title: e.target.value,
-                      slug: generateSlug(e.target.value),
-                    });
-                  }}
-                  placeholder="Titre de l'article"
-                  className="mt-2 bg-transparent"
-                />
+                <DialogTitle className="text-xl font-bold">
+                  {editingBlog ? "Modifier l'article" : "Créer un nouvel article"}
+                </DialogTitle>
+                <p className="text-sm text-muted-foreground mt-1">Rédigez votre contenu et configurez les paramètres de publication.</p>
               </div>
-
-              <div>
-                <Label htmlFor="slug">Slug *</Label>
-                <Input
-                  id="slug"
-                  value={formData.slug}
-                  onChange={(e) =>
-                    setFormData({ ...formData, slug: e.target.value })
-                  }
-                  placeholder="slug-de-larticle"
-                  className="mt-2 bg-transparent"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="excerpt">Extrait</Label>
-                <Textarea
-                  id="excerpt"
-                  value={formData.excerpt || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, excerpt: e.target.value })
-                  }
-                  placeholder="Brève description de l'article"
-                  className="mt-2 bg-transparent"
-                  rows={3}
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="content">Contenu</Label>
-                <div className="mt-2 bg-white rounded-md border">
-                  <ReactQuill
-                    theme="snow"
-                    value={formData.content || ""}
-                    onChange={(value) =>
-                      setFormData({ ...formData, content: value })
-                    }
-                    modules={modules}
-                    formats={formats}
-                    placeholder="Rédigez le contenu de l'article ici..."
-                    className="min-h-[300px]"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <Label htmlFor="image_url">URL de l'image</Label>
-                <Input
-                  id="image_url"
-                  value={formData.image_url || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, image_url: e.target.value })
-                  }
-                  placeholder="https://example.com/image.jpg"
-                  className="mt-2 bg-transparent"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="category">Catégorie</Label>
-                  <select
-                    id="category"
-                    value={formData.category}
-                    onChange={(e) =>
-                      setFormData({ ...formData, category: e.target.value })
-                    }
-                    className="w-full mt-2 px-3 py-2 border rounded-md bg-transparent"
-                  >
-                    {categories.map((cat) => (
-                      <option key={cat} value={cat}>
-                        {cat}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <Label htmlFor="read_time">Temps de lecture</Label>
-                  <Input
-                    id="read_time"
-                    value={formData.read_time || ""}
-                    onChange={(e) =>
-                      setFormData({ ...formData, read_time: e.target.value })
-                    }
-                    placeholder="5 min de lecture"
-                    className="mt-2 bg-transparent"
-                  />
-                </div>
-              </div>
-
-              <div className="flex items-center gap-6">
-                <div className="flex items-center gap-2">
-                  <Switch
-                    id="is_featured"
-                    checked={formData.is_featured}
-                    onCheckedChange={(checked) =>
-                      setFormData({ ...formData, is_featured: checked })
-                    }
-                  />
-                  <Label htmlFor="is_featured">Mis en avant</Label>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <Switch
-                    id="published"
-                    checked={formData.published}
-                    onCheckedChange={(checked) =>
-                      setFormData({ ...formData, published: checked })
-                    }
-                  />
-                  <Label htmlFor="published">Publié</Label>
-                </div>
-              </div>
-
-              <div className="flex justify-end gap-2 pt-4">
+              <div className="flex justify-end gap-3">
                 <Button
                   type="button"
                   variant="outline"
@@ -329,89 +221,319 @@ export default function DashboardBlogs() {
                     setIsDialogOpen(false);
                     resetForm();
                   }}
-                  className="text-white"
+                  className="rounded-lg text-slate-700 hover:text-primary"
                 >
                   Annuler
                 </Button>
-                <Button type="submit">
-                  {editingBlog ? "Mettre à jour" : "Créer l'article"}
+                <Button type="button" onClick={handleSubmit} className="rounded-lg shadow-sm">
+                  {editingBlog ? "Mettre à jour" : "Publier l'article"}
                 </Button>
+              </div>
+            </div>
+            
+            <form onSubmit={handleSubmit} className="p-6">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                {/* Colonne de gauche : Rédaction (2/3) */}
+                <div className="lg:col-span-2 space-y-6">
+                  
+                  <div className="space-y-4 bg-gray-50/50 p-6 rounded-xl border border-gray-100">
+                    <div>
+                      <Label htmlFor="title" className="text-base font-semibold">Titre de l'article *</Label>
+                      <Input
+                        id="title"
+                        value={formData.title}
+                        onChange={(e) => {
+                          setFormData({
+                            ...formData,
+                            title: e.target.value,
+                            slug: generateSlug(e.target.value),
+                          });
+                        }}
+                        placeholder="Ex: 5 astuces pour optimiser sa présence en ligne..."
+                        className="mt-2 text-lg h-12 bg-white"
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="excerpt" className="text-sm font-semibold text-slate-600">Extrait court (Résumé)</Label>
+                      <Textarea
+                        id="excerpt"
+                        value={formData.excerpt || ""}
+                        onChange={(e) =>
+                          setFormData({ ...formData, excerpt: e.target.value })
+                        }
+                        placeholder="Brève description qui s'affichera dans la liste des articles..."
+                        className="mt-2 bg-white resize-none"
+                        rows={3}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 relative z-0">
+                    <Label htmlFor="content" className="text-base font-semibold">Contenu de l'article</Label>
+                    <div className="mt-2 bg-white rounded-xl border overflow-hidden">
+                      <ReactQuill
+                        theme="snow"
+                        value={formData.content || ""}
+                        onChange={(value) =>
+                          setFormData({ ...formData, content: value })
+                        }
+                        modules={modules}
+                        formats={formats}
+                        placeholder="Rédigez le contenu de votre article ici..."
+                        className="min-h-[400px]"
+                      />
+                    </div>
+                  </div>
+                  
+                </div>
+
+                {/* Colonne de droite : Paramètres (1/3) */}
+                <div className="space-y-6">
+                  
+                  <div className="space-y-3 bg-gray-50/50 p-5 rounded-xl border border-gray-100">
+                    <Label className="text-sm font-semibold text-slate-700 flex items-center gap-2">
+                      <LayoutGrid className="w-4 h-4" /> Image de couverture
+                    </Label>
+                    <BlogImageUpload 
+                      url={formData.image_url || null}
+                      onUpload={(url) => setFormData({ ...formData, image_url: url })}
+                    />
+                  </div>
+
+                  <div className="space-y-4 bg-gray-50/50 p-5 rounded-xl border border-gray-100">
+                    <h3 className="text-sm font-semibold text-slate-700 border-b pb-2 mb-4">Méta-données</h3>
+                    
+                    <div>
+                      <Label htmlFor="category" className="text-xs text-slate-500 mb-1 block">Catégorie</Label>
+                      <select
+                        id="category"
+                        value={formData.category}
+                        onChange={(e) =>
+                          setFormData({ ...formData, category: e.target.value })
+                        }
+                        className="w-full px-3 py-2 border rounded-lg bg-white text-sm"
+                      >
+                        {categories.map((cat) => (
+                          <option key={cat} value={cat}>
+                            {cat}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="read_time" className="text-xs text-slate-500 mb-1 block">Temps de lecture</Label>
+                      <Input
+                        id="read_time"
+                        value={formData.read_time || ""}
+                        onChange={(e) =>
+                          setFormData({ ...formData, read_time: e.target.value })
+                        }
+                        placeholder="ex: 5 min"
+                        className="bg-white text-sm"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="slug" className="text-xs text-slate-500 mb-1 block">URL Slug (Généré auto)</Label>
+                      <Input
+                        id="slug"
+                        value={formData.slug}
+                        onChange={(e) =>
+                          setFormData({ ...formData, slug: e.target.value })
+                        }
+                        placeholder="slug-de-larticle"
+                        className="bg-white text-sm font-mono text-muted-foreground"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4 bg-gray-50/50 p-5 rounded-xl border border-gray-100">
+                    <h3 className="text-sm font-semibold text-slate-700 border-b pb-2 mb-4">Publication</h3>
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="space-y-0.5">
+                        <Label htmlFor="published" className="text-sm">En ligne</Label>
+                        <p className="text-xs text-muted-foreground">Rendre l'article public</p>
+                      </div>
+                      <Switch
+                        id="published"
+                        checked={formData.published}
+                        onCheckedChange={(checked) =>
+                          setFormData({ ...formData, published: checked })
+                        }
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <div className="space-y-0.5">
+                        <Label htmlFor="is_featured" className="text-sm">À la une</Label>
+                        <p className="text-xs text-muted-foreground">Mettre en avant sur l'accueil</p>
+                      </div>
+                      <Switch
+                        id="is_featured"
+                        checked={formData.is_featured}
+                        onCheckedChange={(checked) =>
+                          setFormData({ ...formData, is_featured: checked })
+                        }
+                      />
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </form>
           </DialogContent>
         </Dialog>
       </div>
 
-      <Card className="bg-white border border-gray-200">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <FileText className="h-5 w-5" />
-            Tous les articles ({blogs?.length || 0})
+      <Card className="bg-white border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl">
+        <CardHeader className="border-b border-gray-100 bg-gray-50/30 rounded-t-2xl pb-4">
+          <CardTitle className="flex items-center gap-2 text-lg">
+            <FileText className="h-5 w-5 text-primary" />
+            Tous les articles <span className="bg-primary/10 text-primary text-sm px-2 py-0.5 rounded-full">{blogs?.length || 0}</span>
           </CardTitle>
+          <CardDescription>Gérez la liste de vos publications, mettez à jour le contenu ou modifiez l'état de publication.</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pt-6">
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Rechercher un article par titre ou extrait..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-9 bg-white"
+              />
+            </div>
+            <div className="w-full sm:w-64 relative">
+              <Filter className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground z-10 pointer-events-none" />
+              <select
+                value={filterCategory}
+                onChange={(e) => setFilterCategory(e.target.value)}
+                className="w-full h-10 pl-9 pr-3 rounded-md border border-input bg-white text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                <option value="Toutes">Toutes les catégories</option>
+                {categories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
           {isLoading ? (
-            <div className="text-center py-8 text-muted-primary">Chargement...</div>
-          ) : blogs && blogs.length > 0 ? (
+            <div className="text-center py-12 text-muted-primary flex flex-col items-center gap-2">
+              <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full" />
+              <p>Chargement des articles...</p>
+            </div>
+          ) : filteredBlogs && filteredBlogs.length > 0 ? (
             <div className="space-y-4">
-              {blogs.map((blog) => (
+              {filteredBlogs.map((blog) => (
                 <div
                   key={blog.id}
-                  className="flex flex-col md:flex-row md:items-center gap-4 p-4 rounded-lg border border-gray-200 bg-gray-50"
+                  className="group flex flex-col md:flex-row md:items-stretch gap-5 p-4 rounded-xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-md hover:shadow-primary/5 transition-all duration-300"
                 >
-                  {blog.image_url && (
-                    <img
-                      src={blog.image_url}
-                      alt={blog.title}
-                      className="w-full md:w-24 h-24 object-cover rounded-lg"
-                    />
+                  {blog.image_url ? (
+                    <div className="w-full md:w-32 h-32 md:h-auto rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
+                      <img
+                        src={blog.image_url}
+                        alt={blog.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-full md:w-32 h-32 md:h-auto rounded-lg bg-gray-50 flex items-center justify-center flex-shrink-0 border border-dashed border-gray-200">
+                      <FileText className="h-8 w-8 text-gray-300" />
+                    </div>
                   )}
 
-                  <div className="flex-1 min-w-0 space-y-1">
-                    <div className="flex items-center gap-2">
-                      <p className="font-semibold text-primary truncate">{blog.title}</p>
-                      {blog.is_featured && (
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">
-                          Mis en avant
-                        </span>
-                      )}
+                  <div className="flex-1 min-w-0 flex flex-col justify-between py-1">
+                    <div className="space-y-2">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="font-bold text-lg text-slate-800 leading-tight group-hover:text-primary transition-colors">{blog.title}</h3>
+                        {blog.is_featured && (
+                          <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 tracking-wider">
+                            À la une
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-sm text-slate-500 line-clamp-2">
+                        {blog.excerpt || "Aucun extrait défini pour cet article."}
+                      </p>
                     </div>
-                    <p className="text-sm text-muted-primary line-clamp-2">
-                      {blog.excerpt}
-                    </p>
-                    <div className="flex items-center gap-4 text-xs text-muted-primary">
-                      <span>{blog.category}</span>
-                      <span>{blog.read_time}</span>
-                      <span>{new Date(blog.created_at).toLocaleDateString()}</span>
+                    
+                    <div className="flex items-center gap-4 text-xs font-medium text-slate-400 mt-4">
+                      <span className="flex items-center gap-1 bg-slate-50 px-2 py-1 rounded-md text-slate-600">
+                        <LayoutGrid className="w-3.5 h-3.5" /> {blog.category}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3.5 h-3.5" /> {blog.read_time}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3.5 h-3.5" /> {new Date(blog.created_at).toLocaleDateString()}
+                      </span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <span className={`flex items-center gap-1 text-xs px-2 py-1 rounded-full ${blog.published ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-700"}`}>
-                      {blog.published ? <Eye className="h-3 w-3" /> : <EyeOff className="h-3 w-3" />}
-                      {blog.published ? "Publié" : "Brouillon"}
+                  <div className="flex md:flex-col justify-between items-end gap-2 border-t md:border-t-0 md:border-l border-gray-100 pt-4 md:pt-0 md:pl-4">
+                    <span className={`flex items-center justify-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full w-full md:w-auto ${blog.published ? "bg-green-50 text-green-700 border border-green-100" : "bg-gray-100 text-gray-600 border border-gray-200"}`}>
+                      {blog.published ? <Eye className="h-3.5 w-3.5" /> : <EyeOff className="h-3.5 w-3.5" />}
+                      {blog.published ? "En ligne" : "Brouillon"}
                     </span>
 
-                    <button
-                      onClick={() => handleEdit(blog)}
-                      className="p-2 hover:bg-muted rounded-lg transition-colors"
-                    >
-                      <Edit2 className="w-4 h-4" />
-                    </button>
+                    <div className="flex items-center justify-end gap-2 w-full mt-auto">
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => handleEdit(blog)}
+                        className="h-9 w-9 text-slate-500 hover:text-primary hover:bg-primary/5 hover:border-primary/20"
+                      >
+                        <Edit2 className="w-4 h-4" />
+                      </Button>
 
-                    <button
-                      onClick={() => handleDeleteBlog(blog.id)}
-                      className="p-2 hover:bg-destructive/10 rounded-lg transition-colors"
-                    >
-                      <Trash2 className="w-4 h-4 text-destructive" />
-                    </button>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="h-9 w-9 text-slate-500 hover:text-destructive hover:bg-destructive/10 hover:border-destructive/20"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent className="bg-white">
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Êtes-vous absolument sûr ?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              Cette action est irréversible. Cela supprimera définitivement l'article "{blog.title}".
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel className="bg-white text-slate-700">Annuler</AlertDialogCancel>
+                            <AlertDialogAction onClick={() => handleDeleteBlog(blog.id)} className="bg-destructive text-white hover:bg-destructive/90">
+                              Supprimer l'article
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="text-center py-8 text-muted-primary">
-              Aucun article pour le moment.
+            <div className="text-center py-12 flex flex-col items-center justify-center">
+              <div className="h-16 w-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
+                <FileText className="h-8 w-8 text-gray-300" />
+              </div>
+              <h3 className="text-lg font-medium text-slate-700">Aucun article trouvé</h3>
+              <p className="text-sm text-slate-500 mt-1 max-w-sm mx-auto">
+                Commencez par créer votre premier article en cliquant sur le bouton "Nouvel article" en haut à droite.
+              </p>
             </div>
           )}
         </CardContent>

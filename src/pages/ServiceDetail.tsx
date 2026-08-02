@@ -66,7 +66,7 @@ const servicesData: Record<string, {
     description: "Sites vitrines, plateformes e-commerce et applications sur mesure : performants, sécurisés et pensés pour convertir vos visiteurs en clients.",
     image: service2,
     aboutTitle: "À propos de ce service",
-    aboutDescription: "Labographie conçoit et développe des sites web et applications mobiles sur mesure, alliant performance technique et expérience utilisateur soignée. Que vous ayez besoin d'un site vitrine, d'une boutique en ligne ou d'une application métier, notre équipe vous accompagne de A à Z.\n\nNous utilisons des technologies modernes et robustes pour garantir des solutions rapides, sécurisées et évolutives, adaptées aux réalités de connexion et d'usage au Cameroun.",
+    aboutDescription: "LaboGraphie conçoit et développe des sites web et applications mobiles sur mesure, alliant performance technique et expérience utilisateur soignée. Que vous ayez besoin d'un site vitrine, d'une boutique en ligne ou d'une application métier, notre équipe vous accompagne de A à Z.\n\nNous utilisons des technologies modernes et robustes pour garantir des solutions rapides, sécurisées et évolutives, adaptées aux réalités de connexion et d'usage au Cameroun.",
     included: [
       "Analyse des besoins et conception UX/UI adaptée à vos utilisateurs",
       "Développement front-end et back-end avec des technologies modernes",
@@ -114,7 +114,7 @@ const servicesData: Record<string, {
     description: "Audits, tests d'intrusion et solutions de protection contre les cybermenaces pour sécuriser vos données et la continuité de votre activité.",
     image: service4,
     aboutTitle: "À propos de ce service",
-    aboutDescription: "Face à la montée des cybermenaces, Labographie propose des solutions de cybersécurité complètes pour protéger vos systèmes, vos données et la continuité de votre activité. Nos experts réalisent des audits approfondis et des tests d'intrusion pour identifier les failles avant qu'elles ne soient exploitées.\n\nNous accompagnons également nos clients dans la mise en conformité et la mise en place de bonnes pratiques de sécurité au quotidien.",
+    aboutDescription: "Face à la montée des cybermenaces, LaboGraphie propose des solutions de cybersécurité complètes pour protéger vos systèmes, vos données et la continuité de votre activité. Nos experts réalisent des audits approfondis et des tests d'intrusion pour identifier les failles avant qu'elles ne soient exploitées.\n\nNous accompagnons également nos clients dans la mise en conformité et la mise en place de bonnes pratiques de sécurité au quotidien.",
     included: [
       "Audit complet de vos systèmes, réseaux et applications",
       "Tests d'intrusion applicatifs et réseau réalisés par nos experts",
@@ -138,7 +138,7 @@ const servicesData: Record<string, {
     description: "Programmes de coaching digital et de formation continue adaptés à vos équipes : design, développement, bureautique avancée et cybersécurité.",
     image: service5,
     aboutTitle: "À propos de ce service",
-    aboutDescription: "Labographie forme depuis plusieurs années des étudiants et professionnels camerounais aux métiers du numérique. Nos programmes couvrent le design, le développement, la bureautique avancée et la cybersécurité, avec une approche pratique et orientée résultats.\n\nAvec plus de 500 étudiants formés, nous mettons un point d'honneur à transmettre des compétences directement applicables sur le marché du travail.",
+    aboutDescription: "LaboGraphie forme depuis plusieurs années des étudiants et professionnels camerounais aux métiers du numérique. Nos programmes couvrent le design, le développement, la bureautique avancée et la cybersécurité, avec une approche pratique et orientée résultats.\n\nAvec plus de 500 étudiants formés, nous mettons un point d'honneur à transmettre des compétences directement applicables sur le marché du travail.",
     included: [
       "Programme pédagogique structuré, adapté au niveau des participants",
       "Formateurs expérimentés et exercices pratiques sur des cas réels",
@@ -386,7 +386,7 @@ const ServiceDetail = () => {
                         <p className="text-primary font-bold mb-4">Avantages</p>
                         <h3 className="text-3xl md:text-5xl font-bold text-black mb-6">Les avantages du service</h3>
                         <p className="text-muted-foreground font-medium mb-8">
-                          Faire appel à Labographie, c'est bénéficier d'une expertise locale, d'un accompagnement de proximité et de solutions digitales adaptées aux réalités du marché camerounais.
+                          Faire appel à LaboGraphie, c'est bénéficier d'une expertise locale, d'un accompagnement de proximité et de solutions digitales adaptées aux réalités du marché camerounais.
                         </p>
                       </FadeIn>
 

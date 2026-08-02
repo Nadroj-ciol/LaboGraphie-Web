@@ -57,14 +57,14 @@ export function DashboardLayout() {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-gray-100">
+      <div className="min-h-screen flex w-full bg-slate-50">
         <DashboardSidebar />
 
-        <div className="flex-1 flex flex-col min-w-0">
-          {/* Mobile Header with Menu Trigger */}
-          <header className="md:hidden sticky top-0 z-10 flex items-center gap-2 border-b bg-white border-gray-200 p-4">
+        <div className="flex-1 flex flex-col min-w-0 transition-all duration-300">
+          {/* Mobile Header with Menu Trigger - Glassmorphism effect */}
+          <header className="md:hidden sticky top-0 z-20 flex items-center gap-3 border-b border-gray-200/50 bg-white/80 backdrop-blur-md p-4 shadow-sm">
             <SidebarTrigger className="-ml-1" />
-            <h1 className="text-lg font-semibold">Tableau de bord</h1>
+            <h1 className="text-lg font-semibold tracking-tight">Tableau de bord</h1>
           </header>
 
           {/* Main Content */}

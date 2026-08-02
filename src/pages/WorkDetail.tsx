@@ -116,7 +116,7 @@ const worksData: Record<string, {
     title: "Refonte Site Institutionnel",
     description: "Refonte complète du site web d'une institution publique : nouvelle arborescence, design responsive et optimisation SEO pour une meilleure visibilité.",
     detailTitle: "Un site institutionnel moderne et accessible",
-    detailDescription: "Cette institution disposait d'un site vieillissant, peu lisible et non optimisé pour les moteurs de recherche. Labographie a entièrement repensé l'expérience utilisateur et la structure du contenu.",
+    detailDescription: "Cette institution disposait d'un site vieillissant, peu lisible et non optimisé pour les moteurs de recherche. LaboGraphie a entièrement repensé l'expérience utilisateur et la structure du contenu.",
     overview: [
       "Refonte de l'arborescence et du parcours utilisateur",
       "Design responsive adapté à tous les écrans",
@@ -141,7 +141,7 @@ const worksData: Record<string, {
     title: "Audit de Cybersécurité",
     description: "Audit approfondi de l'infrastructure numérique d'une entreprise, identification des vulnérabilités et mise en place de mesures de protection renforcées.",
     detailTitle: "Sécuriser l'infrastructure numérique d'une entreprise",
-    detailDescription: "Face à des risques croissants de cyberattaques, cette entreprise a fait appel à Labographie pour réaliser un audit complet de sécurité et renforcer la protection de ses systèmes d'information.",
+    detailDescription: "Face à des risques croissants de cyberattaques, cette entreprise a fait appel à LaboGraphie pour réaliser un audit complet de sécurité et renforcer la protection de ses systèmes d'information.",
     overview: [
       "Analyse des vulnérabilités des systèmes et réseaux",
       "Tests d'intrusion et simulation d'attaques",
@@ -166,7 +166,7 @@ const worksData: Record<string, {
     title: "Campagne Social Media",
     description: "Stratégie et gestion de campagnes sur les réseaux sociaux pour une marque locale, avec création de contenu et augmentation significative de l'engagement.",
     detailTitle: "Booster la visibilité d'une marque locale",
-    detailDescription: "Cette marque souhaitait renforcer sa présence sur les réseaux sociaux et engager davantage sa communauté. Labographie a mis en place une stratégie de contenu et de campagnes publicitaires ciblées.",
+    detailDescription: "Cette marque souhaitait renforcer sa présence sur les réseaux sociaux et engager davantage sa communauté. LaboGraphie a mis en place une stratégie de contenu et de campagnes publicitaires ciblées.",
     overview: [
       "Élaboration d'une stratégie éditoriale sur mesure",
       "Création de contenus visuels et vidéos engageants",
@@ -422,7 +422,7 @@ const WorkDetail = () => {
         <div className="container-custom section-padding">
           <div className="flex justify-center flex-col items-center w-full mb-20">
             <h2 className="text-black font-bold mb-4">Problème & Solution</h2>
-            <p className="text-muted-foreground font-medium text-center max-w-2xl">Chaque projet chez Labographie part d'un diagnostic précis des enjeux du client, suivi d'une solution digitale sur mesure adaptée à son contexte et à ses objectifs.</p>
+            <p className="text-muted-foreground font-medium text-center max-w-2xl">Chaque projet chez LaboGraphie part d'un diagnostic précis des enjeux du client, suivi d'une solution digitale sur mesure adaptée à son contexte et à ses objectifs.</p>
           </div>
 
           <div className="space-y-24">
@@ -433,7 +433,7 @@ const WorkDetail = () => {
                 <div>
                   <h3 className="text-black font-bold mb-4">Problème</h3>
                   <p className="text-muted-foreground mb-8 font-semibold text-justify leading-relaxed">
-                    Avant l'intervention de Labographie, le client faisait face à des défis concrets freinant sa croissance digitale et sa capacité à atteindre efficacement son public cible.
+                    Avant l'intervention de LaboGraphie, le client faisait face à des défis concrets freinant sa croissance digitale et sa capacité à atteindre efficacement son public cible.
                   </p>
                   <ul className="space-y-4">
                     {work.problems.map((problem, index) => <li key={index} className="flex items-start gap-3">
@@ -446,11 +446,11 @@ const WorkDetail = () => {
                 <FadeIn className="h-[90%]">
                   <div className="relative h-full">
                     <div className="rounded-3xl h-full overflow-hidden">
-                      <img src={problem1} alt="Équipe Labographie au travail" className="h-full object-cover" />
+                      <img src={problem1} alt="Équipe LaboGraphie au travail" className="h-full object-cover" />
                     </div>
                     {/* Experience Badge */}
                     <div className="absolute -bottom-12 w-[240px] h-[240px] -left-12 border-8 border-white overflow-hidden rounded-xl text-white">
-                      <img src={problem2} alt="Équipe Labographie au travail" className="h-full object-cover " />
+                      <img src={problem2} alt="Équipe LaboGraphie au travail" className="h-full object-cover " />
                     </div>
                   </div>
                 </FadeIn>
@@ -463,11 +463,11 @@ const WorkDetail = () => {
                 <FadeIn>
                   <div className="relative">
                     <div className="rounded-3xl overflow-hidden">
-                      <img src={solution1} alt="Équipe Labographie au travail" className="w-full h-auto object-cover" />
+                      <img src={solution1} alt="Équipe LaboGraphie au travail" className="w-full h-auto object-cover" />
                     </div>
                     {/* Experience Badge */}
                     <div className="absolute -bottom-12 w-[240px] h-[240px] -right-12 border-8 border-white overflow-hidden rounded-xl text-white">
-                      <img src={solution2} alt="Équipe Labographie au travail" className="h-full object-cover " />
+                      <img src={solution2} alt="Équipe LaboGraphie au travail" className="h-full object-cover " />
                     </div>
                   </div>
                 </FadeIn>

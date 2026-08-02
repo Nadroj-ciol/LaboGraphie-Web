@@ -41,7 +41,7 @@ const CTA = () => {
               {/* Background Image */}
               <img
                 src={heroPlumber}
-                alt="Équipe Labographie au travail"
+                alt="Équipe LaboGraphie au travail"
                 className="absolute inset-0 w-full h-full object-cover object-center"
               />
               {/* Gradient Overlay */}
@@ -65,14 +65,14 @@ const CTA = () => {
                 <div className="w-16 h-16 rounded-full border-4 border-secondary overflow-hidden">
                   <img
                     src={avatar1}
-                    alt="Responsable Labographie"
+                    alt="Responsable LaboGraphie"
                     className="w-full h-full object-cover"
                   />
                 </div>
               </div>
               {/* Text */}
               <p className="text-primary font-semibold text-xl leading-relaxed mb-8">
-                Je suis à votre écoute pour répondre à toutes vos questions et vous accompagner dans votre projet digital chez Labographie.
+                Je suis à votre écoute pour répondre à toutes vos questions et vous accompagner dans votre projet digital chez LaboGraphie.
               </p>
               {/* Button */}
               <Link to={site.phoneHref}>

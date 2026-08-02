@@ -122,7 +122,7 @@ const faqs = [
       "Nous proposons une large gamme de services digitaux : design & branding, développement web et mobile, marketing digital, cybersécurité, formations professionnelles et maintenance IT, pour les particuliers comme pour les entreprises.",
   },
   {
-    question: "Combien coûte un projet chez Labographie ?",
+    question: "Combien coûte un projet chez LaboGraphie ?",
     answer:
       "Nos tarifs dépendent du type de service, de la complexité du projet et des délais souhaités. Chaque devis est établi sur mesure après un premier échange avec notre équipe à Bastos, Yaoundé.\n\nContactez-nous pour obtenir une estimation gratuite et personnalisée.",
   },
@@ -134,7 +134,7 @@ const faqs = [
   {
     question: "Votre agence est-elle enregistrée et assurée ?",
     answer:
-      "Oui, Labographie est un cabinet digital enregistré au Cameroun. Toute notre équipe est composée de professionnels qualifiés, garantissant un travail sérieux et conforme aux normes du secteur.",
+      "Oui, LaboGraphie est un cabinet digital enregistré au Cameroun. Toute notre équipe est composée de professionnels qualifiés, garantissant un travail sérieux et conforme aux normes du secteur.",
   },
   {
     question: "Vos prix sont-ils compétitifs et proposez-vous des devis ?",

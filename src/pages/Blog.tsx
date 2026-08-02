@@ -7,7 +7,7 @@ import { usePublishedBlogs } from "@/hooks/useBlogs";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
-const categories = ["Tous", "Récents", "Populaires", "Design & Branding", "Marketing Digital"];
+const categories = ["Tous", "Récents", "Populaires", "Design & Branding", "Marketing Digital", "Cyber-sécurité", "Maintenance", "Réseau"];
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("Tous");
   const { data: blogs, isLoading } = usePublishedBlogs();
@@ -100,26 +100,32 @@ const Blog = () => {
           </div>
 
           {/* Blog Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredBlogs.map((post, index) => <FadeIn key={post.id} delay={index * 100}>
-              <Link to={`/blog/${post.slug}`}>
-                <article className="group cursor-pointer bg-inherit">
-                  <div className="relative rounded-2xl overflow-hidden mb-4">
-                    <img src={post.image_url || plumberTeam} alt={post.title} className="w-full h-[340px] object-cover group-hover:scale-105 transition-transform duration-500" />
-                    <span className="absolute top-4 left-4 bg-tertiary text-primary text-xs font-medium px-3 py-1 rounded-full">
-                      {post.category}
-                    </span>
-                  </div>
-                  <h5 className="text-black font-bold mb-3 group-hover:text-secondary transition-colors">
-                    {post.title}
-                  </h5>
-                  <p className="text-muted-foreground font-medium text-base">
-                    {new Date(post.created_at).toLocaleDateString('fr-FR', { month: 'long', day: 'numeric', year: 'numeric' })} · {post.read_time}
-                  </p>
-                </article>
-              </Link>
-            </FadeIn>)}
-          </div>
+          {filteredBlogs.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredBlogs.map((post, index) => <FadeIn key={post.id} delay={index * 100}>
+                <Link to={`/blog/${post.slug}`}>
+                  <article className="group cursor-pointer bg-inherit">
+                    <div className="relative rounded-2xl overflow-hidden mb-4">
+                      <img src={post.image_url || plumberTeam} alt={post.title} className="w-full h-[340px] object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <span className="absolute top-4 left-4 bg-tertiary text-primary text-xs font-medium px-3 py-1 rounded-full">
+                        {post.category}
+                      </span>
+                    </div>
+                    <h5 className="text-black font-bold mb-3 group-hover:text-secondary transition-colors">
+                      {post.title}
+                    </h5>
+                    <p className="text-muted-foreground font-medium text-base">
+                      {new Date(post.created_at).toLocaleDateString('fr-FR', { month: 'long', day: 'numeric', year: 'numeric' })} · {post.read_time}
+                    </p>
+                  </article>
+                </Link>
+              </FadeIn>)}
+            </div>
+          ) : (
+            <div className="text-center py-16 bg-[#F4F4F7] rounded-3xl">
+              <p className="text-muted-foreground text-lg font-medium">Aucun article disponible dans cette catégorie pour le moment.</p>
+            </div>
+          )}
         </div>
       </section>
     </FadeIn>

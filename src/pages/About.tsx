@@ -41,7 +41,7 @@ const stats = [{
 const timelineData = [{
   year: "2019",
   title: "Naissance du laboratoire",
-  description: "Labographie voit le jour a Yaounde avec une idee simple : creer un laboratoire d'innovation capable d'accompagner les entreprises camerounaises dans leur transformation digitale.",
+  description: "LaboGraphie voit le jour a Yaounde avec une idee simple : creer un laboratoire d'innovation capable d'accompagner les entreprises camerounaises dans leur transformation digitale.",
   image: heroGrid1,
   position: "left"
 }, {
@@ -53,12 +53,12 @@ const timelineData = [{
 }, {
   year: "2023",
   title: "Notre histoire",
-  description: "Labographie devient un cabinet informatique reconnu, ajoutant la cybersecurite et les formations professionnelles a son catalogue, avec plus de 500 etudiants formes.",
+  description: "LaboGraphie devient un cabinet informatique reconnu, ajoutant la cybersecurite et les formations professionnelles a son catalogue, avec plus de 500 etudiants formes.",
   image: heroGrid3,
   position: "left"
 }, {
   year: "2024",
-  title: "Labographie aujourd'hui",
+  title: "LaboGraphie aujourd'hui",
   description: "Installes a Bastos, Yaounde, nous avons livre plus de 100 projets et accompagnons durablement nos clients grace a notre maintenance IT et reseau.",
   image: heroGrid4,
   position: "right"
@@ -181,7 +181,7 @@ const About = () => {
             {/* Hero Image with Stats */}
             <div className="relative">
               <div className="rounded-3xl overflow-hidden">
-                <img src={plumberTeam} alt="Équipe Labographie" className="w-full h-[400px] lg:h-[500px] object-cover" />
+                <img src={plumberTeam} alt="Équipe LaboGraphie" className="w-full h-[400px] lg:h-[500px] object-cover" />
               </div>
 
               {/* Stats Overlay */}
@@ -246,8 +246,8 @@ const About = () => {
                           <img src={item.image} alt={item.title} className="w-full h-64 object-cover" />
                         </div>
                         {item.position === 'left' && <div className="mt-6 lg:block hidden">
-                          <h4 className="text-white font-bold mb-2">{item.title === "Notre parcours" || item.title === "Labographie aujourd'hui" ? item.title : ""}</h4>
-                          {(item.title === "Notre parcours" || item.title === "Labographie aujourd'hui") && <p className="text-white/60 text-sm">{item.description}</p>}
+                          <h4 className="text-white font-bold mb-2">{item.title === "Notre parcours" || item.title === "LaboGraphie aujourd'hui" ? item.title : ""}</h4>
+                          {(item.title === "Notre parcours" || item.title === "LaboGraphie aujourd'hui") && <p className="text-white/60 text-sm">{item.description}</p>}
                         </div>}
                       </div>
 
@@ -331,7 +331,7 @@ const About = () => {
                 <div>
                   <h3 className="text-black font-bold mb-4">Notre mission</h3>
                   <p className="text-muted-foreground mb-8 font-semibold text-justify leading-relaxed">
-                    Chez Labographie, notre mission est de fournir des services digitaux de haute qualité qui garantissent sécurité, performance et efficacité. Nous nous engageons à offrir un service client exceptionnel et un savoir-faire d'expert.
+                    Chez LaboGraphie, notre mission est de fournir des services digitaux de haute qualité qui garantissent sécurité, performance et efficacité. Nous nous engageons à offrir un service client exceptionnel et un savoir-faire d'expert.
                   </p>
                   <ul className="space-y-4">
                     {missionFeatures.map((feature, index) => <li key={index} className="flex items-start gap-3">

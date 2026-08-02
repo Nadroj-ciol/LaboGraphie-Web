@@ -44,7 +44,7 @@ const Experience = () => {
       {/* Top Text */}
       <div className="text-center max-w-5xl mx-auto mb-16">
         <FadeIn>
-          <p className="text-primary font-bold  mb-4">Bienvenue chez Labographie</p>
+          <p className="text-primary font-bold  mb-4">Bienvenue chez LaboGraphie</p>
         </FadeIn>
         <FadeIn delay={100}>
           <h2 className="text-black font-bold text-5xl">
@@ -59,7 +59,7 @@ const Experience = () => {
         <FadeIn delay={200}>
           <div className="relative">
             <div className="rounded-3xl overflow-hidden max-h-[500px]">
-              <img src={plumberTeam} alt="Équipe Labographie au travail" className="w-full h-auto object-cover" />
+              <img src={plumberTeam} alt="Équipe LaboGraphie au travail" className="w-full h-auto object-cover" />
             </div>
           </div>
         </FadeIn>

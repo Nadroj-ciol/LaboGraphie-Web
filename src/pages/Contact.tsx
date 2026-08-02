@@ -267,7 +267,7 @@ const Contact = () => {
               <div className="rounded-2xl overflow-hidden">
                 <img
                   src={contact}
-                  alt="Équipe Labographie au travail"
+                  alt="Équipe LaboGraphie au travail"
                   className="w-full h-full object-cover min-h-[400px]"
                 />
               </div>

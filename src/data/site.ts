@@ -1,5 +1,5 @@
 export const site = {
-  name: "Labographie",
+  name: "LaboGraphie",
   tagline: "Laboratoire & Cabinet Digital",
   phone: "+237 671 33 90 19",
   phoneHref: "tel:+237671339019",

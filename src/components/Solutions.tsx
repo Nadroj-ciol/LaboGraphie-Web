@@ -81,11 +81,11 @@ const About = () => {
         <FadeIn className="h-[90%]">
           <div className="relative h-full">
             <div className="rounded-3xl h-full overflow-hidden">
-              <img src={heroPlumber} alt="Équipe Labographie" className="h-auto w-full object-cover" />
+              <img src={heroPlumber} alt="Équipe LaboGraphie" className="h-auto w-full object-cover" />
             </div>
             {/* Experience Badge */}
             <div className="absolute -bottom-12 w-[240px] h-[240px] -left-12 overflow-hidden rounded-xl text-white">
-              <img src={teamPlumber} alt="Équipe Labographie" className="h-full object-cover " />
+              <img src={teamPlumber} alt="Équipe LaboGraphie" className="h-full object-cover " />
             </div>
           </div>
         </FadeIn>

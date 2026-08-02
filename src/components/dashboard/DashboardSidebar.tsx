@@ -64,10 +64,10 @@ export function DashboardSidebar() {
 
   return (
     <Sidebar
-      className={`${collapsed ? "w-14" : "w-60"} border-r border-gray-200 transition-all duration-300`}
+      className={`${collapsed ? "w-14" : "w-60"} border-r-0 shadow-[4px_0_24px_rgba(0,0,0,0.02)] transition-all duration-300 z-30`}
       collapsible="icon"
     >
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
+      <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-white/80 backdrop-blur-md">
         {!collapsed && (
           <Link to="/">
             <Logo />
@@ -78,7 +78,7 @@ export function DashboardSidebar() {
 
       <SidebarContent className="pt-4 bg-white">
         <SidebarGroup>
-          <SidebarGroupLabel className={collapsed ? "sr-only" : ""}>
+          <SidebarGroupLabel className={`${collapsed ? "sr-only" : ""} text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 px-4`}>
             {loading ? "Chargement..." : isAdmin ? "Menu Administrateur" : "Menu Utilisateur"}
           </SidebarGroupLabel>
 
@@ -94,8 +94,11 @@ export function DashboardSidebar() {
                     <NavLink
                       to={item.url}
                       end={item.url === "/dashboard"}
-                      className="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors hover:bg-white"
-                      activeClassName=" text-primary-foreground"
+                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 ${
+                        isActive(item.url)
+                          ? "bg-primary/10 text-primary font-medium shadow-sm" 
+                          : "text-muted-foreground hover:bg-slate-50 hover:text-primary hover:translate-x-1"
+                      }`}
                     >
                       <item.icon className="h-5 w-5 flex-shrink-0" />
                       {!collapsed && <span>{item.title}</span>}
@@ -114,7 +117,7 @@ export function DashboardSidebar() {
                 <SidebarMenuButton asChild tooltip="Retour au site">
                   <Link
                     to="/"
-                    className="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors hover:bg-muted text-muted-foreground"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 text-muted-foreground hover:bg-slate-50 hover:text-primary hover:translate-x-1"
                   >
                     <Home className="h-5 w-5 flex-shrink-0" />
                     {!collapsed && <span>Retour au site</span>}
@@ -122,9 +125,9 @@ export function DashboardSidebar() {
 
                 </SidebarMenuButton>
                 <SidebarMenuButton asChild tooltip="Déconnexion">
-                  <div onClick={handleSignOut} className="text-destructive/80 flex items-center gap-3 px-3 py-2 rounded-lg transition-colors cursor-pointer hover:text-destructive">
-                    <LogOut className="size-4" />
-                    <span>Déconnexion</span>
+                  <div onClick={handleSignOut} className="text-destructive/80 flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 cursor-pointer hover:bg-destructive/10 hover:text-destructive hover:translate-x-1">
+                    <LogOut className="size-5 flex-shrink-0" />
+                    {!collapsed && <span>Déconnexion</span>}
                   </div>
                 </SidebarMenuButton>
               </SidebarMenuItem>

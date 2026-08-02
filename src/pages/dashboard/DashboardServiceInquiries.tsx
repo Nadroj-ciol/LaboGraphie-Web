@@ -19,6 +19,17 @@ import {
 import { useDeleteServiceInquiry, useServiceInquiries, useUpdateServiceInquiry } from "@/hooks/useServiceInquiries";
 import { format } from "date-fns";
 import { MessageSquare, Phone, Trash2, User } from "lucide-react";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { useState } from "react";
 
 const getStatusBadge = (status: string) => {
@@ -47,9 +58,7 @@ export default function DashboardServiceInquiries() {
     };
 
     const handleDelete = async (id: string) => {
-        if (confirm("Êtes-vous sûr de vouloir supprimer cette demande ?")) {
-            await deleteInquiry.mutateAsync(id);
-        }
+        await deleteInquiry.mutateAsync(id);
     };
 
     return (
@@ -157,13 +166,30 @@ export default function DashboardServiceInquiries() {
                                             </TableCell>
                                             <TableCell className="text-right">
                                                 <div className="flex items-center justify-end gap-2">
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="sm"
-                                                        onClick={() => handleDelete(inquiry.id)}
-                                                    >
-                                                        <Trash2 className="h-4 w-4 text-destructive" />
-                                                    </Button>
+                                                    <AlertDialog>
+                                                        <AlertDialogTrigger asChild>
+                                                            <Button
+                                                                variant="ghost"
+                                                                size="sm"
+                                                            >
+                                                                <Trash2 className="h-4 w-4 text-destructive" />
+                                                            </Button>
+                                                        </AlertDialogTrigger>
+                                                        <AlertDialogContent className="bg-white">
+                                                            <AlertDialogHeader>
+                                                                <AlertDialogTitle>Êtes-vous absolument sûr ?</AlertDialogTitle>
+                                                                <AlertDialogDescription>
+                                                                    Cette action est irréversible. Cela supprimera définitivement cette demande de service.
+                                                                </AlertDialogDescription>
+                                                            </AlertDialogHeader>
+                                                            <AlertDialogFooter>
+                                                                <AlertDialogCancel className="bg-white text-slate-700">Annuler</AlertDialogCancel>
+                                                                <AlertDialogAction onClick={() => handleDelete(inquiry.id)} className="bg-destructive text-white hover:bg-destructive/90">
+                                                                    Supprimer
+                                                                </AlertDialogAction>
+                                                            </AlertDialogFooter>
+                                                        </AlertDialogContent>
+                                                    </AlertDialog>
                                                 </div>
                                             </TableCell>
                                         </TableRow>

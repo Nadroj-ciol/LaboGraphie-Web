@@ -3,6 +3,7 @@ import { site } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChevronDown, LayoutDashboard, LogOut, Menu, Phone, User, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -226,11 +227,12 @@ const Header = ({
                   <div
                     className="group relative flex items-center gap-0.5 rounded-xl"
                   >
-                    <div className="size-9 cursor-pointer">
-                      <div className={` flex size-full items-center justify-center rounded-full ${isDark ? "bg-accent" : "bg-primary text-white "}`}>
+                    <Avatar className="size-9 cursor-pointer shadow-sm">
+                      <AvatarImage src={profile?.avatar_url || user.user_metadata?.avatar_url || undefined} className="object-cover" />
+                      <AvatarFallback className={`${isDark ? "bg-accent" : "bg-primary text-white"}`}>
                         {user.email?.slice(0, 2).toUpperCase() || "U"}
-                      </div>
-                    </div>
+                      </AvatarFallback>
+                    </Avatar>
                     <div
                       className={`flex h-full min-h-9 cursor-pointer items-center rounded-sm ${isDark ? "group-hover:bg-primary/80" : "group-hover:bg-[#f8f8f8]"}`}
                     >
@@ -251,9 +253,12 @@ const Header = ({
                       className="flex items-center gap-3 rounded-[10px] p-2"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <div className="bg-primary text-white flex size-10 min-h-10 min-w-10 items-center justify-center rounded-full">
-                        {user.email?.slice(0, 2).toUpperCase() || "U"}
-                      </div>
+                      <Avatar className="size-10 min-h-10 min-w-10 shadow-sm border border-white/20">
+                        <AvatarImage src={profile?.avatar_url || user.user_metadata?.avatar_url || undefined} className="object-cover" />
+                        <AvatarFallback className="bg-primary text-white">
+                          {user.email?.slice(0, 2).toUpperCase() || "U"}
+                        </AvatarFallback>
+                      </Avatar>
                       <div className="flex items-center">
                         <div className="flex flex-col gap-1">
                           <span

@@ -6,7 +6,7 @@ import FadeIn from "@/components/FadeIn";
 const testimonials = [{
   name: "Esther Ngo Bell",
   location: "Yaoundé, Cameroun",
-  text: "Labographie a su transformer notre image de marque en un temps record. Leur équipe allie créativité et rigueur, un vrai plaisir de travailler avec eux.",
+  text: "LaboGraphie a su transformer notre image de marque en un temps record. Leur équipe allie créativité et rigueur, un vrai plaisir de travailler avec eux.",
   avatar: avatar1
 }, {
   name: "Bertrand Fotso",
@@ -16,7 +16,7 @@ const testimonials = [{
 }, {
   name: "Aïcha Belinga",
   location: "Yaoundé, Cameroun",
-  text: "La formation dispensée par Labographie a permis à toute notre équipe de monter en compétences sur le digital. Un accompagnement de qualité.",
+  text: "La formation dispensée par LaboGraphie a permis à toute notre équipe de monter en compétences sur le digital. Un accompagnement de qualité.",
   avatar: avatar3
 }, {
   name: "Marc Etoundi",
@@ -26,7 +26,7 @@ const testimonials = [{
 }, {
   name: "Nadège Manga",
   location: "Douala, Cameroun",
-  text: "Un audit de cybersécurité complet et rassurant. Labographie a su identifier nos failles et proposer des solutions adaptées à notre budget.",
+  text: "Un audit de cybersécurité complet et rassurant. LaboGraphie a su identifier nos failles et proposer des solutions adaptées à notre budget.",
   avatar: avatar2
 }];
 

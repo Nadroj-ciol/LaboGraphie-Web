@@ -3,6 +3,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { useAllContacts, useDeleteContact, useUpdateContactStatus } from "@/hooks/useContacts";
 import { Calendar, Mail, Phone, Trash2 } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -29,7 +40,6 @@ export default function DashboardContacts() {
   }, [isAdmin, loading, navigate]);
 
   const handleDeleteContact = async (id: string) => {
-    if (!confirm("Êtes-vous sûr de vouloir supprimer ce message ?")) return;
 
     try {
       await deleteContact.mutateAsync(id);
@@ -124,12 +134,27 @@ export default function DashboardContacts() {
                       <option value="cancelled">Annulé</option>
                     </select>
 
-                    <button
-                      onClick={() => handleDeleteContact(contact.id)}
-                      className="p-2 hover:bg-destructive/10 rounded-lg transition-colors"
-                    >
-                      <Trash2 className="w-4 h-4 text-destructive" />
-                    </button>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <button className="p-2 hover:bg-destructive/10 rounded-lg transition-colors group">
+                          <Trash2 className="w-4 h-4 text-slate-400 group-hover:text-destructive" />
+                        </button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent className="bg-white">
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Êtes-vous absolument sûr ?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            Cette action est irréversible. Cela supprimera définitivement ce message.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel className="bg-white text-slate-700">Annuler</AlertDialogCancel>
+                          <AlertDialogAction onClick={() => handleDeleteContact(contact.id)} className="bg-destructive text-white hover:bg-destructive/90">
+                            Supprimer
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </div>
                 </div>
               ))}
