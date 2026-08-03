@@ -43,23 +43,23 @@ export default function DashboardProfile() {
 
   const handleAvatarUpload = async (url: string) => {
     setAvatarUrl(url);
-    
+
     // Auto save avatar in DB
     try {
       const { error } = await supabase
         .from('profiles')
         .update({ avatar_url: url })
         .eq('user_id', user.id);
-        
+
       if (error) throw error;
-      
+
       // Update auth meta data too for sync
       await supabase.auth.updateUser({
         data: { avatar_url: url }
       });
-      
+
       queryClient.invalidateQueries({ queryKey: ["userProfile", user.id] });
-      
+
       toast({
         title: "Photo de profil mise à jour",
         description: "Votre nouvel avatar a été enregistré avec succès.",
@@ -76,24 +76,24 @@ export default function DashboardProfile() {
   const handleSaveProfile = async () => {
     try {
       setIsSaving(true);
-      
+
       const { error } = await supabase
         .from('profiles')
-        .update({ 
+        .update({
           full_name: fullName,
           phone: phone
         })
         .eq('user_id', user.id);
-        
+
       if (error) throw error;
-      
+
       // Update metadata
       await supabase.auth.updateUser({
         data: { full_name: fullName, phone: phone }
       });
-      
+
       queryClient.invalidateQueries({ queryKey: ["userProfile", user.id] });
-      
+
       toast({
         title: "Profil mis à jour",
         description: "Vos informations ont été enregistrées avec succès.",
@@ -123,17 +123,17 @@ export default function DashboardProfile() {
         <Card className="bg-white border border-gray-200 md:col-span-1">
           <CardContent className="pt-6">
             <div className="flex flex-col items-center text-center">
-              
-              <AvatarUpload 
-                userId={user.id} 
-                url={avatarUrl} 
-                userName={userNameDisplay} 
-                onUpload={handleAvatarUpload} 
+
+              <AvatarUpload
+                userId={user.id}
+                url={avatarUrl}
+                userName={userNameDisplay}
+                onUpload={handleAvatarUpload}
               />
-              
+
               <h3 className="text-xl font-semibold">{userNameDisplay}</h3>
               <p className="text-sm text-muted-primary">{user.email}</p>
-              
+
               {isAdmin && (
                 <div className="mt-4 flex items-center gap-2">
                   <Shield className="h-4 w-4 text-primary" />
@@ -157,39 +157,39 @@ export default function DashboardProfile() {
             <CardDescription>Mettez à jour vos informations publiques</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            
+
             <div className="space-y-4">
               <div className="grid gap-2">
                 <Label htmlFor="fullName">Nom complet</Label>
-                <Input 
-                  id="fullName" 
+                <Input
+                  id="fullName"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  placeholder="Jean Dupont"
+                  placeholder="Nadroj ciol"
                 />
               </div>
-              
+
               <div className="grid gap-2">
                 <Label htmlFor="phone">Numéro de téléphone</Label>
-                <Input 
-                  id="phone" 
+                <Input
+                  id="phone"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="+237 6XX XX XX XX"
                 />
               </div>
-              
+
               <div className="grid gap-2">
                 <Label className="text-muted-foreground">Adresse e-mail (Non modifiable)</Label>
                 <Input value={user.email || ""} disabled className="bg-gray-50" />
               </div>
-              
+
               <div className="flex items-center gap-2 pt-2 text-sm text-muted-foreground">
                 <Calendar className="h-4 w-4" />
                 <span>Membre depuis le {createdAt}</span>
               </div>
             </div>
-            
+
           </CardContent>
           <CardFooter className="flex justify-end border-t pt-6">
             <Button onClick={handleSaveProfile} disabled={isSaving || profileLoading}>
