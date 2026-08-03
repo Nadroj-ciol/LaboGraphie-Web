@@ -19,16 +19,20 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { useAdminCareers, useCreateCareer, useDeleteCareer, useUpdateCareer } from "@/hooks/useCareers";
+import { useJobApplications } from "@/hooks/useJobApplications";
 import { format } from "date-fns";
-import { Loader2, Pencil, Plus, Trash2, Briefcase, MapPin, ListPlus, Building2 } from "lucide-react";
-import { useState } from "react";
+import { Briefcase, Building2, ListPlus, Loader2, MapPin, Pencil, Plus, Search, Trash2, Users } from "lucide-react";
+import { useMemo, useState } from "react";
 
 const DashboardCareers = () => {
   const { data: careers, isLoading } = useAdminCareers();
+  const { data: applications } = useJobApplications();
+  
   const createCareer = useCreateCareer();
   const updateCareer = useUpdateCareer();
   const deleteCareer = useDeleteCareer();
 
+  const [searchQuery, setSearchQuery] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingCareer, setEditingCareer] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -115,22 +119,47 @@ const DashboardCareers = () => {
     );
   }
 
+  const filteredCareers = careers?.filter(career => 
+    career.title.toLowerCase().includes(searchQuery.toLowerCase())
+  ) || [];
+
+  const getApplicationCount = (careerId: string) => {
+    return applications?.filter(app => app.career_id === careerId).length || 0;
+  };
+
+  const activeCareers = careers?.filter(c => c.is_active).length || 0;
+  const totalApplications = applications?.length || 0;
+
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-primary">Offres d'emploi</h1>
           <p className="text-black mt-1">
             Gérez vos postes ouverts et recrutements
           </p>
         </div>
-        <Dialog open={isDialogOpen} onOpenChange={(open) => { setIsDialogOpen(open); if (!open) resetForm(); }} >
-          <DialogTrigger asChild>
-            <Button className="rounded-full shadow-sm">
-              <Plus className="mr-2 h-4 w-4" /> Ajouter un poste
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-white border-0 shadow-2xl rounded-2xl p-0">
+        
+        <div className="flex items-center gap-3">
+          <div className="hidden sm:flex items-center gap-4 text-sm mr-4 bg-white px-4 py-2 rounded-xl shadow-sm border border-gray-100">
+            <div className="flex flex-col">
+              <span className="text-muted-foreground text-xs font-medium">Actives</span>
+              <span className="font-bold text-primary">{activeCareers}/{careers?.length || 0}</span>
+            </div>
+            <div className="w-px h-8 bg-gray-100"></div>
+            <div className="flex flex-col">
+              <span className="text-muted-foreground text-xs font-medium">Candidatures</span>
+              <span className="font-bold text-primary">{totalApplications}</span>
+            </div>
+          </div>
+
+          <Dialog open={isDialogOpen} onOpenChange={(open) => { setIsDialogOpen(open); if (!open) resetForm(); }} >
+            <DialogTrigger asChild>
+              <Button className="rounded-full shadow-sm">
+                <Plus className="mr-2 h-4 w-4" /> Ajouter un poste
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-white border-0 shadow-2xl rounded-2xl p-0">
             <div className="sticky top-0 z-20 bg-white/90 backdrop-blur-md border-b px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <DialogTitle className="text-xl font-bold">
@@ -288,19 +317,33 @@ const DashboardCareers = () => {
           </DialogContent>
         </Dialog>
       </div>
+      </div>
 
       <Card className="bg-white border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl">
         <CardHeader className="border-b border-gray-100 bg-gray-50/30 rounded-t-2xl pb-4">
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <Briefcase className="h-5 w-5 text-primary" />
-            Tous les postes <span className="bg-primary/10 text-primary text-sm px-2 py-0.5 rounded-full">{careers?.length || 0}</span>
-          </CardTitle>
-          <CardDescription>Consultez et gérez les offres d'emploi affichées sur votre site internet.</CardDescription>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Briefcase className="h-5 w-5 text-primary" />
+                Tous les postes <span className="bg-primary/10 text-primary text-sm px-2 py-0.5 rounded-full">{filteredCareers.length}</span>
+              </CardTitle>
+              <CardDescription className="mt-1">Consultez et gérez les offres d'emploi affichées sur votre site internet.</CardDescription>
+            </div>
+            <div className="relative">
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Rechercher une offre..."
+                className="pl-9 bg-white w-full md:w-[250px] rounded-xl"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+          </div>
         </CardHeader>
         <CardContent className="pt-6">
-          {careers && careers.length > 0 ? (
+          {filteredCareers.length > 0 ? (
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {careers.map((career) => (
+              {filteredCareers.map((career) => (
                 <div 
                   key={career.id} 
                   className="group relative flex flex-col bg-white border border-gray-200 rounded-xl p-5 hover:border-primary/30 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300"
@@ -350,6 +393,11 @@ const DashboardCareers = () => {
                       <Badge variant="outline" className="bg-gray-50 font-normal text-xs text-slate-600 border-gray-200 flex items-center gap-1">
                         <MapPin className="w-3 h-3" /> {career.location}
                       </Badge>
+                      {getApplicationCount(career.id) > 0 && (
+                        <Badge variant="secondary" className="bg-primary/10 text-primary font-medium text-xs flex items-center gap-1 border-none hover:bg-primary/20">
+                          <Users className="w-3 h-3" /> {getApplicationCount(career.id)} candidat{getApplicationCount(career.id) > 1 ? 's' : ''}
+                        </Badge>
+                      )}
                     </div>
                   </div>
                   

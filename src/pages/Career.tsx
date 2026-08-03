@@ -9,8 +9,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { useCareerBySlug, useCareers } from "@/hooks/useCareers";
 import { useCreateJobApplication } from "@/hooks/useJobApplications";
 import { useUserProfile } from "@/hooks/useUserProfile";
-import { ArrowUpRight, Briefcase, CheckCircle2, Loader2, MapPin } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowRight, ArrowUpRight, Briefcase, Building2, CheckCircle2, FileText, Link as LinkIcon, Linkedin, Loader2, Mail, MapPin, MessageSquare, Phone, UploadCloud, User as UserIcon } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { z } from "zod";
 
@@ -34,8 +34,10 @@ const Career = () => {
   const [phone, setPhone] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [cvLink, setCvLink] = useState("");
+  const [cvFileName, setCvFileName] = useState("");
   const [note, setNote] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const createApplication = useCreateJobApplication();
 
@@ -89,6 +91,34 @@ const Career = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 30 * 1024) { // 30 KB limit
+      setErrors(prev => ({ ...prev, cvFile: "La taille du fichier ne doit pas dépasser 30 Ko." }));
+      // Reset input
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      return;
+    }
+
+    setErrors(prev => {
+      const newErrors = { ...prev };
+      delete newErrors.cvFile;
+      return newErrors;
+    });
+    
+    setCvFileName(file.name);
+    
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      if (event.target?.result) {
+        setCvLink(event.target.result as string);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -113,8 +143,10 @@ const Career = () => {
     setPhone("");
     setLinkedin("");
     setCvLink("");
+    setCvFileName("");
     setNote("");
     setErrors({});
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   if (careersLoading || careerLoading) {
@@ -265,117 +297,206 @@ const Career = () => {
             </div>
 
             {/* Form */}
-            <div className="bg-[#f4f4f7] h-fit rounded-2xl p-8 sticky top-10 lg:col-span-4">
-              <h2 className="text-3xl font-bold text-black mb-6">Postuler à cette Offre</h2>
+            <div className="bg-white border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] h-fit rounded-2xl p-8 sticky top-32 lg:col-span-4 transition-all duration-300">
+              <h2 className="text-2xl font-bold text-black mb-6 flex items-center gap-2">
+                Postuler à cette Offre
+              </h2>
 
-              <form className="space-y-5" onSubmit={handleSubmit}>
-                <div>
-                  <label className="block font-medium text-black mb-2">
-                    Nom Complet *
+              <form className="space-y-4" onSubmit={handleSubmit}>
+                <div className="space-y-1.5">
+                  <label className="text-sm font-medium text-black flex items-center gap-1">
+                    Nom Complet <span className="text-destructive">*</span>
                   </label>
-                  <Input
-                    className="bg-transparent h-12"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    placeholder="Entrez votre nom complet"
-                  />
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <UserIcon className="h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                    </div>
+                    <Input
+                      className="bg-gray-50/50 border-gray-200 h-11 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      placeholder="Entrez votre nom complet"
+                    />
+                  </div>
                   {errors.fullName && (
-                    <p className="text-destructive text-sm mt-1">{errors.fullName}</p>
+                    <p className="text-destructive text-xs mt-1 font-medium">{errors.fullName}</p>
                   )}
                 </div>
 
-                <div>
-                  <label className="block font-medium text-black mb-2">
-                    E-mail *
+                <div className="space-y-1.5">
+                  <label className="text-sm font-medium text-black flex items-center gap-1">
+                    E-mail <span className="text-destructive">*</span>
                   </label>
-                  <Input
-                    type="email"
-                    className="bg-transparent h-12"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Entrez votre e-mail"
-                  />
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Mail className="h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                    </div>
+                    <Input
+                      type="email"
+                      className="bg-gray-50/50 border-gray-200 h-11 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Entrez votre e-mail"
+                    />
+                  </div>
                   {errors.email && (
-                    <p className="text-destructive text-sm mt-1">{errors.email}</p>
+                    <p className="text-destructive text-xs mt-1 font-medium">{errors.email}</p>
                   )}
                 </div>
 
-                <div>
-                  <label className="block font-medium text-black mb-2">
+                <div className="space-y-1.5">
+                  <label className="text-sm font-medium text-black">
                     Entreprise Actuelle
                   </label>
-                  <Input
-                    className="bg-transparent h-12"
-                    value={currentCompany}
-                    onChange={(e) => setCurrentCompany(e.target.value)}
-                    placeholder="Entrez votre entreprise actuelle"
-                  />
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Building2 className="h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                    </div>
+                    <Input
+                      className="bg-gray-50/50 border-gray-200 h-11 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl"
+                      value={currentCompany}
+                      onChange={(e) => setCurrentCompany(e.target.value)}
+                      placeholder="Votre entreprise actuelle (optionnel)"
+                    />
+                  </div>
                 </div>
 
-                <div>
-                  <label className="block font-medium text-black mb-2">
-                    Téléphone *
+                <div className="space-y-1.5">
+                  <label className="text-sm font-medium text-black flex items-center gap-1">
+                    Téléphone <span className="text-destructive">*</span>
                   </label>
-                  <Input
-                    type="tel"
-                    placeholder="Ex. +237 6XX XX XX XX"
-                    className="bg-transparent border-border h-12"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                  />
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Phone className="h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                    </div>
+                    <Input
+                      type="tel"
+                      placeholder="Ex. +237 6XX XX XX XX"
+                      className="bg-gray-50/50 border-gray-200 h-11 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
+                  </div>
                   {errors.phone && (
-                    <p className="text-destructive text-sm mt-1">{errors.phone}</p>
+                    <p className="text-destructive text-xs mt-1 font-medium">{errors.phone}</p>
                   )}
                 </div>
 
-                <div>
-                  <label className="block font-medium text-black mb-2">
+                <div className="space-y-1.5">
+                  <label className="text-sm font-medium text-black">
                     LinkedIn
                   </label>
-                  <Input
-                    className="bg-transparent h-12"
-                    value={linkedin}
-                    onChange={(e) => setLinkedin(e.target.value)}
-                    placeholder="https://linkedin.com/in/..."
-                  />
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Linkedin className="h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                    </div>
+                    <Input
+                      className="bg-gray-50/50 border-gray-200 h-11 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl"
+                      value={linkedin}
+                      onChange={(e) => setLinkedin(e.target.value)}
+                      placeholder="Lien vers votre profil LinkedIn"
+                    />
+                  </div>
                 </div>
 
-                <div>
-                  <label className="block font-medium text-black mb-2">
-                    Lien vers le CV
+                <div className="space-y-1.5 pt-2 pb-1 border-t border-gray-100">
+                  <label className="text-sm font-medium text-black flex items-center justify-between">
+                    <span>Votre CV <span className="text-muted-foreground font-normal text-xs">(Max 30 Ko)</span></span>
                   </label>
-                  <Input
-                    className="bg-transparent h-12"
-                    value={cvLink}
-                    onChange={(e) => setCvLink(e.target.value)}
-                    placeholder="Lien vers votre CV"
-                  />
+                  
+                  {cvFileName ? (
+                    <div className="flex items-center justify-between bg-primary/5 border border-primary/20 rounded-xl p-3">
+                      <div className="flex items-center gap-2 overflow-hidden">
+                        <FileText className="h-4 w-4 text-primary shrink-0" />
+                        <span className="text-sm text-primary font-medium truncate">{cvFileName}</span>
+                      </div>
+                      <button 
+                        type="button" 
+                        onClick={() => {
+                          setCvFileName("");
+                          setCvLink("");
+                          if (fileInputRef.current) fileInputRef.current.value = "";
+                        }}
+                        className="text-xs text-destructive hover:underline px-2"
+                      >
+                        Retirer
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 gap-2">
+                      <div className="relative group">
+                        <input
+                          type="file"
+                          accept=".pdf,.doc,.docx,.rtf,.txt"
+                          onChange={handleFileUpload}
+                          ref={fileInputRef}
+                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                        />
+                        <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl p-4 bg-gray-50/50 group-hover:bg-gray-50 group-hover:border-primary/30 transition-all text-center">
+                          <UploadCloud className="h-6 w-6 text-muted-foreground group-hover:text-primary mb-2 transition-colors" />
+                          <span className="text-xs font-medium text-muted-foreground group-hover:text-black transition-colors">
+                            Glissez un fichier ou cliquez
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div className="relative flex items-center justify-center py-2">
+                        <div className="absolute inset-0 flex items-center">
+                          <div className="w-full border-t border-gray-100"></div>
+                        </div>
+                        <span className="relative bg-white px-2 text-xs text-muted-foreground uppercase">Ou</span>
+                      </div>
+
+                      <div className="relative group">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                          <LinkIcon className="h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                        </div>
+                        <Input
+                          className="bg-gray-50/50 border-gray-200 h-10 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl text-sm"
+                          value={cvLink}
+                          onChange={(e) => setCvLink(e.target.value)}
+                          placeholder="Collez un lien (Drive, Dropbox...)"
+                        />
+                      </div>
+                    </div>
+                  )}
+                  {errors.cvFile && (
+                    <p className="text-destructive text-xs mt-1 font-medium">{errors.cvFile}</p>
+                  )}
                 </div>
 
-                <div>
-                  <label className="block font-medium text-black mb-2">
-                    Note
+                <div className="space-y-1.5 pt-2 border-t border-gray-100">
+                  <label className="text-sm font-medium text-black">
+                    Note / Lettre de motivation
                   </label>
-                  <Textarea
-                    placeholder="Dites-nous pourquoi ce poste vous intéresse..."
-                    className="bg-transparent border-border min-h-[10px]"
-                    value={note}
-                    onChange={(e) => setNote(e.target.value)}
-                  />
+                  <div className="relative group">
+                    <div className="absolute top-3 left-3 pointer-events-none">
+                      <MessageSquare className="h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                    </div>
+                    <Textarea
+                      placeholder="Dites-nous pourquoi ce poste vous intéresse..."
+                      className="bg-gray-50/50 border-gray-200 min-h-[100px] pl-10 pt-3 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl resize-none"
+                      value={note}
+                      onChange={(e) => setNote(e.target.value)}
+                    />
+                  </div>
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full bg-primary hover:text-accent/80 text-primary-foreground py-6"
+                  className="w-full group relative overflow-hidden bg-primary hover:bg-primary/90 text-white rounded-xl py-6 transition-all duration-300 mt-2"
                   disabled={createApplication.isPending}
                 >
                   {createApplication.isPending ? (
-                    <>
+                    <span className="flex items-center">
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                       Envoi en cours...
-                    </>
+                    </span>
                   ) : (
-                    "Postuler"
+                    <span className="flex items-center justify-center font-bold">
+                      Postuler
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </span>
                   )}
                 </Button>
               </form>
