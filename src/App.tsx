@@ -32,6 +32,7 @@ import DashboardOverview from "./pages/dashboard/DashboardOverview";
 import DashboardProfile from "./pages/dashboard/DashboardProfile";
 import DashboardQuotes from "./pages/dashboard/DashboardQuotes";
 import DashboardServiceInquiries from "./pages/dashboard/DashboardServiceInquiries";
+import DashboardPricing from "./pages/dashboard/DashboardPricing";
 import UserQuotes from "./pages/dashboard/UserQuotes";
 import UserServiceInquiries from "./pages/dashboard/UserServiceInquiries";
 
@@ -82,6 +83,7 @@ const App = () => (
             <Route path="contacts" element={<DashboardContacts />} />
             <Route path="quotes" element={<DashboardQuotes />} />
             <Route path="service-inquiries" element={<DashboardServiceInquiries />} />
+            <Route path="pricing" element={<DashboardPricing />} />
             <Route path="blogs" element={<DashboardBlogs />} />
             <Route path="careers" element={<DashboardCareers />} />
             <Route path="applications" element={<DashboardApplications />} />

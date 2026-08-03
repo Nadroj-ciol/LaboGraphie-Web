@@ -21,17 +21,13 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-// Ces taux pourront plus tard être récupérés depuis une table `settings` de Supabase
-const EXCHANGE_RATES = {
-  FCFA: 1,
-  EUR: 655.957,
-  USD: 600,
-};
+import { useServicePricing, useExchangeRates, DEFAULT_EXCHANGE_RATES, ExchangeRates } from "@/hooks/usePricing";
 
 type Currency = "FCFA" | "EUR" | "USD";
 
-const formatCurrency = (amountFCFA: number, currency: Currency) => {
-  const amount = amountFCFA / EXCHANGE_RATES[currency];
+const formatCurrency = (amountFCFA: number, currency: Currency, rates: ExchangeRates) => {
+  const rate = currency === "FCFA" ? 1 : rates[currency];
+  const amount = amountFCFA / rate;
   
   if (currency === "FCFA") {
     return `${Math.round(amount).toLocaleString("fr-FR").replace(/,/g, " ")} FCFA`;
@@ -63,6 +59,9 @@ const QuoteCalculator = () => {
   const { data: profile } = useUserProfile(user?.id);
   const createQuoteMutation = useCreateQuoteRequest();
   
+  const { data: servicePricingData = [] } = useServicePricing();
+  const { data: exchangeRates = DEFAULT_EXCHANGE_RATES } = useExchangeRates();
+  
   const [selectedService, setSelectedService] = useState<string>("");
   const [complexity, setComplexity] = useState<number>(0);
   const [urgency, setUrgency] = useState<"standard" | "urgent" | "emergency">("standard");
@@ -87,10 +86,15 @@ const QuoteCalculator = () => {
   };
 
   const calculateEstimate = () => {
-    if (!service) return { min: 0, max: 0, daysMin: 0, daysMax: 0 };
+    if (!service) return { min: 0, max: 0, daysMin: 0, daysMax: 0, localTJM: 0, intlTJM: 0 };
+
+    // Get pricing from dynamic DB data, fallback to static if not found
+    const dynamicPricing = servicePricingData.find(p => p.slug === service.slug);
+    const localTJM = dynamicPricing?.local_tjm ?? service.localTJM;
+    const intlTJM = dynamicPricing?.intl_tjm ?? service.intlTJM;
 
     // Marché local (FCFA) vs International (EUR/USD)
-    const tjm = currency === "FCFA" ? service.localTJM : service.intlTJM;
+    const tjm = currency === "FCFA" ? localTJM : intlTJM;
     
     const complexityOption = service.complexityOptions[complexity];
     if (!complexityOption) return { min: 0, max: 0, daysMin: 0, daysMax: 0 };
@@ -105,6 +109,8 @@ const QuoteCalculator = () => {
       max: maxEstimateFCFA,
       daysMin: complexityOption.estimatedDaysMin,
       daysMax: complexityOption.estimatedDaysMax,
+      localTJM,
+      intlTJM
     };
   };
 
@@ -133,7 +139,7 @@ const QuoteCalculator = () => {
           complexity_multiplier: 1,
           estimated_hours: avgDays, // Saving avg days instead of hours
           urgency,
-          base_price: currency === "FCFA" ? service.localTJM : service.intlTJM,
+          base_price: currency === "FCFA" ? estimate.localTJM : estimate.intlTJM,
           estimated_min: estimate.min,
           estimated_max: estimate.max,
           notes: `Devise: ${currency}`,
@@ -159,7 +165,7 @@ const QuoteCalculator = () => {
       complexityMultiplier: 1,
       estimatedHours: avgDays,
       urgency,
-      basePrice: currency === "FCFA" ? service.localTJM : service.intlTJM,
+      basePrice: currency === "FCFA" ? estimate.localTJM : estimate.intlTJM,
       estimatedMin: estimate.min,
       estimatedMax: estimate.max,
       currency,
@@ -391,7 +397,7 @@ const QuoteCalculator = () => {
                       <div>
                         <p className="text-primary-foreground/70 mb-2">Fourchette de Prix Estimée</p>
                         <p className="text-3xl lg:text-4xl font-bold text-white">
-                          {formatCurrency(estimate.min, currency)} - {formatCurrency(estimate.max, currency)}
+                          {formatCurrency(estimate.min, currency, exchangeRates)} - {formatCurrency(estimate.max, currency, exchangeRates)}
                         </p>
                       </div>
 
@@ -446,18 +452,23 @@ const QuoteCalculator = () => {
                 <div className="bg-[#f3f3f6] rounded-2xl p-6 shadow-sm">
                   <h3 className="font-bold text-lg mb-4 text-black">Taux Journalier Moyen (TJM)</h3>
                   <div className="space-y-3">
-                    {services.map((s) => (
-                      <div
-                        key={s.slug}
-                        className={`flex items-center justify-between p-3 rounded-lg transition-all ${selectedService === s.slug ? "bg-primary/10" : "hover:bg-primary/10"
-                          }`}
-                      >
-                        <span className="text-sm font-medium text-black">{s.title}</span>
-                        <span className="text-sm font-bold text-primary">
-                          {formatCurrency(currency === "FCFA" ? s.localTJM : s.intlTJM, currency)} / j
-                        </span>
-                      </div>
-                    ))}
+                    {services.map((s) => {
+                      const dyn = servicePricingData.find(p => p.slug === s.slug);
+                      const tLoc = dyn?.local_tjm ?? s.localTJM;
+                      const tIntl = dyn?.intl_tjm ?? s.intlTJM;
+                      return (
+                        <div
+                          key={s.slug}
+                          className={`flex items-center justify-between p-3 rounded-lg transition-all ${selectedService === s.slug ? "bg-primary/10" : "hover:bg-primary/10"
+                            }`}
+                        >
+                          <span className="text-sm font-medium text-black">{s.title}</span>
+                          <span className="text-sm font-bold text-primary">
+                            {formatCurrency(currency === "FCFA" ? tLoc : tIntl, currency, exchangeRates)} / j
+                          </span>
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
               </div>

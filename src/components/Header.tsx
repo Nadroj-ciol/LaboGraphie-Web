@@ -394,9 +394,8 @@ const Header = ({
       style={{ WebkitBackdropFilter: "blur(12px)", backdropFilter: "blur(12px)" }}
     />
     
-    {/* Drawer Panel */}
     <div 
-      className={`lg:hidden fixed top-0 right-0 h-[100dvh] w-[85vw] sm:w-[350px] bg-primary shadow-2xl z-[70] transform transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col ${
+      className={`lg:hidden fixed top-0 right-0 h-[100dvh] w-[85vw] sm:w-[350px] bg-primary shadow-2xl z-[70] transform transition-transform duration-500 ease-out flex flex-col ${
         isOpen ? "translate-x-0" : "translate-x-full"
       }`}
     >
@@ -417,7 +416,8 @@ const Header = ({
           {navLinks.map((link, index) => (
             <div 
               key={link.name} 
-              className={`transform transition-all duration-500 ease-out delay-[${100 + index * 50}ms] ${isOpen ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"}`}
+              className={`transform transition-all duration-500 ease-out ${isOpen ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"}`}
+              style={{ transitionDelay: `${100 + index * 50}ms` }}
             >
               {link.isRoute ? (
                 <Link 
@@ -453,7 +453,10 @@ const Header = ({
             </a>
           </div>
           
-          <div className={`transform transition-all duration-500 ease-out delay-[550ms] ${isOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}>
+          <div 
+            className={`transform transition-all duration-500 ease-out ${isOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+            style={{ transitionDelay: '550ms' }}
+          >
             {!user ? (
               <Button 
                 variant="outline" 

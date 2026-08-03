@@ -23,7 +23,8 @@ import {
   Mail,
   MessageSquare,
   User,
-  Users
+  Users,
+  Settings2
 } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -35,6 +36,7 @@ const adminItems = [
   { title: "Articles", url: "/dashboard/blogs", icon: FileText },
   { title: "Offres d'emploi", url: "/dashboard/careers", icon: Briefcase },
   { title: "Candidatures", url: "/dashboard/applications", icon: Users },
+  { title: "Tarifs & Devises", url: "/dashboard/pricing", icon: Settings2 },
   { title: "Profil", url: "/dashboard/profile", icon: User },
 ];
 
