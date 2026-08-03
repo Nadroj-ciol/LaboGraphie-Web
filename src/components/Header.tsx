@@ -173,6 +173,7 @@ const Header = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPagesDropdownOpen, setIsPagesDropdownOpen] = useState(false);
+  const [isMobilePagesOpen, setIsMobilePagesOpen] = useState(false);
   
   // Smart header state
   const [isScrolled, setIsScrolled] = useState(false);
@@ -384,6 +385,21 @@ const Header = ({
       </div>
     </div>
 
+    {/* Pages Dropdown - Desktop only */}
+    <div className={`hidden lg:block absolute left-1/2 -translate-x-1/2 top-[80px] rounded-b-xl shadow-xl transition-all duration-300 ease-in-out overflow-hidden ${isPagesDropdownOpen ? 'opacity-100 pointer-events-auto max-h-[500px]' : 'opacity-0 pointer-events-none max-h-0'} ${isDark ? "bg-white" : "bg-primary"}`} style={{
+      width: '600px'
+    }}>
+      <div className="p-8">
+        <div className="grid grid-cols-3 gap-x-12 gap-y-4">
+          {pagesDropdownLinks.map(column => <div key={column.column} className="flex flex-col gap-4">
+            {column.links.map(link => <DropdownFlipLink key={link.name} href={link.href} onClick={closeDropdown} isDark={isDark}>
+              {link.name}
+            </DropdownFlipLink>)}
+          </div>)}
+        </div>
+      </div>
+    </div>
+
     {/* Mobile Navigation Drawer */}
     {/* Backdrop */}
     <div 
@@ -413,33 +429,69 @@ const Header = ({
       {/* Drawer Content */}
       <div className="flex-1 overflow-y-auto p-6 flex flex-col">
         <nav className="flex flex-col gap-4">
-          {navLinks.map((link, index) => (
-            <div 
-              key={link.name} 
-              className={`transform transition-all duration-500 ease-out ${isOpen ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"}`}
-              style={{ transitionDelay: `${100 + index * 50}ms` }}
-            >
-              {link.isRoute ? (
-                <Link 
-                  to={link.href} 
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between text-white hover:text-accent transition-colors duration-300 text-xl font-medium"
+          {navLinks.map((link, index) => {
+            if (link.hasDropdown) {
+              return (
+                <div 
+                  key={link.name} 
+                  className={`transform transition-all duration-500 ease-out ${isOpen ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"}`}
+                  style={{ transitionDelay: `${100 + index * 50}ms` }}
                 >
-                  {link.name}
-                  {link.hasDropdown && <ChevronDown className="h-5 w-5 opacity-50" />}
-                </Link>
-              ) : (
-                <a 
-                  href={link.href} 
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between text-white hover:text-accent transition-colors duration-300 text-xl font-medium"
-                >
-                  {link.name}
-                  {link.hasDropdown && <ChevronDown className="h-5 w-5 opacity-50" />}
-                </a>
-              )}
-            </div>
-          ))}
+                  <button 
+                    onClick={() => setIsMobilePagesOpen(!isMobilePagesOpen)}
+                    className="w-full flex items-center justify-between text-white hover:text-accent transition-colors duration-300 text-xl font-medium"
+                  >
+                    {link.name}
+                    <ChevronDown className={`h-5 w-5 opacity-50 transition-transform duration-300 ${isMobilePagesOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  
+                  {/* Mobile Submenu Accordion */}
+                  <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isMobilePagesOpen ? 'max-h-96 mt-4 opacity-100' : 'max-h-0 opacity-0'}`}>
+                    <div className="pl-4 border-l border-white/20 flex flex-col gap-4 py-2">
+                      {pagesDropdownLinks.map((col) => 
+                        col.links.map((subLink) => (
+                          <Link 
+                            key={subLink.name}
+                            to={subLink.href} 
+                            onClick={() => setIsOpen(false)}
+                            className="text-white/80 hover:text-accent transition-colors duration-300 text-lg font-medium"
+                          >
+                            {subLink.name}
+                          </Link>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <div 
+                key={link.name} 
+                className={`transform transition-all duration-500 ease-out ${isOpen ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"}`}
+                style={{ transitionDelay: `${100 + index * 50}ms` }}
+              >
+                {link.isRoute ? (
+                  <Link 
+                    to={link.href} 
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center justify-between text-white hover:text-accent transition-colors duration-300 text-xl font-medium"
+                  >
+                    {link.name}
+                  </Link>
+                ) : (
+                  <a 
+                    href={link.href} 
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center justify-between text-white hover:text-accent transition-colors duration-300 text-xl font-medium"
+                  >
+                    {link.name}
+                  </a>
+                )}
+              </div>
+            );
+          })}
         </nav>
         
         {/* Drawer Footer Actions */}

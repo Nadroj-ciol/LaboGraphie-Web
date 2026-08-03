@@ -1,4 +1,4 @@
-import avatar1 from "@/assets/avatar-1.jpg";
+import avatar6 from "@/assets/avatar-6.png";
 import heroPlumber from "@/assets/hero-plumber.jpg";
 import FadeIn from "@/components/FadeIn";
 import { Button } from "@/components/ui/button";
@@ -64,7 +64,7 @@ const CTA = () => {
               <div className="mb-6">
                 <div className="w-16 h-16 rounded-full border-4 border-secondary overflow-hidden">
                   <img
-                    src={avatar1}
+                    src={avatar6}
                     alt="Responsable LaboGraphie"
                     className="w-full h-full object-cover"
                   />

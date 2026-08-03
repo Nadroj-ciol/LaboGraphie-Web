@@ -1,10 +1,12 @@
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
 import avatar3 from "@/assets/avatar-3.jpg";
+import avatar4 from "@/assets/avatar-4.jpg";
+import avatar5 from "@/assets/avatar-5.jpg";
 import FadeIn from "@/components/FadeIn";
 
 const testimonials = [{
-  name: "Georges Larry Ekodeck Ntoumzoh",
+  name: "TEFOUET Ange Darlaine",
   location: "Yaoundé, Cameroun",
   text: "LaboGraphie a su transformer notre image de marque en un temps record. Leur équipe allie créativité et rigueur, un vrai plaisir de travailler avec eux.",
   avatar: avatar1
@@ -22,12 +24,12 @@ const testimonials = [{
   name: "Michel Pavel Tsobgny Zambou",
   location: "Bafoussam, Cameroun",
   text: "Grâce à leur stratégie marketing digital, notre visibilité en ligne a explosé. Des résultats concrets et mesurables dès les premiers mois.",
-  avatar: avatar1
+  avatar: avatar4
 }, {
   name: "Alan Miguel Feuwo T.",
   location: "Douala, Cameroun",
   text: "Un audit de cybersécurité complet et rassurant. LaboGraphie a su identifier nos failles et proposer des solutions adaptées à notre budget.",
-  avatar: avatar2
+  avatar: avatar5
 }];
 
 const TestimonialCard = ({
