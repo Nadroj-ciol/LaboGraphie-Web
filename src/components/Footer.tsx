@@ -95,7 +95,7 @@ const Footer = () => {
         <div className="lg:col-span-2">
           <Logo isDark />
           <p className="text-white/60 mt-4 mb-6 max-w-sm">
-            Laboratoire d\u2019innovation et cabinet informatique à Yaoundé. Identité visuelle, web, marketing digital, cybersécurité et formations.
+            Laboratoire d&apos;innovation et cabinet informatique à Yaoundé. Identité visuelle, web, marketing digital, cybersécurité et formations.
           </p>
 
           {/* Social Links */}

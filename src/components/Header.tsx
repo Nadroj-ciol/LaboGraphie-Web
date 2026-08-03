@@ -5,7 +5,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChevronDown, LayoutDashboard, LogOut, Menu, Phone, User, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
 const navLinks = [{
@@ -173,6 +173,39 @@ const Header = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPagesDropdownOpen, setIsPagesDropdownOpen] = useState(false);
+  
+  // Smart header state
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Add shadow/background if scrolled past top
+      if (currentScrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+
+      // Determine scroll direction (hide on scroll down, show on scroll up)
+      if (currentScrollY > lastScrollY && currentScrollY > 150) {
+        setIsVisible(false);
+        // Also close dropdowns when hiding header
+        setIsPagesDropdownOpen(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   const navigate = useNavigate();
   const handlePagesClick = () => {
     setIsPagesDropdownOpen(!isPagesDropdownOpen);
@@ -188,9 +221,23 @@ const Header = ({
     await signOut();
     navigate("/");
   };
-  return <header className={`relative z-50 backdrop-blur-md bg-primary ${isDark ? 'bg-opacity-0' : 'bg-white'}`}>
-    <div className="container">
-      <div className="flex items-center justify-between h-20">
+  return (
+    <>
+      {/* Placeholder to prevent layout shift since header is fixed */}
+      <div className="h-20 w-full shrink-0" />
+      
+      <header 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
+          isVisible ? "translate-y-0" : "-translate-y-full"
+        } ${
+          isScrolled 
+            ? "bg-primary/75 backdrop-blur-lg border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] py-0" 
+            : `py-2 backdrop-blur-sm ${isDark ? 'bg-primary/0' : 'bg-white'}`
+        }`}
+        style={isScrolled ? { WebkitBackdropFilter: "blur(16px)", backdropFilter: "blur(16px)" } : {}}
+      >
+        <div className="container">
+          <div className="flex items-center justify-between h-20">
         <Link to="/">
           <Logo isDark={isDark} />
         </Link>
@@ -340,20 +387,21 @@ const Header = ({
     {/* Mobile Navigation Drawer */}
     {/* Backdrop */}
     <div 
-      className={`lg:hidden fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm transition-opacity duration-500 ${
+      className={`lg:hidden fixed inset-0 z-[60] bg-black/50 backdrop-blur-md transition-opacity duration-500 ${
         isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
       onClick={() => setIsOpen(false)}
+      style={{ WebkitBackdropFilter: "blur(12px)", backdropFilter: "blur(12px)" }}
     />
     
     {/* Drawer Panel */}
     <div 
-      className={`lg:hidden fixed top-0 right-0 h-screen w-[85vw] sm:w-[350px] bg-primary shadow-2xl z-[70] transform transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col ${
+      className={`lg:hidden fixed top-0 right-0 h-[100dvh] w-[85vw] sm:w-[350px] bg-primary shadow-2xl z-[70] transform transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col ${
         isOpen ? "translate-x-0" : "translate-x-full"
       }`}
     >
       {/* Drawer Header */}
-      <div className="flex items-center justify-between p-6 border-b border-white/10">
+      <div className="flex items-center justify-between p-6 border-b border-white/10 shrink-0">
         <Logo isDark={true} />
         <button 
           className="text-white hover:text-accent transition-colors p-2 -mr-2" 
@@ -364,8 +412,8 @@ const Header = ({
       </div>
       
       {/* Drawer Content */}
-      <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-8">
-        <nav className="flex flex-col gap-6">
+      <div className="flex-1 overflow-y-auto p-6 flex flex-col">
+        <nav className="flex flex-col gap-4">
           {navLinks.map((link, index) => (
             <div 
               key={link.name} 
@@ -395,11 +443,11 @@ const Header = ({
         </nav>
         
         {/* Drawer Footer Actions */}
-        <div className="mt-auto pt-8 flex flex-col gap-4 border-t border-white/10">
+        <div className="mt-6 pt-6 flex flex-col gap-3 border-t border-white/10 shrink-0 pb-4">
           <div className={`transform transition-all duration-500 ease-out delay-500 ${isOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}>
             <a href={site.phoneHref} className="w-full block" onClick={() => setIsOpen(false)}>
-              <Button variant="accent" size="lg" className="w-full text-lg h-14 rounded-full">
-                <Phone className="h-5 w-5 mr-2" />
+              <Button variant="accent" size="lg" className="w-full text-base h-12 rounded-full">
+                <Phone className="h-4 w-4 mr-2" />
                 {site.phone}
               </Button>
             </a>
@@ -410,7 +458,7 @@ const Header = ({
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="w-full text-lg h-14 rounded-full text-white border-white/30 hover:bg-white/10 hover:border-white"
+                className="w-full text-base h-12 rounded-full text-white border-white/30 hover:bg-white/10 hover:border-white"
                 onClick={() => {
                   setIsOpen(false);
                   navigate("/auth");
@@ -422,13 +470,13 @@ const Header = ({
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="w-full text-lg h-14 rounded-full text-white border-white/30 hover:bg-white/10 hover:border-white"
+                className="w-full text-base h-12 rounded-full text-white border-white/30 hover:bg-white/10 hover:border-white"
                 onClick={() => {
                   setIsOpen(false);
                   navigate("/dashboard");
                 }}
               >
-                <User className="h-5 w-5 mr-2" />
+                <User className="h-4 w-4 mr-2" />
                 Mon Espace
               </Button>
             )}
@@ -439,6 +487,8 @@ const Header = ({
 
     {/* Backdrop to close dropdown */}
     {isPagesDropdownOpen && <div className="fixed inset-0 z-[-1]" onClick={closeDropdown} />}
-  </header >;
+  </header>
+  </>
+  );
 };
 export default Header;
