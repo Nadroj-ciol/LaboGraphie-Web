@@ -21,6 +21,7 @@ import ServiceDetail from "./pages/ServiceDetail";
 import Services from "./pages/Services";
 import Work from "./pages/Work";
 import WorkDetail from "./pages/WorkDetail";
+import UpdatePassword from "./pages/UpdatePassword";
 
 // Dashboard pages
 import { DashboardLayout } from "./components/dashboard/DashboardLayout";
@@ -76,6 +77,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/update-password" element={<UpdatePassword />} />
 
           {/* Dashboard Routes - Using Layout Route */}
           <Route path="/dashboard" element={<DashboardLayout />}>
