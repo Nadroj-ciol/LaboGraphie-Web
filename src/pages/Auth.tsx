@@ -126,16 +126,31 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-slate-50/50 flex flex-col relative">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent -z-10"></div>
       <Header />
 
-      <section className="flex-1 flex items-center justify-center py-24 px-4 md:px-8 mt-16 md:mt-0">
-        <div className="w-full max-w-5xl bg-white md:bg-[#f4f4f7] rounded-[2.5rem] md:p-2 md:shadow-xl md:border border-slate-100 flex flex-col md:flex-row overflow-hidden min-h-[700px]">
+      <section className="flex-1 flex items-center justify-center py-12 md:py-24 px-4 sm:px-6 md:px-8 mt-20 md:mt-0">
+        <div className="w-full max-w-5xl bg-white md:bg-[#f4f4f7] rounded-[2rem] md:rounded-[2.5rem] p-3 md:p-2 shadow-2xl md:shadow-xl border border-slate-100 flex flex-col md:flex-row overflow-hidden min-h-0 md:min-h-[700px]">
           
+          {/* Mobile Banner (Hidden on Desktop) */}
+          <div className="md:hidden relative h-40 sm:h-48 rounded-3xl overflow-hidden mb-2 shadow-sm shrink-0">
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/90 to-primary/40 z-10"></div>
+            <img 
+              src="/auth-bg.png" 
+              alt="LaboGraphie" 
+              className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-80"
+            />
+            <div className="relative z-20 flex flex-col items-center justify-center h-full text-white p-6 text-center">
+              <h3 className="text-xl sm:text-2xl font-bold tracking-tight">L'excellence digitale.</h3>
+              <p className="text-white/80 text-xs sm:text-sm mt-1">Rejoignez l'univers LaboGraphie</p>
+            </div>
+          </div>
+
           {/* Left Column - Form */}
-          <div className="w-full md:w-1/2 p-6 sm:p-10 lg:p-16 flex flex-col justify-center bg-white md:bg-transparent rounded-3xl">
+          <div className="w-full md:w-1/2 p-5 sm:p-8 lg:p-16 flex flex-col justify-center bg-white md:bg-transparent rounded-3xl">
             <div className="max-w-md w-full mx-auto">
-              <h2 className="text-primary text-center md:text-left mb-2 font-bold text-3xl">
+              <h2 className="text-primary text-center md:text-left mb-2 font-bold text-2xl sm:text-3xl">
                 {view === "login" && "Bon Retour"}
                 {view === "signup" && "Créer un Compte"}
                 {view === "forgot_password" && "Mot de passe oublié"}
