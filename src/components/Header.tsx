@@ -331,44 +331,110 @@ const Header = ({
 
 
         {/* Mobile Menu Button */}
-        <button className={`lg:hidden ${isDark ? 'text-white' : 'text-[#595B67]'}`} onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        <button className={`lg:hidden ${isDark ? 'text-white' : 'text-[#595B67]'}`} onClick={() => setIsOpen(true)}>
+          <Menu className="h-6 w-6" />
         </button>
       </div>
+    </div>
 
-      {/* Pages Dropdown */}
-      <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 rounded-lg shadow-xl transition-all duration-300 ease-in-out overflow-hidden ${isPagesDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'} ${isDark ? "bg-white" : "bg-primary"}`} style={{
-        width: '600px'
-      }}>
-        <div className="p-8 rounded-none">
-          <div className="grid grid-cols-3 gap-x-12 gap-y-4">
-            {pagesDropdownLinks.map(column => <div key={column.column} className="flex flex-col gap-4">
-              {column.links.map(link => <DropdownFlipLink key={link.name} href={link.href} onClick={closeDropdown} isDark={isDark}>
-                {link.name}
-              </DropdownFlipLink>)}
-            </div>)}
+    {/* Mobile Navigation Drawer */}
+    {/* Backdrop */}
+    <div 
+      className={`lg:hidden fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm transition-opacity duration-500 ${
+        isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+      }`}
+      onClick={() => setIsOpen(false)}
+    />
+    
+    {/* Drawer Panel */}
+    <div 
+      className={`lg:hidden fixed top-0 right-0 h-screen w-[85vw] sm:w-[350px] bg-primary shadow-2xl z-[70] transform transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col ${
+        isOpen ? "translate-x-0" : "translate-x-full"
+      }`}
+    >
+      {/* Drawer Header */}
+      <div className="flex items-center justify-between p-6 border-b border-white/10">
+        <Logo isDark={true} />
+        <button 
+          className="text-white hover:text-accent transition-colors p-2 -mr-2" 
+          onClick={() => setIsOpen(false)}
+        >
+          <X className="h-6 w-6" />
+        </button>
+      </div>
+      
+      {/* Drawer Content */}
+      <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-8">
+        <nav className="flex flex-col gap-6">
+          {navLinks.map((link, index) => (
+            <div 
+              key={link.name} 
+              className={`transform transition-all duration-500 ease-out delay-[${100 + index * 50}ms] ${isOpen ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"}`}
+            >
+              {link.isRoute ? (
+                <Link 
+                  to={link.href} 
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-between text-white hover:text-accent transition-colors duration-300 text-xl font-medium"
+                >
+                  {link.name}
+                  {link.hasDropdown && <ChevronDown className="h-5 w-5 opacity-50" />}
+                </Link>
+              ) : (
+                <a 
+                  href={link.href} 
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-between text-white hover:text-accent transition-colors duration-300 text-xl font-medium"
+                >
+                  {link.name}
+                  {link.hasDropdown && <ChevronDown className="h-5 w-5 opacity-50" />}
+                </a>
+              )}
+            </div>
+          ))}
+        </nav>
+        
+        {/* Drawer Footer Actions */}
+        <div className="mt-auto pt-8 flex flex-col gap-4 border-t border-white/10">
+          <div className={`transform transition-all duration-500 ease-out delay-500 ${isOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}>
+            <a href={site.phoneHref} className="w-full block" onClick={() => setIsOpen(false)}>
+              <Button variant="accent" size="lg" className="w-full text-lg h-14 rounded-full">
+                <Phone className="h-5 w-5 mr-2" />
+                {site.phone}
+              </Button>
+            </a>
+          </div>
+          
+          <div className={`transform transition-all duration-500 ease-out delay-[550ms] ${isOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}>
+            {!user ? (
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="w-full text-lg h-14 rounded-full text-white border-white/30 hover:bg-white/10 hover:border-white"
+                onClick={() => {
+                  setIsOpen(false);
+                  navigate("/auth");
+                }}
+              >
+                Connexion
+              </Button>
+            ) : (
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="w-full text-lg h-14 rounded-full text-white border-white/30 hover:bg-white/10 hover:border-white"
+                onClick={() => {
+                  setIsOpen(false);
+                  navigate("/dashboard");
+                }}
+              >
+                <User className="h-5 w-5 mr-2" />
+                Mon Espace
+              </Button>
+            )}
           </div>
         </div>
       </div>
-
-      {/* Mobile Navigation */}
-      {isOpen && <div className="lg:hidden py-4 border-t border-white/10">
-        <nav className="flex flex-col gap-4">
-          {navLinks.map(link => link.isRoute ? <Link key={link.name} to={link.href} className={`flex items-center gap-1 ${isDark ? 'text-white' : 'text-[#595B67]/80'} hover:text-[#595B67] transition-colors duration-300 text-sm font-medium py-2`}>
-            {link.name}
-            {link.hasDropdown && <ChevronDown className="h-4 w-4" />}
-          </Link> : <a key={link.name} href={link.href} className={`flex items-center gap-1 ${isDark ? 'text-white' : 'text-[#595B67]/80'} hover:text-[#595B67] transition-colors duration-300 text-sm font-medium py-2`}>
-            {link.name}
-            {link.hasDropdown && <ChevronDown className="h-4 w-4" />}
-          </a>)}
-          <a href={site.phoneHref} className="mt-4 w-full block">
-            <Button variant="hero" size="default" className="w-full">
-              <Phone className="h-4 w-4 mr-2" />
-              {site.phone}
-            </Button>
-          </a>
-        </nav>
-      </div>}
     </div>
 
     {/* Backdrop to close dropdown */}
