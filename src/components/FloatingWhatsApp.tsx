@@ -25,7 +25,7 @@ const FloatingWhatsApp = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 animate-in fade-in slide-in-from-bottom-5 duration-500">
+    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[100] animate-in fade-in slide-in-from-bottom-5 duration-500">
       <TooltipProvider delayDuration={300}>
         <Tooltip>
           <TooltipTrigger asChild>

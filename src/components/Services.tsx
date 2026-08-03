@@ -56,26 +56,26 @@ const Services = () => {
         <div className="space-y-4">
           {services.map((service, index) => <FadeIn key={index} delay={index * 100}>
             <Link to={`/services/${service.slug}`}>
-              <div className="group px-12 py-[41px] rounded-2xl cursor-pointer transition-all duration-500 bg-white hover:bg-tertiary">
-                <div className="flex items-start gap-6 px-0 ">
+              <div className="group px-6 py-8 md:px-12 md:py-[41px] rounded-2xl cursor-pointer transition-all duration-500 bg-white hover:bg-tertiary">
+                <div className="flex items-start gap-4 md:gap-6 px-0 ">
                   {/* Number Circle */}
-                  <div className="w-12 h-12 rounded-full border flex items-center justify-center flex-shrink-0 transition-colors duration-500 border-primary text-primary">
-                    <span className="font-medium">{service.number}</span>
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border flex items-center justify-center flex-shrink-0 transition-colors duration-500 border-primary text-primary">
+                    <span className="font-medium text-sm md:text-base">{service.number}</span>
                   </div>
 
                   {/* Content */}
                   <div className="flex-1">
-                    <h5 className="mb-2 text-3xl font-bold transition-colors duration-500 text-primary group-hover:text-primary">
+                    <h5 className="mb-2 text-2xl md:text-3xl font-bold transition-colors duration-500 text-primary group-hover:text-primary">
                       {service.title}
                     </h5>
 
-                    <p className="text-lg font-medium transition-colors duration-500 text-muted-foreground group-hover:text-primary/80">
+                    <p className="text-base md:text-lg font-medium transition-colors duration-500 text-muted-foreground group-hover:text-primary/80">
                       {service.description}
                     </p>
                   </div>
 
-                  {/* Arrow - only visible on hover */}
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center flex-shrink-0 transition-all duration-500 opacity-0 -translate-y-5 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0">
+                  {/* Arrow - only visible on hover (desktop only) */}
+                  <div className="hidden md:flex w-10 h-10 rounded-full bg-primary items-center justify-center flex-shrink-0 transition-all duration-500 opacity-0 -translate-y-5 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0">
                     <ArrowUpRight className="h-5 w-5 text-white" />
                   </div>
                 </div>
