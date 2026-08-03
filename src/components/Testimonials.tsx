@@ -4,27 +4,27 @@ import avatar3 from "@/assets/avatar-3.jpg";
 import FadeIn from "@/components/FadeIn";
 
 const testimonials = [{
-  name: "Esther Ngo Bell",
+  name: "Georges Larry Ekodeck Ntoumzoh",
   location: "Yaoundé, Cameroun",
   text: "LaboGraphie a su transformer notre image de marque en un temps record. Leur équipe allie créativité et rigueur, un vrai plaisir de travailler avec eux.",
   avatar: avatar1
 }, {
-  name: "Bertrand Fotso",
+  name: "Nelly Ariane Gounou",
   location: "Douala, Cameroun",
   text: "Notre site e-commerce a été livré dans les délais, avec un design moderne et performant. Une équipe à l'écoute et très professionnelle.",
   avatar: avatar2
 }, {
-  name: "Aïcha Belinga",
+  name: "Cecile Emmanuelle Njoh",
   location: "Yaoundé, Cameroun",
   text: "La formation dispensée par LaboGraphie a permis à toute notre équipe de monter en compétences sur le digital. Un accompagnement de qualité.",
   avatar: avatar3
 }, {
-  name: "Marc Etoundi",
+  name: "Michel Pavel Tsobgny Zambou",
   location: "Bafoussam, Cameroun",
   text: "Grâce à leur stratégie marketing digital, notre visibilité en ligne a explosé. Des résultats concrets et mesurables dès les premiers mois.",
   avatar: avatar1
 }, {
-  name: "Nadège Manga",
+  name: "Alan Miguel Feuwo T.",
   location: "Douala, Cameroun",
   text: "Un audit de cybersécurité complet et rassurant. LaboGraphie a su identifier nos failles et proposer des solutions adaptées à notre budget.",
   avatar: avatar2

@@ -361,10 +361,12 @@ const Header = ({
             {link.name}
             {link.hasDropdown && <ChevronDown className="h-4 w-4" />}
           </a>)}
-          <Button variant="hero" size="default" className="mt-4">
-            <Phone className="h-4 w-4 mr-2" />
-            {site.phone}
-          </Button>
+          <a href={site.phoneHref} className="mt-4 w-full block">
+            <Button variant="hero" size="default" className="w-full">
+              <Phone className="h-4 w-4 mr-2" />
+              {site.phone}
+            </Button>
+          </a>
         </nav>
       </div>}
     </div>

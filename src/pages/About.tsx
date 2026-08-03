@@ -91,15 +91,15 @@ const coreValues = [{
 const missionFeatures = ["Dépasser les attentes de nos clients grâce à un service exceptionnel et personnalisé.", "Cultiver l’honnêteté et la transparence dans toutes nos relations professionnelles.", "Adopter en continu de nouvelles technologies pour améliorer nos services."];
 const visionFeatures = ["Adopter les technologies les plus innovantes pour enrichir nos offres de services.", "Construire des relations durables avec nos clients basées sur l’intégrité et la transparence.", "Avoir un impact positif dans les communautés que nous servons au Cameroun."];
 const teamMembers = [{
-  name: "Nde Jordan L.",
-  role: "Chief Executive Officer",
+  name: "FUNGA BIADJEU Brinda",
+  role: "Chief Technology Officer",
   image: profile1
 }, {
-  name: "Funga Brinda",
-  role: "Chief Technology Officer",
+  name: "NDE Jordan L.",
+  role: "Chief Executive Officer",
   image: profile2
 }, {
-  name: "Yvanna",
+  name: "NONO NOUTCHANG Yvanna",
   role: "Chief Marketing Officer & Product Manager",
   image: profile3
 }];

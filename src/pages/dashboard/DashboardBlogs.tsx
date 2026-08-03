@@ -31,7 +31,7 @@ import {
   useDeleteBlog,
   useUpdateBlog,
 } from "@/hooks/useBlogs";
-import { Edit2, Eye, EyeOff, FileText, Plus, Trash2, Calendar, Clock, LayoutGrid, Search, Filter } from "lucide-react";
+import { Edit2, Eye, EyeOff, FileText, Plus, Trash2, Calendar, Clock, LayoutGrid, Search, Filter, ExternalLink } from "lucide-react";
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -39,7 +39,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { BlogImageUpload } from "@/components/dashboard/BlogImageUpload";
 
-const categories = ["Design & Branding", "Marketing Digital", "Cyber-sécurité", "Maintenance", "Réseau"];
+const categories = ["Design & Branding", "Marketing Digital", "Cyber-sécurité", "Maintenance", "Réseau", "Histoire"];
 
 // Quill editor configuration
 const modules = {
@@ -174,8 +174,8 @@ export default function DashboardBlogs() {
   const filteredBlogs = useMemo(() => {
     if (!blogs) return [];
     return blogs.filter((blog) => {
-      const matchesSearch = blog.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                            (blog.excerpt && blog.excerpt.toLowerCase().includes(searchQuery.toLowerCase()));
+      const matchesSearch = blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (blog.excerpt && blog.excerpt.toLowerCase().includes(searchQuery.toLowerCase()));
       const matchesCategory = filterCategory === "Toutes" || blog.category === filterCategory;
       return matchesSearch && matchesCategory;
     });
@@ -230,13 +230,13 @@ export default function DashboardBlogs() {
                 </Button>
               </div>
             </div>
-            
+
             <form onSubmit={handleSubmit} className="p-6">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                
+
                 {/* Colonne de gauche : Rédaction (2/3) */}
                 <div className="lg:col-span-2 space-y-6">
-                  
+
                   <div className="space-y-4 bg-gray-50/50 p-6 rounded-xl border border-gray-100">
                     <div>
                       <Label htmlFor="title" className="text-base font-semibold">Titre de l'article *</Label>
@@ -286,17 +286,17 @@ export default function DashboardBlogs() {
                       />
                     </div>
                   </div>
-                  
+
                 </div>
 
                 {/* Colonne de droite : Paramètres (1/3) */}
                 <div className="space-y-6">
-                  
+
                   <div className="space-y-3 bg-gray-50/50 p-5 rounded-xl border border-gray-100">
                     <Label className="text-sm font-semibold text-slate-700 flex items-center gap-2">
                       <LayoutGrid className="w-4 h-4" /> Image de couverture
                     </Label>
-                    <BlogImageUpload 
+                    <BlogImageUpload
                       url={formData.image_url || null}
                       onUpload={(url) => setFormData({ ...formData, image_url: url })}
                     />
@@ -304,7 +304,7 @@ export default function DashboardBlogs() {
 
                   <div className="space-y-4 bg-gray-50/50 p-5 rounded-xl border border-gray-100">
                     <h3 className="text-sm font-semibold text-slate-700 border-b pb-2 mb-4">Méta-données</h3>
-                    
+
                     <div>
                       <Label htmlFor="category" className="text-xs text-slate-500 mb-1 block">Catégorie</Label>
                       <select
@@ -335,7 +335,7 @@ export default function DashboardBlogs() {
                         className="bg-white text-sm"
                       />
                     </div>
-                    
+
                     <div>
                       <Label htmlFor="slug" className="text-xs text-slate-500 mb-1 block">URL Slug (Généré auto)</Label>
                       <Input
@@ -349,10 +349,10 @@ export default function DashboardBlogs() {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-4 bg-gray-50/50 p-5 rounded-xl border border-gray-100">
                     <h3 className="text-sm font-semibold text-slate-700 border-b pb-2 mb-4">Publication</h3>
-                    
+
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
                         <Label htmlFor="published" className="text-sm">En ligne</Label>
@@ -465,7 +465,7 @@ export default function DashboardBlogs() {
                         {blog.excerpt || "Aucun extrait défini pour cet article."}
                       </p>
                     </div>
-                    
+
                     <div className="flex items-center gap-4 text-xs font-medium text-slate-400 mt-4">
                       <span className="flex items-center gap-1 bg-slate-50 px-2 py-1 rounded-md text-slate-600">
                         <LayoutGrid className="w-3.5 h-3.5" /> {blog.category}
@@ -486,6 +486,15 @@ export default function DashboardBlogs() {
                     </span>
 
                     <div className="flex items-center justify-end gap-2 w-full mt-auto">
+                      <a
+                        href={`/blog/${blog.slug}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-input bg-transparent text-slate-500 hover:text-primary hover:bg-primary/5 hover:border-primary/20 transition-colors"
+                        title="Prévisualiser"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
                       <Button
                         variant="outline"
                         size="icon"

@@ -6,8 +6,9 @@ import Header from "@/components/Header";
 import { usePublishedBlogs } from "@/hooks/useBlogs";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { ShareMenu } from "@/components/ShareMenu";
 
-const categories = ["Tous", "Récents", "Populaires", "Design & Branding", "Marketing Digital", "Cyber-sécurité", "Maintenance", "Réseau"];
+const categories = ["Tous", "Récents", "Populaires", "Design & Branding", "Marketing Digital", "Cyber-sécurité", "Maintenance", "Réseau", "Histoire"];
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("Tous");
   const { data: blogs, isLoading } = usePublishedBlogs();
@@ -103,22 +104,25 @@ const Blog = () => {
           {filteredBlogs.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredBlogs.map((post, index) => <FadeIn key={post.id} delay={index * 100}>
-                <Link to={`/blog/${post.slug}`}>
-                  <article className="group cursor-pointer bg-inherit">
+                  <article className="group bg-inherit">
                     <div className="relative rounded-2xl overflow-hidden mb-4">
-                      <img src={post.image_url || plumberTeam} alt={post.title} className="w-full h-[340px] object-cover group-hover:scale-105 transition-transform duration-500" />
-                      <span className="absolute top-4 left-4 bg-tertiary text-primary text-xs font-medium px-3 py-1 rounded-full">
+                      <Link to={`/blog/${post.slug}`}>
+                        <img src={post.image_url || plumberTeam} alt={post.title} className="w-full h-[340px] object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" />
+                      </Link>
+                      <span className="absolute top-4 left-4 bg-tertiary text-primary text-xs font-medium px-3 py-1 rounded-full pointer-events-none">
                         {post.category}
                       </span>
+                      <ShareMenu post={post} className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
-                    <h5 className="text-black font-bold mb-3 group-hover:text-secondary transition-colors">
-                      {post.title}
-                    </h5>
+                    <Link to={`/blog/${post.slug}`}>
+                      <h5 className="text-black font-bold mb-3 group-hover:text-secondary transition-colors cursor-pointer">
+                        {post.title}
+                      </h5>
+                    </Link>
                     <p className="text-muted-foreground font-medium text-base">
                       {new Date(post.created_at).toLocaleDateString('fr-FR', { month: 'long', day: 'numeric', year: 'numeric' })} · {post.read_time}
                     </p>
                   </article>
-                </Link>
               </FadeIn>)}
             </div>
           ) : (

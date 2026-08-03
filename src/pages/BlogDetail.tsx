@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { useBlog, usePublishedBlogs } from "@/hooks/useBlogs";
 import DOMPurify from "dompurify";
-import { Facebook, Linkedin, Twitter, Link2 } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Link2, MessageCircle, Send } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -146,42 +146,60 @@ const BlogDetail = () => {
               )}
 
               {/* Share Section */}
-              <div className="flex items-center justify-between py-6 px-4 rounded-lg bg-[#F4F4F7]">
-                <span className="text-muted-foreground text-sm font-semibold">Partager l'article</span>
-                <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row items-center justify-between py-6 px-6 sm:px-8 rounded-2xl bg-[#F4F4F7] border border-gray-200 shadow-sm gap-4">
+                <span className="text-secondary text-base font-bold">Cet article vous a plu ? Partagez-le !</span>
+                <div className="flex flex-wrap justify-center gap-3">
                   <a
-                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`}
+                    href={`https://wa.me/?text=${encodeURIComponent(shareTitle + " : " + currentUrl)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full group bg-muted flex items-center justify-center hover:bg-[#1877F2] transition-colors"
-                    title="Partager sur Facebook"
+                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-500 hover:bg-[#25D366] hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
+                    title="Partager sur WhatsApp"
                   >
-                    <Facebook className="h-4 w-4 text-slate-500 group-hover:text-white" />
+                    <MessageCircle className="h-5 w-5" />
+                  </a>
+                  <a
+                    href={`https://t.me/share/url?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareTitle)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-500 hover:bg-[#0088cc] hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
+                    title="Partager sur Telegram"
+                  >
+                    <Send className="h-5 w-5" />
                   </a>
                   <a
                     href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareTitle)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full group bg-muted flex items-center justify-center hover:bg-[#1DA1F2] transition-colors"
+                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-500 hover:bg-[#1DA1F2] hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
                     title="Partager sur X (Twitter)"
                   >
-                    <Twitter className="h-4 w-4 text-slate-500 group-hover:text-white" />
+                    <Twitter className="h-5 w-5" />
+                  </a>
+                  <a
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-500 hover:bg-[#1877F2] hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
+                    title="Partager sur Facebook"
+                  >
+                    <Facebook className="h-5 w-5" />
                   </a>
                   <a
                     href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full group bg-muted flex items-center justify-center hover:bg-[#0A66C2] transition-colors"
+                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-500 hover:bg-[#0A66C2] hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
                     title="Partager sur LinkedIn"
                   >
-                    <Linkedin className="h-4 w-4 text-slate-500 group-hover:text-white" />
+                    <Linkedin className="h-5 w-5" />
                   </a>
                   <button
                     onClick={handleCopyLink}
-                    className="w-10 h-10 rounded-full group bg-muted flex items-center justify-center hover:bg-slate-700 transition-colors cursor-pointer"
+                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-500 hover:bg-slate-800 hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1 cursor-pointer"
                     title="Copier le lien"
                   >
-                    <Link2 className="h-4 w-4 text-slate-500 group-hover:text-white" />
+                    <Link2 className="h-5 w-5" />
                   </button>
                 </div>
               </div>

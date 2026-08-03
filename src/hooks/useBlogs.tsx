@@ -45,7 +45,6 @@ export const useBlog = (slug: string) => {
         .from('blogs')
         .select('*')
         .eq('slug', slug)
-        .eq('published', true)
         .maybeSingle();
       
       if (error) throw error;

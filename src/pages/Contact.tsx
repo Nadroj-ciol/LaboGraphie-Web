@@ -394,6 +394,8 @@ const Contact = () => {
                   </p>
                   <a
                     href={info.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="font-medium text-primary hover:underline"
                   >
                     {info.value}
