@@ -42,6 +42,7 @@ ALTER TABLE public.user_roles ENABLE ROW LEVEL SECURITY;
 CREATE TABLE public.profiles (
   id         UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id    UUID NOT NULL UNIQUE REFERENCES auth.users(id) ON DELETE CASCADE,
+  email      TEXT,
   full_name  TEXT,
   phone      TEXT,
   avatar_url TEXT,
@@ -78,9 +79,10 @@ SECURITY DEFINER
 SET search_path = 'public'
 AS $function$
 BEGIN
-  INSERT INTO public.profiles (user_id, full_name, phone)
+  INSERT INTO public.profiles (user_id, email, full_name, phone)
   VALUES (
     new.id,
+    new.email,
     new.raw_user_meta_data ->> 'full_name',
     new.raw_user_meta_data ->> 'phone'
   );
