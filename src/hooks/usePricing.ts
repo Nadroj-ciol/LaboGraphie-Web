@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
+import type { Json } from "@/integrations/supabase/types";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 export interface ServicePricing {
@@ -12,7 +13,7 @@ export interface ServicePricing {
 
 export interface SystemSettings {
   key: string;
-  value: Record<string, any>;
+  value: Record<string, unknown>;
   description: string;
   updated_at: string;
 }
@@ -65,23 +66,31 @@ export const useExchangeRates = () => {
   });
 };
 
-// Update service pricing (admin only)
+// Create or update service pricing (admin only).
+// Uses upsert instead of update so that adding a new service to
+// src/data/services.ts without a matching DB row no longer breaks the
+// "save all" flow in DashboardPricing.tsx (update() on a non-existent
+// slug matches zero rows and .single() throws).
 export const useUpdateServicePricing = () => {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
-    mutationFn: async (updates: { slug: string; local_tjm: number; intl_tjm: number }) => {
+    mutationFn: async (updates: { slug: string; title: string; local_tjm: number; intl_tjm: number }) => {
       const { data, error } = await supabase
         .from('service_pricing')
-        .update({ 
-          local_tjm: updates.local_tjm, 
-          intl_tjm: updates.intl_tjm,
-          updated_at: new Date().toISOString()
-        })
-        .eq('slug', updates.slug)
+        .upsert(
+          {
+            slug: updates.slug,
+            title: updates.title,
+            local_tjm: updates.local_tjm,
+            intl_tjm: updates.intl_tjm,
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: 'slug' },
+        )
         .select()
         .single();
-      
+
       if (error) throw error;
       return data as ServicePricing;
     },
@@ -91,22 +100,26 @@ export const useUpdateServicePricing = () => {
   });
 };
 
-// Update exchange rates (admin only)
+// Create or update exchange rates (admin only). Same upsert rationale
+// as useUpdateServicePricing above.
 export const useUpdateExchangeRates = () => {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: async (rates: ExchangeRates) => {
       const { data, error } = await supabase
         .from('system_settings')
-        .update({ 
-          value: rates as any,
-          updated_at: new Date().toISOString()
-        })
-        .eq('key', 'exchange_rates')
+        .upsert(
+          {
+            key: 'exchange_rates',
+            value: rates as unknown as Json,
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: 'key' },
+        )
         .select()
         .single();
-      
+
       if (error) throw error;
       return data as SystemSettings;
     },
