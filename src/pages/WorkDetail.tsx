@@ -87,7 +87,7 @@ const worksData: Record<string, {
     solutions: ["Développement d'une plateforme e-commerce moderne et intuitive.", "Intégration de solutions de paiement mobile adaptées au Cameroun.", "Automatisation de la gestion des stocks et du suivi des commandes."]
   },
   "application-gestion-petittri": {
-    image: faucetRepair,
+    image: drainCleaning,
     title: "Application de Gestion PetitTri",
     description: "Développement d'une application mobile de gestion de tri des déchets, incluant géolocalisation, notifications et interface intuitive pour les usagers.",
     detailTitle: "Une application mobile au service de l'écologie urbaine",
