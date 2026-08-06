@@ -56,10 +56,10 @@ export const useCreateServiceInquiry = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["service-inquiries"] });
       queryClient.invalidateQueries({ queryKey: ["user-service-inquiries"] });
-      toast.success("Inquiry submitted successfully! We'll contact you soon.");
+      toast.success("Demande envoyée avec succès ! Nous vous contacterons bientôt.");
     },
     onError: (error) => {
-      toast.error(`Failed to submit inquiry: ${error.message}`);
+      toast.error(`Échec de l'envoi de la demande : ${error.message}`);
     },
   });
 };

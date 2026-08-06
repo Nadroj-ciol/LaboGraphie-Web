@@ -78,12 +78,6 @@ const pagesDropdownLinks = [{
     name: "Confidentialité",
     href: "/privacy-policy"
   }, {
-    name: "Erreur 404",
-    href: "/404"
-  }, {
-    name: "Tableau de bord",
-    href: "/dashboard"
-  }, {
     name: "Devis",
     href: "/quote"
   }]

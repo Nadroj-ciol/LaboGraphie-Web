@@ -6,6 +6,7 @@ import { useJobApplications } from "@/hooks/useJobApplications";
 import { useAllQuoteRequests, useUserQuoteRequests } from "@/hooks/useQuoteRequests";
 import { useServiceInquiries } from "@/hooks/useServiceInquiries";
 import { Briefcase, Clock, DollarSign, FileText, Mail, MessageSquare, Users } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function formatFCFA(value: number) {
   return `${new Intl.NumberFormat("fr-FR").format(value)} FCFA`;
@@ -187,12 +188,21 @@ function AdminOverview() {
                       <p className="text-xs text-muted-foreground truncate">{application.job_title}</p>
                     </div>
                     <div className="text-right">
-                      <div className={`text-xs px-2 py-1 rounded-full ${application.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
+                      <div className={`text-xs px-2 py-1 rounded-full ${
+                        application.status === 'pending' ? 'bg-amber-100 text-amber-800' :
                         application.status === 'reviewed' ? 'bg-blue-100 text-blue-700' :
-                          application.status === 'accepted' ? 'bg-green-100 text-green-700' :
-                            'bg-gray-100 text-gray-700'
+                        application.status === 'interviewed' ? 'bg-purple-100 text-purple-800' :
+                        application.status === 'hired' ? 'bg-green-100 text-green-800' :
+                        application.status === 'rejected' ? 'bg-red-100 text-red-800' :
+                        'bg-gray-100 text-gray-700'
                         }`}>
-                        {application.status}
+                        {{
+                          pending: 'En attente',
+                          reviewed: 'Examinée',
+                          interviewed: 'En entretien',
+                          hired: 'Recruté',
+                          rejected: 'Refusé',
+                        }[application.status] ?? application.status}
                       </div>
                       <p className="text-xs text-muted-foreground mt-1">
                         {new Date(application.created_at).toLocaleDateString()}
@@ -287,7 +297,7 @@ function UserOverview() {
         </CardHeader>
         <CardContent>
           <div className="grid gap-4 md:grid-cols-3">
-            <a href="/quote" className="group flex items-center gap-4 p-4 rounded-xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-md hover:shadow-primary/5 transition-all duration-300">
+            <Link to="/quote" className="group flex items-center gap-4 p-4 rounded-xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-md hover:shadow-primary/5 transition-all duration-300">
               <div className="h-12 w-12 rounded-full bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
                 <DollarSign className="h-6 w-6 text-primary" />
               </div>
@@ -295,8 +305,8 @@ function UserOverview() {
                 <p className="font-medium">Demander un devis</p>
                 <p className="text-sm text-muted-foreground">Obtenez une estimation pour votre projet</p>
               </div>
-            </a>
-            <a href="/contact" className="group flex items-center gap-4 p-4 rounded-xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-md hover:shadow-primary/5 transition-all duration-300">
+            </Link>
+            <Link to="/contact" className="group flex items-center gap-4 p-4 rounded-xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-md hover:shadow-primary/5 transition-all duration-300">
               <div className="h-12 w-12 rounded-full bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
                 <Mail className="h-6 w-6 text-primary" />
               </div>
@@ -304,8 +314,8 @@ function UserOverview() {
                 <p className="font-medium">Contactez-nous</p>
                 <p className="text-sm text-muted-foreground">Entrez en contact avec notre équipe</p>
               </div>
-            </a>
-            <a href="/services" className="group flex items-center gap-4 p-4 rounded-xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-md hover:shadow-primary/5 transition-all duration-300">
+            </Link>
+            <Link to="/services" className="group flex items-center gap-4 p-4 rounded-xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-md hover:shadow-primary/5 transition-all duration-300">
               <div className="h-12 w-12 rounded-full bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
                 <FileText className="h-6 w-6 text-primary" />
               </div>
@@ -313,7 +323,7 @@ function UserOverview() {
                 <p className="font-medium">Voir les services</p>
                 <p className="text-sm text-muted-foreground">Découvrez ce que nous proposons</p>
               </div>
-            </a>
+            </Link>
           </div>
         </CardContent>
       </Card>

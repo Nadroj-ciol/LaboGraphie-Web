@@ -296,7 +296,7 @@ const Contact = () => {
                       Téléphone <span className="text-destructive">*</span>
                     </label>
                     <Input
-                      type="number"
+                      type="tel"
                       placeholder="Ex. +237 6XX XXX XXX"
                       className="bg-transparent border-border"
                       value={formData.phone}
