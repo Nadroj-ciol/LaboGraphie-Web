@@ -119,7 +119,7 @@ export default function DashboardQuotes() {
                       </span>
                       <span className="flex items-center gap-1">
                         <Clock className="h-3 w-3" />
-                        {quote.estimated_hours} hrs
+                        {quote.estimated_hours} jour{quote.estimated_hours > 1 ? "s" : ""}
                       </span>
                       <span className="flex items-center gap-1">
                         <Calendar className="h-3 w-3" />

@@ -217,8 +217,8 @@ const Contact = () => {
                     <div className="flex items-center gap-3">
                       <Clock className="w-5 h-5 text-accent" />
                       <div>
-                        <p className="text-sm text-primary-foreground/70">Heures</p>
-                        <p className="font-medium">{quoteData.estimatedHours} h</p>
+                        <p className="text-sm text-primary-foreground/70">Délai estimé</p>
+                        <p className="font-medium">{quoteData.estimatedHours} jour{quoteData.estimatedHours > 1 ? "s" : ""}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
