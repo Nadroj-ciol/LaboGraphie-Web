@@ -63,10 +63,10 @@ export const useCreateJobApplication = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["job-applications"] });
-      toast.success("Application submitted successfully! We'll be in touch soon.");
+      toast.success("Candidature envoyée avec succès ! Nous reviendrons vers vous bientôt.");
     },
     onError: (error) => {
-      toast.error(`Failed to submit application: ${error.message}`);
+      toast.error(`Échec de l'envoi de la candidature : ${error.message}`);
     },
   });
 };
@@ -89,10 +89,10 @@ export const useUpdateJobApplication = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["job-applications"] });
-      toast.success("Application status updated");
+      toast.success("Statut de la candidature mis à jour");
     },
     onError: (error) => {
-      toast.error(`Failed to update application: ${error.message}`);
+      toast.error(`Échec de la mise à jour de la candidature : ${error.message}`);
     },
   });
 };
@@ -109,10 +109,10 @@ export const useDeleteJobApplication = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["job-applications"] });
-      toast.success("Application deleted");
+      toast.success("Candidature supprimée");
     },
     onError: (error) => {
-      toast.error(`Failed to delete application: ${error.message}`);
+      toast.error(`Échec de la suppression de la candidature : ${error.message}`);
     },
   });
 };
