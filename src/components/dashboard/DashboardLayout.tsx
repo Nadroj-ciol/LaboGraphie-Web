@@ -13,6 +13,7 @@ const ADMIN_ONLY_PATHS = [
   "/dashboard/blogs",
   "/dashboard/careers",
   "/dashboard/applications",
+  "/dashboard/pricing",
 ];
 
 export function DashboardLayout() {

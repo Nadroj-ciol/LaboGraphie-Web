@@ -6,10 +6,88 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { JobApplication, useJobApplications, useUpdateJobApplication } from "@/hooks/useJobApplications";
+import { supabase } from "@/integrations/supabase/client";
 import { formatDistanceToNow } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Building2, Download, ExternalLink, FileText, Linkedin, Loader2, Mail, Phone, Search } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+
+// Préfixe posé par Career.tsx sur les CV envoyés vers le bucket privé
+// 'job_cvs' (par opposition à un lien externe Drive/Dropbox saisi
+// manuellement, ou à un ancien CV en base64 — legacy).
+const STORAGE_CV_PREFIX = "storage://job_cvs/";
+
+/** Affiche le lien de téléchargement d'un CV, quel que soit son format
+ * (fichier stocké sur Supabase Storage, lien externe, ou base64 legacy). */
+function CVLink({ cvLink }: { cvLink: string | null }) {
+  const [signedUrl, setSignedUrl] = useState<string | null>(null);
+  const [signError, setSignError] = useState<string | null>(null);
+
+  const storagePath = cvLink?.startsWith(STORAGE_CV_PREFIX)
+    ? cvLink.slice(STORAGE_CV_PREFIX.length)
+    : null;
+
+  useEffect(() => {
+    if (!storagePath) return;
+    let cancelled = false;
+
+    supabase.storage
+      .from("job_cvs")
+      .createSignedUrl(storagePath, 60 * 10) // valide 10 minutes
+      .then(({ data, error }) => {
+        if (cancelled) return;
+        if (error || !data) {
+          setSignError(error?.message ?? "URL de téléchargement indisponible");
+          return;
+        }
+        setSignedUrl(data.signedUrl);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [storagePath]);
+
+  if (!cvLink) {
+    return <p className="text-sm text-muted-foreground italic">Aucun CV fourni</p>;
+  }
+
+  if (storagePath) {
+    if (signError) {
+      return <p className="text-sm text-destructive">{signError}</p>;
+    }
+    if (!signedUrl) {
+      return (
+        <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+          <Loader2 className="h-4 w-4 animate-spin" />
+          Préparation du lien...
+        </span>
+      );
+    }
+    return (
+      <a href={signedUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors text-sm font-medium">
+        <Download className="h-4 w-4" />
+        Télécharger le CV
+      </a>
+    );
+  }
+
+  if (cvLink.startsWith("data:")) {
+    return (
+      <a href={cvLink} download="CV_Candidat" className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors text-sm font-medium">
+        <Download className="h-4 w-4" />
+        Télécharger le fichier joint
+      </a>
+    );
+  }
+
+  return (
+    <a href={cvLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors text-sm font-medium">
+      <ExternalLink className="h-4 w-4" />
+      Ouvrir le lien externe
+    </a>
+  );
+}
 
 const statusColors: Record<string, "default" | "secondary" | "destructive" | "outline"> = {
   pending: "secondary",
@@ -52,28 +130,6 @@ const DashboardApplications = () => {
       case 'rejected': return <Badge variant="destructive" className="bg-red-100 text-red-800 hover:bg-red-100 shadow-none border-none">Refusé</Badge>;
       default: return <Badge variant="secondary">{status}</Badge>;
     }
-  };
-
-  const renderCV = (cvLink: string | null) => {
-    if (!cvLink) return <p className="text-sm text-muted-foreground italic">Aucun CV fourni</p>;
-    
-    const isBase64 = cvLink.startsWith('data:');
-    
-    if (isBase64) {
-      return (
-        <a href={cvLink} download="CV_Candidat" className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors text-sm font-medium">
-          <Download className="h-4 w-4" />
-          Télécharger le fichier joint
-        </a>
-      );
-    }
-    
-    return (
-      <a href={cvLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors text-sm font-medium">
-        <ExternalLink className="h-4 w-4" />
-        Ouvrir le lien externe
-      </a>
-    );
   };
 
   if (isLoading) {
@@ -284,7 +340,7 @@ const DashboardApplications = () => {
                     <FileText className="h-4 w-4" /> Curriculum Vitae (CV)
                   </h3>
                   <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col items-center justify-center text-center">
-                    {renderCV(selectedApp.cv_link)}
+                    <CVLink cvLink={selectedApp.cv_link} />
                   </div>
                 </div>
               </div>

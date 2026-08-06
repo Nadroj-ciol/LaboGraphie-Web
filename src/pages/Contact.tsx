@@ -15,7 +15,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { services } from "@/data/services";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { useExchangeRates, DEFAULT_EXCHANGE_RATES } from "@/hooks/usePricing";
 import { supabase } from "@/integrations/supabase/client";
+import { formatCurrency, toCurrency } from "@/lib/currency";
 import { Clock, DollarSign, Mail, MapPin, Phone, Wrench } from "lucide-react";
 import { site } from "@/data/site";
 import { useEffect, useState } from "react";
@@ -54,6 +56,7 @@ const Contact = () => {
 
   const quoteData = location.state?.quoteData as QuoteData | undefined;
   const planData = location.state?.planData as { planName: string; planType: string; price: number } | undefined;
+  const { data: exchangeRates = DEFAULT_EXCHANGE_RATES } = useExchangeRates();
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -111,6 +114,7 @@ const Contact = () => {
           base_price: quoteData.basePrice,
           estimated_min: quoteData.estimatedMin,
           estimated_max: quoteData.estimatedMax,
+          currency: quoteData.currency,
           notes: formData.notes || null,
         });
 
@@ -132,6 +136,7 @@ const Contact = () => {
           base_price: planData.price,
           estimated_min: planData.price,
           estimated_max: planData.price,
+          currency: "FCFA",
           notes: formData.notes || null,
         });
 
@@ -217,8 +222,8 @@ const Contact = () => {
                     <div className="flex items-center gap-3">
                       <Clock className="w-5 h-5 text-accent" />
                       <div>
-                        <p className="text-sm text-primary-foreground/70">Heures</p>
-                        <p className="font-medium">{quoteData.estimatedHours} h</p>
+                        <p className="text-sm text-primary-foreground/70">Délai estimé</p>
+                        <p className="font-medium">{quoteData.estimatedHours} jour{quoteData.estimatedHours > 1 ? "s" : ""}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
@@ -232,7 +237,9 @@ const Contact = () => {
                       <DollarSign className="w-5 h-5 text-accent" />
                       <div>
                         <p className="text-sm text-primary-foreground/70">Estimation</p>
-                        <p className="font-bold text-lg">{quoteData.estimatedMin.toLocaleString("fr-FR")} - {quoteData.estimatedMax.toLocaleString("fr-FR")} FCFA</p>
+                        <p className="font-bold text-lg">
+                          {formatCurrency(quoteData.estimatedMin, toCurrency(quoteData.currency), exchangeRates)} - {formatCurrency(quoteData.estimatedMax, toCurrency(quoteData.currency), exchangeRates)}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -296,7 +303,7 @@ const Contact = () => {
                       Téléphone <span className="text-destructive">*</span>
                     </label>
                     <Input
-                      type="number"
+                      type="tel"
                       placeholder="Ex. +237 6XX XXX XXX"
                       className="bg-transparent border-border"
                       value={formData.phone}

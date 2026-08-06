@@ -6,11 +6,10 @@ import { Check, CheckCircle2, Facebook, Instagram, Linkedin, Twitter } from "luc
 import { Link, useParams } from "react-router-dom";
 
 // Import images
-import bathroomRemodel from "@/assets/bathroom-remodel.jpg";
 import completedBathroom from "@/assets/completed-bathroom.jpg";
 import completedKitchen from "@/assets/completed-kitchen.jpg";
 import drainCleaning from "@/assets/drain-cleaning.jpg";
-import faucetRepair from "@/assets/faucet-repair.jpg";
+import neutralBrandMockup from "@/assets/hero-plumber.jpg";
 import heroGrid1 from "@/assets/hero-grid-1.jpg";
 import heroGrid2 from "@/assets/hero-grid-2.jpg";
 import heroGrid3 from "@/assets/hero-grid-3.jpg";
@@ -87,7 +86,7 @@ const worksData: Record<string, {
     solutions: ["Développement d'une plateforme e-commerce moderne et intuitive.", "Intégration de solutions de paiement mobile adaptées au Cameroun.", "Automatisation de la gestion des stocks et du suivi des commandes."]
   },
   "application-gestion-petittri": {
-    image: faucetRepair,
+    image: drainCleaning,
     title: "Application de Gestion PetitTri",
     description: "Développement d'une application mobile de gestion de tri des déchets, incluant géolocalisation, notifications et interface intuitive pour les usagers.",
     detailTitle: "Une application mobile au service de l'écologie urbaine",
@@ -137,7 +136,7 @@ const worksData: Record<string, {
     solutions: ["Refonte complète avec un design moderne et responsive.", "Mise en œuvre d'une stratégie SEO technique et éditoriale.", "Simplification de la navigation et de l'accès à l'information."]
   },
   "audit-cybersecurite": {
-    image: bathroomRemodel,
+    image: neutralBrandMockup,
     title: "Audit de Cybersécurité",
     description: "Audit approfondi de l'infrastructure numérique d'une entreprise, identification des vulnérabilités et mise en place de mesures de protection renforcées.",
     detailTitle: "Sécuriser l'infrastructure numérique d'une entreprise",

@@ -1,7 +1,7 @@
 import Logo from "@/components/Logo";
 import { site } from "@/data/site";
 import { Button } from "@/components/ui/button";
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 const FlipButton = ({
   children
@@ -73,19 +73,6 @@ const footerLinks = {
     href: "/privacy-policy"
   },]
 };
-const socialLinks = [{
-  icon: Facebook,
-  href: "#"
-}, {
-  icon: Twitter,
-  href: "#"
-}, {
-  icon: Instagram,
-  href: "#"
-}, {
-  icon: Linkedin,
-  href: "#"
-}];
 const Footer = () => {
   return <footer className="bg-primary pt-16 pb-8">
     <div className="container-custom section-padding">
@@ -97,13 +84,6 @@ const Footer = () => {
           <p className="text-white/60 mt-4 mb-6 max-w-sm">
             Laboratoire d&apos;innovation et cabinet informatique à Yaoundé. Identité visuelle, web, marketing digital, cybersécurité et formations.
           </p>
-
-          {/* Social Links */}
-          <div className="flex gap-3">
-            {socialLinks.map((social, index) => <a key={index} href={social.href} className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-tertiary hover:text-primary transition-colors">
-              <social.icon className="h-5 w-5" />
-            </a>)}
-          </div>
 
           <div className="mt-6">
             <Link to={site.phoneHref}>

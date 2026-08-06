@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserQuoteRequests } from "@/hooks/useQuoteRequests";
+import { useExchangeRates, DEFAULT_EXCHANGE_RATES } from "@/hooks/usePricing";
+import { formatCurrency, toCurrency } from "@/lib/currency";
 import { format } from "date-fns";
 import { Clock, DollarSign, Plus, Wrench } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -11,10 +13,8 @@ const getStatusBadge = (status: string) => {
   switch (status) {
     case "pending":
       return <Badge variant="secondary">En attente</Badge>;
-    case "reviewed":
-      return <Badge className="bg-blue-500">Examiné</Badge>;
-    case "approved":
-      return <Badge className="bg-green-500">Approuvé</Badge>;
+    case "contacted":
+      return <Badge className="bg-purple-500">Contacté</Badge>;
     case "completed":
       return <Badge className="bg-primary">Terminé</Badge>;
     case "cancelled":
@@ -24,13 +24,10 @@ const getStatusBadge = (status: string) => {
   }
 };
 
-function formatFCFA(value: number) {
-  return `${new Intl.NumberFormat("fr-FR").format(value)} FCFA`;
-}
-
 export default function UserQuotes() {
   const { user } = useAuth();
   const { data: quotes, isLoading } = useUserQuoteRequests(user?.id);
+  const { data: exchangeRates = DEFAULT_EXCHANGE_RATES } = useExchangeRates();
 
   return (
     <div className="space-y-6">
@@ -88,11 +85,11 @@ export default function UserQuotes() {
                       <div className="flex flex-wrap gap-4 text-sm text-muted-foreground pl-13">
                         <span className="flex items-center gap-1">
                           <Clock className="h-4 w-4" />
-                          {quote.estimated_hours} heures
+                          {quote.estimated_hours} jour{quote.estimated_hours > 1 ? "s" : ""}
                         </span>
                         <span className="flex items-center gap-1">
                           <DollarSign className="h-4 w-4" />
-                          {formatFCFA(quote.estimated_min)} - {formatFCFA(quote.estimated_max)}
+                          {formatCurrency(quote.estimated_min, toCurrency(quote.currency), exchangeRates)} - {formatCurrency(quote.estimated_max, toCurrency(quote.currency), exchangeRates)}
                         </span>
                         <span className="capitalize">{quote.urgency}</span>
                       </div>

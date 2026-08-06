@@ -9,10 +9,15 @@ import { useAuth } from "@/hooks/useAuth";
 import { useCareerBySlug, useCareers } from "@/hooks/useCareers";
 import { useCreateJobApplication } from "@/hooks/useJobApplications";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { supabase } from "@/integrations/supabase/client";
 import { ArrowRight, ArrowUpRight, Briefcase, Building2, CheckCircle2, FileText, Link as LinkIcon, Linkedin, Loader2, Mail, MapPin, MessageSquare, Phone, UploadCloud, User as UserIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { z } from "zod";
+
+// Doit rester cohérent avec le bucket 'job_cvs' (supabase/migrations/20260806000002_storage_job_cvs.sql)
+const CV_MAX_SIZE_BYTES = 10 * 1024 * 1024; // 10 Mo
+const CV_ALLOWED_EXTENSIONS = [".pdf", ".doc", ".docx", ".rtf", ".txt"];
 
 // Validation schemas
 const nameSchema = z.string().trim().min(1, "Le nom est requis").max(100);
@@ -35,6 +40,7 @@ const Career = () => {
   const [linkedin, setLinkedin] = useState("");
   const [cvLink, setCvLink] = useState("");
   const [cvFileName, setCvFileName] = useState("");
+  const [uploadingCv, setUploadingCv] = useState(false);
   const [note, setNote] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -91,13 +97,20 @@ const Career = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    if (file.size > 30 * 1024) { // 30 KB limit
-      setErrors(prev => ({ ...prev, cvFile: "La taille du fichier ne doit pas dépasser 30 Ko." }));
-      // Reset input
+    const ext = `.${file.name.split(".").pop()?.toLowerCase() || ""}`;
+
+    if (file.size > CV_MAX_SIZE_BYTES) {
+      setErrors(prev => ({ ...prev, cvFile: "La taille du fichier ne doit pas dépasser 10 Mo." }));
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      return;
+    }
+
+    if (!CV_ALLOWED_EXTENSIONS.includes(ext)) {
+      setErrors(prev => ({ ...prev, cvFile: "Format non supporté (PDF, DOC, DOCX, RTF ou TXT uniquement)." }));
       if (fileInputRef.current) fileInputRef.current.value = "";
       return;
     }
@@ -107,16 +120,26 @@ const Career = () => {
       delete newErrors.cvFile;
       return newErrors;
     });
-    
-    setCvFileName(file.name);
-    
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      if (event.target?.result) {
-        setCvLink(event.target.result as string);
-      }
-    };
-    reader.readAsDataURL(file);
+
+    setUploadingCv(true);
+    try {
+      const path = `${Date.now()}-${crypto.randomUUID()}${ext}`;
+      const { error } = await supabase.storage.from("job_cvs").upload(path, file);
+      if (error) throw error;
+
+      // Préfixe reconnu par DashboardApplications pour générer une URL
+      // signée à la demande (le bucket 'job_cvs' n'est pas public).
+      setCvLink(`storage://job_cvs/${path}`);
+      setCvFileName(file.name);
+    } catch (error) {
+      setErrors(prev => ({
+        ...prev,
+        cvFile: "Échec de l'envoi du fichier : " + (error instanceof Error ? error.message : String(error)),
+      }));
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    } finally {
+      setUploadingCv(false);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -401,17 +424,17 @@ const Career = () => {
 
                 <div className="space-y-1.5 pt-2 pb-1 border-t border-gray-100">
                   <label className="text-sm font-medium text-black flex items-center justify-between">
-                    <span>Votre CV <span className="text-muted-foreground font-normal text-xs">(Max 30 Ko)</span></span>
+                    <span>Votre CV <span className="text-muted-foreground font-normal text-xs">(Max 10 Mo)</span></span>
                   </label>
-                  
+
                   {cvFileName ? (
                     <div className="flex items-center justify-between bg-primary/5 border border-primary/20 rounded-xl p-3">
                       <div className="flex items-center gap-2 overflow-hidden">
                         <FileText className="h-4 w-4 text-primary shrink-0" />
                         <span className="text-sm text-primary font-medium truncate">{cvFileName}</span>
                       </div>
-                      <button 
-                        type="button" 
+                      <button
+                        type="button"
                         onClick={() => {
                           setCvFileName("");
                           setCvLink("");
@@ -430,13 +453,25 @@ const Career = () => {
                           accept=".pdf,.doc,.docx,.rtf,.txt"
                           onChange={handleFileUpload}
                           ref={fileInputRef}
-                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                          disabled={uploadingCv}
+                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 disabled:cursor-wait"
                         />
                         <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl p-4 bg-gray-50/50 group-hover:bg-gray-50 group-hover:border-primary/30 transition-all text-center">
-                          <UploadCloud className="h-6 w-6 text-muted-foreground group-hover:text-primary mb-2 transition-colors" />
-                          <span className="text-xs font-medium text-muted-foreground group-hover:text-black transition-colors">
-                            Glissez un fichier ou cliquez
-                          </span>
+                          {uploadingCv ? (
+                            <>
+                              <Loader2 className="h-6 w-6 text-primary mb-2 animate-spin" />
+                              <span className="text-xs font-medium text-muted-foreground">
+                                Envoi en cours...
+                              </span>
+                            </>
+                          ) : (
+                            <>
+                              <UploadCloud className="h-6 w-6 text-muted-foreground group-hover:text-primary mb-2 transition-colors" />
+                              <span className="text-xs font-medium text-muted-foreground group-hover:text-black transition-colors">
+                                Glissez un fichier ou cliquez
+                              </span>
+                            </>
+                          )}
                         </div>
                       </div>
                       
@@ -485,7 +520,7 @@ const Career = () => {
                 <Button
                   type="submit"
                   className="w-full group relative overflow-hidden bg-primary hover:bg-primary/90 text-white rounded-xl py-6 transition-all duration-300 mt-2"
-                  disabled={createApplication.isPending}
+                  disabled={createApplication.isPending || uploadingCv}
                 >
                   {createApplication.isPending ? (
                     <span className="flex items-center">

@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { 
-  useServicePricing, 
-  useExchangeRates, 
-  useUpdateServicePricing, 
-  useUpdateExchangeRates 
+import {
+  useServicePricing,
+  useExchangeRates,
+  useUpdateServicePricing,
+  useUpdateExchangeRates,
+  DEFAULT_EXCHANGE_RATES,
 } from "@/hooks/usePricing";
 import { services } from "@/data/services";
 import { Save, RefreshCw, DollarSign, Euro, MapPin, Globe } from "lucide-react";
@@ -17,11 +18,11 @@ import FadeIn from "@/components/FadeIn";
 const DashboardPricing = () => {
   const { data: dynamicPricing, isLoading: isPricingLoading, refetch: refetchPricing } = useServicePricing();
   const { data: exchangeRates, isLoading: isRatesLoading, refetch: refetchRates } = useExchangeRates();
-  
+
   const updatePricingMutation = useUpdateServicePricing();
   const updateRatesMutation = useUpdateExchangeRates();
 
-  const [rates, setRates] = useState({ EUR: 655.957, USD: 600 });
+  const [rates, setRates] = useState(DEFAULT_EXCHANGE_RATES);
   const [pricingState, setPricingState] = useState<Record<string, { local: number, intl: number }>>({});
   const [isSaving, setIsSaving] = useState(false);
 
@@ -81,6 +82,7 @@ const DashboardPricing = () => {
         if (!dbPrice || dbPrice.local_tjm !== current.local || dbPrice.intl_tjm !== current.intl) {
           return updatePricingMutation.mutateAsync({
             slug: s.slug,
+            title: s.title,
             local_tjm: current.local,
             intl_tjm: current.intl
           });

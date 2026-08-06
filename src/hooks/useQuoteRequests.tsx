@@ -16,6 +16,7 @@ export interface QuoteRequest {
   base_price: number;
   estimated_min: number;
   estimated_max: number;
+  currency: string;
   notes: string | null;
   status: string;
   service_date: string | null;
@@ -116,6 +117,7 @@ export const useCreateQuoteRequest = () => {
       base_price: number;
       estimated_min: number;
       estimated_max: number;
+      currency: string;
       notes: string | null;
       service_date: string | null;
     }) => {

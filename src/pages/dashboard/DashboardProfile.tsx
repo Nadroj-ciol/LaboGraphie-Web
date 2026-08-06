@@ -8,13 +8,12 @@ import { useUserProfile } from "@/hooks/useUserProfile";
 import { Calendar, Shield, User, Save, Loader2 } from "lucide-react";
 import { AvatarUpload } from "@/components/dashboard/AvatarUpload";
 import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
 
 export default function DashboardProfile() {
   const { user, isAdmin } = useAuth();
   const { data: profile, isLoading: profileLoading } = useUserProfile(user?.id);
-  const { toast } = useToast();
   const queryClient = useQueryClient();
 
   // Form states
@@ -60,16 +59,9 @@ export default function DashboardProfile() {
 
       queryClient.invalidateQueries({ queryKey: ["userProfile", user.id] });
 
-      toast({
-        title: "Photo de profil mise à jour",
-        description: "Votre nouvel avatar a été enregistré avec succès.",
-      });
-    } catch (error: any) {
-      toast({
-        variant: "destructive",
-        title: "Erreur",
-        description: "Impossible d'enregistrer l'image : " + error.message,
-      });
+      toast.success("Photo de profil mise à jour avec succès.");
+    } catch (error) {
+      toast.error("Impossible d'enregistrer l'image : " + (error instanceof Error ? error.message : String(error)));
     }
   };
 
@@ -94,16 +86,9 @@ export default function DashboardProfile() {
 
       queryClient.invalidateQueries({ queryKey: ["userProfile", user.id] });
 
-      toast({
-        title: "Profil mis à jour",
-        description: "Vos informations ont été enregistrées avec succès.",
-      });
-    } catch (error: any) {
-      toast({
-        variant: "destructive",
-        title: "Erreur de sauvegarde",
-        description: error.message,
-      });
+      toast.success("Vos informations ont été enregistrées avec succès.");
+    } catch (error) {
+      toast.error("Erreur de sauvegarde : " + (error instanceof Error ? error.message : String(error)));
     } finally {
       setIsSaving(false);
     }

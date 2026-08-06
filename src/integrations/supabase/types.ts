@@ -12,6 +12,31 @@ export type Database = {
   __InternalSupabase: {
     PostgrestVersion: "14.15"
   }
+  graphql_public: {
+    Tables: {
+      [_ in never]: never
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      graphql: {
+        Args: {
+          extensions?: Json
+          operationName?: string
+          query?: string
+          variables?: Json
+        }
+        Returns: Json
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
   public: {
     Tables: {
       blogs: {
@@ -200,7 +225,6 @@ export type Database = {
         Row: {
           avatar_url: string | null
           created_at: string
-          email: string | null
           full_name: string | null
           id: string
           phone: string | null
@@ -210,7 +234,6 @@ export type Database = {
         Insert: {
           avatar_url?: string | null
           created_at?: string
-          email?: string | null
           full_name?: string | null
           id?: string
           phone?: string | null
@@ -220,7 +243,6 @@ export type Database = {
         Update: {
           avatar_url?: string | null
           created_at?: string
-          email?: string | null
           full_name?: string | null
           id?: string
           phone?: string | null
@@ -235,6 +257,7 @@ export type Database = {
           complexity_label: string
           complexity_multiplier: number
           created_at: string
+          currency: string
           email: string | null
           estimated_hours: number
           estimated_max: number
@@ -256,6 +279,7 @@ export type Database = {
           complexity_label: string
           complexity_multiplier?: number
           created_at?: string
+          currency?: string
           email?: string | null
           estimated_hours: number
           estimated_max: number
@@ -277,6 +301,7 @@ export type Database = {
           complexity_label?: string
           complexity_multiplier?: number
           created_at?: string
+          currency?: string
           email?: string | null
           estimated_hours?: number
           estimated_max?: number
@@ -328,6 +353,54 @@ export type Database = {
           status?: string
           updated_at?: string
           user_id?: string | null
+        }
+        Relationships: []
+      }
+      service_pricing: {
+        Row: {
+          id: string
+          intl_tjm: number
+          local_tjm: number
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          intl_tjm: number
+          local_tjm: number
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          intl_tjm?: number
+          local_tjm?: number
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      system_settings: {
+        Row: {
+          description: string | null
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          description?: string | null
+          key: string
+          updated_at?: string
+          value: Json
+        }
+        Update: {
+          description?: string | null
+          key?: string
+          updated_at?: string
+          value?: Json
         }
         Relationships: []
       }
@@ -489,6 +562,9 @@ export type CompositeTypes<
     : never
 
 export const Constants = {
+  graphql_public: {
+    Enums: {},
+  },
   public: {
     Enums: {
       app_role: ["admin", "moderator", "user"],
