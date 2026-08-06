@@ -2,6 +2,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { useAllQuoteRequests, useDeleteQuoteRequest, useUpdateQuoteRequestStatus } from "@/hooks/useQuoteRequests";
+import { useExchangeRates, DEFAULT_EXCHANGE_RATES } from "@/hooks/usePricing";
+import { formatCurrency, toCurrency } from "@/lib/currency";
 import { Calendar, Clock, DollarSign, Mail, Phone, Trash2 } from "lucide-react";
 import {
   AlertDialog,
@@ -32,16 +34,13 @@ const urgencyColors: Record<string, string> = {
   standard: "bg-blue-100 text-blue-700",
 };
 
-function formatFCFA(value: number) {
-  return `${new Intl.NumberFormat("fr-FR").format(value)} FCFA`;
-}
-
 export default function DashboardQuotes() {
   const { isAdmin, loading } = useAuth();
   const navigate = useNavigate();
   const { data: quoteRequests, isLoading } = useAllQuoteRequests();
   const updateQuoteStatus = useUpdateQuoteRequestStatus();
   const deleteQuoteRequest = useDeleteQuoteRequest();
+  const { data: exchangeRates = DEFAULT_EXCHANGE_RATES } = useExchangeRates();
 
   useEffect(() => {
     if (!loading && !isAdmin) {
@@ -133,7 +132,7 @@ export default function DashboardQuotes() {
 
                   <div className="flex flex-col items-end gap-2">
                     <p className="text-lg font-bold text-primary">
-                      {formatFCFA(quote.estimated_min)} - {formatFCFA(quote.estimated_max)}
+                      {formatCurrency(quote.estimated_min, toCurrency(quote.currency), exchangeRates)} - {formatCurrency(quote.estimated_max, toCurrency(quote.currency), exchangeRates)}
                     </p>
                     <div className="flex items-center gap-3">
                       <select

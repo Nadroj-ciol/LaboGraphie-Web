@@ -257,6 +257,7 @@ export type Database = {
           complexity_label: string
           complexity_multiplier: number
           created_at: string
+          currency: string
           email: string | null
           estimated_hours: number
           estimated_max: number
@@ -278,6 +279,7 @@ export type Database = {
           complexity_label: string
           complexity_multiplier?: number
           created_at?: string
+          currency?: string
           email?: string | null
           estimated_hours: number
           estimated_max: number
@@ -299,6 +301,7 @@ export type Database = {
           complexity_label?: string
           complexity_multiplier?: number
           created_at?: string
+          currency?: string
           email?: string | null
           estimated_hours?: number
           estimated_max?: number

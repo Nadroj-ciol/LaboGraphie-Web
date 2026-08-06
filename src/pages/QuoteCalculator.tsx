@@ -21,24 +21,8 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-import { useServicePricing, useExchangeRates, DEFAULT_EXCHANGE_RATES, ExchangeRates } from "@/hooks/usePricing";
-
-type Currency = "FCFA" | "EUR" | "USD";
-
-const formatCurrency = (amountFCFA: number, currency: Currency, rates: ExchangeRates) => {
-  const rate = currency === "FCFA" ? 1 : rates[currency];
-  const amount = amountFCFA / rate;
-  
-  if (currency === "FCFA") {
-    return `${Math.round(amount).toLocaleString("fr-FR").replace(/,/g, " ")} FCFA`;
-  }
-  
-  return new Intl.NumberFormat(currency === "EUR" ? "fr-FR" : "en-US", {
-    style: "currency",
-    currency: currency,
-    maximumFractionDigits: 0,
-  }).format(amount);
-};
+import { useServicePricing, useExchangeRates, DEFAULT_EXCHANGE_RATES } from "@/hooks/usePricing";
+import { type Currency, formatCurrency } from "@/lib/currency";
 
 export interface QuoteData {
   serviceSlug: string;
@@ -142,7 +126,8 @@ const QuoteCalculator = () => {
           base_price: currency === "FCFA" ? estimate.localTJM : estimate.intlTJM,
           estimated_min: estimate.min,
           estimated_max: estimate.max,
-          notes: `Devise: ${currency}`,
+          currency,
+          notes: null,
           service_date: serviceDate || null,
         });
         

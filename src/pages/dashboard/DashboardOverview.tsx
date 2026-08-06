@@ -5,12 +5,10 @@ import { useAllContacts } from "@/hooks/useContacts";
 import { useJobApplications } from "@/hooks/useJobApplications";
 import { useAllQuoteRequests, useUserQuoteRequests } from "@/hooks/useQuoteRequests";
 import { useServiceInquiries } from "@/hooks/useServiceInquiries";
+import { useExchangeRates, DEFAULT_EXCHANGE_RATES } from "@/hooks/usePricing";
+import { formatCurrency, toCurrency } from "@/lib/currency";
 import { Briefcase, Clock, DollarSign, FileText, Mail, MessageSquare, Users } from "lucide-react";
 import { Link } from "react-router-dom";
-
-function formatFCFA(value: number) {
-  return `${new Intl.NumberFormat("fr-FR").format(value)} FCFA`;
-}
 
 function AdminOverview() {
   const { data: contacts } = useAllContacts();
@@ -18,6 +16,7 @@ function AdminOverview() {
   const { data: blogs } = useAllBlogs();
   const { data: applications } = useJobApplications();
   const { data: serviceInquiries } = useServiceInquiries();
+  const { data: exchangeRates = DEFAULT_EXCHANGE_RATES } = useExchangeRates();
 
   const newContacts = contacts?.filter(c => c.status === "new").length || 0;
   const pendingQuotes = quoteRequests?.filter(q => q.status === "pending").length || 0;
@@ -152,7 +151,7 @@ function AdminOverview() {
                     </div>
                     <div className="text-right">
                       <p className="text-sm font-medium text-primary">
-                        {formatFCFA(quote.estimated_min)} - {formatFCFA(quote.estimated_max)}
+                        {formatCurrency(quote.estimated_min, toCurrency(quote.currency), exchangeRates)} - {formatCurrency(quote.estimated_max, toCurrency(quote.currency), exchangeRates)}
                       </p>
                       <p className="text-xs text-muted-foreground">{quote.urgency}</p>
                     </div>

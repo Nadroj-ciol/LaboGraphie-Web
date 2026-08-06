@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserQuoteRequests } from "@/hooks/useQuoteRequests";
+import { useExchangeRates, DEFAULT_EXCHANGE_RATES } from "@/hooks/usePricing";
+import { formatCurrency, toCurrency } from "@/lib/currency";
 import { format } from "date-fns";
 import { Clock, DollarSign, Plus, Wrench } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -22,13 +24,10 @@ const getStatusBadge = (status: string) => {
   }
 };
 
-function formatFCFA(value: number) {
-  return `${new Intl.NumberFormat("fr-FR").format(value)} FCFA`;
-}
-
 export default function UserQuotes() {
   const { user } = useAuth();
   const { data: quotes, isLoading } = useUserQuoteRequests(user?.id);
+  const { data: exchangeRates = DEFAULT_EXCHANGE_RATES } = useExchangeRates();
 
   return (
     <div className="space-y-6">
@@ -90,7 +89,7 @@ export default function UserQuotes() {
                         </span>
                         <span className="flex items-center gap-1">
                           <DollarSign className="h-4 w-4" />
-                          {formatFCFA(quote.estimated_min)} - {formatFCFA(quote.estimated_max)}
+                          {formatCurrency(quote.estimated_min, toCurrency(quote.currency), exchangeRates)} - {formatCurrency(quote.estimated_max, toCurrency(quote.currency), exchangeRates)}
                         </span>
                         <span className="capitalize">{quote.urgency}</span>
                       </div>
