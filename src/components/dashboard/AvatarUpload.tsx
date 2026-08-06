@@ -2,7 +2,7 @@ import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Camera, Loader2 } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 
 interface AvatarUploadProps {
   userId: string;
@@ -13,7 +13,6 @@ interface AvatarUploadProps {
 
 export function AvatarUpload({ userId, url, userName, onUpload }: AvatarUploadProps) {
   const [uploading, setUploading] = useState(false);
-  const { toast } = useToast();
 
   const userInitials = userName.slice(0, 2).toUpperCase() || "U";
 
@@ -50,12 +49,8 @@ export function AvatarUpload({ userId, url, userName, onUpload }: AvatarUploadPr
         .getPublicUrl(filePath);
 
       onUpload(data.publicUrl);
-    } catch (error: any) {
-      toast({
-        variant: "destructive",
-        title: "Erreur lors de l'upload",
-        description: error.message,
-      });
+    } catch (error) {
+      toast.error("Erreur lors de l'upload : " + (error instanceof Error ? error.message : String(error)));
     } finally {
       setUploading(false);
     }

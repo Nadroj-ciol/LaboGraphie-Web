@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2, UploadCloud, Image as ImageIcon } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 
 interface BlogImageUploadProps {
   url: string | null;
@@ -10,7 +10,6 @@ interface BlogImageUploadProps {
 
 export function BlogImageUpload({ url, onUpload }: BlogImageUploadProps) {
   const [uploading, setUploading] = useState(false);
-  const { toast } = useToast();
 
   const uploadImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
     try {
@@ -45,12 +44,8 @@ export function BlogImageUpload({ url, onUpload }: BlogImageUploadProps) {
         .getPublicUrl(filePath);
 
       onUpload(data.publicUrl);
-    } catch (error: any) {
-      toast({
-        variant: "destructive",
-        title: "Erreur lors de l'upload",
-        description: error.message,
-      });
+    } catch (error) {
+      toast.error("Erreur lors de l'upload : " + (error instanceof Error ? error.message : String(error)));
     } finally {
       setUploading(false);
     }
