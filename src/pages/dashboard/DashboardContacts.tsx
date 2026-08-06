@@ -15,7 +15,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 import { toast } from "sonner";
 
 const statusColors: Record<string, string> = {
@@ -28,7 +28,7 @@ const statusColors: Record<string, string> = {
 
 export default function DashboardContacts() {
   const { isAdmin, loading } = useAuth();
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
   const { data: contacts, isLoading } = useAllContacts();
   const updateContactStatus = useUpdateContactStatus();
   const deleteContact = useDeleteContact();

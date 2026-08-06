@@ -4,7 +4,8 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Check, X } from "lucide-react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 
 
 // FlipButton component
@@ -277,7 +278,7 @@ const FAQItem = ({
 };
 
 const Pricing = () => {
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
   const [activeTab, setActiveTab] = useState<"residential" | "commercial">(
     "residential"
   );

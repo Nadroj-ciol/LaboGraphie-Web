@@ -16,7 +16,7 @@ import Header from "@/components/Header";
 import { useCareers } from "@/hooks/useCareers";
 import { ArrowUpRight, Briefcase, CheckCircle2, Clock3, Heart, MapPin, Shield, ShieldCheck, Users, Zap } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 const stats = [{
   value: 100,
   suffix: "+",

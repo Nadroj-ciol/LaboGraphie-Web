@@ -1,7 +1,7 @@
 import FadeIn from "@/components/FadeIn";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { site } from "@/data/site";
 
 const PrivacyPolicy = () => {

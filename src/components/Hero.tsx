@@ -8,7 +8,7 @@ import heroGrid4 from "@/assets/hero-grid-4.jpg";
 import heroGrid5 from "@/assets/hero-grid-5.jpg";
 import heroGrid6 from "@/assets/hero-grid-6.jpg";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 const FlipButton = ({
   children,
   variant = "light"

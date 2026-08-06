@@ -18,7 +18,8 @@ import { useUserProfile } from "@/hooks/useUserProfile";
 import { useCreateQuoteRequest } from "@/hooks/useQuoteRequests";
 import { Calendar, Calculator, Check, Clock, DollarSign, Phone, Wrench, Globe } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 import { toast } from "sonner";
 
 import { useServicePricing, useExchangeRates, DEFAULT_EXCHANGE_RATES } from "@/hooks/usePricing";
@@ -38,7 +39,7 @@ export interface QuoteData {
 }
 
 const QuoteCalculator = () => {
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
   const { user } = useAuth();
   const { data: profile } = useUserProfile(user?.id);
   const createQuoteMutation = useCreateQuoteRequest();

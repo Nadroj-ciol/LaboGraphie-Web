@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { services } from "@/data/services";
 import { useServicePricing } from "@/hooks/usePricing";
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 
 const Services = () => {
   const { data: servicePricingData = [] } = useServicePricing();

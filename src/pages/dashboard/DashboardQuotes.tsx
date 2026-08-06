@@ -17,7 +17,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 import { toast } from "sonner";
 
 const statusColors: Record<string, string> = {
@@ -36,7 +36,7 @@ const urgencyColors: Record<string, string> = {
 
 export default function DashboardQuotes() {
   const { isAdmin, loading } = useAuth();
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
   const { data: quoteRequests, isLoading } = useAllQuoteRequests();
   const updateQuoteStatus = useUpdateQuoteRequestStatus();
   const deleteQuoteRequest = useDeleteQuoteRequest();

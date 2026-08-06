@@ -2,7 +2,7 @@ import Logo from "@/components/Logo";
 import { site } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 const FlipButton = ({
   children
 }: {

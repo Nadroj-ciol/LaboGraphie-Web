@@ -1,7 +1,7 @@
 import FadeIn from "@/components/FadeIn";
 import { services } from "@/data/services";
 import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 
 // FlipButton component
 const FlipButton = ({

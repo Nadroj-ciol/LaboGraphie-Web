@@ -1,7 +1,7 @@
 import plumberTeam from "@/assets/plumber-team.jpg";
 import FadeIn from "@/components/FadeIn";
 import { usePublishedBlogs } from "@/hooks/useBlogs";
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { Button } from "./ui/button";
 import { ShareMenu } from "./ShareMenu";
 

@@ -3,7 +3,7 @@ import teamPlumber from "@/assets/hero-51.png";
 import FadeIn from "@/components/FadeIn";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Phone } from "lucide-react";
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { site } from "@/data/site";
 
 const FlipButton = ({

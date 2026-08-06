@@ -6,7 +6,8 @@ import { useUserProfile } from "@/hooks/useUserProfile";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChevronDown, LayoutDashboard, LogOut, Menu, Phone, User, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
 const navLinks = [{
   name: "Accueil",
@@ -201,7 +202,7 @@ const Header = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
   const handlePagesClick = () => {
     setIsPagesDropdownOpen(!isPagesDropdownOpen);
   };

@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { usePublishedBlogs } from "@/hooks/useBlogs";
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { ShareMenu } from "@/components/ShareMenu";
 
 const categories = ["Tous", "Récents", "Populaires", "Design & Branding", "Marketing Digital", "Cyber-sécurité", "Maintenance", "Réseau", "Histoire"];

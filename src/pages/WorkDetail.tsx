@@ -3,7 +3,8 @@ import FadeIn from "@/components/FadeIn";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Check, CheckCircle2, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 
 // Import images
 import completedBathroom from "@/assets/completed-bathroom.jpg";

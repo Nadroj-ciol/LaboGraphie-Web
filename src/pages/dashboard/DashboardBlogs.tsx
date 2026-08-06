@@ -33,7 +33,7 @@ import {
 } from "@/hooks/useBlogs";
 import { Edit2, Eye, EyeOff, FileText, Plus, Trash2, Calendar, Clock, LayoutGrid, Search, Filter, ExternalLink } from "lucide-react";
 import { useEffect, useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 import { toast } from "sonner";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -69,7 +69,7 @@ const formats = [
 
 export default function DashboardBlogs() {
   const { isAdmin, loading } = useAuth();
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
   const { data: blogs, isLoading } = useAllBlogs();
   const createBlog = useCreateBlog();
   const updateBlog = useUpdateBlog();

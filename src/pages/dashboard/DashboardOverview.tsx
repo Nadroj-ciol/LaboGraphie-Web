@@ -8,7 +8,7 @@ import { useServiceInquiries } from "@/hooks/useServiceInquiries";
 import { useExchangeRates, DEFAULT_EXCHANGE_RATES } from "@/hooks/usePricing";
 import { formatCurrency, toCurrency } from "@/lib/currency";
 import { Briefcase, Clock, DollarSign, FileText, Mail, MessageSquare, Users } from "lucide-react";
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 
 function AdminOverview() {
   const { data: contacts } = useAllContacts();

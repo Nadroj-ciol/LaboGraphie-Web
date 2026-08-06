@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/useAuth";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -17,7 +17,7 @@ const UpdatePassword = () => {
   const [error, setError] = useState<string | undefined>();
   
   const { updatePassword } = useAuth();
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

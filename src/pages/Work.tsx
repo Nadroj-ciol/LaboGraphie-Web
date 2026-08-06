@@ -2,7 +2,7 @@ import CTA from "@/components/CTA";
 import FadeIn from "@/components/FadeIn";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 
 // Import existing images for works
 import work1 from "@/assets/work-1.png";

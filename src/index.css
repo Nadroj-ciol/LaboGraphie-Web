@@ -7,15 +7,15 @@
 
 @layer base {
   :root {
-    /* LaboGraphie Brand Colors */
-    --background: 240 6% 7%; /* #111113 */
-    --foreground: 0 0% 100%;
+    /* LaboGraphie Brand Colors — mode clair (par défaut) */
+    --background: 0 0% 100%; /* blanc */
+    --foreground: 240 8% 9%; /* near-black */
 
-    --card: 240 5% 96%;
-    --card-foreground: 240 6% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 8% 9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 6% 7%;
+    --popover-foreground: 240 8% 9%;
 
     --primary: 240 8% 9%; /* near-black */
     --primary-foreground: 0 0% 100%;
@@ -23,10 +23,10 @@
     --secondary: 240 5% 24%;
     --secondary-foreground: 0 0% 100%;
 
-    --tertiary: 46 100% 50%; /* #FFC300 */
+    --tertiary: 46 100% 50%; /* #FFC300 — identique dans les deux thèmes */
     --tertiary-foreground: 240 8% 9%;
 
-    --muted: 240 4% 40%;
+    --muted: 240 5% 96%; /* surface grise claire (cartes/panneaux) */
     --muted-foreground: 240 4% 40%;
 
     --accent: 46 100% 50%; /* #FFC300 */
@@ -35,11 +35,17 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 6% 20%;
-    --input: 240 6% 20%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
     --ring: 46 100% 50%;
 
     --radius: 0.5rem;
+
+    /* Bandeaux de marque volontairement toujours sombres (Hero, Footer, CTA...),
+       invariants au thème — à ne jamais utiliser --primary pour ces fonds, car
+       --primary devient blanc en mode sombre (nécessaire pour les boutons). */
+    --surface-dark: 240 8% 9%;
+    --surface-dark-foreground: 0 0% 100%;
 
     /* Custom Colors */
     --grey: 240 3% 34%;
@@ -84,8 +90,8 @@
     --primary-foreground: 240 8% 9%;
     --secondary: 240 5% 24%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 240 4% 40%;
-    --muted-foreground: 240 4% 55%;
+    --muted: 240 5% 16%;
+    --muted-foreground: 240 4% 65%;
     --accent: 46 100% 50%;
     --accent-foreground: 240 8% 9%;
     --destructive: 0 62.8% 30.6%;
@@ -93,6 +99,19 @@
     --border: 240 6% 20%;
     --input: 240 6% 20%;
     --ring: 46 100% 50%;
+
+    --surface-dark: 240 8% 9%;
+    --surface-dark-foreground: 0 0% 100%;
+
+    /* Sidebar (dashboard) */
+    --sidebar-background: 240 8% 9%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 240 8% 9%;
+    --sidebar-accent: 240 6% 20%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 240 6% 20%;
+    --sidebar-ring: 46 100% 50%;
   }
 
 }

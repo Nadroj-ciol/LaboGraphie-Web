@@ -9,7 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useCreateServiceInquiry } from "@/hooks/useServiceInquiries";
 import { Check, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { z } from "zod";
 
 // Import images

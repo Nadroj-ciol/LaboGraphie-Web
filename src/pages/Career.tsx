@@ -12,7 +12,8 @@ import { useUserProfile } from "@/hooks/useUserProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { ArrowRight, ArrowUpRight, Briefcase, Building2, CheckCircle2, FileText, Link as LinkIcon, Linkedin, Loader2, Mail, MapPin, MessageSquare, Phone, UploadCloud, User as UserIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { z } from "zod";
 
 // Doit rester cohérent avec le bucket 'job_cvs' (supabase/migrations/20260806000002_storage_job_cvs.sql)

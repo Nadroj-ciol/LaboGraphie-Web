@@ -1,7 +1,8 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 import { DashboardSidebar } from "./DashboardSidebar";
 
 // Admin-only dashboard sub-routes. Non-admin authenticated users are
@@ -18,7 +19,7 @@ const ADMIN_ONLY_PATHS = [
 
 export function DashboardLayout() {
   const { user, loading, isAdmin } = useAuth();
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
   const location = useLocation();
 
   useEffect(() => {

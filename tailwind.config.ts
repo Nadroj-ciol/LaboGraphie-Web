@@ -120,6 +120,10 @@ export default {
   				DEFAULT: 'hsl(var(--tertiary))',
   				foreground: 'hsl(var(--tertiary-foreground))'
   			},
+  			'surface-dark': {
+  				DEFAULT: 'hsl(var(--surface-dark))',
+  				foreground: 'hsl(var(--surface-dark-foreground))'
+  			},
   			destructive: {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'

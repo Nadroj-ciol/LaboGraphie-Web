@@ -21,7 +21,8 @@ import { formatCurrency, toCurrency } from "@/lib/currency";
 import { Clock, DollarSign, Mail, MapPin, Phone, Wrench } from "lucide-react";
 import { site } from "@/data/site";
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { toast } from "sonner";
 import type { QuoteData } from "./QuoteCalculator";
 

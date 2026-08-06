@@ -1,10 +1,13 @@
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ThemeProvider } from "next-themes";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import OfflineIndicator from "./components/OfflineIndicator";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
+import LanguageLayout from "./components/LanguageLayout";
+import RootRedirect from "./components/RootRedirect";
 import About from "./pages/About";
 import Auth from "./pages/Auth";
 import Blog from "./pages/Blog";
@@ -51,54 +54,63 @@ const queryClient = new QueryClient({
 });
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Sonner />
-      <OfflineIndicator />
-      <FloatingWhatsApp />
-      <BrowserRouter>
-        <div className="overflow-x-hidden w-full relative flex flex-col min-h-screen">
-          <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/career" element={<Career />} />
-          <Route path="/career/:slug" element={<Career />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/services/:slug" element={<ServiceDetail />} />
-          <Route path="/work" element={<Work />} />
-          <Route path="/work/:slug" element={<WorkDetail />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogDetail />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/quote" element={<QuoteCalculator />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/update-password" element={<UpdatePassword />} />
+  <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} storageKey="labographie-theme">
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Sonner />
+        <OfflineIndicator />
+        <FloatingWhatsApp />
+        <BrowserRouter>
+          <div className="overflow-x-hidden w-full relative flex flex-col min-h-screen">
+            <ScrollToTop />
+          <Routes>
+            {/* "/" ne rend jamais de contenu : redirection immédiate vers la langue détectée */}
+            <Route path="/" element={<RootRedirect />} />
 
-          {/* Dashboard Routes - Using Layout Route */}
-          <Route path="/dashboard" element={<DashboardLayout />}>
-            <Route index element={<DashboardOverview />} />
-            <Route path="contacts" element={<DashboardContacts />} />
-            <Route path="quotes" element={<DashboardQuotes />} />
-            <Route path="service-inquiries" element={<DashboardServiceInquiries />} />
-            <Route path="pricing" element={<DashboardPricing />} />
-            <Route path="blogs" element={<DashboardBlogs />} />
-            <Route path="careers" element={<DashboardCareers />} />
-            <Route path="applications" element={<DashboardApplications />} />
-            <Route path="profile" element={<DashboardProfile />} />
-            <Route path="my-quotes" element={<UserQuotes />} />
-            <Route path="my-inquiries" element={<UserServiceInquiries />} />
-          </Route>
+            {/* Pages publiques, préfixées par la langue */}
+            <Route path="/:lang" element={<LanguageLayout />}>
+              <Route index element={<Index />} />
+              <Route path="about" element={<About />} />
+              <Route path="career" element={<Career />} />
+              <Route path="career/:slug" element={<Career />} />
+              <Route path="services" element={<Services />} />
+              <Route path="services/:slug" element={<ServiceDetail />} />
+              <Route path="work" element={<Work />} />
+              <Route path="work/:slug" element={<WorkDetail />} />
+              <Route path="blog" element={<Blog />} />
+              <Route path="blog/:slug" element={<BlogDetail />} />
+              <Route path="pricing" element={<Pricing />} />
+              <Route path="quote" element={<QuoteCalculator />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="auth" element={<Auth />} />
+              <Route path="update-password" element={<UpdatePassword />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
 
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        </div>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+            {/* Dashboard : hors i18n, reste en français, jamais préfixé par la langue */}
+            <Route path="/dashboard" element={<DashboardLayout />}>
+              <Route index element={<DashboardOverview />} />
+              <Route path="contacts" element={<DashboardContacts />} />
+              <Route path="quotes" element={<DashboardQuotes />} />
+              <Route path="service-inquiries" element={<DashboardServiceInquiries />} />
+              <Route path="pricing" element={<DashboardPricing />} />
+              <Route path="blogs" element={<DashboardBlogs />} />
+              <Route path="careers" element={<DashboardCareers />} />
+              <Route path="applications" element={<DashboardApplications />} />
+              <Route path="profile" element={<DashboardProfile />} />
+              <Route path="my-quotes" element={<UserQuotes />} />
+              <Route path="my-inquiries" element={<UserServiceInquiries />} />
+            </Route>
+
+            {/* Toute autre URL hors "/:lang" (ex. ancien lien sans préfixe) */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          </div>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </ThemeProvider>
 );
 
 export default App;

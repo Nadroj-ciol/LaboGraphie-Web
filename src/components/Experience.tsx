@@ -1,7 +1,7 @@
 import plumberTeam from "@/assets/hero-2.png";
 import CounterAnimation from "@/components/CounterAnimation";
 import FadeIn from "@/components/FadeIn";
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 
 const stats = [{
   number: 8,

@@ -7,7 +7,7 @@ import { useExchangeRates, DEFAULT_EXCHANGE_RATES } from "@/hooks/usePricing";
 import { formatCurrency, toCurrency } from "@/lib/currency";
 import { format } from "date-fns";
 import { Clock, DollarSign, Plus, Wrench } from "lucide-react";
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 
 const getStatusBadge = (status: string) => {
   switch (status) {

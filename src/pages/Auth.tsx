@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -36,7 +36,7 @@ const Auth = () => {
   const [errors, setErrors] = useState<{ email?: string; password?: string; phone?: string }>({});
 
   const { user, isAdmin, signIn, signUp, resetPassword } = useAuth();
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
 
   useEffect(() => {
     // Only redirect if they navigate to /auth manually but are already logged in

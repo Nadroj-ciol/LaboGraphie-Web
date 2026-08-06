@@ -7,7 +7,8 @@ import Header from "@/components/Header";
 import { useBlog, usePublishedBlogs } from "@/hooks/useBlogs";
 import DOMPurify from "dompurify";
 import { Facebook, Twitter, Linkedin, Link2, MessageCircle, Send } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { toast } from "sonner";
 
 const BlogDetail = () => {
