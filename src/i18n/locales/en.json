@@ -301,5 +301,179 @@
         ]
       }
     }
+  },
+  "work": {
+    "page": {
+      "title": "Our Work",
+      "description": "Tailor-made digital solutions designed to meet the needs of our clients in Cameroon and across Africa."
+    },
+    "detail": {
+      "notFoundTitle": "Project not found",
+      "backToWork": "Back to our work",
+      "projectDetailsLabel": "Project Details",
+      "overview": "Overview",
+      "overviewIntro": "Our team worked closely with the client to guarantee a result aligned with their strategic goals and brand vision.",
+      "client": "Client",
+      "budget": "Budget",
+      "servicesLabel": "Services",
+      "location": "Location",
+      "date": "Date",
+      "share": "Share",
+      "ourMethod": "Our Method",
+      "process": "The process we follow",
+      "processDescription": "A proven methodology, from initial analysis to final delivery, to guarantee the success of every project.",
+      "problemAndSolution": "Problem & Solution",
+      "problemAndSolutionIntro": "Every LaboGraphie project starts with a precise diagnosis of the client's challenges, followed by a tailor-made digital solution suited to their context and goals.",
+      "problem": "Problem",
+      "problemIntro": "Before working with LaboGraphie, the client faced concrete challenges holding back their digital growth and their ability to effectively reach their target audience.",
+      "solutions": "Solutions",
+      "solutionsIntro": "Through a structured approach and our teams' expertise, we implemented concrete solutions generating measurable results for the client."
+    },
+    "items": {
+      "identite-visuelle-novatech": {
+        "title": "Novatech Visual Identity",
+        "description": "Complete brand identity creation: logo, brand guidelines and communication materials for a fast-growing tech startup in Douala.",
+        "detailTitle": "A strong brand for an ambitious startup",
+        "detailDescription": "Novatech wanted a modern, memorable visual identity to stand out in the Cameroonian market. Our team designed a coherent visual universe, from the logo to print and digital materials.",
+        "overview": [
+          "Positioning research and local competitive analysis",
+          "Logo, color palette and typography design",
+          "Rollout across business cards, social media and email signature"
+        ],
+        "client": "Novatech SARL",
+        "budget": "850,000 FCFA",
+        "servicesUsed": "Design & Branding",
+        "location": "Douala, Cameroon",
+        "date": "February 20, 2026",
+        "workSteps": [
+          { "title": "Brief & Research", "description": "In-depth analysis of the market, competitors and brand values to lay solid foundations." },
+          { "title": "Creative Design", "description": "Development of several graphic directions and collaborative selection with the client." },
+          { "title": "Development & Rollout", "description": "Finalizing the logo and creating the full set of communication materials." },
+          { "title": "Final Delivery & Brand Guide", "description": "Handover of the complete brand package with a visual identity usage guide." }
+        ],
+        "problems": ["No consistent visual identity across materials.", "Low brand recognition among the target audience.", "Visual communication poorly suited to digital market standards."],
+        "solutions": ["Design of a modern, consistent and distinctive brand identity.", "A complete, easy-to-roll-out brand guideline.", "Support in deploying the brand across all channels."]
+      },
+      "plateforme-ecommerce-candace": {
+        "title": "Candace E-commerce Platform",
+        "description": "Design and development of a modern online store with mobile money payment, stock management and an admin dashboard.",
+        "detailTitle": "A high-performing, local online store",
+        "detailDescription": "Candace wanted to sell its products online with a smooth user experience suited to Cameroonian realities, particularly payment via Mobile Money and Orange Money.",
+        "overview": [
+          "Development of a fast, responsive online store",
+          "Integration of Mobile Money and card payments",
+          "Order and stock management dashboard"
+        ],
+        "client": "Candace Boutique",
+        "budget": "1,950,000 FCFA",
+        "servicesUsed": "Web & Mobile Development",
+        "location": "Yaoundé, Cameroon",
+        "date": "January 15, 2026",
+        "workSteps": [
+          { "title": "Scoping & Wireframing", "description": "Defining business needs and creating UX/UI mockups for the platform." },
+          { "title": "Development", "description": "Building the online store with a complete, secure back-office." },
+          { "title": "Payment Integration", "description": "Connecting Mobile Money solutions and local payment gateways." },
+          { "title": "Launch & Training", "description": "Deploying the platform and training the team on how to use it." }
+        ],
+        "problems": ["No online sales channel suited to the local market.", "Difficulty offering payment methods accessible to customers.", "Manual, time-consuming order and stock management."],
+        "solutions": ["Development of a modern, intuitive e-commerce platform.", "Integration of mobile payment solutions suited to Cameroon.", "Automation of stock management and order tracking."]
+      },
+      "application-gestion-petittri": {
+        "title": "PetitTri Management App",
+        "description": "Development of a mobile app for waste sorting management, including geolocation, notifications and an intuitive interface for users.",
+        "detailTitle": "A mobile app serving urban ecology",
+        "detailDescription": "PetitTri needed a mobile app capable of coordinating sorted waste collection in urban areas, with real-time geolocation and automatic notifications.",
+        "overview": [
+          "Native development for Android and iOS",
+          "Geolocation system for collection points",
+          "Push notifications for users and collection agents"
+        ],
+        "client": "PetitTri Cameroun",
+        "budget": "2,400,000 FCFA",
+        "servicesUsed": "Web & Mobile Development",
+        "location": "Yaoundé, Cameroon",
+        "date": "December 10, 2025",
+        "workSteps": [
+          { "title": "Feasibility Study", "description": "Analysis of field needs and definition of the app's key features." },
+          { "title": "UX/UI Design", "description": "Creating a simple, accessible interface for all user profiles." },
+          { "title": "Mobile Development", "description": "Building the app with real-time geolocation integration." },
+          { "title": "Testing & Deployment", "description": "User testing phase followed by launch on the app stores." }
+        ],
+        "problems": ["Lack of coordination between users and collection agents.", "No real-time tracking tool for collection rounds.", "Low resident participation in selective sorting."],
+        "solutions": ["Development of an intuitive, geolocated mobile app.", "Automatic notifications to keep users informed.", "Improved engagement through a smooth user experience."]
+      },
+      "refonte-site-institutionnel": {
+        "title": "Institutional Website Redesign",
+        "description": "Complete redesign of a public institution's website: new site structure, responsive design and SEO optimization for better visibility.",
+        "detailTitle": "A modern, accessible institutional website",
+        "detailDescription": "This institution had an aging, hard-to-read website that wasn't optimized for search engines. LaboGraphie completely rethought the user experience and content structure.",
+        "overview": [
+          "Redesign of the site structure and user journey",
+          "Responsive design suited to all screens",
+          "Technical and editorial SEO optimization"
+        ],
+        "client": "Public Institution",
+        "budget": "1,600,000 FCFA",
+        "servicesUsed": "Web & Mobile Development",
+        "location": "Yaoundé, Cameroon",
+        "date": "November 28, 2025",
+        "workSteps": [
+          { "title": "Existing Site Audit", "description": "Analysis of the current site, content and user friction points." },
+          { "title": "UX/UI Redesign", "description": "Redefining the site structure and creating new user-friendly mockups." },
+          { "title": "Development & SEO", "description": "Technical integration of the new site with search engine optimization." },
+          { "title": "Launch", "description": "Deploying the site and providing support for day-to-day content management." }
+        ],
+        "problems": ["Outdated interface poorly suited to mobile.", "Poor search engine ranking.", "Confusing navigation for users seeking information."],
+        "solutions": ["Complete redesign with a modern, responsive layout.", "Implementation of a technical and editorial SEO strategy.", "Simplified navigation and access to information."]
+      },
+      "audit-cybersecurite": {
+        "title": "Cybersecurity Audit",
+        "description": "In-depth audit of a company's digital infrastructure, identification of vulnerabilities and implementation of stronger protection measures.",
+        "detailTitle": "Securing a company's digital infrastructure",
+        "detailDescription": "Facing growing cyberattack risks, this company brought in LaboGraphie to carry out a complete security audit and strengthen the protection of its information systems.",
+        "overview": [
+          "Analysis of system and network vulnerabilities",
+          "Penetration testing and attack simulation",
+          "Recommendations and a security action plan"
+        ],
+        "client": "Private Industrial Group",
+        "budget": "2,800,000 FCFA",
+        "servicesUsed": "Cybersecurity",
+        "location": "Douala, Cameroon",
+        "date": "October 5, 2025",
+        "workSteps": [
+          { "title": "System Mapping", "description": "Complete inventory of the company's infrastructure, applications and data flows." },
+          { "title": "Vulnerability Testing", "description": "Carrying out penetration tests to identify exploitable weaknesses." },
+          { "title": "Analysis & Report", "description": "Writing a detailed report on identified risks and their severity." },
+          { "title": "Fix Implementation", "description": "Supporting the rollout of the recommended security measures." }
+        ],
+        "problems": ["No formalized IT security policy.", "Critical vulnerabilities undetected on the internal network.", "Insufficient team awareness of cyber risks."],
+        "solutions": ["A complete, well-documented security audit.", "Fixing critical vulnerabilities identified on the infrastructure.", "Training teams on cybersecurity best practices."]
+      },
+      "campagne-social-media": {
+        "title": "Social Media Campaign",
+        "description": "Social media strategy and campaign management for a local brand, with content creation and a significant increase in engagement.",
+        "detailTitle": "Boosting a local brand's visibility",
+        "detailDescription": "This brand wanted to strengthen its social media presence and better engage its community. LaboGraphie set up a content strategy and targeted advertising campaigns.",
+        "overview": [
+          "Development of a tailor-made editorial strategy",
+          "Creation of engaging visual and video content",
+          "Management of targeted ad campaigns and performance tracking"
+        ],
+        "client": "Local Fashion Brand",
+        "budget": "650,000 FCFA / month",
+        "servicesUsed": "Digital Marketing",
+        "location": "Yaoundé, Cameroon",
+        "date": "September 18, 2025",
+        "workSteps": [
+          { "title": "Audit & Strategy", "description": "Analysis of the existing presence and definition of communication goals." },
+          { "title": "Content Creation", "description": "Production of visuals, videos and copy tailored to each social platform." },
+          { "title": "Rollout & Advertising", "description": "Launching targeted ad campaigns based on defined audiences." },
+          { "title": "Results Analysis", "description": "Tracking performance and continuously adjusting the strategy to maximize impact." }
+        ],
+        "problems": ["Low community engagement on social media.", "Inconsistent, irregular content publishing.", "Poorly targeted, underused advertising budget."],
+        "solutions": ["Implementation of a consistent, regular editorial calendar.", "Creative content generating more interactions.", "Optimized ad campaigns for a better return on investment."]
+      }
+    }
   }
 }

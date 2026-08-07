@@ -301,5 +301,179 @@
         ]
       }
     }
+  },
+  "work": {
+    "page": {
+      "title": "Nos Réalisations",
+      "description": "Des solutions digitales sur-mesure pensées pour répondre aux besoins de nos clients au Cameroun et en Afrique."
+    },
+    "detail": {
+      "notFoundTitle": "Réalisation introuvable",
+      "backToWork": "Retour aux réalisations",
+      "projectDetailsLabel": "Détails du projet",
+      "overview": "Aperçu",
+      "overviewIntro": "Notre équipe a travaillé en étroite collaboration avec le client afin de garantir un résultat aligné avec ses objectifs stratégiques et sa vision de marque.",
+      "client": "Client",
+      "budget": "Budget",
+      "servicesLabel": "Services",
+      "location": "Localisation",
+      "date": "Date",
+      "share": "Partager",
+      "ourMethod": "Notre méthode",
+      "process": "Le processus que nous suivons",
+      "processDescription": "Une méthodologie éprouvée, de l'analyse initiale à la livraison finale, pour garantir la réussite de chaque projet.",
+      "problemAndSolution": "Problème & Solution",
+      "problemAndSolutionIntro": "Chaque projet chez LaboGraphie part d'un diagnostic précis des enjeux du client, suivi d'une solution digitale sur mesure adaptée à son contexte et à ses objectifs.",
+      "problem": "Problème",
+      "problemIntro": "Avant l'intervention de LaboGraphie, le client faisait face à des défis concrets freinant sa croissance digitale et sa capacité à atteindre efficacement son public cible.",
+      "solutions": "Solutions",
+      "solutionsIntro": "Grâce à une approche structurée et à l'expertise de nos équipes, nous avons mis en place des solutions concrètes générant des résultats mesurables pour le client."
+    },
+    "items": {
+      "identite-visuelle-novatech": {
+        "title": "Identité Visuelle Novatech",
+        "description": "Création complète d'une identité de marque : logo, charte graphique et supports de communication pour une startup tech en pleine croissance à Douala.",
+        "detailTitle": "Une marque forte pour une startup ambitieuse",
+        "detailDescription": "Novatech souhaitait une identité visuelle moderne et mémorable pour se démarquer sur le marché camerounais. Notre équipe a conçu un univers graphique cohérent, du logo aux supports imprimés et digitaux.",
+        "overview": [
+          "Recherche de positionnement et étude de la concurrence locale",
+          "Création du logo, de la palette de couleurs et de la typographie",
+          "Déclinaison sur cartes de visite, réseaux sociaux et signature email"
+        ],
+        "client": "Novatech SARL",
+        "budget": "850 000 FCFA",
+        "servicesUsed": "Design & Branding",
+        "location": "Douala, Cameroun",
+        "date": "20 Février 2026",
+        "workSteps": [
+          { "title": "Brief & Recherche", "description": "Analyse approfondie du marché, des concurrents et des valeurs de la marque pour poser des bases solides." },
+          { "title": "Conception créative", "description": "Élaboration de plusieurs pistes graphiques et sélection collaborative avec le client." },
+          { "title": "Développement & Déclinaisons", "description": "Finalisation du logo et création de l'ensemble des supports de communication." },
+          { "title": "Livraison & Charte graphique", "description": "Remise du dossier de marque complet avec guide d'utilisation de l'identité visuelle." }
+        ],
+        "problems": ["Absence d'identité visuelle cohérente sur les différents supports.", "Faible reconnaissance de la marque auprès du public cible.", "Communication visuelle peu adaptée aux standards du marché numérique."],
+        "solutions": ["Conception d'une identité de marque moderne, cohérente et différenciante.", "Mise en place d'une charte graphique complète et facile à décliner.", "Accompagnement dans le déploiement de la marque sur tous les canaux."]
+      },
+      "plateforme-ecommerce-candace": {
+        "title": "Plateforme E-commerce Candace",
+        "description": "Conception et développement d'une boutique en ligne moderne avec paiement mobile money, gestion de stock et tableau de bord administrateur.",
+        "detailTitle": "Une boutique en ligne performante et locale",
+        "detailDescription": "Candace souhaitait vendre ses produits en ligne avec une expérience utilisateur fluide, adaptée aux réalités camerounaises, notamment le paiement via Mobile Money et Orange Money.",
+        "overview": [
+          "Développement d'une boutique en ligne responsive et rapide",
+          "Intégration des paiements Mobile Money et carte bancaire",
+          "Tableau de bord de gestion des commandes et du stock"
+        ],
+        "client": "Candace Boutique",
+        "budget": "1 950 000 FCFA",
+        "servicesUsed": "Développement Web & Mobile",
+        "location": "Yaoundé, Cameroun",
+        "date": "15 Janvier 2026",
+        "workSteps": [
+          { "title": "Cadrage & Maquettage", "description": "Définition des besoins métiers et création des maquettes UX/UI de la plateforme." },
+          { "title": "Développement", "description": "Construction de la boutique en ligne avec un back-office complet et sécurisé." },
+          { "title": "Intégration des paiements", "description": "Connexion des solutions Mobile Money et passerelles de paiement locales." },
+          { "title": "Mise en ligne & Formation", "description": "Déploiement de la plateforme et formation de l'équipe à son utilisation." }
+        ],
+        "problems": ["Absence de canal de vente en ligne adapté au marché local.", "Difficulté à proposer des moyens de paiement accessibles aux clients.", "Gestion manuelle et chronophage des commandes et du stock."],
+        "solutions": ["Développement d'une plateforme e-commerce moderne et intuitive.", "Intégration de solutions de paiement mobile adaptées au Cameroun.", "Automatisation de la gestion des stocks et du suivi des commandes."]
+      },
+      "application-gestion-petittri": {
+        "title": "Application de Gestion PetitTri",
+        "description": "Développement d'une application mobile de gestion de tri des déchets, incluant géolocalisation, notifications et interface intuitive pour les usagers.",
+        "detailTitle": "Une application mobile au service de l'écologie urbaine",
+        "detailDescription": "PetitTri avait besoin d'une application mobile capable de coordonner la collecte des déchets triés en zone urbaine, avec géolocalisation en temps réel et notifications automatiques.",
+        "overview": [
+          "Développement natif pour Android et iOS",
+          "Système de géolocalisation des points de collecte",
+          "Notifications push pour les usagers et les agents de collecte"
+        ],
+        "client": "PetitTri Cameroun",
+        "budget": "2 400 000 FCFA",
+        "servicesUsed": "Développement Web & Mobile",
+        "location": "Yaoundé, Cameroun",
+        "date": "10 Décembre 2025",
+        "workSteps": [
+          { "title": "Étude de faisabilité", "description": "Analyse des besoins terrain et définition des fonctionnalités clés de l'application." },
+          { "title": "Conception UX/UI", "description": "Création d'une interface simple et accessible pour tous les profils d'utilisateurs." },
+          { "title": "Développement mobile", "description": "Programmation de l'application avec intégration de la géolocalisation en temps réel." },
+          { "title": "Tests & Déploiement", "description": "Phase de tests utilisateurs suivie du lancement sur les stores mobiles." }
+        ],
+        "problems": ["Manque de coordination entre les usagers et les agents de collecte.", "Absence d'outil de suivi en temps réel des tournées de collecte.", "Faible taux de participation des habitants au tri sélectif."],
+        "solutions": ["Développement d'une application mobile intuitive et géolocalisée.", "Mise en place de notifications automatiques pour informer les usagers.", "Amélioration de l'engagement grâce à une expérience utilisateur fluide."]
+      },
+      "refonte-site-institutionnel": {
+        "title": "Refonte Site Institutionnel",
+        "description": "Refonte complète du site web d'une institution publique : nouvelle arborescence, design responsive et optimisation SEO pour une meilleure visibilité.",
+        "detailTitle": "Un site institutionnel moderne et accessible",
+        "detailDescription": "Cette institution disposait d'un site vieillissant, peu lisible et non optimisé pour les moteurs de recherche. LaboGraphie a entièrement repensé l'expérience utilisateur et la structure du contenu.",
+        "overview": [
+          "Refonte de l'arborescence et du parcours utilisateur",
+          "Design responsive adapté à tous les écrans",
+          "Optimisation SEO technique et éditoriale"
+        ],
+        "client": "Institution Publique",
+        "budget": "1 600 000 FCFA",
+        "servicesUsed": "Développement Web & Mobile",
+        "location": "Yaoundé, Cameroun",
+        "date": "28 Novembre 2025",
+        "workSteps": [
+          { "title": "Audit du site existant", "description": "Analyse du site actuel, des contenus et des points de friction pour les utilisateurs." },
+          { "title": "Refonte UX/UI", "description": "Redéfinition de l'arborescence et création de nouvelles maquettes ergonomiques." },
+          { "title": "Développement & SEO", "description": "Intégration technique du nouveau site avec optimisation pour les moteurs de recherche." },
+          { "title": "Mise en ligne", "description": "Déploiement du site et accompagnement pour la gestion de contenu au quotidien." }
+        ],
+        "problems": ["Interface obsolète et peu adaptée aux mobiles.", "Mauvais référencement sur les moteurs de recherche.", "Navigation confuse pour les usagers en quête d'informations."],
+        "solutions": ["Refonte complète avec un design moderne et responsive.", "Mise en œuvre d'une stratégie SEO technique et éditoriale.", "Simplification de la navigation et de l'accès à l'information."]
+      },
+      "audit-cybersecurite": {
+        "title": "Audit de Cybersécurité",
+        "description": "Audit approfondi de l'infrastructure numérique d'une entreprise, identification des vulnérabilités et mise en place de mesures de protection renforcées.",
+        "detailTitle": "Sécuriser l'infrastructure numérique d'une entreprise",
+        "detailDescription": "Face à des risques croissants de cyberattaques, cette entreprise a fait appel à LaboGraphie pour réaliser un audit complet de sécurité et renforcer la protection de ses systèmes d'information.",
+        "overview": [
+          "Analyse des vulnérabilités des systèmes et réseaux",
+          "Tests d'intrusion et simulation d'attaques",
+          "Recommandations et plan d'action de sécurisation"
+        ],
+        "client": "Groupe Industriel Privé",
+        "budget": "2 800 000 FCFA",
+        "servicesUsed": "Cybersécurité",
+        "location": "Douala, Cameroun",
+        "date": "5 Octobre 2025",
+        "workSteps": [
+          { "title": "Cartographie du système", "description": "Inventaire complet des infrastructures, applications et flux de données de l'entreprise." },
+          { "title": "Tests de vulnérabilité", "description": "Réalisation de tests d'intrusion pour identifier les failles exploitables." },
+          { "title": "Analyse & Rapport", "description": "Rédaction d'un rapport détaillé des risques identifiés et de leur criticité." },
+          { "title": "Mise en œuvre des correctifs", "description": "Accompagnement dans la mise en place des mesures de sécurité recommandées." }
+        ],
+        "problems": ["Absence de politique de sécurité informatique formalisée.", "Vulnérabilités critiques non détectées sur le réseau interne.", "Sensibilisation insuffisante des équipes aux risques cyber."],
+        "solutions": ["Réalisation d'un audit de sécurité complet et documenté.", "Correction des failles critiques identifiées sur l'infrastructure.", "Formation des équipes aux bonnes pratiques de cybersécurité."]
+      },
+      "campagne-social-media": {
+        "title": "Campagne Social Media",
+        "description": "Stratégie et gestion de campagnes sur les réseaux sociaux pour une marque locale, avec création de contenu et augmentation significative de l'engagement.",
+        "detailTitle": "Booster la visibilité d'une marque locale",
+        "detailDescription": "Cette marque souhaitait renforcer sa présence sur les réseaux sociaux et engager davantage sa communauté. LaboGraphie a mis en place une stratégie de contenu et de campagnes publicitaires ciblées.",
+        "overview": [
+          "Élaboration d'une stratégie éditoriale sur mesure",
+          "Création de contenus visuels et vidéos engageants",
+          "Gestion de campagnes publicitaires ciblées et suivi des performances"
+        ],
+        "client": "Marque Locale de Mode",
+        "budget": "650 000 FCFA / mois",
+        "servicesUsed": "Marketing Digital",
+        "location": "Yaoundé, Cameroun",
+        "date": "18 Septembre 2025",
+        "workSteps": [
+          { "title": "Audit & Stratégie", "description": "Analyse de la présence existante et définition des objectifs de communication." },
+          { "title": "Création de contenu", "description": "Production de visuels, vidéos et textes adaptés à chaque plateforme sociale." },
+          { "title": "Diffusion & Publicité", "description": "Mise en place des campagnes publicitaires ciblées selon les audiences définies." },
+          { "title": "Analyse des résultats", "description": "Suivi des performances et ajustement continu de la stratégie pour maximiser l'impact." }
+        ],
+        "problems": ["Faible engagement de la communauté sur les réseaux sociaux.", "Manque de régularité et de cohérence dans la publication de contenu.", "Budget publicitaire mal exploité et peu ciblé."],
+        "solutions": ["Mise en place d'un calendrier éditorial cohérent et régulier.", "Création de contenus créatifs générant plus d'interactions.", "Optimisation des campagnes publicitaires pour un meilleur retour sur investissement."]
+      }
+    }
   }
 }
