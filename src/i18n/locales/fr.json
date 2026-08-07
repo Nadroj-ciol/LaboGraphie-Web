@@ -475,5 +475,43 @@
         "solutions": ["Mise en place d'un calendrier éditorial cohérent et régulier.", "Création de contenus créatifs générant plus d'interactions.", "Optimisation des campagnes publicitaires pour un meilleur retour sur investissement."]
       }
     }
+  },
+  "blog": {
+    "loading": "Chargement...",
+    "list": {
+      "title": "Notre Blog",
+      "description": "Restez informés grâce à nos derniers articles, conseils et actualités sur le design, le développement web, le marketing digital, la cybersécurité et nos formations professionnelles.",
+      "featuredLabel": "Article à la une",
+      "allArticles": "Tous nos articles",
+      "categoryAll": "Tous",
+      "categoryRecent": "Récents",
+      "categoryPopular": "Populaires",
+      "empty": "Aucun article disponible dans cette catégorie pour le moment."
+    },
+    "detail": {
+      "notFoundTitle": "Article introuvable",
+      "backToBlog": "Retour au blog",
+      "shareTitle": "Cet article vous a plu ? Partagez-le !",
+      "shareWhatsapp": "Partager sur WhatsApp",
+      "shareTelegram": "Partager sur Telegram",
+      "shareTwitter": "Partager sur X (Twitter)",
+      "shareFacebook": "Partager sur Facebook",
+      "shareLinkedin": "Partager sur LinkedIn",
+      "copyLink": "Copier le lien",
+      "linkCopied": "Lien copié dans le presse-papiers !",
+      "relatedArticles": "Articles similaires",
+      "defaultContent": {
+        "section1Title": "Éviter des dépenses inutiles",
+        "section1Text": "Une identité visuelle mal pensée ou un site web obsolète peuvent coûter cher à long terme. En investissant tôt dans une stratégie digitale solide, vous évitez des refontes coûteuses et renforcez la confiance de vos clients.",
+        "section1Item1": "Un audit régulier permet d'anticiper les failles de sécurité.",
+        "section1Item2": "Une détection précoce des problèmes techniques évite des coûts élevés.",
+        "section1Item3": "Un accompagnement professionnel garantit un fonctionnement optimal.",
+        "section2Title": "Améliorer la performance",
+        "section2Text": "Les outils digitaux modernes sont bien plus performants que les anciennes solutions. Moderniser vos plateformes permet de réduire les coûts opérationnels tout en améliorant l'expérience de vos utilisateurs.",
+        "section3Title": "Renforcer votre image de marque",
+        "section3Text1": "Une présence digitale bien maîtrisée valorise votre entreprise et attire de nouveaux clients.",
+        "section3Text2": "Un branding cohérent et un site performant sont des atouts différenciants sur le marché."
+      }
+    }
   }
 }

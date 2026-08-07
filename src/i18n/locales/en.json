@@ -475,5 +475,43 @@
         "solutions": ["Implementation of a consistent, regular editorial calendar.", "Creative content generating more interactions.", "Optimized ad campaigns for a better return on investment."]
       }
     }
+  },
+  "blog": {
+    "loading": "Loading...",
+    "list": {
+      "title": "Our Blog",
+      "description": "Stay up to date with our latest articles, tips and news on design, web development, digital marketing, cybersecurity and professional training.",
+      "featuredLabel": "Featured Article",
+      "allArticles": "All our articles",
+      "categoryAll": "All",
+      "categoryRecent": "Recent",
+      "categoryPopular": "Popular",
+      "empty": "No articles available in this category at the moment."
+    },
+    "detail": {
+      "notFoundTitle": "Article not found",
+      "backToBlog": "Back to blog",
+      "shareTitle": "Enjoyed this article? Share it!",
+      "shareWhatsapp": "Share on WhatsApp",
+      "shareTelegram": "Share on Telegram",
+      "shareTwitter": "Share on X (Twitter)",
+      "shareFacebook": "Share on Facebook",
+      "shareLinkedin": "Share on LinkedIn",
+      "copyLink": "Copy link",
+      "linkCopied": "Link copied to clipboard!",
+      "relatedArticles": "Related Articles",
+      "defaultContent": {
+        "section1Title": "Avoiding unnecessary costs",
+        "section1Text": "A poorly thought-out visual identity or an outdated website can be costly in the long run. Investing early in a solid digital strategy helps you avoid expensive redesigns and strengthens client trust.",
+        "section1Item1": "Regular audits help anticipate security vulnerabilities.",
+        "section1Item2": "Early detection of technical issues avoids high costs.",
+        "section1Item3": "Professional support guarantees optimal performance.",
+        "section2Title": "Improving performance",
+        "section2Text": "Modern digital tools are far more capable than older solutions. Modernizing your platforms reduces operating costs while improving your users' experience.",
+        "section3Title": "Strengthening your brand image",
+        "section3Text1": "A well-managed digital presence adds value to your business and attracts new clients.",
+        "section3Text2": "Consistent branding and a high-performing website are key differentiators in the market."
+      }
+    }
   }
 }
