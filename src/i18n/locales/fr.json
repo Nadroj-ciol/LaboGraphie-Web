@@ -1,3 +1,57 @@
 {
-  "common": {}
+  "common": {
+    "nav": {
+      "home": "Accueil",
+      "about": "À propos",
+      "services": "Services",
+      "work": "Réalisations",
+      "blog": "Blog",
+      "pages": "Pages",
+      "pricing": "Tarifs",
+      "privacy": "Confidentialité",
+      "quote": "Devis",
+      "contact": "Contact",
+      "careers": "Carrières",
+      "serviceDetail": "Détails service",
+      "workDetail": "Détails projet",
+      "blogArticle": "Article de blog"
+    },
+    "header": {
+      "login": "Connexion",
+      "dashboard": "Tableau de bord",
+      "profile": "Profil",
+      "logout": "Déconnexion",
+      "mySpace": "Mon Espace"
+    },
+    "footer": {
+      "description": "Laboratoire d'innovation et cabinet informatique à Yaoundé. Identité visuelle, web, marketing digital, cybersécurité et formations.",
+      "company": "Entreprise",
+      "ourTeam": "Notre équipe",
+      "servicesTitle": "Services",
+      "designBranding": "Design & Branding",
+      "webDevelopment": "Développement Web",
+      "digitalMarketing": "Marketing Digital",
+      "cybersecurity": "Cybersécurité",
+      "onlineQuote": "Devis en ligne",
+      "privacyPolicy": "Politique de confidentialité",
+      "copyright": "Tous droits réservés."
+    },
+    "cta": {
+      "eyebrow": "Besoin d'un accompagnement digital ?",
+      "title": "Parlons de votre projet",
+      "requestQuote": "Demander un devis",
+      "personBlurb": "Je suis à votre écoute pour répondre à toutes vos questions et vous accompagner dans votre projet digital chez LaboGraphie.",
+      "callUs": "Appelez {{phone}}"
+    },
+    "whatsapp": {
+      "needHelp": "Besoin d'aide ?",
+      "chatPrompt": "Discutons sur WhatsApp !"
+    },
+    "offline": {
+      "lostTitle": "Connexion perdue",
+      "lostDescription": "Vous êtes hors ligne. Veuillez vérifier votre connexion internet.",
+      "restoredTitle": "Connexion rétablie !",
+      "restoredDescription": "Vous êtes de nouveau en ligne. Vos actions vont pouvoir reprendre."
+    }
+  }
 }

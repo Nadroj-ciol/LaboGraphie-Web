@@ -1,3 +1,57 @@
 {
-  "common": {}
+  "common": {
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "services": "Services",
+      "work": "Work",
+      "blog": "Blog",
+      "pages": "Pages",
+      "pricing": "Pricing",
+      "privacy": "Privacy",
+      "quote": "Get a Quote",
+      "contact": "Contact",
+      "careers": "Careers",
+      "serviceDetail": "Service Details",
+      "workDetail": "Project Details",
+      "blogArticle": "Blog Article"
+    },
+    "header": {
+      "login": "Log In",
+      "dashboard": "Dashboard",
+      "profile": "Profile",
+      "logout": "Log Out",
+      "mySpace": "My Account"
+    },
+    "footer": {
+      "description": "Innovation lab and digital agency based in Yaoundé. Visual identity, web, digital marketing, cybersecurity and training.",
+      "company": "Company",
+      "ourTeam": "Our Team",
+      "servicesTitle": "Services",
+      "designBranding": "Design & Branding",
+      "webDevelopment": "Web Development",
+      "digitalMarketing": "Digital Marketing",
+      "cybersecurity": "Cybersecurity",
+      "onlineQuote": "Get a Quote Online",
+      "privacyPolicy": "Privacy Policy",
+      "copyright": "All rights reserved."
+    },
+    "cta": {
+      "eyebrow": "Need help going digital?",
+      "title": "Let's talk about your project",
+      "requestQuote": "Request a Quote",
+      "personBlurb": "I'm here to answer all your questions and support you throughout your digital project at LaboGraphie.",
+      "callUs": "Call {{phone}}"
+    },
+    "whatsapp": {
+      "needHelp": "Need help?",
+      "chatPrompt": "Let's chat on WhatsApp!"
+    },
+    "offline": {
+      "lostTitle": "Connection lost",
+      "lostDescription": "You're offline. Please check your internet connection.",
+      "restoredTitle": "Connection restored!",
+      "restoredDescription": "You're back online. Your actions can now resume."
+    }
+  }
 }

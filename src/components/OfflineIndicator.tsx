@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { Wifi, WifiOff } from "lucide-react";
 
 const OfflineIndicator = () => {
+  const { t } = useTranslation();
   const [isOffline, setIsOffline] = useState(typeof navigator !== 'undefined' ? !navigator.onLine : false);
 
   useEffect(() => {
     const handleOffline = () => {
       setIsOffline(true);
-      toast("Connexion perdue", {
-        description: "Vous êtes hors ligne. Veuillez vérifier votre connexion internet.",
+      toast(t("common.offline.lostTitle"), {
+        description: t("common.offline.lostDescription"),
         icon: <WifiOff className="h-5 w-5 text-red-500" />,
         duration: Infinity, // Persistent until online
         id: "offline-toast",
@@ -21,8 +23,8 @@ const OfflineIndicator = () => {
       if (isOffline) {
         setIsOffline(false);
         toast.dismiss("offline-toast");
-        toast.success("Connexion rétablie !", {
-          description: "Vous êtes de nouveau en ligne. Vos actions vont pouvoir reprendre.",
+        toast.success(t("common.offline.restoredTitle"), {
+          description: t("common.offline.restoredDescription"),
           icon: <Wifi className="h-5 w-5 text-green-500" />,
           duration: 4000,
         });
@@ -41,7 +43,7 @@ const OfflineIndicator = () => {
       window.removeEventListener("offline", handleOffline);
       window.removeEventListener("online", handleOnline);
     };
-  }, [isOffline]);
+  }, [isOffline, t]);
 
   return null; // Component does not render any visual elements directly
 };

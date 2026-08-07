@@ -1,5 +1,6 @@
 import { site } from "@/data/site";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -14,6 +15,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 const FloatingWhatsApp = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -39,9 +41,9 @@ const FloatingWhatsApp = () => {
               <WhatsAppIcon className="h-7 w-7 relative z-10" />
             </a>
           </TooltipTrigger>
-          <TooltipContent side="left" className="mr-2 px-4 py-2 font-medium bg-white text-black border shadow-xl rounded-xl">
-            <p className="text-sm">Besoin d'aide ?</p>
-            <p className="text-xs text-muted-foreground font-normal">Discutons sur WhatsApp !</p>
+          <TooltipContent side="left" className="mr-2 px-4 py-2 font-medium bg-popover text-popover-foreground border shadow-xl rounded-xl">
+            <p className="text-sm">{t("common.whatsapp.needHelp")}</p>
+            <p className="text-xs text-muted-foreground font-normal">{t("common.whatsapp.chatPrompt")}</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
