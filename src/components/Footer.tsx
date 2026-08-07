@@ -28,14 +28,14 @@ const FlipLink = ({
   children: string;
   href: string;
 }) => {
-  return <a href={href} className="group relative overflow-hidden block text-white/60 hover:text-tertiary transition-colors text-sm h-5">
+  return <Link to={href} className="group relative overflow-hidden block text-white/60 hover:text-tertiary transition-colors text-sm h-5">
     <span className="block transition-transform duration-300 group-hover:-translate-y-full">
       {children}
     </span>
     <span className="absolute inset-0 flex items-center transition-transform duration-300 translate-y-full group-hover:translate-y-0">
       {children}
     </span>
-  </a>;
+  </Link>;
 };
 
 const Footer = () => {
@@ -130,9 +130,9 @@ const Footer = () => {
             © {new Date().getFullYear()} LaboGraphie. {t("common.footer.copyright")}
           </p>
           <div className="flex gap-6">
-            {footerLinks.resources.slice(2).map(link => <a key={link.name} href={link.href} className="text-white/40 hover:text-white transition-colors text-sm">
+            {footerLinks.resources.slice(2).map(link => <Link key={link.name} to={link.href} className="text-white/40 hover:text-white transition-colors text-sm">
               {link.name}
-            </a>)}
+            </Link>)}
           </div>
         </div>
       </div>
