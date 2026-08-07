@@ -131,5 +131,175 @@
       "empty": "No articles available at the moment.",
       "seeAll": "See all articles"
     }
+  },
+  "services": {
+    "page": {
+      "title": "Our Services",
+      "description": "Innovation lab and digital agency, LaboGraphie supports Cameroonian businesses and institutions with tailor-made digital solutions, from design to cybersecurity.",
+      "startingFrom": "Starting from {{price}} FCFA / day"
+    },
+    "detail": {
+      "requestQuote": "Request a Quote",
+      "serviceDetailsLabel": "Service Details",
+      "whatsIncluded": "What's included?",
+      "ourMethod": "Our Method",
+      "howWeWork": "How We Work",
+      "methodDescription": "A proven methodology, from the first conversation to final delivery, to guarantee concrete, lasting results for your business.",
+      "advantagesLabel": "Benefits",
+      "serviceAdvantages": "The benefits of this service",
+      "advantagesDescription": "Working with LaboGraphie means benefiting from local expertise, close support, and digital solutions tailored to the realities of the Cameroonian market.",
+      "advantagesImageAlt": "Service benefits",
+      "contactUs": "Contact Us",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Enter your name",
+      "phone": "Phone",
+      "phonePlaceholder": "Enter your phone number",
+      "chooseService": "Choose a Service",
+      "chooseServicePlaceholder": "Select a service",
+      "message": "Message",
+      "messagePlaceholder": "Write here..",
+      "sending": "Sending...",
+      "send": "Send"
+    },
+    "items": {
+      "design-branding": {
+        "title": "Design & Branding",
+        "description": "Logos, brand guidelines and communication materials that captivate your audience and give your brand a strong, memorable identity.",
+        "aboutTitle": "About this service",
+        "aboutDescription": "Our creative lab designs coherent, impactful visual identities for Cameroonian businesses and institutions. From the logo to the full brand guidelines, every element is crafted to reflect your brand's values and leave a lasting mark on your audience.\n\nWe work closely with you, from identity research to the delivery of final files, through several iterations to guarantee a result that truly represents you.",
+        "included": [
+          "Market research and competitive analysis to position your brand",
+          "Logo creation, brand guidelines and adaptations for all your materials",
+          "Delivery of source files and a brand usage guide"
+        ],
+        "benefits": [
+          "A professional visual identity that strengthens your company's credibility",
+          "Consistency across all your print and digital communication materials",
+          "Personalized support at every stage of the project",
+          "Deliverables suited to the realities of the Cameroonian market"
+        ],
+        "workSteps": [
+          { "title": "Brief & Analysis", "description": "We discuss your goals, market and audience to frame the project." },
+          { "title": "Creative Research", "description": "Our team explores several creative directions and presents you with tailored concepts." },
+          { "title": "Design & Validation", "description": "We refine the chosen direction with you until we reach the perfect result." },
+          { "title": "Final Delivery", "description": "You receive all files and a complete guide to using your brand day to day." }
+        ]
+      },
+      "developpement-web": {
+        "title": "Web & Mobile Development",
+        "description": "Showcase websites, e-commerce platforms and custom applications: fast, secure and designed to convert your visitors into customers.",
+        "aboutTitle": "About this service",
+        "aboutDescription": "LaboGraphie designs and builds custom websites and mobile applications, combining technical performance with a polished user experience. Whether you need a showcase site, an online store or a business application, our team supports you from A to Z.\n\nWe use modern, robust technologies to guarantee fast, secure and scalable solutions, suited to connectivity and usage realities in Cameroon.",
+        "included": [
+          "Needs analysis and UX/UI design tailored to your users",
+          "Front-end and back-end development with modern technologies",
+          "Testing, deployment and training on how to manage your platform"
+        ],
+        "benefits": [
+          "A fast, secure and responsive website or application",
+          "A user experience designed to convert your visitors into customers",
+          "Technical support after launch",
+          "Scalable solutions that grow alongside your business"
+        ],
+        "workSteps": [
+          { "title": "Project Scoping", "description": "We define the scope, features and delivery schedule together." },
+          { "title": "Design & Mockups", "description": "We create clear, user-friendly mockups before any development begins." },
+          { "title": "Development & Testing", "description": "Our team codes, tests and optimizes every feature of your platform." },
+          { "title": "Launch", "description": "We deploy your project and ensure it runs smoothly over time." }
+        ]
+      },
+      "marketing-digital": {
+        "title": "Digital Marketing",
+        "description": "SEO strategies, social media management and impactful advertising campaigns to boost your visibility and generate qualified leads.",
+        "aboutTitle": "About this service",
+        "aboutDescription": "Our marketing team builds complete digital strategies to strengthen your online presence and generate concrete results. SEO, social media management, online advertising: we put in place the levers suited to your goals.\n\nEvery campaign is driven by clear performance indicators, so you can measure the return on investment of your marketing efforts.",
+        "included": [
+          "Audit of your digital presence and a tailor-made strategy",
+          "Content creation and daily management of your social media",
+          "Performance tracking and detailed monthly reports"
+        ],
+        "benefits": [
+          "Increased visibility with your target audience",
+          "Qualified leads through targeted, optimized campaigns",
+          "Regular content consistent with your brand identity",
+          "Transparent reports to track your results in real time"
+        ],
+        "workSteps": [
+          { "title": "Audit & Strategy", "description": "We analyze your current presence and define the campaign's objectives." },
+          { "title": "Content Planning", "description": "We build an editorial calendar suited to your channels and audience." },
+          { "title": "Rollout & Advertising", "description": "We launch the campaigns and optimize budgets to maximize impact." },
+          { "title": "Results Analysis", "description": "We measure performance and adjust the strategy for better results." }
+        ]
+      },
+      "cybersecurite": {
+        "title": "Cybersecurity",
+        "description": "Audits, penetration testing and protection solutions against cyber threats to secure your data and business continuity.",
+        "aboutTitle": "About this service",
+        "aboutDescription": "Faced with rising cyber threats, LaboGraphie offers complete cybersecurity solutions to protect your systems, your data and your business continuity. Our experts carry out thorough audits and penetration tests to identify vulnerabilities before they can be exploited.\n\nWe also support our clients in achieving compliance and implementing sound security practices day to day.",
+        "included": [
+          "Complete audit of your systems, networks and applications",
+          "Application and network penetration testing carried out by our experts",
+          "Action plan and recommendations to strengthen your security"
+        ],
+        "benefits": [
+          "Better protection of your sensitive data and that of your customers",
+          "A significant reduction in the risk of cyberattacks",
+          "Stronger compliance with industry best practices",
+          "Ongoing support to maintain a high level of security"
+        ],
+        "workSteps": [
+          { "title": "Initial Diagnosis", "description": "We assess the current security state of your systems and infrastructure." },
+          { "title": "Penetration Testing", "description": "Our experts simulate real attacks to identify vulnerabilities." },
+          { "title": "Fixing Vulnerabilities", "description": "We support you in implementing the necessary fixes." },
+          { "title": "Follow-up & Prevention", "description": "We provide ongoing monitoring to maintain your security over time." }
+        ]
+      },
+      "formations-pro": {
+        "title": "Professional Training",
+        "description": "Digital coaching programs and continuing education tailored to your teams: design, development, advanced office skills and cybersecurity.",
+        "aboutTitle": "About this service",
+        "aboutDescription": "LaboGraphie has been training Cameroonian students and professionals in digital careers for several years. Our programs cover design, development, advanced office skills and cybersecurity, with a hands-on, results-oriented approach.\n\nHaving trained over 500 students, we pride ourselves on passing on skills that are directly applicable in the job market.",
+        "included": [
+          "A structured curriculum, adapted to participants' skill level",
+          "Experienced trainers and hands-on exercises based on real cases",
+          "Certificate of completion and post-training follow-up"
+        ],
+        "benefits": [
+          "Skills directly applicable in the professional world",
+          "Personalized support throughout the program",
+          "Expert trainers with real field experience",
+          "Flexible formats suited to individuals and businesses alike"
+        ],
+        "workSteps": [
+          { "title": "Needs Assessment", "description": "We identify your goals and participants' skill level before training begins." },
+          { "title": "Program Design", "description": "We build a learning path tailored to your specific needs." },
+          { "title": "Hands-on Sessions", "description": "Participants learn by doing, with real cases and practical exercises." },
+          { "title": "Certification & Follow-up", "description": "We issue a certificate and provide support after the training." }
+        ]
+      },
+      "maintenance-it": {
+        "title": "IT & Network Maintenance",
+        "description": "Technical support, network infrastructure and preventive maintenance to keep your IT fleet reliable, fast and always available.",
+        "aboutTitle": "About this service",
+        "aboutDescription": "Our technical team handles maintenance and support for your IT fleet and network infrastructure. One-off interventions, monthly maintenance contracts or full network installation: we guarantee the reliability and availability of your systems.\n\nOur goal is to reduce downtime and let you focus on your core business with peace of mind.",
+        "included": [
+          "Fast diagnosis and troubleshooting of your IT equipment",
+          "Preventive maintenance and continuous monitoring of your infrastructure",
+          "Installation and configuration of reliable, secure networks"
+        ],
+        "benefits": [
+          "A significant reduction in breakdowns and business disruptions",
+          "Responsive technical support available in emergencies",
+          "A stable, high-performing network infrastructure",
+          "A single point of contact for your entire IT fleet"
+        ],
+        "workSteps": [
+          { "title": "Initial Contact & Diagnosis", "description": "We assess the state of your IT fleet and your specific needs." },
+          { "title": "Maintenance Planning", "description": "We build a maintenance plan suited to your business." },
+          { "title": "Technical Intervention", "description": "Our technicians repair, install or configure your equipment." },
+          { "title": "Follow-up & Support", "description": "We remain available for any technical assistance after the intervention." }
+        ]
+      }
+    }
   }
 }

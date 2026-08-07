@@ -131,5 +131,175 @@
       "empty": "Aucun article disponible pour le moment.",
       "seeAll": "Voir tous les articles"
     }
+  },
+  "services": {
+    "page": {
+      "title": "Nos Services",
+      "description": "Laboratoire d'innovation et cabinet informatique, LaboGraphie accompagne entreprises et institutions camerounaises avec des solutions digitales sur mesure, du design à la cybersécurité.",
+      "startingFrom": "À partir de {{price}} FCFA / jour"
+    },
+    "detail": {
+      "requestQuote": "Demander un devis",
+      "serviceDetailsLabel": "Détails du service",
+      "whatsIncluded": "Ce qui est inclus ?",
+      "ourMethod": "Notre méthode",
+      "howWeWork": "Comment nous travaillons",
+      "methodDescription": "Une méthodologie éprouvée, du premier échange à la livraison finale, pour garantir des résultats concrets et durables pour votre entreprise.",
+      "advantagesLabel": "Avantages",
+      "serviceAdvantages": "Les avantages du service",
+      "advantagesDescription": "Faire appel à LaboGraphie, c'est bénéficier d'une expertise locale, d'un accompagnement de proximité et de solutions digitales adaptées aux réalités du marché camerounais.",
+      "advantagesImageAlt": "Avantages du service",
+      "contactUs": "Contactez-nous",
+      "fullName": "Nom complet",
+      "fullNamePlaceholder": "Entrez votre nom",
+      "phone": "Téléphone",
+      "phonePlaceholder": "Entrez votre numéro de téléphone",
+      "chooseService": "Choisir un service",
+      "chooseServicePlaceholder": "Sélectionnez un service",
+      "message": "Message",
+      "messagePlaceholder": "Écrivez ici..",
+      "sending": "Envoi en cours...",
+      "send": "Envoyer"
+    },
+    "items": {
+      "design-branding": {
+        "title": "Design & Branding",
+        "description": "Logos, chartes graphiques et supports de communication qui captivent votre audience et donnent à votre marque une identité forte et mémorable.",
+        "aboutTitle": "À propos de ce service",
+        "aboutDescription": "Notre laboratoire créatif conçoit des identités visuelles cohérentes et impactantes pour les entreprises et institutions camerounaises. Du logo à la charte graphique complète, chaque élément est pensé pour refléter les valeurs de votre marque et marquer durablement votre audience.\n\nNous travaillons en étroite collaboration avec vous, de la recherche d'identité jusqu'à la livraison des fichiers finaux, en passant par plusieurs itérations pour garantir un résultat qui vous ressemble.",
+        "included": [
+          "Étude de marché et analyse de la concurrence pour positionner votre marque",
+          "Création de logo, charte graphique et déclinaisons pour tous vos supports",
+          "Livraison de fichiers sources et guide d'utilisation de la marque"
+        ],
+        "benefits": [
+          "Une identité visuelle professionnelle qui renforce la crédibilité de votre entreprise",
+          "Une cohérence sur tous vos supports de communication, print et digital",
+          "Un accompagnement personnalisé à chaque étape du projet",
+          "Des livrables adaptés aux réalités du marché camerounais"
+        ],
+        "workSteps": [
+          { "title": "Brief & Analyse", "description": "Nous échangeons sur vos objectifs, votre marché et votre audience pour cadrer le projet." },
+          { "title": "Recherche créative", "description": "Notre équipe explore plusieurs pistes créatives et vous présente des concepts adaptés." },
+          { "title": "Conception & Validation", "description": "Nous affinons la direction retenue avec vous jusqu'à obtenir le résultat parfait." },
+          { "title": "Livraison finale", "description": "Vous recevez tous les fichiers et un guide complet pour utiliser votre marque au quotidien." }
+        ]
+      },
+      "developpement-web": {
+        "title": "Développement Web & Mobile",
+        "description": "Sites vitrines, plateformes e-commerce et applications sur mesure : performants, sécurisés et pensés pour convertir vos visiteurs en clients.",
+        "aboutTitle": "À propos de ce service",
+        "aboutDescription": "LaboGraphie conçoit et développe des sites web et applications mobiles sur mesure, alliant performance technique et expérience utilisateur soignée. Que vous ayez besoin d'un site vitrine, d'une boutique en ligne ou d'une application métier, notre équipe vous accompagne de A à Z.\n\nNous utilisons des technologies modernes et robustes pour garantir des solutions rapides, sécurisées et évolutives, adaptées aux réalités de connexion et d'usage au Cameroun.",
+        "included": [
+          "Analyse des besoins et conception UX/UI adaptée à vos utilisateurs",
+          "Développement front-end et back-end avec des technologies modernes",
+          "Tests, mise en ligne et formation à la prise en main de votre plateforme"
+        ],
+        "benefits": [
+          "Un site ou une application rapide, sécurisée et responsive",
+          "Une expérience utilisateur pensée pour convertir vos visiteurs en clients",
+          "Un accompagnement technique après la mise en ligne",
+          "Des solutions évolutives qui grandissent avec votre activité"
+        ],
+        "workSteps": [
+          { "title": "Cadrage du projet", "description": "Nous définissons ensemble le périmètre, les fonctionnalités et le planning de réalisation." },
+          { "title": "Design & Maquettes", "description": "Nous créons des maquettes claires et ergonomiques avant tout développement." },
+          { "title": "Développement & Tests", "description": "Notre équipe code, teste et optimise chaque fonctionnalité de votre plateforme." },
+          { "title": "Mise en ligne", "description": "Nous déployons votre projet et assurons son bon fonctionnement dans la durée." }
+        ]
+      },
+      "marketing-digital": {
+        "title": "Marketing Digital",
+        "description": "Stratégies SEO, gestion de réseaux sociaux et campagnes publicitaires percutantes pour accroître votre visibilité et générer des leads qualifiés.",
+        "aboutTitle": "À propos de ce service",
+        "aboutDescription": "Notre équipe marketing élabore des stratégies digitales complètes pour renforcer votre présence en ligne et générer des résultats concrets. Référencement naturel, gestion des réseaux sociaux, publicité en ligne : nous mettons en place les leviers adaptés à vos objectifs.\n\nChaque campagne est pilotée avec des indicateurs de performance clairs, pour vous permettre de mesurer le retour sur investissement de vos actions marketing.",
+        "included": [
+          "Audit de votre présence digitale et définition d'une stratégie sur mesure",
+          "Création de contenus et gestion quotidienne de vos réseaux sociaux",
+          "Suivi des performances et rapports mensuels détaillés"
+        ],
+        "benefits": [
+          "Une visibilité accrue auprès de votre audience cible",
+          "Des leads qualifiés grâce à des campagnes ciblées et optimisées",
+          "Un contenu régulier et cohérent avec votre identité de marque",
+          "Des rapports transparents pour suivre vos résultats en temps réel"
+        ],
+        "workSteps": [
+          { "title": "Audit & Stratégie", "description": "Nous analysons votre présence actuelle et définissons les objectifs de la campagne." },
+          { "title": "Planification de contenu", "description": "Nous élaborons un calendrier éditorial adapté à vos canaux et à votre audience." },
+          { "title": "Diffusion & Publicité", "description": "Nous lançons les campagnes et optimisons les budgets pour maximiser l'impact." },
+          { "title": "Analyse des résultats", "description": "Nous mesurons les performances et ajustons la stratégie pour de meilleurs résultats." }
+        ]
+      },
+      "cybersecurite": {
+        "title": "Cybersécurité",
+        "description": "Audits, tests d'intrusion et solutions de protection contre les cybermenaces pour sécuriser vos données et la continuité de votre activité.",
+        "aboutTitle": "À propos de ce service",
+        "aboutDescription": "Face à la montée des cybermenaces, LaboGraphie propose des solutions de cybersécurité complètes pour protéger vos systèmes, vos données et la continuité de votre activité. Nos experts réalisent des audits approfondis et des tests d'intrusion pour identifier les failles avant qu'elles ne soient exploitées.\n\nNous accompagnons également nos clients dans la mise en conformité et la mise en place de bonnes pratiques de sécurité au quotidien.",
+        "included": [
+          "Audit complet de vos systèmes, réseaux et applications",
+          "Tests d'intrusion applicatifs et réseau réalisés par nos experts",
+          "Plan d'action et recommandations pour renforcer votre sécurité"
+        ],
+        "benefits": [
+          "Une meilleure protection de vos données sensibles et de celles de vos clients",
+          "Une réduction significative des risques de cyberattaques",
+          "Une conformité renforcée avec les bonnes pratiques du secteur",
+          "Un accompagnement continu pour maintenir un haut niveau de sécurité"
+        ],
+        "workSteps": [
+          { "title": "Diagnostic initial", "description": "Nous évaluons l'état actuel de la sécurité de vos systèmes et infrastructures." },
+          { "title": "Tests d'intrusion", "description": "Nos experts simulent des attaques réelles pour identifier les vulnérabilités." },
+          { "title": "Correction des failles", "description": "Nous vous accompagnons dans la mise en place des correctifs nécessaires." },
+          { "title": "Suivi & Prévention", "description": "Nous assurons un suivi régulier pour maintenir votre sécurité dans le temps." }
+        ]
+      },
+      "formations-pro": {
+        "title": "Formations Pro",
+        "description": "Programmes de coaching digital et de formation continue adaptés à vos équipes : design, développement, bureautique avancée et cybersécurité.",
+        "aboutTitle": "À propos de ce service",
+        "aboutDescription": "LaboGraphie forme depuis plusieurs années des étudiants et professionnels camerounais aux métiers du numérique. Nos programmes couvrent le design, le développement, la bureautique avancée et la cybersécurité, avec une approche pratique et orientée résultats.\n\nAvec plus de 500 étudiants formés, nous mettons un point d'honneur à transmettre des compétences directement applicables sur le marché du travail.",
+        "included": [
+          "Programme pédagogique structuré, adapté au niveau des participants",
+          "Formateurs expérimentés et exercices pratiques sur des cas réels",
+          "Certificat de fin de formation et suivi post-formation"
+        ],
+        "benefits": [
+          "Des compétences directement applicables dans le monde professionnel",
+          "Un accompagnement personnalisé tout au long du parcours",
+          "Des formateurs experts issus du terrain",
+          "Des formats flexibles adaptés aux particuliers et aux entreprises"
+        ],
+        "workSteps": [
+          { "title": "Évaluation des besoins", "description": "Nous identifions vos objectifs et le niveau des participants avant la formation." },
+          { "title": "Conception du programme", "description": "Nous construisons un parcours pédagogique adapté à vos besoins spécifiques." },
+          { "title": "Sessions pratiques", "description": "Les participants apprennent par la pratique, avec des cas concrets et des exercices." },
+          { "title": "Certification & Suivi", "description": "Nous délivrons un certificat et assurons un accompagnement après la formation." }
+        ]
+      },
+      "maintenance-it": {
+        "title": "Maintenance IT & Réseau",
+        "description": "Support technique, infrastructure réseau et maintenance préventive pour garder votre parc informatique fiable, rapide et toujours disponible.",
+        "aboutTitle": "À propos de ce service",
+        "aboutDescription": "Notre équipe technique assure la maintenance et le support de votre parc informatique et de votre infrastructure réseau. Interventions ponctuelles, contrats de maintenance mensuels ou installation complète de réseau : nous garantissons la fiabilité et la disponibilité de vos systèmes.\n\nNotre objectif est de réduire les temps d'arrêt et de vous permettre de vous concentrer sur votre cœur de métier en toute sérénité.",
+        "included": [
+          "Diagnostic et dépannage rapide de vos équipements informatiques",
+          "Maintenance préventive et surveillance continue de votre infrastructure",
+          "Installation et configuration de réseaux fiables et sécurisés"
+        ],
+        "benefits": [
+          "Une réduction significative des pannes et interruptions d'activité",
+          "Un support technique réactif et disponible en cas d'urgence",
+          "Une infrastructure réseau stable et performante",
+          "Un interlocuteur unique pour l'ensemble de votre parc informatique"
+        ],
+        "workSteps": [
+          { "title": "Prise de contact & Diagnostic", "description": "Nous évaluons l'état de votre parc informatique et vos besoins spécifiques." },
+          { "title": "Planification des interventions", "description": "Nous établissons un plan de maintenance adapté à votre activité." },
+          { "title": "Intervention technique", "description": "Nos techniciens interviennent pour réparer, installer ou configurer vos équipements." },
+          { "title": "Suivi & Assistance", "description": "Nous restons disponibles pour toute assistance technique après l'intervention." }
+        ]
+      }
+    }
   }
 }
