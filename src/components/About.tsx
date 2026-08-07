@@ -5,32 +5,36 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle, Phone } from "lucide-react";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { site } from "@/data/site";
+import { useTranslation } from "react-i18next";
 
 const FlipButton = ({
   children
 }: {
   children: React.ReactNode;
 }) => {
-  return <Button variant="default" size="default" className="group relative overflow-hidden border border-primary text-white hover:text-primary">
+  return <Button variant="default" size="default" className="group relative overflow-hidden border border-primary text-primary-foreground hover:text-primary">
     <span className="flex items-center gap-2 transition-all duration-300 group-hover:-translate-y-full group-hover:opacity-0">
       <Phone className="h-4 w-4" />
       {children}
     </span>
-    <span className="absolute text-white inset-0 flex items-center justify-center gap-2 transition-all duration-300 translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 bg-primary">
+    <span className="absolute text-primary-foreground inset-0 flex items-center justify-center gap-2 transition-all duration-300 translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 bg-primary">
       <Phone className="h-4 w-4" />
       {children}
     </span>
   </Button>;
 };
 
-const features = [{
-  title: "Équipe experte",
-  description: "Une équipe pluridisciplinaire de designers, développeurs et consultants forts de plus de 8 ans d'expertise combinée."
-}, {
-  title: "Solutions complètes",
-  description: "Du branding au développement, en passant par la cybersécurité et la formation, nous couvrons tous vos besoins digitaux."
-}];
 const About = () => {
+  const { t } = useTranslation();
+
+  const features = [{
+    title: t("home.about.feature1Title"),
+    description: t("home.about.feature1Description"),
+  }, {
+    title: t("home.about.feature2Title"),
+    description: t("home.about.feature2Description"),
+  }];
+
   return <section id="about" className="py-20 lg:py-32 bg-card">
     <div className="container-custom section-padding">
       <div className="grid lg:grid-cols-2 gap-28 items-center">
@@ -50,16 +54,16 @@ const About = () => {
         {/* Right - Content */}
         <div>
           <FadeIn delay={100}>
-            <p className="text-secondary mb-4 font-bold"> Qui sommes-nous</p>
+            <p className="text-secondary mb-4 font-bold"> {t("home.about.eyebrow")}</p>
           </FadeIn>
           <FadeIn delay={200}>
             <h2 className="text-primary mb-6 text-5xl">
-              Le laboratoire digital qui donne vie à vos idées
+              {t("home.about.title")}
             </h2>
           </FadeIn>
           <FadeIn delay={300}>
             <p className="text-muted-foreground mb-8 font-semibold">
-              LaboGraphie est née de la volonté de fusionner la créativité d'un laboratoire technique avec la rigueur d'un cabinet de conseil. Basée à Bastos, Yaoundé, notre agence accompagne entreprises et institutions dans leur transformation digitale.
+              {t("home.about.description")}
             </p>
           </FadeIn>
 
@@ -81,7 +85,7 @@ const About = () => {
           </div>
           <Link to={site.phoneHref}>
             <FadeIn delay={600}>
-              <FlipButton>Appelez {site.phone}</FlipButton>
+              <FlipButton>{t("home.about.callUs", { phone: site.phone })}</FlipButton>
             </FadeIn>
           </Link>
         </div>

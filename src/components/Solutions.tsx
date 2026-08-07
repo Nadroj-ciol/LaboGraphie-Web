@@ -5,51 +5,55 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle, Phone } from "lucide-react";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { site } from "@/data/site";
+import { useTranslation } from "react-i18next";
 
 const FlipButton = ({
   children
 }: {
   children: React.ReactNode;
 }) => {
-  return <Button variant="default" size="default" className="group relative overflow-hidden border border-primary text-white hover:text-primary">
+  return <Button variant="default" size="default" className="group relative overflow-hidden border border-primary text-primary-foreground hover:text-primary">
     <span className="flex items-center gap-2 transition-all duration-300 group-hover:-translate-y-full group-hover:opacity-0">
       <Phone className="h-4 w-4" />
       {children}
     </span>
-    <span className="absolute text-white inset-0 flex items-center justify-center gap-2 transition-all duration-300 translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 bg-primary">
+    <span className="absolute text-primary-foreground inset-0 flex items-center justify-center gap-2 transition-all duration-300 translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 bg-primary">
       <Phone className="h-4 w-4" />
       {children}
     </span>
   </Button>;
 };
 
-const features = [{
-  title: "Expertise de haut niveau",
-  description: "Une équipe qualifiée qui contribue de manière concrète à la réussite et à l'efficacité de chaque projet."
-}, {
-  title: "Accompagnement continu",
-  description: "Un support réactif et un suivi rigoureux pour répondre à vos besoins quotidiens comme à vos urgences."
-}, {
-  title: "Outils innovants",
-  description: "Des technologies modernes qui transforment la manière de communiquer, travailler et vendre en ligne."
-}];
-const About = () => {
+const Solutions = () => {
+  const { t } = useTranslation();
+
+  const features = [{
+    title: t("home.solutions.feature1Title"),
+    description: t("home.solutions.feature1Description"),
+  }, {
+    title: t("home.solutions.feature2Title"),
+    description: t("home.solutions.feature2Description"),
+  }, {
+    title: t("home.solutions.feature3Title"),
+    description: t("home.solutions.feature3Description"),
+  }];
+
   return <section id="about" className="py-20 pb-40 relative bg-card">
     <div className="container-custom section-padding">
       <div className="grid lg:grid-cols-2 gap-28 items-start">
         {/* Right - Content */}
         <div>
           <FadeIn delay={100}>
-            <p className="text-secondary mb-4 font-bold"> Pourquoi nous choisir</p>
+            <p className="text-secondary mb-4 font-bold"> {t("home.solutions.eyebrow")}</p>
           </FadeIn>
           <FadeIn delay={200}>
             <h2 className="text-primary mb-6 text-5xl">
-              Des solutions digitales pour tous vos besoins
+              {t("home.solutions.title")}
             </h2>
           </FadeIn>
           <FadeIn delay={300}>
             <p className="text-muted-foreground mb-8 font-semibold">
-              Nous bâtissons la confiance de nos clients grâce à un service constamment exceptionnel et une expertise éprouvée face aux défis digitaux les plus exigeants.
+              {t("home.solutions.description")}
             </p>
           </FadeIn>
 
@@ -73,7 +77,7 @@ const About = () => {
 
           <Link to={site.phoneHref}>
             <FadeIn delay={600}>
-              <FlipButton>Appelez {site.phone}</FlipButton>
+              <FlipButton>{t("home.solutions.callUs", { phone: site.phone })}</FlipButton>
             </FadeIn>
           </Link>
         </div>
@@ -91,7 +95,7 @@ const About = () => {
         </FadeIn>
       </div>
     </div>
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[84%] h-[1px] bg-black/10 z-10" />
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[84%] h-[1px] bg-border z-10" />
   </section >;
 };
-export default About;
+export default Solutions;

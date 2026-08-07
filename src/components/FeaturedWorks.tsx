@@ -4,27 +4,29 @@ import drainCleaning from "@/assets/drain-cleaning.jpg";
 import FadeIn from "@/components/FadeIn";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
-
-const projects = [
-  {
-    title: "Novatech",
-    description: "Refonte complète de l'identité visuelle et développement d'une plateforme web pour cette entreprise technologique.",
-    image: completedBathroom,
-  },
-  {
-    title: "Candace",
-    description: "Application mobile et stratégie de marketing digital pour accompagner le lancement d'une marque de mode.",
-    image: completedKitchen,
-  },
-  {
-    title: "PetitTri",
-    description: "Site e-commerce et campagne de communication pour une plateforme de gestion de déchets responsable.",
-    image: drainCleaning,
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const FeaturedWorks = () => {
+  const { t } = useTranslation();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const projects = [
+    {
+      title: "Novatech",
+      description: t("home.featuredWorks.novatechDescription"),
+      image: completedBathroom,
+    },
+    {
+      title: "Candace",
+      description: t("home.featuredWorks.candaceDescription"),
+      image: completedKitchen,
+    },
+    {
+      title: "PetitTri",
+      description: t("home.featuredWorks.petittriDescription"),
+      image: drainCleaning,
+    },
+  ];
 
   const getCardWidth = (index: number) => {
     // If no card is hovered, first card takes 60%, others take 20%
@@ -36,25 +38,25 @@ const FeaturedWorks = () => {
   };
 
   return (
-    <section className="py-20 lg:py-32 bg-primary">
+    <section className="py-20 lg:py-32 bg-surface-dark">
       <div className="container-custom section-padding">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
           <div>
             <FadeIn>
-              <p className="text-tertiary font-medium mb-4">NOTRE PORTFOLIO</p>
+              <p className="text-tertiary font-medium mb-4">{t("home.featuredWorks.eyebrow")}</p>
             </FadeIn>
             <FadeIn delay={100}>
               <h2 className="text-white">
-                Projets
+                {t("home.featuredWorks.titleLine1")}
                 <br />
-                réalisés
+                {t("home.featuredWorks.titleLine2")}
               </h2>
             </FadeIn>
           </div>
           <FadeIn delay={200}>
             <p className="text-white max-w-xl mt-6 lg:mt-0">
-              Découvrez quelques-uns des projets digitaux que nous avons menés pour nos clients. Du branding au développement, chaque réalisation témoigne de notre exigence et de notre créativité.
+              {t("home.featuredWorks.description")}
             </p>
           </FadeIn>
         </div>
@@ -77,7 +79,7 @@ const FeaturedWorks = () => {
                 />
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-surface-dark via-surface-dark/50 to-transparent opacity-80" />
 
                 {/* Arrow Icon - Only on hover */}
                 <div className={`absolute top-4 right-4 transition-opacity duration-300 ${hoveredIndex === index || (hoveredIndex === null && index === 0) ? "opacity-100" : "opacity-0"

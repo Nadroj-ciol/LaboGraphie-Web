@@ -53,5 +53,83 @@
       "restoredTitle": "Connexion rétablie !",
       "restoredDescription": "Vous êtes de nouveau en ligne. Vos actions vont pouvoir reprendre."
     }
+  },
+  "home": {
+    "hero": {
+      "titleLine1": "Transformez votre",
+      "titleLine2": "vision en",
+      "titleHighlight": "Réalité Digitale.",
+      "description": "De l'identité visuelle à la sécurité informatique, LaboGraphie accompagne votre croissance avec des solutions technologiques de pointe : design, développement web et mobile, marketing digital, cybersécurité et formations professionnelles.",
+      "requestQuote": "Demander un devis",
+      "discoverServices": "Découvrir nos services",
+      "projectsCount": "100+ projets",
+      "projectsDelivered": "livrés avec succès"
+    },
+    "experience": {
+      "welcome": "Bienvenue chez LaboGraphie",
+      "title": "Un laboratoire créatif et un cabinet de conseil réunis pour transformer votre vision en réalité digitale.",
+      "subtitle": "Une équipe engagée pour la satisfaction et la qualité",
+      "description": "Notre équipe pluridisciplinaire met son savoir-faire au service de vos projets digitaux, avec un engagement constant pour la qualité et un accompagnement personnalisé à chaque étape.",
+      "statYears": "Ans d'expertise",
+      "statProjects": "Projets livrés",
+      "statStudents": "Étudiants formés",
+      "aboutUs": "À propos de nous"
+    },
+    "services": {
+      "eyebrow": "Nos Services",
+      "titleLine1": "Des solutions",
+      "titleLine2": "digitales sur mesure",
+      "description": "Nous accompagnons entreprises et institutions dans leur transformation digitale, du branding à la cybersécurité. Notre équipe s'engage à répondre à vos besoins avec rigueur et créativité.",
+      "seeAll": "Voir tous les services"
+    },
+    "featuredWorks": {
+      "eyebrow": "NOTRE PORTFOLIO",
+      "titleLine1": "Projets",
+      "titleLine2": "réalisés",
+      "description": "Découvrez quelques-uns des projets digitaux que nous avons menés pour nos clients. Du branding au développement, chaque réalisation témoigne de notre exigence et de notre créativité.",
+      "novatechDescription": "Refonte complète de l'identité visuelle et développement d'une plateforme web pour cette entreprise technologique.",
+      "candaceDescription": "Application mobile et stratégie de marketing digital pour accompagner le lancement d'une marque de mode.",
+      "petittriDescription": "Site e-commerce et campagne de communication pour une plateforme de gestion de déchets responsable."
+    },
+    "about": {
+      "eyebrow": "Qui sommes-nous",
+      "title": "Le laboratoire digital qui donne vie à vos idées",
+      "description": "LaboGraphie est née de la volonté de fusionner la créativité d'un laboratoire technique avec la rigueur d'un cabinet de conseil. Basée à Bastos, Yaoundé, notre agence accompagne entreprises et institutions dans leur transformation digitale.",
+      "feature1Title": "Équipe experte",
+      "feature1Description": "Une équipe pluridisciplinaire de designers, développeurs et consultants forts de plus de 8 ans d'expertise combinée.",
+      "feature2Title": "Solutions complètes",
+      "feature2Description": "Du branding au développement, en passant par la cybersécurité et la formation, nous couvrons tous vos besoins digitaux.",
+      "callUs": "Appelez {{phone}}"
+    },
+    "solutions": {
+      "eyebrow": "Pourquoi nous choisir",
+      "title": "Des solutions digitales pour tous vos besoins",
+      "description": "Nous bâtissons la confiance de nos clients grâce à un service constamment exceptionnel et une expertise éprouvée face aux défis digitaux les plus exigeants.",
+      "feature1Title": "Expertise de haut niveau",
+      "feature1Description": "Une équipe qualifiée qui contribue de manière concrète à la réussite et à l'efficacité de chaque projet.",
+      "feature2Title": "Accompagnement continu",
+      "feature2Description": "Un support réactif et un suivi rigoureux pour répondre à vos besoins quotidiens comme à vos urgences.",
+      "feature3Title": "Outils innovants",
+      "feature3Description": "Des technologies modernes qui transforment la manière de communiquer, travailler et vendre en ligne.",
+      "callUs": "Appelez {{phone}}"
+    },
+    "testimonials": {
+      "eyebrow": "TÉMOIGNAGES",
+      "titleLine1": "Ce que disent",
+      "titleLine2": "nos clients",
+      "description": "Découvrez les retours de nos clients sur les projets digitaux que nous avons menés ensemble. Chaque témoignage reflète notre engagement pour l'excellence et la satisfaction client.",
+      "quote1": "LaboGraphie a su transformer notre image de marque en un temps record. Leur équipe allie créativité et rigueur, un vrai plaisir de travailler avec eux.",
+      "quote2": "Notre site e-commerce a été livré dans les délais, avec un design moderne et performant. Une équipe à l'écoute et très professionnelle.",
+      "quote3": "La formation dispensée par LaboGraphie a permis à toute notre équipe de monter en compétences sur le digital. Un accompagnement de qualité.",
+      "quote4": "Grâce à leur stratégie marketing digital, notre visibilité en ligne a explosé. Des résultats concrets et mesurables dès les premiers mois.",
+      "quote5": "Un audit de cybersécurité complet et rassurant. LaboGraphie a su identifier nos failles et proposer des solutions adaptées à notre budget."
+    },
+    "blog": {
+      "eyebrow": "CONNAISSANCES",
+      "title": "Notre journal digital",
+      "loading": "Chargement des articles...",
+      "empty": "Aucun article disponible pour le moment.",
+      "seeAll": "Voir tous les articles"
+    }
   }
 }

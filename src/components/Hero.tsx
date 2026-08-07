@@ -9,6 +9,7 @@ import heroGrid5 from "@/assets/hero-grid-5.jpg";
 import heroGrid6 from "@/assets/hero-grid-6.jpg";
 import { Button } from "@/components/ui/button";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { useTranslation } from "react-i18next";
 const FlipButton = ({
   children,
   variant = "light"
@@ -18,7 +19,7 @@ const FlipButton = ({
 }) => {
   const bgClass = variant === "light"
     ? "bg-tertiary text-primary hover:bg-tertiary/90"
-    : "bg-primary text-white border border-accent text-accent";
+    : "bg-primary text-primary-foreground border border-accent text-accent";
   return (
     <Button size="default" className={`group relative overflow-hidden font-semibold rounded-full px-6 ${bgClass}`}>
       <span className="flex items-center gap-2 font-bold transition-all duration-300 group-hover:-translate-y-full group-hover:opacity-0">
@@ -31,6 +32,8 @@ const FlipButton = ({
   );
 };
 const Hero = () => {
+  const { t } = useTranslation();
+
   const leftColumnImages = [{
     src: heroGrid1,
     alt: "Séance de travail sur une identité visuelle",
@@ -57,7 +60,7 @@ const Hero = () => {
     alt: "Équipe LaboGraphie en réunion",
     className: "rounded-full"
   }];
-  return <section className="relative bg-primary overflow-hidden">
+  return <section className="relative bg-surface-dark overflow-hidden">
     {/* Content */}
     <div className="container-custom section-padding relative z-10">
       <div className="grid lg:grid-cols-2 gap-12 relative items-center min-h-[calc(100vh-8rem)]">
@@ -65,31 +68,29 @@ const Hero = () => {
         <div className="max-w-7xl lg:min-w-[700px] relative z-10">
           <div className="animate-fade-up">
             <h1 className="text-white font-bold mb-6 text-5xl md:text-6xl lg:text-7xl leading-[1.1] max-w-[800px] text-left xl:text-7xl">
-              Transformez votre
+              {t("home.hero.titleLine1")}
               <br />
-              vision en
+              {t("home.hero.titleLine2")}
               <br />
-              <span className="text-tertiary">Réalité Digitale.</span>
+              <span className="text-tertiary">{t("home.hero.titleHighlight")}</span>
             </h1>
           </div>
 
           <p style={{
             animationDelay: "0.1s"
           }} className="text-white text-lg mb-8 max-w-[800px] animate-fade-up md:text-base">
-            De l'identité visuelle à la sécurité informatique, LaboGraphie accompagne votre
-            croissance avec des solutions technologiques de pointe : design, développement web
-            et mobile, marketing digital, cybersécurité et formations professionnelles.
+            {t("home.hero.description")}
           </p>
 
           <div className="flex flex-wrap items-center gap-4 mb-12 animate-fade-up" style={{
             animationDelay: "0.2s"
           }}>
             <Link to="/quote">
-              <FlipButton>Demander un devis</FlipButton>
+              <FlipButton>{t("home.hero.requestQuote")}</FlipButton>
             </Link>
             <Link to="/services">
               <FlipButton variant="dark">
-                Découvrir nos services
+                {t("home.hero.discoverServices")}
               </FlipButton>
             </Link>
           </div>
@@ -109,8 +110,8 @@ const Hero = () => {
               </div>
             </div>
             <div>
-              <p className="text-white font-bold text-xl">100+ projets</p>
-              <p className="text-white/60 text-sm">livrés avec succès</p>
+              <p className="text-white font-bold text-xl">{t("home.hero.projectsCount")}</p>
+              <p className="text-white/60 text-sm">{t("home.hero.projectsDelivered")}</p>
             </div>
           </div>
         </div>
