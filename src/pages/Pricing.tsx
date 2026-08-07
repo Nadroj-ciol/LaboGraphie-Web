@@ -6,15 +6,18 @@ import { Check, X } from "lucide-react";
 import { useState } from "react";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
+import { useTranslation } from "react-i18next";
 
 
 // FlipButton component
 const FlipButton = ({
   children,
+  onClick,
 }: {
   children: React.ReactNode;
+  onClick?: () => void;
 }) => {
-  return <button className="group w-full relative px-8 py-4 bg-white border-secondary rounded-full overflow-hidden border">
+  return <button onClick={onClick} className="group w-full relative px-8 py-4 bg-background border-secondary rounded-full overflow-hidden border">
     <span className="relative block overflow-hidden h-6">
       <span className="block transition-transform text-center duration-300 group-hover:-translate-y-full text-secondary font-semibold">
         {children}
@@ -28,121 +31,32 @@ const FlipButton = ({
 
 const formatFCFA = (amount: number) => `${amount.toLocaleString("fr-FR").replace(/,/g, " ")} FCFA`;
 
-const pricingPlans = {
+// Prix et statut "recommandé" : non traduits, associés par index aux
+// noms/caractéristiques traduits dans pricing.plans.<planType>.
+const pricingMeta = {
   residential: [
-    {
-      name: "Essentiel",
-      price: 150000,
-      billing: "Forfait mensuel",
-      features: [
-        "10% de réduction sur tous nos services",
-        "Site vitrine ou refonte légère",
-        "Gestion des réseaux sociaux",
-        "Support par e-mail",
-        "Rapport mensuel de performance",
-      ],
-      recommended: false,
-    },
-    {
-      name: "Professionnel",
-      price: 350000,
-      billing: "Forfait mensuel",
-      features: [
-        "15% de réduction sur tous nos services",
-        "Identité de marque complète",
-        "Site web ou e-commerce",
-        "Stratégie marketing digital",
-        "Audit de sécurité de base",
-        "Support prioritaire WhatsApp",
-      ],
-      recommended: true,
-    },
-    {
-      name: "Sur mesure",
-      price: 750000,
-      billing: "Forfait mensuel",
-      features: [
-        "Toutes les prestations Professionnel",
-        "Branding 360° et charte graphique",
-        "Application web ou mobile",
-        "Cybersécurité avancée",
-        "Formations pour vos équipes",
-        "Chargé de compte dédié",
-      ],
-      recommended: false,
-    },
+    { price: 150000, recommended: false },
+    { price: 350000, recommended: true },
+    { price: 750000, recommended: false },
   ],
   commercial: [
-    {
-      name: "Starter Entreprise",
-      price: 250000,
-      billing: "Forfait mensuel",
-      features: [
-        "10% de réduction sur tous nos services",
-        "Site web professionnel",
-        "Référencement SEO de base",
-        "Maintenance IT ponctuelle",
-        "Assistance réactive",
-      ],
-      recommended: false,
-    },
-    {
-      name: "Business",
-      price: 600000,
-      billing: "Forfait mensuel",
-      features: [
-        "20% de réduction sur tous nos services",
-        "Plateforme e-commerce complète",
-        "Campagne marketing 360°",
-        "Test d'intrusion & sécurisation",
-        "Support prioritaire 24/7",
-        "Maintenance préventive continue",
-      ],
-      recommended: true,
-    },
-    {
-      name: "Entreprise",
-      price: 1200000,
-      billing: "Forfait mensuel",
-      features: [
-        "Toutes les prestations Business",
-        "Chargé de compte dédié",
-        "Solutions sur mesure",
-        "Infrastructure réseau complète",
-        "Audit annuel de sécurité",
-      ],
-      recommended: false,
-    },
+    { price: 250000, recommended: false },
+    { price: 600000, recommended: true },
+    { price: 1200000, recommended: false },
   ],
 };
 
-const faqs = [
-  {
-    question: "Quels types de services proposez-vous ?",
-    answer:
-      "Nous proposons une large gamme de services digitaux : design & branding, développement web et mobile, marketing digital, cybersécurité, formations professionnelles et maintenance IT, pour les particuliers comme pour les entreprises.",
-  },
-  {
-    question: "Combien coûte un projet chez LaboGraphie ?",
-    answer:
-      "Nos tarifs dépendent du type de service, de la complexité du projet et des délais souhaités. Chaque devis est établi sur mesure après un premier échange avec notre équipe à Bastos, Yaoundé.\n\nContactez-nous pour obtenir une estimation gratuite et personnalisée.",
-  },
-  {
-    question: "Quels types de missions ponctuelles réalisez-vous ?",
-    answer:
-      "Nous intervenons aussi sur des missions ponctuelles : création de logo, refonte de site, campagne publicitaire, audit de sécurité ou formation d'équipe, selon vos besoins spécifiques.",
-  },
-  {
-    question: "Votre agence est-elle enregistrée et assurée ?",
-    answer:
-      "Oui, LaboGraphie est un cabinet digital enregistré au Cameroun. Toute notre équipe est composée de professionnels qualifiés, garantissant un travail sérieux et conforme aux normes du secteur.",
-  },
-  {
-    question: "Vos prix sont-ils compétitifs et proposez-vous des devis ?",
-    answer:
-      "Oui, nous offrons des tarifs compétitifs adaptés au marché camerounais et fournissons des devis gratuits pour tous nos services. Contactez-nous pour planifier un rendez-vous avec notre équipe.",
-  },
-];
+interface PricingPlan {
+  name: string;
+  price: number;
+  recommended: boolean;
+  features: string[];
+}
+
+interface FaqEntry {
+  question: string;
+  answer: string;
+}
 
 const PricingCard = ({
   plan,
@@ -150,11 +64,12 @@ const PricingCard = ({
   planType,
   onSelectPlan,
 }: {
-  plan: (typeof pricingPlans.residential)[0];
+  plan: PricingPlan;
   index: number;
   planType: "residential" | "commercial";
-  onSelectPlan: (plan: typeof pricingPlans.residential[0], planType: "residential" | "commercial") => void;
+  onSelectPlan: (plan: PricingPlan, planType: "residential" | "commercial") => void;
 }) => {
+  const { t } = useTranslation();
   const isRecommended = plan.recommended;
 
   return (
@@ -163,14 +78,14 @@ const PricingCard = ({
         {isRecommended && (
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
             <span className="bg-accent text-accent-foreground px-4 py-1.5 rounded-full text-sm font-medium">
-              Recommandé
+              {t("pricing.recommended")}
             </span>
           </div>
         )}
         <div
           className={`rounded-2xl p-8 h-full flex flex-col ${isRecommended
             ? "bg-primary text-primary-foreground"
-            : "bg-[#f4f4f7]"
+            : "bg-muted"
             }`}
         >
           <p
@@ -190,15 +105,15 @@ const PricingCard = ({
               : "text-muted-foreground border-border"
               }`}
           >
-            {plan.billing}
+            {t("pricing.monthlyPlan")}
           </p>
 
           <div className="mt-6">
             <h4
-              className={`font-bold text-xl mb-4 ${isRecommended ? "text-accent" : "text-black"
+              className={`font-bold text-xl mb-4 ${isRecommended ? "text-accent" : "text-foreground"
                 }`}
             >
-              Ce qui est inclus
+              {t("pricing.whatsIncluded")}
             </h4>
 
             <ul className="space-y-3">
@@ -216,7 +131,7 @@ const PricingCard = ({
                     />
                   </div>
                   <span
-                    className={`text-sm ${isRecommended ? "text-primary-foreground/90" : "text-black"
+                    className={`text-sm ${isRecommended ? "text-primary-foreground/90" : "text-foreground"
                       }`}
                   >
                     {feature}
@@ -227,12 +142,7 @@ const PricingCard = ({
           </div>
 
           <div className="mt-auto pt-8">
-            <button
-              onClick={() => onSelectPlan(plan, planType)}
-              className="w-full py-3 rounded-lg font-medium text-center block transition-all"
-            >
-              <FlipButton>Commencer</FlipButton>
-            </button>
+            <FlipButton onClick={() => onSelectPlan(plan, planType)}>{t("pricing.getStarted")}</FlipButton>
           </div>
         </div>
       </div>
@@ -244,13 +154,13 @@ const FAQItem = ({
   isOpen,
   onToggle,
 }: {
-  faq: (typeof faqs)[0];
+  faq: FaqEntry;
   isOpen: boolean;
   onToggle: () => void;
 }) => {
   return (
     <div
-      className={`rounded-xl mb-3 transition-all duration-300 ${isOpen ? "bg-accent" : "bg-[#f4f4f7]"
+      className={`rounded-xl mb-3 transition-all duration-300 ${isOpen ? "bg-accent" : "bg-muted"
         }`}
     >
       <button
@@ -258,7 +168,7 @@ const FAQItem = ({
         className="w-full px-6 py-5 flex items-center justify-between text-left"
       >
         <span
-          className={`font-bold text-2xl ${isOpen ? "text-accent-foreground" : "text-black"
+          className={`font-bold text-2xl ${isOpen ? "text-accent-foreground" : "text-foreground"
             }`}
         >
           {faq.question}
@@ -278,13 +188,22 @@ const FAQItem = ({
 };
 
 const Pricing = () => {
+  const { t } = useTranslation();
   const navigate = useLocalizedNavigate();
   const [activeTab, setActiveTab] = useState<"residential" | "commercial">(
     "residential"
   );
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
-  const handleSelectPlan = (plan: typeof pricingPlans.residential[0], planType: "residential" | "commercial") => {
+  const translatedPlans = t(`pricing.plans.${activeTab}`, { returnObjects: true }) as { name: string; features: string[] }[];
+  const pricingPlans: PricingPlan[] = translatedPlans.map((p, i) => ({
+    ...p,
+    ...pricingMeta[activeTab][i],
+  }));
+
+  const faqs = t("pricing.faqs", { returnObjects: true }) as FaqEntry[];
+
+  const handleSelectPlan = (plan: PricingPlan, planType: "residential" | "commercial") => {
     navigate("/contact", {
       state: {
         planData: {
@@ -297,29 +216,27 @@ const Pricing = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-white">
+      <section className="pt-32 pb-16 bg-background">
         <div className="container-custom section-padding text-center">
           <FadeIn>
             <div className="flex items-center justify-center gap-2 text-sm mb-6">
               <Link to="/" className="text-muted-foreground hover:text-foreground">
-                Accueil
+                {t("common.nav.home")}
               </Link>
               <span className="text-muted-foreground">/</span>
-              <span className="text-primary font-medium">Tarifs</span>
+              <span className="text-primary font-medium">{t("pricing.breadcrumbLabel")}</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6">
-              Nos Tarifs
+              {t("pricing.title")}
             </h1>
 
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Des solutions digitales expertes et fiables, adaptées à vos besoins de branding,
-              développement, marketing et sécurité, pour garantir qualité, efficacité et
-              satisfaction totale.
+              {t("pricing.description")}
             </p>
           </FadeIn>
 
@@ -333,7 +250,7 @@ const Pricing = () => {
                   : "text-muted-foreground"
                   }`}
               >
-                Particuliers & Startups
+                {t("pricing.tabResidential")}
               </button>
               <button
                 onClick={() => setActiveTab("commercial")}
@@ -342,7 +259,7 @@ const Pricing = () => {
                   : "text-muted-foreground "
                   }`}
               >
-                Entreprises
+                {t("pricing.tabCommercial")}
               </button>
             </div>
           </FadeIn>
@@ -350,10 +267,10 @@ const Pricing = () => {
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-background">
         <div className="container-custom section-padding">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {pricingPlans[activeTab].map((plan, index) => (
+            {pricingPlans.map((plan, index) => (
               <PricingCard
                 key={plan.name}
                 plan={plan}
@@ -367,11 +284,11 @@ const Pricing = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="pt-16 lg:pt-24 bg-white">
+      <section className="pt-16 lg:pt-24 bg-background">
         <div className="container-custom section-padding">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12">
-              Encore des questions ?
+              {t("pricing.faqTitle")}
             </h2>
           </FadeIn>
 

@@ -23,34 +23,12 @@ import { site } from "@/data/site";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import type { QuoteData } from "./QuoteCalculator";
 
-const contactInfo = [
-  {
-    icon: Mail,
-    title: "Écrivez-nous",
-    description: "Envoyez-nous un email pour toute demande",
-    value: site.email,
-    href: `mailto:${site.email}`,
-  },
-  {
-    icon: MapPin,
-    title: "Visitez nos locaux",
-    description: "Rendez-nous visite sur rendez-vous",
-    value: site.address,
-    href: "https://www.google.com/maps",
-  },
-  {
-    icon: Phone,
-    title: "Appelez-nous",
-    description: "Appelez-nous ou écrivez-nous sur WhatsApp",
-    value: site.phone,
-    href: site.phoneHref,
-  },
-];
-
 const Contact = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const { user } = useAuth();
   const { data: profile } = useUserProfile(user?.id);
@@ -58,6 +36,30 @@ const Contact = () => {
   const quoteData = location.state?.quoteData as QuoteData | undefined;
   const planData = location.state?.planData as { planName: string; planType: string; price: number } | undefined;
   const { data: exchangeRates = DEFAULT_EXCHANGE_RATES } = useExchangeRates();
+
+  const contactInfo = [
+    {
+      icon: Mail,
+      title: t("contact.writeUsTitle"),
+      description: t("contact.writeUsDescription"),
+      value: site.email,
+      href: `mailto:${site.email}`,
+    },
+    {
+      icon: MapPin,
+      title: t("contact.visitUsTitle"),
+      description: t("contact.visitUsDescription"),
+      value: site.address,
+      href: "https://www.google.com/maps",
+    },
+    {
+      icon: Phone,
+      title: t("contact.callUsTitle"),
+      description: t("contact.callUsDescription"),
+      value: site.phone,
+      href: site.phoneHref,
+    },
+  ];
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -93,7 +95,7 @@ const Contact = () => {
     e.preventDefault();
 
     if (!formData.fullName || !formData.phone) {
-      toast.error("Veuillez remplir tous les champs obligatoires");
+      toast.error(t("contact.requiredFieldsError"));
       return;
     }
 
@@ -121,7 +123,7 @@ const Contact = () => {
 
         if (error) throw error;
 
-        toast.success("Demande de devis envoyée avec succès ! Nous vous contacterons bientôt.");
+        toast.success(t("contact.quoteSuccess"));
       } else if (planData) {
         // Submit plan inquiry to database
         const { error } = await supabase.from("quote_requests").insert({
@@ -143,7 +145,7 @@ const Contact = () => {
 
         if (error) throw error;
 
-        toast.success("Demande envoyée avec succès ! Nous vous contacterons bientôt.");
+        toast.success(t("contact.genericSuccess"));
       } else {
         // Regular contact form - save to contacts table
         const { error } = await supabase.from("contacts").insert({
@@ -156,7 +158,7 @@ const Contact = () => {
 
         if (error) throw error;
 
-        toast.success("Message envoyé avec succès ! Nous vous répondrons rapidement.");
+        toast.success(t("contact.messageSuccess"));
       }
 
       // Reset form
@@ -169,14 +171,14 @@ const Contact = () => {
       });
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Une erreur est survenue. Veuillez réessayer.");
+      toast.error(t("contact.submitError"));
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <Header />
 
       {/* Hero Section */}
@@ -184,19 +186,19 @@ const Contact = () => {
         <div className="container-custom mx-auto text-center">
           <FadeIn>
             <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-4">
-              <Link to="/" className="hover:text-primary transition-colors">Accueil</Link>
+              <Link to="/" className="hover:text-primary transition-colors">{t("common.nav.home")}</Link>
               <span>/</span>
-              <span className="text-primary">Contact</span>
+              <span className="text-primary">{t("contact.breadcrumbLabel")}</span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6">
-              {quoteData ? "Demande de devis officiel" : planData ? "Demande de formule" : "Contactez-nous"}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              {quoteData ? t("contact.titleQuote") : planData ? t("contact.titlePlan") : t("contact.titleDefault")}
             </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               {quoteData
-                ? "Complétez vos informations ci-dessous et nous vous enverrons un devis officiel basé sur votre estimation."
+                ? t("contact.descriptionQuote")
                 : planData
-                  ? "Renseignez vos coordonnées et nous vous contacterons au sujet de la formule sélectionnée."
-                  : "Contactez notre équipe pour toute question ou pour démarrer un projet."}
+                  ? t("contact.descriptionPlan")
+                  : t("contact.descriptionDefault")}
             </p>
           </FadeIn>
         </div>
@@ -209,35 +211,35 @@ const Contact = () => {
             <FadeIn>
               <div className="max-w-4xl mx-auto bg-primary rounded-2xl p-6 text-primary-foreground">
                 <h3 className="text-xl font-bold mb-4">
-                  {quoteData ? "Récapitulatif de votre devis" : "Formule sélectionnée"}
+                  {quoteData ? t("contact.quoteSummaryTitle") : t("contact.planSummaryTitle")}
                 </h3>
                 {quoteData ? (
                   <div className="grid md:grid-cols-4 gap-4">
                     <div className="flex items-center gap-3">
                       <Wrench className="w-5 h-5 text-accent" />
                       <div>
-                        <p className="text-sm text-primary-foreground/70">Service</p>
+                        <p className="text-sm text-primary-foreground/70">{t("contact.service")}</p>
                         <p className="font-medium">{quoteData.serviceTitle}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
                       <Clock className="w-5 h-5 text-accent" />
                       <div>
-                        <p className="text-sm text-primary-foreground/70">Délai estimé</p>
-                        <p className="font-medium">{quoteData.estimatedHours} jour{quoteData.estimatedHours > 1 ? "s" : ""}</p>
+                        <p className="text-sm text-primary-foreground/70">{t("contact.estimatedDelay")}</p>
+                        <p className="font-medium">{quoteData.estimatedHours} {t("contact.days", { s: quoteData.estimatedHours > 1 ? "s" : "" })}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
                       <Clock className="w-5 h-5 text-accent" />
                       <div>
-                        <p className="text-sm text-primary-foreground/70">Urgence</p>
+                        <p className="text-sm text-primary-foreground/70">{t("contact.urgency")}</p>
                         <p className="font-medium capitalize">{quoteData.urgency}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
                       <DollarSign className="w-5 h-5 text-accent" />
                       <div>
-                        <p className="text-sm text-primary-foreground/70">Estimation</p>
+                        <p className="text-sm text-primary-foreground/70">{t("contact.estimation")}</p>
                         <p className="font-bold text-lg">
                           {formatCurrency(quoteData.estimatedMin, toCurrency(quoteData.currency), exchangeRates)} - {formatCurrency(quoteData.estimatedMax, toCurrency(quoteData.currency), exchangeRates)}
                         </p>
@@ -247,15 +249,15 @@ const Contact = () => {
                 ) : planData ? (
                   <div className="grid md:grid-cols-3 gap-4">
                     <div>
-                      <p className="text-sm text-primary-foreground/70">Nom de la formule</p>
+                      <p className="text-sm text-primary-foreground/70">{t("contact.planName")}</p>
                       <p className="font-medium">{planData.planName}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-primary-foreground/70">Type</p>
+                      <p className="text-sm text-primary-foreground/70">{t("contact.planType")}</p>
                       <p className="font-medium capitalize">{planData.planType}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-primary-foreground/70">Tarif</p>
+                      <p className="text-sm text-primary-foreground/70">{t("contact.rate")}</p>
                       <p className="font-bold text-lg">{planData.price.toLocaleString("fr-FR")} FCFA/h</p>
                     </div>
                   </div>
@@ -281,15 +283,15 @@ const Contact = () => {
               </div>
 
               {/* Form */}
-              <div className="bg-[#f4f4f7] rounded-2xl p-8">
-                <h2 className="text-3xl font-bold text-black mb-6">
-                  {quoteData || planData ? "Vos informations" : "Contactez-nous"}
+              <div className="bg-muted rounded-2xl p-8">
+                <h2 className="text-3xl font-bold text-foreground mb-6">
+                  {quoteData || planData ? t("contact.yourInfo") : t("contact.titleDefault")}
                 </h2>
 
                 <form className="space-y-5" onSubmit={handleSubmit}>
                   <div>
-                    <label className="block font-medium text-black mb-2">
-                      Nom complet <span className="text-destructive">*</span>
+                    <label className="block font-medium text-foreground mb-2">
+                      {t("contact.fullName")} <span className="text-destructive">*</span>
                     </label>
                     <Input
                       className="bg-transparent h-12"
@@ -300,12 +302,12 @@ const Contact = () => {
                   </div>
 
                   <div>
-                    <label className="block font-medium text-black mb-2">
-                      Téléphone <span className="text-destructive">*</span>
+                    <label className="block font-medium text-foreground mb-2">
+                      {t("contact.phone")} <span className="text-destructive">*</span>
                     </label>
                     <Input
                       type="tel"
-                      placeholder="Ex. +237 6XX XXX XXX"
+                      placeholder={t("contact.phonePlaceholder")}
                       className="bg-transparent border-border"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -314,8 +316,8 @@ const Contact = () => {
                   </div>
 
                   <div>
-                    <label className="block font-medium text-black mb-2">
-                      Email
+                    <label className="block font-medium text-foreground mb-2">
+                      {t("contact.email")}
                     </label>
                     <Input
                       type="email"
@@ -328,20 +330,20 @@ const Contact = () => {
 
                   {!quoteData && !planData && (
                     <div>
-                      <label className="block font-medium text-black mb-2">
-                        Service souhaité
+                      <label className="block font-medium text-foreground mb-2">
+                        {t("contact.desiredService")}
                       </label>
                       <Select
                         value={formData.service}
                         onValueChange={(value) => setFormData({ ...formData, service: value })}
                       >
                         <SelectTrigger className="bg-transparent border-border">
-                          <SelectValue placeholder="Choisissez un service..." />
+                          <SelectValue placeholder={t("contact.chooseServicePlaceholder")} />
                         </SelectTrigger>
                         <SelectContent>
                           {services.map((service) => (
                             <SelectItem key={service.slug} value={service.slug}>
-                              {service.title}
+                              {t(`services.items.${service.slug}.title`)}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -350,11 +352,11 @@ const Contact = () => {
                   )}
 
                   <div>
-                    <label className="block font-medium text-black mb-2">
-                      {quoteData || planData ? "Notes complémentaires" : "Message"}
+                    <label className="block font-medium text-foreground mb-2">
+                      {quoteData || planData ? t("contact.additionalNotes") : t("contact.message")}
                     </label>
                     <Textarea
-                      placeholder="Écrivez ici..."
+                      placeholder={t("contact.messagePlaceholder")}
                       className="bg-transparent border-border min-h-[120px]"
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
@@ -367,12 +369,12 @@ const Contact = () => {
                     disabled={isSubmitting}
                   >
                     {isSubmitting
-                      ? "Envoi en cours..."
+                      ? t("contact.sending")
                       : quoteData
-                        ? "Envoyer la demande de devis"
+                        ? t("contact.sendQuoteRequest")
                         : planData
-                          ? "Envoyer la demande"
-                          : "Envoyer"}
+                          ? t("contact.sendRequest")
+                          : t("contact.send")}
                   </Button>
                 </form>
               </div>
@@ -389,12 +391,12 @@ const Contact = () => {
               {contactInfo.map((info, index) => (
                 <div
                   key={index}
-                  className="bg-[#f4f4f7] rounded-2xl p-6"
+                  className="bg-muted rounded-2xl p-6"
                 >
                   <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center mb-4">
                     <info.icon className="w-5 h-5 text-primary" />
                   </div>
-                  <h3 className="text-xl font-bold text-black mb-1">
+                  <h3 className="text-xl font-bold text-foreground mb-1">
                     {info.title}
                   </h3>
                   <p className="text-muted-foreground mb-2">

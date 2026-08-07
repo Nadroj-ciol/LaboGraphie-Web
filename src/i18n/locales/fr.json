@@ -179,10 +179,36 @@
           "Des livrables adaptés aux réalités du marché camerounais"
         ],
         "workSteps": [
-          { "title": "Brief & Analyse", "description": "Nous échangeons sur vos objectifs, votre marché et votre audience pour cadrer le projet." },
-          { "title": "Recherche créative", "description": "Notre équipe explore plusieurs pistes créatives et vous présente des concepts adaptés." },
-          { "title": "Conception & Validation", "description": "Nous affinons la direction retenue avec vous jusqu'à obtenir le résultat parfait." },
-          { "title": "Livraison finale", "description": "Vous recevez tous les fichiers et un guide complet pour utiliser votre marque au quotidien." }
+          {
+            "title": "Brief & Analyse",
+            "description": "Nous échangeons sur vos objectifs, votre marché et votre audience pour cadrer le projet."
+          },
+          {
+            "title": "Recherche créative",
+            "description": "Notre équipe explore plusieurs pistes créatives et vous présente des concepts adaptés."
+          },
+          {
+            "title": "Conception & Validation",
+            "description": "Nous affinons la direction retenue avec vous jusqu'à obtenir le résultat parfait."
+          },
+          {
+            "title": "Livraison finale",
+            "description": "Vous recevez tous les fichiers et un guide complet pour utiliser votre marque au quotidien."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Logo simple",
+            "description": "Création de logo et déclinaisons de base"
+          },
+          {
+            "label": "Identité complète",
+            "description": "Logo, charte graphique et supports print"
+          },
+          {
+            "label": "Branding 360°",
+            "description": "Stratégie de marque, charte, packaging et supports"
+          }
         ]
       },
       "developpement-web": {
@@ -202,10 +228,36 @@
           "Des solutions évolutives qui grandissent avec votre activité"
         ],
         "workSteps": [
-          { "title": "Cadrage du projet", "description": "Nous définissons ensemble le périmètre, les fonctionnalités et le planning de réalisation." },
-          { "title": "Design & Maquettes", "description": "Nous créons des maquettes claires et ergonomiques avant tout développement." },
-          { "title": "Développement & Tests", "description": "Notre équipe code, teste et optimise chaque fonctionnalité de votre plateforme." },
-          { "title": "Mise en ligne", "description": "Nous déployons votre projet et assurons son bon fonctionnement dans la durée." }
+          {
+            "title": "Cadrage du projet",
+            "description": "Nous définissons ensemble le périmètre, les fonctionnalités et le planning de réalisation."
+          },
+          {
+            "title": "Design & Maquettes",
+            "description": "Nous créons des maquettes claires et ergonomiques avant tout développement."
+          },
+          {
+            "title": "Développement & Tests",
+            "description": "Notre équipe code, teste et optimise chaque fonctionnalité de votre plateforme."
+          },
+          {
+            "title": "Mise en ligne",
+            "description": "Nous déployons votre projet et assurons son bon fonctionnement dans la durée."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Site vitrine / Landing Page",
+            "description": "Site de présentation jusqu'à 5 pages"
+          },
+          {
+            "label": "Site e-commerce / App simple",
+            "description": "Boutique en ligne avec paiement ou app standard"
+          },
+          {
+            "label": "Application sur mesure complexe",
+            "description": "Plateforme web ou mobile complexe sur mesure"
+          }
         ]
       },
       "marketing-digital": {
@@ -225,10 +277,36 @@
           "Des rapports transparents pour suivre vos résultats en temps réel"
         ],
         "workSteps": [
-          { "title": "Audit & Stratégie", "description": "Nous analysons votre présence actuelle et définissons les objectifs de la campagne." },
-          { "title": "Planification de contenu", "description": "Nous élaborons un calendrier éditorial adapté à vos canaux et à votre audience." },
-          { "title": "Diffusion & Publicité", "description": "Nous lançons les campagnes et optimisons les budgets pour maximiser l'impact." },
-          { "title": "Analyse des résultats", "description": "Nous mesurons les performances et ajustons la stratégie pour de meilleurs résultats." }
+          {
+            "title": "Audit & Stratégie",
+            "description": "Nous analysons votre présence actuelle et définissons les objectifs de la campagne."
+          },
+          {
+            "title": "Planification de contenu",
+            "description": "Nous élaborons un calendrier éditorial adapté à vos canaux et à votre audience."
+          },
+          {
+            "title": "Diffusion & Publicité",
+            "description": "Nous lançons les campagnes et optimisons les budgets pour maximiser l'impact."
+          },
+          {
+            "title": "Analyse des résultats",
+            "description": "Nous mesurons les performances et ajustons la stratégie pour de meilleurs résultats."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Community management (Mensuel)",
+            "description": "Équivalent jours de travail pour un mois de gestion"
+          },
+          {
+            "label": "SEO & création de contenu",
+            "description": "Optimisation de site et rédaction technique"
+          },
+          {
+            "label": "Campagne publicitaire 360°",
+            "description": "Stratégie, création de contenu publicitaire et suivi"
+          }
         ]
       },
       "cybersecurite": {
@@ -248,10 +326,36 @@
           "Un accompagnement continu pour maintenir un haut niveau de sécurité"
         ],
         "workSteps": [
-          { "title": "Diagnostic initial", "description": "Nous évaluons l'état actuel de la sécurité de vos systèmes et infrastructures." },
-          { "title": "Tests d'intrusion", "description": "Nos experts simulent des attaques réelles pour identifier les vulnérabilités." },
-          { "title": "Correction des failles", "description": "Nous vous accompagnons dans la mise en place des correctifs nécessaires." },
-          { "title": "Suivi & Prévention", "description": "Nous assurons un suivi régulier pour maintenir votre sécurité dans le temps." }
+          {
+            "title": "Diagnostic initial",
+            "description": "Nous évaluons l'état actuel de la sécurité de vos systèmes et infrastructures."
+          },
+          {
+            "title": "Tests d'intrusion",
+            "description": "Nos experts simulent des attaques réelles pour identifier les vulnérabilités."
+          },
+          {
+            "title": "Correction des failles",
+            "description": "Nous vous accompagnons dans la mise en place des correctifs nécessaires."
+          },
+          {
+            "title": "Suivi & Prévention",
+            "description": "Nous assurons un suivi régulier pour maintenir votre sécurité dans le temps."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Audit de sécurité basique",
+            "description": "Diagnostic rapide de vos systèmes exposés"
+          },
+          {
+            "label": "Test d'intrusion (Pentest)",
+            "description": "Attaques simulées sur vos applications/réseau"
+          },
+          {
+            "label": "Sécurisation complète & Conformité",
+            "description": "Mise en conformité et plan de protection global"
+          }
         ]
       },
       "formations-pro": {
@@ -271,10 +375,36 @@
           "Des formats flexibles adaptés aux particuliers et aux entreprises"
         ],
         "workSteps": [
-          { "title": "Évaluation des besoins", "description": "Nous identifions vos objectifs et le niveau des participants avant la formation." },
-          { "title": "Conception du programme", "description": "Nous construisons un parcours pédagogique adapté à vos besoins spécifiques." },
-          { "title": "Sessions pratiques", "description": "Les participants apprennent par la pratique, avec des cas concrets et des exercices." },
-          { "title": "Certification & Suivi", "description": "Nous délivrons un certificat et assurons un accompagnement après la formation." }
+          {
+            "title": "Évaluation des besoins",
+            "description": "Nous identifions vos objectifs et le niveau des participants avant la formation."
+          },
+          {
+            "title": "Conception du programme",
+            "description": "Nous construisons un parcours pédagogique adapté à vos besoins spécifiques."
+          },
+          {
+            "title": "Sessions pratiques",
+            "description": "Les participants apprennent par la pratique, avec des cas concrets et des exercices."
+          },
+          {
+            "title": "Certification & Suivi",
+            "description": "Nous délivrons un certificat et assurons un accompagnement après la formation."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Session découverte",
+            "description": "Formation courte ou masterclass"
+          },
+          {
+            "label": "Parcours complet (Individuel)",
+            "description": "Formation approfondie sur un domaine spécifique"
+          },
+          {
+            "label": "Formation d'équipe sur mesure",
+            "description": "Programme personnalisé pour votre entreprise"
+          }
         ]
       },
       "maintenance-it": {
@@ -294,10 +424,36 @@
           "Un interlocuteur unique pour l'ensemble de votre parc informatique"
         ],
         "workSteps": [
-          { "title": "Prise de contact & Diagnostic", "description": "Nous évaluons l'état de votre parc informatique et vos besoins spécifiques." },
-          { "title": "Planification des interventions", "description": "Nous établissons un plan de maintenance adapté à votre activité." },
-          { "title": "Intervention technique", "description": "Nos techniciens interviennent pour réparer, installer ou configurer vos équipements." },
-          { "title": "Suivi & Assistance", "description": "Nous restons disponibles pour toute assistance technique après l'intervention." }
+          {
+            "title": "Prise de contact & Diagnostic",
+            "description": "Nous évaluons l'état de votre parc informatique et vos besoins spécifiques."
+          },
+          {
+            "title": "Planification des interventions",
+            "description": "Nous établissons un plan de maintenance adapté à votre activité."
+          },
+          {
+            "title": "Intervention technique",
+            "description": "Nos techniciens interviennent pour réparer, installer ou configurer vos équipements."
+          },
+          {
+            "title": "Suivi & Assistance",
+            "description": "Nous restons disponibles pour toute assistance technique après l'intervention."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Intervention ponctuelle",
+            "description": "Dépannage et diagnostic rapide"
+          },
+          {
+            "label": "Maintenance préventive (Mensuelle)",
+            "description": "Vérifications et mises à jour régulières"
+          },
+          {
+            "label": "Déploiement d'infrastructure réseau",
+            "description": "Installation et configuration de réseau complet"
+          }
         ]
       }
     }
@@ -346,13 +502,33 @@
         "location": "Douala, Cameroun",
         "date": "20 Février 2026",
         "workSteps": [
-          { "title": "Brief & Recherche", "description": "Analyse approfondie du marché, des concurrents et des valeurs de la marque pour poser des bases solides." },
-          { "title": "Conception créative", "description": "Élaboration de plusieurs pistes graphiques et sélection collaborative avec le client." },
-          { "title": "Développement & Déclinaisons", "description": "Finalisation du logo et création de l'ensemble des supports de communication." },
-          { "title": "Livraison & Charte graphique", "description": "Remise du dossier de marque complet avec guide d'utilisation de l'identité visuelle." }
+          {
+            "title": "Brief & Recherche",
+            "description": "Analyse approfondie du marché, des concurrents et des valeurs de la marque pour poser des bases solides."
+          },
+          {
+            "title": "Conception créative",
+            "description": "Élaboration de plusieurs pistes graphiques et sélection collaborative avec le client."
+          },
+          {
+            "title": "Développement & Déclinaisons",
+            "description": "Finalisation du logo et création de l'ensemble des supports de communication."
+          },
+          {
+            "title": "Livraison & Charte graphique",
+            "description": "Remise du dossier de marque complet avec guide d'utilisation de l'identité visuelle."
+          }
         ],
-        "problems": ["Absence d'identité visuelle cohérente sur les différents supports.", "Faible reconnaissance de la marque auprès du public cible.", "Communication visuelle peu adaptée aux standards du marché numérique."],
-        "solutions": ["Conception d'une identité de marque moderne, cohérente et différenciante.", "Mise en place d'une charte graphique complète et facile à décliner.", "Accompagnement dans le déploiement de la marque sur tous les canaux."]
+        "problems": [
+          "Absence d'identité visuelle cohérente sur les différents supports.",
+          "Faible reconnaissance de la marque auprès du public cible.",
+          "Communication visuelle peu adaptée aux standards du marché numérique."
+        ],
+        "solutions": [
+          "Conception d'une identité de marque moderne, cohérente et différenciante.",
+          "Mise en place d'une charte graphique complète et facile à décliner.",
+          "Accompagnement dans le déploiement de la marque sur tous les canaux."
+        ]
       },
       "plateforme-ecommerce-candace": {
         "title": "Plateforme E-commerce Candace",
@@ -370,13 +546,33 @@
         "location": "Yaoundé, Cameroun",
         "date": "15 Janvier 2026",
         "workSteps": [
-          { "title": "Cadrage & Maquettage", "description": "Définition des besoins métiers et création des maquettes UX/UI de la plateforme." },
-          { "title": "Développement", "description": "Construction de la boutique en ligne avec un back-office complet et sécurisé." },
-          { "title": "Intégration des paiements", "description": "Connexion des solutions Mobile Money et passerelles de paiement locales." },
-          { "title": "Mise en ligne & Formation", "description": "Déploiement de la plateforme et formation de l'équipe à son utilisation." }
+          {
+            "title": "Cadrage & Maquettage",
+            "description": "Définition des besoins métiers et création des maquettes UX/UI de la plateforme."
+          },
+          {
+            "title": "Développement",
+            "description": "Construction de la boutique en ligne avec un back-office complet et sécurisé."
+          },
+          {
+            "title": "Intégration des paiements",
+            "description": "Connexion des solutions Mobile Money et passerelles de paiement locales."
+          },
+          {
+            "title": "Mise en ligne & Formation",
+            "description": "Déploiement de la plateforme et formation de l'équipe à son utilisation."
+          }
         ],
-        "problems": ["Absence de canal de vente en ligne adapté au marché local.", "Difficulté à proposer des moyens de paiement accessibles aux clients.", "Gestion manuelle et chronophage des commandes et du stock."],
-        "solutions": ["Développement d'une plateforme e-commerce moderne et intuitive.", "Intégration de solutions de paiement mobile adaptées au Cameroun.", "Automatisation de la gestion des stocks et du suivi des commandes."]
+        "problems": [
+          "Absence de canal de vente en ligne adapté au marché local.",
+          "Difficulté à proposer des moyens de paiement accessibles aux clients.",
+          "Gestion manuelle et chronophage des commandes et du stock."
+        ],
+        "solutions": [
+          "Développement d'une plateforme e-commerce moderne et intuitive.",
+          "Intégration de solutions de paiement mobile adaptées au Cameroun.",
+          "Automatisation de la gestion des stocks et du suivi des commandes."
+        ]
       },
       "application-gestion-petittri": {
         "title": "Application de Gestion PetitTri",
@@ -394,13 +590,33 @@
         "location": "Yaoundé, Cameroun",
         "date": "10 Décembre 2025",
         "workSteps": [
-          { "title": "Étude de faisabilité", "description": "Analyse des besoins terrain et définition des fonctionnalités clés de l'application." },
-          { "title": "Conception UX/UI", "description": "Création d'une interface simple et accessible pour tous les profils d'utilisateurs." },
-          { "title": "Développement mobile", "description": "Programmation de l'application avec intégration de la géolocalisation en temps réel." },
-          { "title": "Tests & Déploiement", "description": "Phase de tests utilisateurs suivie du lancement sur les stores mobiles." }
+          {
+            "title": "Étude de faisabilité",
+            "description": "Analyse des besoins terrain et définition des fonctionnalités clés de l'application."
+          },
+          {
+            "title": "Conception UX/UI",
+            "description": "Création d'une interface simple et accessible pour tous les profils d'utilisateurs."
+          },
+          {
+            "title": "Développement mobile",
+            "description": "Programmation de l'application avec intégration de la géolocalisation en temps réel."
+          },
+          {
+            "title": "Tests & Déploiement",
+            "description": "Phase de tests utilisateurs suivie du lancement sur les stores mobiles."
+          }
         ],
-        "problems": ["Manque de coordination entre les usagers et les agents de collecte.", "Absence d'outil de suivi en temps réel des tournées de collecte.", "Faible taux de participation des habitants au tri sélectif."],
-        "solutions": ["Développement d'une application mobile intuitive et géolocalisée.", "Mise en place de notifications automatiques pour informer les usagers.", "Amélioration de l'engagement grâce à une expérience utilisateur fluide."]
+        "problems": [
+          "Manque de coordination entre les usagers et les agents de collecte.",
+          "Absence d'outil de suivi en temps réel des tournées de collecte.",
+          "Faible taux de participation des habitants au tri sélectif."
+        ],
+        "solutions": [
+          "Développement d'une application mobile intuitive et géolocalisée.",
+          "Mise en place de notifications automatiques pour informer les usagers.",
+          "Amélioration de l'engagement grâce à une expérience utilisateur fluide."
+        ]
       },
       "refonte-site-institutionnel": {
         "title": "Refonte Site Institutionnel",
@@ -418,13 +634,33 @@
         "location": "Yaoundé, Cameroun",
         "date": "28 Novembre 2025",
         "workSteps": [
-          { "title": "Audit du site existant", "description": "Analyse du site actuel, des contenus et des points de friction pour les utilisateurs." },
-          { "title": "Refonte UX/UI", "description": "Redéfinition de l'arborescence et création de nouvelles maquettes ergonomiques." },
-          { "title": "Développement & SEO", "description": "Intégration technique du nouveau site avec optimisation pour les moteurs de recherche." },
-          { "title": "Mise en ligne", "description": "Déploiement du site et accompagnement pour la gestion de contenu au quotidien." }
+          {
+            "title": "Audit du site existant",
+            "description": "Analyse du site actuel, des contenus et des points de friction pour les utilisateurs."
+          },
+          {
+            "title": "Refonte UX/UI",
+            "description": "Redéfinition de l'arborescence et création de nouvelles maquettes ergonomiques."
+          },
+          {
+            "title": "Développement & SEO",
+            "description": "Intégration technique du nouveau site avec optimisation pour les moteurs de recherche."
+          },
+          {
+            "title": "Mise en ligne",
+            "description": "Déploiement du site et accompagnement pour la gestion de contenu au quotidien."
+          }
         ],
-        "problems": ["Interface obsolète et peu adaptée aux mobiles.", "Mauvais référencement sur les moteurs de recherche.", "Navigation confuse pour les usagers en quête d'informations."],
-        "solutions": ["Refonte complète avec un design moderne et responsive.", "Mise en œuvre d'une stratégie SEO technique et éditoriale.", "Simplification de la navigation et de l'accès à l'information."]
+        "problems": [
+          "Interface obsolète et peu adaptée aux mobiles.",
+          "Mauvais référencement sur les moteurs de recherche.",
+          "Navigation confuse pour les usagers en quête d'informations."
+        ],
+        "solutions": [
+          "Refonte complète avec un design moderne et responsive.",
+          "Mise en œuvre d'une stratégie SEO technique et éditoriale.",
+          "Simplification de la navigation et de l'accès à l'information."
+        ]
       },
       "audit-cybersecurite": {
         "title": "Audit de Cybersécurité",
@@ -442,13 +678,33 @@
         "location": "Douala, Cameroun",
         "date": "5 Octobre 2025",
         "workSteps": [
-          { "title": "Cartographie du système", "description": "Inventaire complet des infrastructures, applications et flux de données de l'entreprise." },
-          { "title": "Tests de vulnérabilité", "description": "Réalisation de tests d'intrusion pour identifier les failles exploitables." },
-          { "title": "Analyse & Rapport", "description": "Rédaction d'un rapport détaillé des risques identifiés et de leur criticité." },
-          { "title": "Mise en œuvre des correctifs", "description": "Accompagnement dans la mise en place des mesures de sécurité recommandées." }
+          {
+            "title": "Cartographie du système",
+            "description": "Inventaire complet des infrastructures, applications et flux de données de l'entreprise."
+          },
+          {
+            "title": "Tests de vulnérabilité",
+            "description": "Réalisation de tests d'intrusion pour identifier les failles exploitables."
+          },
+          {
+            "title": "Analyse & Rapport",
+            "description": "Rédaction d'un rapport détaillé des risques identifiés et de leur criticité."
+          },
+          {
+            "title": "Mise en œuvre des correctifs",
+            "description": "Accompagnement dans la mise en place des mesures de sécurité recommandées."
+          }
         ],
-        "problems": ["Absence de politique de sécurité informatique formalisée.", "Vulnérabilités critiques non détectées sur le réseau interne.", "Sensibilisation insuffisante des équipes aux risques cyber."],
-        "solutions": ["Réalisation d'un audit de sécurité complet et documenté.", "Correction des failles critiques identifiées sur l'infrastructure.", "Formation des équipes aux bonnes pratiques de cybersécurité."]
+        "problems": [
+          "Absence de politique de sécurité informatique formalisée.",
+          "Vulnérabilités critiques non détectées sur le réseau interne.",
+          "Sensibilisation insuffisante des équipes aux risques cyber."
+        ],
+        "solutions": [
+          "Réalisation d'un audit de sécurité complet et documenté.",
+          "Correction des failles critiques identifiées sur l'infrastructure.",
+          "Formation des équipes aux bonnes pratiques de cybersécurité."
+        ]
       },
       "campagne-social-media": {
         "title": "Campagne Social Media",
@@ -466,13 +722,33 @@
         "location": "Yaoundé, Cameroun",
         "date": "18 Septembre 2025",
         "workSteps": [
-          { "title": "Audit & Stratégie", "description": "Analyse de la présence existante et définition des objectifs de communication." },
-          { "title": "Création de contenu", "description": "Production de visuels, vidéos et textes adaptés à chaque plateforme sociale." },
-          { "title": "Diffusion & Publicité", "description": "Mise en place des campagnes publicitaires ciblées selon les audiences définies." },
-          { "title": "Analyse des résultats", "description": "Suivi des performances et ajustement continu de la stratégie pour maximiser l'impact." }
+          {
+            "title": "Audit & Stratégie",
+            "description": "Analyse de la présence existante et définition des objectifs de communication."
+          },
+          {
+            "title": "Création de contenu",
+            "description": "Production de visuels, vidéos et textes adaptés à chaque plateforme sociale."
+          },
+          {
+            "title": "Diffusion & Publicité",
+            "description": "Mise en place des campagnes publicitaires ciblées selon les audiences définies."
+          },
+          {
+            "title": "Analyse des résultats",
+            "description": "Suivi des performances et ajustement continu de la stratégie pour maximiser l'impact."
+          }
         ],
-        "problems": ["Faible engagement de la communauté sur les réseaux sociaux.", "Manque de régularité et de cohérence dans la publication de contenu.", "Budget publicitaire mal exploité et peu ciblé."],
-        "solutions": ["Mise en place d'un calendrier éditorial cohérent et régulier.", "Création de contenus créatifs générant plus d'interactions.", "Optimisation des campagnes publicitaires pour un meilleur retour sur investissement."]
+        "problems": [
+          "Faible engagement de la communauté sur les réseaux sociaux.",
+          "Manque de régularité et de cohérence dans la publication de contenu.",
+          "Budget publicitaire mal exploité et peu ciblé."
+        ],
+        "solutions": [
+          "Mise en place d'un calendrier éditorial cohérent et régulier.",
+          "Création de contenus créatifs générant plus d'interactions.",
+          "Optimisation des campagnes publicitaires pour un meilleur retour sur investissement."
+        ]
       }
     }
   },
@@ -556,5 +832,198 @@
       "cvUploadFailed": "Échec de l'envoi du fichier : {{error}}"
     },
     "otherOpenings": "Autres Opportunités"
+  },
+  "quote": {
+    "breadcrumbLabel": "Calculateur de devis",
+    "title": "Obtenez Votre Estimation Gratuite",
+    "description": "Utilisez notre calculateur intelligent pour obtenir une estimation de votre projet. Sélectionnez votre devise, votre service, le niveau de complexité, et obtenez une fourchette de prix réaliste.",
+    "calculatorTitle": "Calculateur de Devis",
+    "currencyLabel": "Marché / Devise",
+    "currencyPlaceholder": "Choisissez une devise...",
+    "currencyFcfa": "Afrique Centrale (XAF / FCFA)",
+    "currencyEur": "Europe (EUR)",
+    "currencyUsd": "International (USD)",
+    "serviceLabel": "Sélectionner un Service",
+    "servicePlaceholder": "Choisissez un service...",
+    "complexityLabel": "Envergure du Projet",
+    "urgencyLabel": "Urgence du Projet",
+    "urgencyStandard": "Standard",
+    "urgencyStandardRate": "Tarif normal",
+    "urgencyUrgent": "Urgent",
+    "urgencyUrgentRate": "Tarif +25%",
+    "urgencyEmergency": "Urgence",
+    "urgencyEmergencyRate": "Tarif +50%",
+    "phoneLabel": "Numéro de Contact *",
+    "dateLabel": "Date de Démarrage Souhaitée",
+    "estimateTitle": "Votre Estimation",
+    "priceRangeLabel": "Fourchette de Prix Estimée",
+    "estimatedTime": "Temps estimé : {{min}} à {{max}} jours",
+    "serviceStandard": "Service standard",
+    "serviceUrgent": "Service urgent",
+    "serviceEmergency": "Service en urgence",
+    "selectServicePrompt": "Sélectionnez un service pour voir votre estimation",
+    "requestOfficialQuote": "Demander un Devis Officiel",
+    "sending": "Envoi en cours...",
+    "disclaimer": "*Ceci est une estimation. Le prix final et le délai peuvent varier après étude détaillée du projet.",
+    "tjmTitle": "Taux Journalier Moyen (TJM)",
+    "perDay": "/ j",
+    "phoneRequired": "Veuillez saisir votre numéro de téléphone",
+    "successSubmit": "Demande de devis envoyée ! Retrouvez-la dans votre tableau de bord.",
+    "errorSubmit": "Échec de l'envoi du devis. Veuillez réessayer.",
+    "howItWorksTitle": "Comment Fonctionnent Nos Tarifs",
+    "howItWorksDescription": "Nous croyons en une tarification transparente. Nos estimations sont basées sur le Taux Journalier Moyen (TJM) du marché, multiplié par la complexité (temps requis) et le niveau d'urgence.",
+    "feature1Title": "Marché & Devise",
+    "feature1Description": "Nos TJM sont ajustés selon les réalités économiques locales (Afrique Centrale) ou internationales.",
+    "feature2Title": "Envergure du Projet",
+    "feature2Description": "La complexité détermine le nombre de jours nécessaires à notre équipe pour livrer un travail d'excellence.",
+    "feature3Title": "Niveau d'Urgence",
+    "feature3Description": "Les services urgents nécessitent de réallouer nos ressources rapidement, impactant la tarification globale."
+  },
+  "contact": {
+    "breadcrumbLabel": "Contact",
+    "titleQuote": "Demande de devis officiel",
+    "titlePlan": "Demande de formule",
+    "titleDefault": "Contactez-nous",
+    "descriptionQuote": "Complétez vos informations ci-dessous et nous vous enverrons un devis officiel basé sur votre estimation.",
+    "descriptionPlan": "Renseignez vos coordonnées et nous vous contacterons au sujet de la formule sélectionnée.",
+    "descriptionDefault": "Contactez notre équipe pour toute question ou pour démarrer un projet.",
+    "quoteSummaryTitle": "Récapitulatif de votre devis",
+    "planSummaryTitle": "Formule sélectionnée",
+    "service": "Service",
+    "estimatedDelay": "Délai estimé",
+    "days": "jour{{s}}",
+    "urgency": "Urgence",
+    "estimation": "Estimation",
+    "planName": "Nom de la formule",
+    "planType": "Type",
+    "rate": "Tarif",
+    "yourInfo": "Vos informations",
+    "fullName": "Nom complet",
+    "phone": "Téléphone",
+    "phonePlaceholder": "Ex. +237 6XX XXX XXX",
+    "email": "Email",
+    "desiredService": "Service souhaité",
+    "chooseServicePlaceholder": "Choisissez un service...",
+    "additionalNotes": "Notes complémentaires",
+    "message": "Message",
+    "messagePlaceholder": "Écrivez ici...",
+    "sending": "Envoi en cours...",
+    "sendQuoteRequest": "Envoyer la demande de devis",
+    "sendRequest": "Envoyer la demande",
+    "send": "Envoyer",
+    "requiredFieldsError": "Veuillez remplir tous les champs obligatoires",
+    "quoteSuccess": "Demande de devis envoyée avec succès ! Nous vous contacterons bientôt.",
+    "genericSuccess": "Demande envoyée avec succès ! Nous vous contacterons bientôt.",
+    "messageSuccess": "Message envoyé avec succès ! Nous vous répondrons rapidement.",
+    "submitError": "Une erreur est survenue. Veuillez réessayer.",
+    "writeUsTitle": "Écrivez-nous",
+    "writeUsDescription": "Envoyez-nous un email pour toute demande",
+    "visitUsTitle": "Visitez nos locaux",
+    "visitUsDescription": "Rendez-nous visite sur rendez-vous",
+    "callUsTitle": "Appelez-nous",
+    "callUsDescription": "Appelez-nous ou écrivez-nous sur WhatsApp"
+  },
+  "pricing": {
+    "breadcrumbLabel": "Tarifs",
+    "title": "Nos Tarifs",
+    "description": "Des solutions digitales expertes et fiables, adaptées à vos besoins de branding, développement, marketing et sécurité, pour garantir qualité, efficacité et satisfaction totale.",
+    "tabResidential": "Particuliers & Startups",
+    "tabCommercial": "Entreprises",
+    "recommended": "Recommandé",
+    "whatsIncluded": "Ce qui est inclus",
+    "getStarted": "Commencer",
+    "monthlyPlan": "Forfait mensuel",
+    "faqTitle": "Encore des questions ?",
+    "plans": {
+      "residential": [
+        {
+          "name": "Essentiel",
+          "features": [
+            "10% de réduction sur tous nos services",
+            "Site vitrine ou refonte légère",
+            "Gestion des réseaux sociaux",
+            "Support par e-mail",
+            "Rapport mensuel de performance"
+          ]
+        },
+        {
+          "name": "Professionnel",
+          "features": [
+            "15% de réduction sur tous nos services",
+            "Identité de marque complète",
+            "Site web ou e-commerce",
+            "Stratégie marketing digital",
+            "Audit de sécurité de base",
+            "Support prioritaire WhatsApp"
+          ]
+        },
+        {
+          "name": "Sur mesure",
+          "features": [
+            "Toutes les prestations Professionnel",
+            "Branding 360° et charte graphique",
+            "Application web ou mobile",
+            "Cybersécurité avancée",
+            "Formations pour vos équipes",
+            "Chargé de compte dédié"
+          ]
+        }
+      ],
+      "commercial": [
+        {
+          "name": "Starter Entreprise",
+          "features": [
+            "10% de réduction sur tous nos services",
+            "Site web professionnel",
+            "Référencement SEO de base",
+            "Maintenance IT ponctuelle",
+            "Assistance réactive"
+          ]
+        },
+        {
+          "name": "Business",
+          "features": [
+            "20% de réduction sur tous nos services",
+            "Plateforme e-commerce complète",
+            "Campagne marketing 360°",
+            "Test d'intrusion & sécurisation",
+            "Support prioritaire 24/7",
+            "Maintenance préventive continue"
+          ]
+        },
+        {
+          "name": "Entreprise",
+          "features": [
+            "Toutes les prestations Business",
+            "Chargé de compte dédié",
+            "Solutions sur mesure",
+            "Infrastructure réseau complète",
+            "Audit annuel de sécurité"
+          ]
+        }
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Quels types de services proposez-vous ?",
+        "answer": "Nous proposons une large gamme de services digitaux : design & branding, développement web et mobile, marketing digital, cybersécurité, formations professionnelles et maintenance IT, pour les particuliers comme pour les entreprises."
+      },
+      {
+        "question": "Combien coûte un projet chez LaboGraphie ?",
+        "answer": "Nos tarifs dépendent du type de service, de la complexité du projet et des délais souhaités. Chaque devis est établi sur mesure après un premier échange avec notre équipe à Bastos, Yaoundé.\n\nContactez-nous pour obtenir une estimation gratuite et personnalisée."
+      },
+      {
+        "question": "Quels types de missions ponctuelles réalisez-vous ?",
+        "answer": "Nous intervenons aussi sur des missions ponctuelles : création de logo, refonte de site, campagne publicitaire, audit de sécurité ou formation d'équipe, selon vos besoins spécifiques."
+      },
+      {
+        "question": "Votre agence est-elle enregistrée et assurée ?",
+        "answer": "Oui, LaboGraphie est un cabinet digital enregistré au Cameroun. Toute notre équipe est composée de professionnels qualifiés, garantissant un travail sérieux et conforme aux normes du secteur."
+      },
+      {
+        "question": "Vos prix sont-ils compétitifs et proposez-vous des devis ?",
+        "answer": "Oui, nous offrons des tarifs compétitifs adaptés au marché camerounais et fournissons des devis gratuits pour tous nos services. Contactez-nous pour planifier un rendez-vous avec notre équipe."
+      }
+    ]
   }
 }

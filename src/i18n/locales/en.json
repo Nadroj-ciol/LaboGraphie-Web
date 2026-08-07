@@ -179,10 +179,36 @@
           "Deliverables suited to the realities of the Cameroonian market"
         ],
         "workSteps": [
-          { "title": "Brief & Analysis", "description": "We discuss your goals, market and audience to frame the project." },
-          { "title": "Creative Research", "description": "Our team explores several creative directions and presents you with tailored concepts." },
-          { "title": "Design & Validation", "description": "We refine the chosen direction with you until we reach the perfect result." },
-          { "title": "Final Delivery", "description": "You receive all files and a complete guide to using your brand day to day." }
+          {
+            "title": "Brief & Analysis",
+            "description": "We discuss your goals, market and audience to frame the project."
+          },
+          {
+            "title": "Creative Research",
+            "description": "Our team explores several creative directions and presents you with tailored concepts."
+          },
+          {
+            "title": "Design & Validation",
+            "description": "We refine the chosen direction with you until we reach the perfect result."
+          },
+          {
+            "title": "Final Delivery",
+            "description": "You receive all files and a complete guide to using your brand day to day."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Simple logo",
+            "description": "Logo creation and basic variations"
+          },
+          {
+            "label": "Complete identity",
+            "description": "Logo, brand guidelines and print materials"
+          },
+          {
+            "label": "360° Branding",
+            "description": "Brand strategy, guidelines, packaging and materials"
+          }
         ]
       },
       "developpement-web": {
@@ -202,10 +228,36 @@
           "Scalable solutions that grow alongside your business"
         ],
         "workSteps": [
-          { "title": "Project Scoping", "description": "We define the scope, features and delivery schedule together." },
-          { "title": "Design & Mockups", "description": "We create clear, user-friendly mockups before any development begins." },
-          { "title": "Development & Testing", "description": "Our team codes, tests and optimizes every feature of your platform." },
-          { "title": "Launch", "description": "We deploy your project and ensure it runs smoothly over time." }
+          {
+            "title": "Project Scoping",
+            "description": "We define the scope, features and delivery schedule together."
+          },
+          {
+            "title": "Design & Mockups",
+            "description": "We create clear, user-friendly mockups before any development begins."
+          },
+          {
+            "title": "Development & Testing",
+            "description": "Our team codes, tests and optimizes every feature of your platform."
+          },
+          {
+            "title": "Launch",
+            "description": "We deploy your project and ensure it runs smoothly over time."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Showcase site / Landing page",
+            "description": "Presentation site with up to 5 pages"
+          },
+          {
+            "label": "E-commerce site / Simple app",
+            "description": "Online store with payment or a standard app"
+          },
+          {
+            "label": "Complex custom application",
+            "description": "Complex custom web or mobile platform"
+          }
         ]
       },
       "marketing-digital": {
@@ -225,10 +277,36 @@
           "Transparent reports to track your results in real time"
         ],
         "workSteps": [
-          { "title": "Audit & Strategy", "description": "We analyze your current presence and define the campaign's objectives." },
-          { "title": "Content Planning", "description": "We build an editorial calendar suited to your channels and audience." },
-          { "title": "Rollout & Advertising", "description": "We launch the campaigns and optimize budgets to maximize impact." },
-          { "title": "Results Analysis", "description": "We measure performance and adjust the strategy for better results." }
+          {
+            "title": "Audit & Strategy",
+            "description": "We analyze your current presence and define the campaign's objectives."
+          },
+          {
+            "title": "Content Planning",
+            "description": "We build an editorial calendar suited to your channels and audience."
+          },
+          {
+            "title": "Rollout & Advertising",
+            "description": "We launch the campaigns and optimize budgets to maximize impact."
+          },
+          {
+            "title": "Results Analysis",
+            "description": "We measure performance and adjust the strategy for better results."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Community management (Monthly)",
+            "description": "Equivalent work days for one month of management"
+          },
+          {
+            "label": "SEO & content creation",
+            "description": "Site optimization and technical copywriting"
+          },
+          {
+            "label": "360° advertising campaign",
+            "description": "Strategy, ad content creation and monitoring"
+          }
         ]
       },
       "cybersecurite": {
@@ -248,10 +326,36 @@
           "Ongoing support to maintain a high level of security"
         ],
         "workSteps": [
-          { "title": "Initial Diagnosis", "description": "We assess the current security state of your systems and infrastructure." },
-          { "title": "Penetration Testing", "description": "Our experts simulate real attacks to identify vulnerabilities." },
-          { "title": "Fixing Vulnerabilities", "description": "We support you in implementing the necessary fixes." },
-          { "title": "Follow-up & Prevention", "description": "We provide ongoing monitoring to maintain your security over time." }
+          {
+            "title": "Initial Diagnosis",
+            "description": "We assess the current security state of your systems and infrastructure."
+          },
+          {
+            "title": "Penetration Testing",
+            "description": "Our experts simulate real attacks to identify vulnerabilities."
+          },
+          {
+            "title": "Fixing Vulnerabilities",
+            "description": "We support you in implementing the necessary fixes."
+          },
+          {
+            "title": "Follow-up & Prevention",
+            "description": "We provide ongoing monitoring to maintain your security over time."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Basic security audit",
+            "description": "Quick diagnosis of your exposed systems"
+          },
+          {
+            "label": "Penetration testing",
+            "description": "Simulated attacks on your applications/network"
+          },
+          {
+            "label": "Full security & compliance",
+            "description": "Compliance implementation and a global protection plan"
+          }
         ]
       },
       "formations-pro": {
@@ -271,10 +375,36 @@
           "Flexible formats suited to individuals and businesses alike"
         ],
         "workSteps": [
-          { "title": "Needs Assessment", "description": "We identify your goals and participants' skill level before training begins." },
-          { "title": "Program Design", "description": "We build a learning path tailored to your specific needs." },
-          { "title": "Hands-on Sessions", "description": "Participants learn by doing, with real cases and practical exercises." },
-          { "title": "Certification & Follow-up", "description": "We issue a certificate and provide support after the training." }
+          {
+            "title": "Needs Assessment",
+            "description": "We identify your goals and participants' skill level before training begins."
+          },
+          {
+            "title": "Program Design",
+            "description": "We build a learning path tailored to your specific needs."
+          },
+          {
+            "title": "Hands-on Sessions",
+            "description": "Participants learn by doing, with real cases and practical exercises."
+          },
+          {
+            "title": "Certification & Follow-up",
+            "description": "We issue a certificate and provide support after the training."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Discovery session",
+            "description": "Short training or masterclass"
+          },
+          {
+            "label": "Full program (Individual)",
+            "description": "In-depth training on a specific area"
+          },
+          {
+            "label": "Custom team training",
+            "description": "Program tailored to your company"
+          }
         ]
       },
       "maintenance-it": {
@@ -294,10 +424,36 @@
           "A single point of contact for your entire IT fleet"
         ],
         "workSteps": [
-          { "title": "Initial Contact & Diagnosis", "description": "We assess the state of your IT fleet and your specific needs." },
-          { "title": "Maintenance Planning", "description": "We build a maintenance plan suited to your business." },
-          { "title": "Technical Intervention", "description": "Our technicians repair, install or configure your equipment." },
-          { "title": "Follow-up & Support", "description": "We remain available for any technical assistance after the intervention." }
+          {
+            "title": "Initial Contact & Diagnosis",
+            "description": "We assess the state of your IT fleet and your specific needs."
+          },
+          {
+            "title": "Maintenance Planning",
+            "description": "We build a maintenance plan suited to your business."
+          },
+          {
+            "title": "Technical Intervention",
+            "description": "Our technicians repair, install or configure your equipment."
+          },
+          {
+            "title": "Follow-up & Support",
+            "description": "We remain available for any technical assistance after the intervention."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "One-off intervention",
+            "description": "Quick troubleshooting and diagnosis"
+          },
+          {
+            "label": "Preventive maintenance (Monthly)",
+            "description": "Regular checks and updates"
+          },
+          {
+            "label": "Network infrastructure deployment",
+            "description": "Complete network installation and configuration"
+          }
         ]
       }
     }
@@ -346,13 +502,33 @@
         "location": "Douala, Cameroon",
         "date": "February 20, 2026",
         "workSteps": [
-          { "title": "Brief & Research", "description": "In-depth analysis of the market, competitors and brand values to lay solid foundations." },
-          { "title": "Creative Design", "description": "Development of several graphic directions and collaborative selection with the client." },
-          { "title": "Development & Rollout", "description": "Finalizing the logo and creating the full set of communication materials." },
-          { "title": "Final Delivery & Brand Guide", "description": "Handover of the complete brand package with a visual identity usage guide." }
+          {
+            "title": "Brief & Research",
+            "description": "In-depth analysis of the market, competitors and brand values to lay solid foundations."
+          },
+          {
+            "title": "Creative Design",
+            "description": "Development of several graphic directions and collaborative selection with the client."
+          },
+          {
+            "title": "Development & Rollout",
+            "description": "Finalizing the logo and creating the full set of communication materials."
+          },
+          {
+            "title": "Final Delivery & Brand Guide",
+            "description": "Handover of the complete brand package with a visual identity usage guide."
+          }
         ],
-        "problems": ["No consistent visual identity across materials.", "Low brand recognition among the target audience.", "Visual communication poorly suited to digital market standards."],
-        "solutions": ["Design of a modern, consistent and distinctive brand identity.", "A complete, easy-to-roll-out brand guideline.", "Support in deploying the brand across all channels."]
+        "problems": [
+          "No consistent visual identity across materials.",
+          "Low brand recognition among the target audience.",
+          "Visual communication poorly suited to digital market standards."
+        ],
+        "solutions": [
+          "Design of a modern, consistent and distinctive brand identity.",
+          "A complete, easy-to-roll-out brand guideline.",
+          "Support in deploying the brand across all channels."
+        ]
       },
       "plateforme-ecommerce-candace": {
         "title": "Candace E-commerce Platform",
@@ -370,13 +546,33 @@
         "location": "Yaoundé, Cameroon",
         "date": "January 15, 2026",
         "workSteps": [
-          { "title": "Scoping & Wireframing", "description": "Defining business needs and creating UX/UI mockups for the platform." },
-          { "title": "Development", "description": "Building the online store with a complete, secure back-office." },
-          { "title": "Payment Integration", "description": "Connecting Mobile Money solutions and local payment gateways." },
-          { "title": "Launch & Training", "description": "Deploying the platform and training the team on how to use it." }
+          {
+            "title": "Scoping & Wireframing",
+            "description": "Defining business needs and creating UX/UI mockups for the platform."
+          },
+          {
+            "title": "Development",
+            "description": "Building the online store with a complete, secure back-office."
+          },
+          {
+            "title": "Payment Integration",
+            "description": "Connecting Mobile Money solutions and local payment gateways."
+          },
+          {
+            "title": "Launch & Training",
+            "description": "Deploying the platform and training the team on how to use it."
+          }
         ],
-        "problems": ["No online sales channel suited to the local market.", "Difficulty offering payment methods accessible to customers.", "Manual, time-consuming order and stock management."],
-        "solutions": ["Development of a modern, intuitive e-commerce platform.", "Integration of mobile payment solutions suited to Cameroon.", "Automation of stock management and order tracking."]
+        "problems": [
+          "No online sales channel suited to the local market.",
+          "Difficulty offering payment methods accessible to customers.",
+          "Manual, time-consuming order and stock management."
+        ],
+        "solutions": [
+          "Development of a modern, intuitive e-commerce platform.",
+          "Integration of mobile payment solutions suited to Cameroon.",
+          "Automation of stock management and order tracking."
+        ]
       },
       "application-gestion-petittri": {
         "title": "PetitTri Management App",
@@ -394,13 +590,33 @@
         "location": "Yaoundé, Cameroon",
         "date": "December 10, 2025",
         "workSteps": [
-          { "title": "Feasibility Study", "description": "Analysis of field needs and definition of the app's key features." },
-          { "title": "UX/UI Design", "description": "Creating a simple, accessible interface for all user profiles." },
-          { "title": "Mobile Development", "description": "Building the app with real-time geolocation integration." },
-          { "title": "Testing & Deployment", "description": "User testing phase followed by launch on the app stores." }
+          {
+            "title": "Feasibility Study",
+            "description": "Analysis of field needs and definition of the app's key features."
+          },
+          {
+            "title": "UX/UI Design",
+            "description": "Creating a simple, accessible interface for all user profiles."
+          },
+          {
+            "title": "Mobile Development",
+            "description": "Building the app with real-time geolocation integration."
+          },
+          {
+            "title": "Testing & Deployment",
+            "description": "User testing phase followed by launch on the app stores."
+          }
         ],
-        "problems": ["Lack of coordination between users and collection agents.", "No real-time tracking tool for collection rounds.", "Low resident participation in selective sorting."],
-        "solutions": ["Development of an intuitive, geolocated mobile app.", "Automatic notifications to keep users informed.", "Improved engagement through a smooth user experience."]
+        "problems": [
+          "Lack of coordination between users and collection agents.",
+          "No real-time tracking tool for collection rounds.",
+          "Low resident participation in selective sorting."
+        ],
+        "solutions": [
+          "Development of an intuitive, geolocated mobile app.",
+          "Automatic notifications to keep users informed.",
+          "Improved engagement through a smooth user experience."
+        ]
       },
       "refonte-site-institutionnel": {
         "title": "Institutional Website Redesign",
@@ -418,13 +634,33 @@
         "location": "Yaoundé, Cameroon",
         "date": "November 28, 2025",
         "workSteps": [
-          { "title": "Existing Site Audit", "description": "Analysis of the current site, content and user friction points." },
-          { "title": "UX/UI Redesign", "description": "Redefining the site structure and creating new user-friendly mockups." },
-          { "title": "Development & SEO", "description": "Technical integration of the new site with search engine optimization." },
-          { "title": "Launch", "description": "Deploying the site and providing support for day-to-day content management." }
+          {
+            "title": "Existing Site Audit",
+            "description": "Analysis of the current site, content and user friction points."
+          },
+          {
+            "title": "UX/UI Redesign",
+            "description": "Redefining the site structure and creating new user-friendly mockups."
+          },
+          {
+            "title": "Development & SEO",
+            "description": "Technical integration of the new site with search engine optimization."
+          },
+          {
+            "title": "Launch",
+            "description": "Deploying the site and providing support for day-to-day content management."
+          }
         ],
-        "problems": ["Outdated interface poorly suited to mobile.", "Poor search engine ranking.", "Confusing navigation for users seeking information."],
-        "solutions": ["Complete redesign with a modern, responsive layout.", "Implementation of a technical and editorial SEO strategy.", "Simplified navigation and access to information."]
+        "problems": [
+          "Outdated interface poorly suited to mobile.",
+          "Poor search engine ranking.",
+          "Confusing navigation for users seeking information."
+        ],
+        "solutions": [
+          "Complete redesign with a modern, responsive layout.",
+          "Implementation of a technical and editorial SEO strategy.",
+          "Simplified navigation and access to information."
+        ]
       },
       "audit-cybersecurite": {
         "title": "Cybersecurity Audit",
@@ -442,13 +678,33 @@
         "location": "Douala, Cameroon",
         "date": "October 5, 2025",
         "workSteps": [
-          { "title": "System Mapping", "description": "Complete inventory of the company's infrastructure, applications and data flows." },
-          { "title": "Vulnerability Testing", "description": "Carrying out penetration tests to identify exploitable weaknesses." },
-          { "title": "Analysis & Report", "description": "Writing a detailed report on identified risks and their severity." },
-          { "title": "Fix Implementation", "description": "Supporting the rollout of the recommended security measures." }
+          {
+            "title": "System Mapping",
+            "description": "Complete inventory of the company's infrastructure, applications and data flows."
+          },
+          {
+            "title": "Vulnerability Testing",
+            "description": "Carrying out penetration tests to identify exploitable weaknesses."
+          },
+          {
+            "title": "Analysis & Report",
+            "description": "Writing a detailed report on identified risks and their severity."
+          },
+          {
+            "title": "Fix Implementation",
+            "description": "Supporting the rollout of the recommended security measures."
+          }
         ],
-        "problems": ["No formalized IT security policy.", "Critical vulnerabilities undetected on the internal network.", "Insufficient team awareness of cyber risks."],
-        "solutions": ["A complete, well-documented security audit.", "Fixing critical vulnerabilities identified on the infrastructure.", "Training teams on cybersecurity best practices."]
+        "problems": [
+          "No formalized IT security policy.",
+          "Critical vulnerabilities undetected on the internal network.",
+          "Insufficient team awareness of cyber risks."
+        ],
+        "solutions": [
+          "A complete, well-documented security audit.",
+          "Fixing critical vulnerabilities identified on the infrastructure.",
+          "Training teams on cybersecurity best practices."
+        ]
       },
       "campagne-social-media": {
         "title": "Social Media Campaign",
@@ -466,13 +722,33 @@
         "location": "Yaoundé, Cameroon",
         "date": "September 18, 2025",
         "workSteps": [
-          { "title": "Audit & Strategy", "description": "Analysis of the existing presence and definition of communication goals." },
-          { "title": "Content Creation", "description": "Production of visuals, videos and copy tailored to each social platform." },
-          { "title": "Rollout & Advertising", "description": "Launching targeted ad campaigns based on defined audiences." },
-          { "title": "Results Analysis", "description": "Tracking performance and continuously adjusting the strategy to maximize impact." }
+          {
+            "title": "Audit & Strategy",
+            "description": "Analysis of the existing presence and definition of communication goals."
+          },
+          {
+            "title": "Content Creation",
+            "description": "Production of visuals, videos and copy tailored to each social platform."
+          },
+          {
+            "title": "Rollout & Advertising",
+            "description": "Launching targeted ad campaigns based on defined audiences."
+          },
+          {
+            "title": "Results Analysis",
+            "description": "Tracking performance and continuously adjusting the strategy to maximize impact."
+          }
         ],
-        "problems": ["Low community engagement on social media.", "Inconsistent, irregular content publishing.", "Poorly targeted, underused advertising budget."],
-        "solutions": ["Implementation of a consistent, regular editorial calendar.", "Creative content generating more interactions.", "Optimized ad campaigns for a better return on investment."]
+        "problems": [
+          "Low community engagement on social media.",
+          "Inconsistent, irregular content publishing.",
+          "Poorly targeted, underused advertising budget."
+        ],
+        "solutions": [
+          "Implementation of a consistent, regular editorial calendar.",
+          "Creative content generating more interactions.",
+          "Optimized ad campaigns for a better return on investment."
+        ]
       }
     }
   },
@@ -556,5 +832,198 @@
       "cvUploadFailed": "File upload failed: {{error}}"
     },
     "otherOpenings": "Other Opportunities"
+  },
+  "quote": {
+    "breadcrumbLabel": "Quote Calculator",
+    "title": "Get Your Free Estimate",
+    "description": "Use our smart calculator to get an estimate for your project. Select your currency, service, complexity level, and get a realistic price range.",
+    "calculatorTitle": "Quote Calculator",
+    "currencyLabel": "Market / Currency",
+    "currencyPlaceholder": "Choose a currency...",
+    "currencyFcfa": "Central Africa (XAF / FCFA)",
+    "currencyEur": "Europe (EUR)",
+    "currencyUsd": "International (USD)",
+    "serviceLabel": "Select a Service",
+    "servicePlaceholder": "Choose a service...",
+    "complexityLabel": "Project Scope",
+    "urgencyLabel": "Project Urgency",
+    "urgencyStandard": "Standard",
+    "urgencyStandardRate": "Regular rate",
+    "urgencyUrgent": "Urgent",
+    "urgencyUrgentRate": "+25% rate",
+    "urgencyEmergency": "Emergency",
+    "urgencyEmergencyRate": "+50% rate",
+    "phoneLabel": "Contact Number *",
+    "dateLabel": "Desired Start Date",
+    "estimateTitle": "Your Estimate",
+    "priceRangeLabel": "Estimated Price Range",
+    "estimatedTime": "Estimated time: {{min}} to {{max}} days",
+    "serviceStandard": "Standard service",
+    "serviceUrgent": "Urgent service",
+    "serviceEmergency": "Emergency service",
+    "selectServicePrompt": "Select a service to see your estimate",
+    "requestOfficialQuote": "Request an Official Quote",
+    "sending": "Sending...",
+    "disclaimer": "*This is an estimate. The final price and timeline may vary after a detailed project review.",
+    "tjmTitle": "Average Daily Rate",
+    "perDay": "/ day",
+    "phoneRequired": "Please enter your phone number",
+    "successSubmit": "Quote request sent! You'll find it in your dashboard.",
+    "errorSubmit": "Failed to send the quote request. Please try again.",
+    "howItWorksTitle": "How Our Pricing Works",
+    "howItWorksDescription": "We believe in transparent pricing. Our estimates are based on the market's Average Daily Rate, multiplied by complexity (time required) and urgency level.",
+    "feature1Title": "Market & Currency",
+    "feature1Description": "Our daily rates are adjusted to local (Central Africa) or international economic realities.",
+    "feature2Title": "Project Scope",
+    "feature2Description": "Complexity determines how many days our team needs to deliver excellent work.",
+    "feature3Title": "Urgency Level",
+    "feature3Description": "Urgent services require us to quickly reallocate resources, impacting overall pricing."
+  },
+  "contact": {
+    "breadcrumbLabel": "Contact",
+    "titleQuote": "Official Quote Request",
+    "titlePlan": "Plan Request",
+    "titleDefault": "Contact Us",
+    "descriptionQuote": "Fill in your details below and we'll send you an official quote based on your estimate.",
+    "descriptionPlan": "Provide your details and we'll contact you about the selected plan.",
+    "descriptionDefault": "Contact our team for any questions or to start a project.",
+    "quoteSummaryTitle": "Your Quote Summary",
+    "planSummaryTitle": "Selected Plan",
+    "service": "Service",
+    "estimatedDelay": "Estimated Timeline",
+    "days": "day{{s}}",
+    "urgency": "Urgency",
+    "estimation": "Estimate",
+    "planName": "Plan Name",
+    "planType": "Type",
+    "rate": "Rate",
+    "yourInfo": "Your Information",
+    "fullName": "Full Name",
+    "phone": "Phone",
+    "phonePlaceholder": "e.g. +237 6XX XXX XXX",
+    "email": "Email",
+    "desiredService": "Desired Service",
+    "chooseServicePlaceholder": "Choose a service...",
+    "additionalNotes": "Additional Notes",
+    "message": "Message",
+    "messagePlaceholder": "Write here...",
+    "sending": "Sending...",
+    "sendQuoteRequest": "Send Quote Request",
+    "sendRequest": "Send Request",
+    "send": "Send",
+    "requiredFieldsError": "Please fill in all required fields",
+    "quoteSuccess": "Quote request sent successfully! We'll contact you soon.",
+    "genericSuccess": "Request sent successfully! We'll contact you soon.",
+    "messageSuccess": "Message sent successfully! We'll get back to you shortly.",
+    "submitError": "An error occurred. Please try again.",
+    "writeUsTitle": "Write to Us",
+    "writeUsDescription": "Send us an email for any request",
+    "visitUsTitle": "Visit Us",
+    "visitUsDescription": "Come visit us by appointment",
+    "callUsTitle": "Call Us",
+    "callUsDescription": "Call us or message us on WhatsApp"
+  },
+  "pricing": {
+    "breadcrumbLabel": "Pricing",
+    "title": "Our Pricing",
+    "description": "Expert, reliable digital solutions tailored to your branding, development, marketing and security needs, guaranteeing quality, efficiency and total satisfaction.",
+    "tabResidential": "Individuals & Startups",
+    "tabCommercial": "Businesses",
+    "recommended": "Recommended",
+    "whatsIncluded": "What's included",
+    "getStarted": "Get Started",
+    "monthlyPlan": "Monthly plan",
+    "faqTitle": "Still have questions?",
+    "plans": {
+      "residential": [
+        {
+          "name": "Essential",
+          "features": [
+            "10% discount on all our services",
+            "Showcase site or light redesign",
+            "Social media management",
+            "Email support",
+            "Monthly performance report"
+          ]
+        },
+        {
+          "name": "Professional",
+          "features": [
+            "15% discount on all our services",
+            "Complete brand identity",
+            "Website or e-commerce store",
+            "Digital marketing strategy",
+            "Basic security audit",
+            "Priority WhatsApp support"
+          ]
+        },
+        {
+          "name": "Custom",
+          "features": [
+            "Everything in Professional",
+            "360° branding and brand guidelines",
+            "Web or mobile application",
+            "Advanced cybersecurity",
+            "Training for your teams",
+            "Dedicated account manager"
+          ]
+        }
+      ],
+      "commercial": [
+        {
+          "name": "Business Starter",
+          "features": [
+            "10% discount on all our services",
+            "Professional website",
+            "Basic SEO",
+            "One-off IT maintenance",
+            "Responsive assistance"
+          ]
+        },
+        {
+          "name": "Business",
+          "features": [
+            "20% discount on all our services",
+            "Complete e-commerce platform",
+            "360° marketing campaign",
+            "Penetration testing & hardening",
+            "24/7 priority support",
+            "Ongoing preventive maintenance"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "features": [
+            "Everything in Business",
+            "Dedicated account manager",
+            "Custom solutions",
+            "Complete network infrastructure",
+            "Annual security audit"
+          ]
+        }
+      ]
+    },
+    "faqs": [
+      {
+        "question": "What types of services do you offer?",
+        "answer": "We offer a wide range of digital services: design & branding, web and mobile development, digital marketing, cybersecurity, professional training and IT maintenance, for individuals and businesses alike."
+      },
+      {
+        "question": "How much does a project cost at LaboGraphie?",
+        "answer": "Our pricing depends on the type of service, project complexity and desired timeline. Every quote is tailor-made after an initial conversation with our team in Bastos, Yaoundé.\n\nContact us for a free, personalized estimate."
+      },
+      {
+        "question": "What kind of one-off projects do you handle?",
+        "answer": "We also take on one-off projects: logo creation, site redesign, advertising campaigns, security audits or team training, based on your specific needs."
+      },
+      {
+        "question": "Is your agency registered and insured?",
+        "answer": "Yes, LaboGraphie is a digital agency registered in Cameroon. Our entire team is made up of qualified professionals, guaranteeing serious work that meets industry standards."
+      },
+      {
+        "question": "Are your prices competitive, and do you provide quotes?",
+        "answer": "Yes, we offer competitive rates suited to the Cameroonian market and provide free quotes for all our services. Contact us to schedule a meeting with our team."
+      }
+    ]
   }
 }
