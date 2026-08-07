@@ -14,19 +14,21 @@ import { ArrowRight, ArrowUpRight, Briefcase, Building2, CheckCircle2, FileText,
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
 // Doit rester cohérent avec le bucket 'job_cvs' (supabase/migrations/20260806000002_storage_job_cvs.sql)
 const CV_MAX_SIZE_BYTES = 10 * 1024 * 1024; // 10 Mo
 const CV_ALLOWED_EXTENSIONS = [".pdf", ".doc", ".docx", ".rtf", ".txt"];
 
-// Validation schemas
-const nameSchema = z.string().trim().min(1, "Le nom est requis").max(100);
-const emailSchema = z.string().trim().email("Adresse e-mail invalide").max(255);
-const phoneSchema = z.string().trim().min(1, "Le téléphone est requis").max(20);
-
 const Career = () => {
+  const { t } = useTranslation();
   const { slug } = useParams();
+
+  // Validation schemas (dépendent de t, donc définis dans le composant)
+  const nameSchema = z.string().trim().min(1, t("career.form.nameRequired")).max(100);
+  const emailSchema = z.string().trim().email(t("career.form.emailInvalid")).max(255);
+  const phoneSchema = z.string().trim().min(1, t("career.form.phoneRequired")).max(20);
   const { data: careers, isLoading: careersLoading } = useCareers();
   const { user } = useAuth();
   const { data: profile } = useUserProfile(user?.id);
@@ -105,13 +107,13 @@ const Career = () => {
     const ext = `.${file.name.split(".").pop()?.toLowerCase() || ""}`;
 
     if (file.size > CV_MAX_SIZE_BYTES) {
-      setErrors(prev => ({ ...prev, cvFile: "La taille du fichier ne doit pas dépasser 10 Mo." }));
+      setErrors(prev => ({ ...prev, cvFile: t("career.form.cvTooLarge") }));
       if (fileInputRef.current) fileInputRef.current.value = "";
       return;
     }
 
     if (!CV_ALLOWED_EXTENSIONS.includes(ext)) {
-      setErrors(prev => ({ ...prev, cvFile: "Format non supporté (PDF, DOC, DOCX, RTF ou TXT uniquement)." }));
+      setErrors(prev => ({ ...prev, cvFile: t("career.form.cvUnsupportedFormat") }));
       if (fileInputRef.current) fileInputRef.current.value = "";
       return;
     }
@@ -135,7 +137,7 @@ const Career = () => {
     } catch (error) {
       setErrors(prev => ({
         ...prev,
-        cvFile: "Échec de l'envoi du fichier : " + (error instanceof Error ? error.message : String(error)),
+        cvFile: t("career.form.cvUploadFailed", { error: error instanceof Error ? error.message : String(error) }),
       }));
       if (fileInputRef.current) fileInputRef.current.value = "";
     } finally {
@@ -175,7 +177,7 @@ const Career = () => {
 
   if (careersLoading || careerLoading) {
     return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-background">
         <Header />
         <div className="flex items-center justify-center py-32">
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -187,15 +189,15 @@ const Career = () => {
 
   if (!job) {
     return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-background">
         <Header />
         <div className="container-custom mx-auto section-padding py-32 text-center">
-          <h1 className="text-4xl font-bold text-black mb-4">Aucun Poste Ouvert</h1>
+          <h1 className="text-4xl font-bold text-foreground mb-4">{t("career.noOpeningTitle")}</h1>
           <p className="text-muted-foreground mb-8">
-            Nous n'avons pas de poste ouvert pour le moment. Revenez bientôt !
+            {t("career.noOpeningDescription")}
           </p>
           <Link to="/">
-            <Button>Retour à l'accueil</Button>
+            <Button>{t("career.backHome")}</Button>
           </Link>
         </div>
         <Footer />
@@ -204,7 +206,7 @@ const Career = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <Header />
 
       {/* Hero Section */}
@@ -213,10 +215,10 @@ const Career = () => {
           <FadeIn>
             <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-4">
               <Link to="/" className="hover:text-primary transition-colors">
-                Accueil
+                {t("common.nav.home")}
               </Link>
               <span>/</span>
-              <span className="text-primary">Carrière</span>
+              <span className="text-primary">{t("career.breadcrumbLabel")}</span>
             </div>
           </FadeIn>
         </div>
@@ -226,19 +228,17 @@ const Career = () => {
       <section className="pb-12 px-4">
         <div className="container-custom mx-auto section-padding text-center">
           <FadeIn>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
               {job.title}
             </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
-              Rejoignez notre équipe et faites la différence. Nous recherchons des
-              personnes passionnées, prêtes à faire évoluer leur carrière dans
-              le domaine du digital.
+              {t("career.intro")}
             </p>
             <a
               href="#openings"
               className="inline-flex items-center gap-2 text-secondary font-bold hover:underline"
             >
-              Voir tous les postes
+              {t("career.seeAllPositions")}
               <ArrowUpRight className="w-4 h-4" />
             </a>
           </FadeIn>
@@ -263,8 +263,8 @@ const Career = () => {
 
                 {/* About the Role */}
                 <div className="mb-10">
-                  <h2 className="text-2xl md:text-3xl font-bold text-black mb-4">
-                    À propos du poste
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                    {t("career.aboutRole")}
                   </h2>
                   <div className="space-y-4 text-muted-foreground leading-relaxed">
                     {job.about_the_role.map((text, index) => (
@@ -275,8 +275,8 @@ const Career = () => {
 
                 {/* In the short term, you will */}
                 <div className="mb-10">
-                  <h2 className="text-2xl md:text-3xl font-bold text-black mb-4">
-                    À court terme, vous allez
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                    {t("career.shortTermGoals")}
                   </h2>
                   <ul className="space-y-3">
                     {job.short_term_goals.map((item, index) => (
@@ -290,8 +290,8 @@ const Career = () => {
 
                 {/* What you bring to the table */}
                 <div className="mb-10">
-                  <h2 className="text-2xl md:text-3xl font-bold text-black mb-4">
-                    Ce que vous apportez
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                    {t("career.whatYouBring")}
                   </h2>
                   <ul className="space-y-3">
                     {job.what_you_bring.map((item, index) => (
@@ -305,8 +305,8 @@ const Career = () => {
 
                 {/* Why you might love working here */}
                 <div className="mb-10">
-                  <h2 className="text-2xl md:text-3xl font-bold text-black mb-4">
-                    Pourquoi vous allez aimer travailler ici
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                    {t("career.whyYouLove")}
                   </h2>
                   <ul className="space-y-3">
                     {job.why_you_might_love.map((item, index) => (
@@ -321,25 +321,25 @@ const Career = () => {
             </div>
 
             {/* Form */}
-            <div className="bg-white border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] h-fit rounded-2xl p-8 sticky top-32 lg:col-span-4 transition-all duration-300">
-              <h2 className="text-2xl font-bold text-black mb-6 flex items-center gap-2">
-                Postuler à cette Offre
+            <div className="bg-background border border-border shadow-[0_8px_30px_rgb(0,0,0,0.04)] h-fit rounded-2xl p-8 sticky top-32 lg:col-span-4 transition-all duration-300">
+              <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+                {t("career.form.title")}
               </h2>
 
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-black flex items-center gap-1">
-                    Nom Complet <span className="text-destructive">*</span>
+                  <label className="text-sm font-medium text-foreground flex items-center gap-1">
+                    {t("career.form.fullName")} <span className="text-destructive">*</span>
                   </label>
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <UserIcon className="h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                     </div>
                     <Input
-                      className="bg-gray-50/50 border-gray-200 h-11 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl"
+                      className="bg-muted/50 border-border h-11 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
-                      placeholder="Entrez votre nom complet"
+                      placeholder={t("career.form.fullNamePlaceholder")}
                     />
                   </div>
                   {errors.fullName && (
@@ -348,8 +348,8 @@ const Career = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-black flex items-center gap-1">
-                    E-mail <span className="text-destructive">*</span>
+                  <label className="text-sm font-medium text-foreground flex items-center gap-1">
+                    {t("career.form.email")} <span className="text-destructive">*</span>
                   </label>
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -357,10 +357,10 @@ const Career = () => {
                     </div>
                     <Input
                       type="email"
-                      className="bg-gray-50/50 border-gray-200 h-11 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl"
+                      className="bg-muted/50 border-border h-11 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Entrez votre e-mail"
+                      placeholder={t("career.form.emailPlaceholder")}
                     />
                   </div>
                   {errors.email && (
@@ -369,25 +369,25 @@ const Career = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-black">
-                    Entreprise Actuelle
+                  <label className="text-sm font-medium text-foreground">
+                    {t("career.form.currentCompany")}
                   </label>
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <Building2 className="h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                     </div>
                     <Input
-                      className="bg-gray-50/50 border-gray-200 h-11 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl"
+                      className="bg-muted/50 border-border h-11 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl"
                       value={currentCompany}
                       onChange={(e) => setCurrentCompany(e.target.value)}
-                      placeholder="Votre entreprise actuelle (optionnel)"
+                      placeholder={t("career.form.currentCompanyPlaceholder")}
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-black flex items-center gap-1">
-                    Téléphone <span className="text-destructive">*</span>
+                  <label className="text-sm font-medium text-foreground flex items-center gap-1">
+                    {t("career.form.phone")} <span className="text-destructive">*</span>
                   </label>
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -395,8 +395,8 @@ const Career = () => {
                     </div>
                     <Input
                       type="tel"
-                      placeholder="Ex. +237 6XX XX XX XX"
-                      className="bg-gray-50/50 border-gray-200 h-11 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl"
+                      placeholder={t("career.form.phonePlaceholder")}
+                      className="bg-muted/50 border-border h-11 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                     />
@@ -407,25 +407,25 @@ const Career = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-black">
-                    LinkedIn
+                  <label className="text-sm font-medium text-foreground">
+                    {t("career.form.linkedin")}
                   </label>
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <Linkedin className="h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                     </div>
                     <Input
-                      className="bg-gray-50/50 border-gray-200 h-11 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl"
+                      className="bg-muted/50 border-border h-11 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl"
                       value={linkedin}
                       onChange={(e) => setLinkedin(e.target.value)}
-                      placeholder="Lien vers votre profil LinkedIn"
+                      placeholder={t("career.form.linkedinPlaceholder")}
                     />
                   </div>
                 </div>
 
-                <div className="space-y-1.5 pt-2 pb-1 border-t border-gray-100">
-                  <label className="text-sm font-medium text-black flex items-center justify-between">
-                    <span>Votre CV <span className="text-muted-foreground font-normal text-xs">(Max 10 Mo)</span></span>
+                <div className="space-y-1.5 pt-2 pb-1 border-t border-border">
+                  <label className="text-sm font-medium text-foreground flex items-center justify-between">
+                    <span>{t("career.form.cv")} <span className="text-muted-foreground font-normal text-xs">{t("career.form.cvMax")}</span></span>
                   </label>
 
                   {cvFileName ? (
@@ -443,7 +443,7 @@ const Career = () => {
                         }}
                         className="text-xs text-destructive hover:underline px-2"
                       >
-                        Retirer
+                        {t("career.form.cvRemove")}
                       </button>
                     </div>
                   ) : (
@@ -457,30 +457,30 @@ const Career = () => {
                           disabled={uploadingCv}
                           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 disabled:cursor-wait"
                         />
-                        <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl p-4 bg-gray-50/50 group-hover:bg-gray-50 group-hover:border-primary/30 transition-all text-center">
+                        <div className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-4 bg-muted/50 group-hover:bg-muted transition-all text-center">
                           {uploadingCv ? (
                             <>
                               <Loader2 className="h-6 w-6 text-primary mb-2 animate-spin" />
                               <span className="text-xs font-medium text-muted-foreground">
-                                Envoi en cours...
+                                {t("career.form.cvUploading")}
                               </span>
                             </>
                           ) : (
                             <>
                               <UploadCloud className="h-6 w-6 text-muted-foreground group-hover:text-primary mb-2 transition-colors" />
-                              <span className="text-xs font-medium text-muted-foreground group-hover:text-black transition-colors">
-                                Glissez un fichier ou cliquez
+                              <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                                {t("career.form.cvDropzone")}
                               </span>
                             </>
                           )}
                         </div>
                       </div>
-                      
+
                       <div className="relative flex items-center justify-center py-2">
                         <div className="absolute inset-0 flex items-center">
-                          <div className="w-full border-t border-gray-100"></div>
+                          <div className="w-full border-t border-border"></div>
                         </div>
-                        <span className="relative bg-white px-2 text-xs text-muted-foreground uppercase">Ou</span>
+                        <span className="relative bg-background px-2 text-xs text-muted-foreground uppercase">{t("career.form.or")}</span>
                       </div>
 
                       <div className="relative group">
@@ -488,10 +488,10 @@ const Career = () => {
                           <LinkIcon className="h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                         </div>
                         <Input
-                          className="bg-gray-50/50 border-gray-200 h-10 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl text-sm"
+                          className="bg-muted/50 border-border h-10 pl-10 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl text-sm"
                           value={cvLink}
                           onChange={(e) => setCvLink(e.target.value)}
-                          placeholder="Collez un lien (Drive, Dropbox...)"
+                          placeholder={t("career.form.cvLinkPlaceholder")}
                         />
                       </div>
                     </div>
@@ -501,17 +501,17 @@ const Career = () => {
                   )}
                 </div>
 
-                <div className="space-y-1.5 pt-2 border-t border-gray-100">
-                  <label className="text-sm font-medium text-black">
-                    Note / Lettre de motivation
+                <div className="space-y-1.5 pt-2 border-t border-border">
+                  <label className="text-sm font-medium text-foreground">
+                    {t("career.form.note")}
                   </label>
                   <div className="relative group">
                     <div className="absolute top-3 left-3 pointer-events-none">
                       <MessageSquare className="h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                     </div>
                     <Textarea
-                      placeholder="Dites-nous pourquoi ce poste vous intéresse..."
-                      className="bg-gray-50/50 border-gray-200 min-h-[100px] pl-10 pt-3 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl resize-none"
+                      placeholder={t("career.form.notePlaceholder")}
+                      className="bg-muted/50 border-border min-h-[100px] pl-10 pt-3 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:border-primary transition-all rounded-xl resize-none"
                       value={note}
                       onChange={(e) => setNote(e.target.value)}
                     />
@@ -520,17 +520,17 @@ const Career = () => {
 
                 <Button
                   type="submit"
-                  className="w-full group relative overflow-hidden bg-primary hover:bg-primary/90 text-white rounded-xl py-6 transition-all duration-300 mt-2"
+                  className="w-full group relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl py-6 transition-all duration-300 mt-2"
                   disabled={createApplication.isPending || uploadingCv}
                 >
                   {createApplication.isPending ? (
                     <span className="flex items-center">
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Envoi en cours...
+                      {t("career.form.sending")}
                     </span>
                   ) : (
                     <span className="flex items-center justify-center font-bold">
-                      Postuler
+                      {t("career.form.submit")}
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </span>
                   )}
@@ -543,11 +543,11 @@ const Career = () => {
 
       {/* Other Opportunities Section */}
       {otherJobs.length > 0 && (
-        <section id="openings" className="py-16 px-4 bg-[#f4f4f7]">
+        <section id="openings" className="py-16 px-4 bg-muted">
           <div className="container-custom mx-auto section-padding">
             <FadeIn>
-              <h2 className="text-3xl md:text-4xl font-bold text-black mb-8">
-                Autres Opportunités
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
+                {t("career.otherOpenings")}
               </h2>
 
 
@@ -558,7 +558,7 @@ const Career = () => {
                     <Link
                       key={otherJob.slug}
                       to={`/career/${otherJob.slug}`}
-                      className={`${otherJob.slug === slug ? "bg-accent" : "bg-[#E8ECF4]"
+                      className={`${otherJob.slug === slug ? "bg-accent" : "bg-card"
                         } cursor-pointer rounded-xl px-6 py-5 flex items-center justify-between hover:bg-accent transition-all group duration-300`}
                     >
                       <div className="flex items-center gap-8 flex-wrap">

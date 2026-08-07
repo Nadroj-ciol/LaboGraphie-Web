@@ -513,5 +513,48 @@
         "section3Text2": "Consistent branding and a high-performing website are key differentiators in the market."
       }
     }
+  },
+  "career": {
+    "breadcrumbLabel": "Careers",
+    "intro": "Join our team and make a difference. We're looking for passionate people ready to grow their career in the digital field.",
+    "seeAllPositions": "See all positions",
+    "noOpeningTitle": "No Open Positions",
+    "noOpeningDescription": "We don't have any open positions right now. Check back soon!",
+    "backHome": "Back to home",
+    "aboutRole": "About the role",
+    "shortTermGoals": "In the short term, you will",
+    "whatYouBring": "What you bring",
+    "whyYouLove": "Why you'll love working here",
+    "form": {
+      "title": "Apply for this Position",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Enter your full name",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "currentCompany": "Current Company",
+      "currentCompanyPlaceholder": "Your current company (optional)",
+      "phone": "Phone",
+      "phonePlaceholder": "e.g. +237 6XX XX XX XX",
+      "linkedin": "LinkedIn",
+      "linkedinPlaceholder": "Link to your LinkedIn profile",
+      "cv": "Your Resume",
+      "cvMax": "(Max 10 MB)",
+      "cvRemove": "Remove",
+      "cvUploading": "Uploading...",
+      "cvDropzone": "Drag a file here or click",
+      "or": "Or",
+      "cvLinkPlaceholder": "Paste a link (Drive, Dropbox...)",
+      "note": "Note / Cover Letter",
+      "notePlaceholder": "Tell us why you're interested in this position...",
+      "sending": "Sending...",
+      "submit": "Apply",
+      "nameRequired": "Name is required",
+      "emailInvalid": "Invalid email address",
+      "phoneRequired": "Please enter a valid phone number",
+      "cvTooLarge": "The file size must not exceed 10 MB.",
+      "cvUnsupportedFormat": "Unsupported format (PDF, DOC, DOCX, RTF or TXT only).",
+      "cvUploadFailed": "File upload failed: {{error}}"
+    },
+    "otherOpenings": "Other Opportunities"
   }
 }

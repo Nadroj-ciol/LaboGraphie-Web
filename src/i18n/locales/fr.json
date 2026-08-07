@@ -513,5 +513,48 @@
         "section3Text2": "Un branding cohérent et un site performant sont des atouts différenciants sur le marché."
       }
     }
+  },
+  "career": {
+    "breadcrumbLabel": "Carrière",
+    "intro": "Rejoignez notre équipe et faites la différence. Nous recherchons des personnes passionnées, prêtes à faire évoluer leur carrière dans le domaine du digital.",
+    "seeAllPositions": "Voir tous les postes",
+    "noOpeningTitle": "Aucun Poste Ouvert",
+    "noOpeningDescription": "Nous n'avons pas de poste ouvert pour le moment. Revenez bientôt !",
+    "backHome": "Retour à l'accueil",
+    "aboutRole": "À propos du poste",
+    "shortTermGoals": "À court terme, vous allez",
+    "whatYouBring": "Ce que vous apportez",
+    "whyYouLove": "Pourquoi vous allez aimer travailler ici",
+    "form": {
+      "title": "Postuler à cette Offre",
+      "fullName": "Nom Complet",
+      "fullNamePlaceholder": "Entrez votre nom complet",
+      "email": "E-mail",
+      "emailPlaceholder": "Entrez votre e-mail",
+      "currentCompany": "Entreprise Actuelle",
+      "currentCompanyPlaceholder": "Votre entreprise actuelle (optionnel)",
+      "phone": "Téléphone",
+      "phonePlaceholder": "Ex. +237 6XX XX XX XX",
+      "linkedin": "LinkedIn",
+      "linkedinPlaceholder": "Lien vers votre profil LinkedIn",
+      "cv": "Votre CV",
+      "cvMax": "(Max 10 Mo)",
+      "cvRemove": "Retirer",
+      "cvUploading": "Envoi en cours...",
+      "cvDropzone": "Glissez un fichier ou cliquez",
+      "or": "Ou",
+      "cvLinkPlaceholder": "Collez un lien (Drive, Dropbox...)",
+      "note": "Note / Lettre de motivation",
+      "notePlaceholder": "Dites-nous pourquoi ce poste vous intéresse...",
+      "sending": "Envoi en cours...",
+      "submit": "Postuler",
+      "nameRequired": "Le nom est requis",
+      "emailInvalid": "Adresse e-mail invalide",
+      "phoneRequired": "Veuillez saisir un numéro de téléphone valide",
+      "cvTooLarge": "La taille du fichier ne doit pas dépasser 10 Mo.",
+      "cvUnsupportedFormat": "Format non supporté (PDF, DOC, DOCX, RTF ou TXT uniquement).",
+      "cvUploadFailed": "Échec de l'envoi du fichier : {{error}}"
+    },
+    "otherOpenings": "Autres Opportunités"
   }
 }
