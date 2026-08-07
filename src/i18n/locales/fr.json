@@ -1025,5 +1025,167 @@
         "answer": "Oui, nous offrons des tarifs compétitifs adaptés au marché camerounais et fournissons des devis gratuits pour tous nos services. Contactez-nous pour planifier un rendez-vous avec notre équipe."
       }
     ]
+  },
+  "about": {
+    "hero": {
+      "description": "Découvrez un partenaire digital fiable à Bastos, Yaoundé. Notre engagement pour la qualité garantit à vos projets numériques expertise, rigueur et innovation.",
+      "titleLine1": "Laboratoire d'innovation",
+      "titleLine2": "et cabinet informatique"
+    },
+    "stats": {
+      "projects": "Projets livrés",
+      "students": "Étudiants formés",
+      "expertise": "Domaines d'expertise",
+      "founders": "Experts fondateurs"
+    },
+    "timelineLabel": "Notre histoire",
+    "timelineTitle": "En savoir plus sur nous",
+    "timeline": [
+      {
+        "title": "Naissance du laboratoire",
+        "description": "LaboGraphie voit le jour à Yaoundé avec une idée simple : créer un laboratoire d'innovation capable d'accompagner les entreprises camerounaises dans leur transformation digitale."
+      },
+      {
+        "title": "Notre parcours",
+        "description": "Nous élargissons notre offre : design, développement web et mobile, marketing digital. Notre équipe grandit et notre réputation de rigueur et de créativité s'installe."
+      },
+      {
+        "title": "Notre histoire",
+        "description": "LaboGraphie devient un cabinet informatique reconnu, ajoutant la cybersécurité et les formations professionnelles à son catalogue, avec plus de 500 étudiants formés."
+      },
+      {
+        "title": "LaboGraphie aujourd'hui",
+        "description": "Installés à Bastos, Yaoundé, nous avons livré plus de 100 projets et accompagnons durablement nos clients grâce à notre maintenance IT et réseau."
+      }
+    ],
+    "valuesLabel": "Valeurs",
+    "valuesTitle": "Nos valeurs fondamentales",
+    "valuesDescription": "Nous croyons au pouvoir du travail d'équipe. Notre équipe pluridisciplinaire collabore pour relever les défis digitaux les plus complexes, dans une culture de collaboration et de respect.",
+    "coreValues": [
+      {
+        "title": "Équipe d'experts",
+        "description": "Notre équipe réunit des experts passionnés en design, développement, marketing et cybersécurité au service de chaque projet."
+      },
+      {
+        "title": "Processus agile",
+        "description": "Nous privilégions un processus rapide et structuré pour livrer vos projets dans les meilleurs délais."
+      },
+      {
+        "title": "Disponibilité",
+        "description": "Notre support et notre maintenance IT sont disponibles pour répondre rapidement aux besoins de nos clients."
+      },
+      {
+        "title": "Engagement fort",
+        "description": "Nous sommes profondément engagés envers la satisfaction de nos clients, avec une attention particulière portée aux détails."
+      },
+      {
+        "title": "Responsabilité",
+        "description": "Nous respectons les normes éthiques les plus strictes et priorisons la sécurité des données dans toutes nos missions."
+      },
+      {
+        "title": "Sécurité avant tout",
+        "description": "La protection des données de nos clients est une priorité, grâce à une veille constante et des outils adaptés."
+      }
+    ],
+    "missionVisionLabel": "Mission & Vision",
+    "missionTitle": "Notre mission",
+    "missionDescription": "Chez LaboGraphie, notre mission est de fournir des services digitaux de haute qualité qui garantissent sécurité, performance et efficacité. Nous nous engageons à offrir un service client exceptionnel et un savoir-faire d'expert.",
+    "missionFeatures": [
+      "Dépasser les attentes de nos clients grâce à un service exceptionnel et personnalisé.",
+      "Cultiver l'honnêteté et la transparence dans toutes nos relations professionnelles.",
+      "Adopter en continu de nouvelles technologies pour améliorer nos services."
+    ],
+    "visionTitle": "Notre vision",
+    "visionDescription": "Notre vision est de devenir le laboratoire d'innovation et cabinet informatique de référence au Cameroun, porté par l'intégrité, l'innovation et l'excellence, en fixant la norme de qualité du secteur digital.",
+    "visionFeatures": [
+      "Adopter les technologies les plus innovantes pour enrichir nos offres de services.",
+      "Construire des relations durables avec nos clients basées sur l'intégrité et la transparence.",
+      "Avoir un impact positif dans les communautés que nous servons au Cameroun."
+    ],
+    "teamLabel": "Notre équipe",
+    "teamTitle": "Rencontrez notre équipe d'experts",
+    "joinTeam": "Rejoindre l'équipe",
+    "careersLabel": "Carrières",
+    "careersDescription": "Nous offrons un environnement de travail dynamique et stimulant qui favorise l'évolution professionnelle. En rejoignant notre équipe, vous travaillerez sur des projets variés et innovants.",
+    "loadingPositions": "Chargement des postes...",
+    "noPositions": "Aucun poste disponible pour le moment.",
+    "missionVisionTitleLine1": "Transformer vos ambitions",
+    "missionVisionTitleLine2": "digitales en réalité",
+    "careersTitleLine1": "Opportunités de",
+    "careersTitleLine2": "rejoindre notre équipe"
+  },
+  "auth": {
+    "emailInvalid": "Veuillez saisir une adresse e-mail valide",
+    "passwordTooShort": "Le mot de passe doit contenir au moins 6 caractères",
+    "phoneInvalid": "Veuillez saisir un numéro de téléphone valide",
+    "phoneTooLong": "Le numéro de téléphone est trop long",
+    "invalidCredentials": "E-mail ou mot de passe invalide",
+    "emailNotConfirmed": "Veuillez confirmer votre adresse e-mail avant de vous connecter.",
+    "loginSuccess": "Connexion réussie !",
+    "emailAlreadyRegistered": "Cet e-mail est déjà enregistré. Veuillez vous connecter.",
+    "signupSuccess": "Un email de confirmation vous a été envoyé. Veuillez vérifier votre boîte de réception.",
+    "resetSuccess": "Instructions de réinitialisation envoyées à votre adresse e-mail.",
+    "unexpectedError": "Une erreur inattendue est survenue",
+    "bannerTitle": "L'excellence digitale.",
+    "bannerSubtitle": "Rejoignez l'univers LaboGraphie",
+    "welcomeBack": "Bon Retour",
+    "createAccount": "Créer un Compte",
+    "forgotPassword": "Mot de passe oublié",
+    "loginSubtitle": "Connectez-vous pour accéder à votre espace.",
+    "signupSubtitle": "Inscrivez-vous pour commencer l'aventure.",
+    "forgotSubtitle": "Saisissez votre e-mail pour réinitialiser le mot de passe.",
+    "fullName": "Nom Complet",
+    "fullNamePlaceholder": "Nadroj ciol",
+    "phone": "Numéro de Téléphone *",
+    "phoneCode": "Code",
+    "email": "Adresse E-mail",
+    "password": "Mot de Passe",
+    "forgotLink": "Oublié ?",
+    "pleaseWait": "Veuillez patienter...",
+    "logIn": "Se Connecter",
+    "sendLink": "Envoyer le lien",
+    "backToLogin": "Retour à la connexion",
+    "noAccount": "Vous n'avez pas de compte ? Inscrivez-vous",
+    "hasAccount": "Vous avez déjà un compte ? Connectez-vous",
+    "sideTitle": "L'excellence au service de vos idées.",
+    "sideDescription": "Rejoignez LaboGraphie et accédez à un univers de solutions digitales innovantes. De l'identité visuelle au développement web sur-mesure, nous donnons vie à vos projets."
+  },
+  "updatePassword": {
+    "title": "Nouveau Mot de Passe",
+    "description": "Veuillez saisir votre nouveau mot de passe ci-dessous.",
+    "label": "Nouveau mot de passe",
+    "updating": "Mise à jour...",
+    "submit": "Enregistrer le mot de passe",
+    "success": "Mot de passe mis à jour avec succès !",
+    "unexpectedError": "Une erreur inattendue est survenue"
+  },
+  "notFound": {
+    "description": "Il semble que cette page n'existe pas, ou que l'URL saisie soit incorrecte. Voici un moyen de revenir en lieu sûr.",
+    "backHome": "Retour à l'Accueil"
+  },
+  "privacyPolicy": {
+    "breadcrumbLabel": "Confidentialité",
+    "title": "Politique de Confidentialité",
+    "lastUpdated": "Dernière mise à jour : 15 novembre 2023",
+    "intro": "Chez {{name}}, laboratoire & cabinet digital basé à {{address}}, nous accordons une grande importance à la protection de vos données personnelles. Cette politique de confidentialité décrit les informations que nous collectons, la manière dont nous les utilisons et les droits dont vous disposez, conformément à la législation camerounaise en vigueur sur la protection des données.",
+    "infoCollectedTitle": "Quelles informations nous collectons",
+    "infoCollectedP1": "Lorsque vous utilisez notre site web, demandez un devis, postulez à une offre d'emploi ou nous contactez, nous pouvons collecter certaines informations personnelles telles que votre nom complet, votre adresse e-mail, votre numéro de téléphone, l'entreprise pour laquelle vous travaillez et le contenu de vos demandes ou messages.",
+    "infoCollectedP2": "Nous pouvons également collecter des informations techniques, comme votre adresse IP, le type de navigateur utilisé et vos interactions avec notre site, dans le but d'améliorer nos services et votre expérience utilisateur.",
+    "howWeUseTitle": "Comment nous utilisons vos informations",
+    "howWeUseIntro": "Les informations que vous nous fournissez sont utilisées exclusivement dans le cadre de nos activités de laboratoire et cabinet digital, notamment pour :",
+    "howWeUseItem1": "Traiter vos demandes de devis et vous fournir nos services (branding, développement web, marketing digital, cybersécurité, formations)",
+    "howWeUseItem2": "Répondre à vos messages et demandes de contact",
+    "howWeUseItem3": "Étudier vos candidatures aux offres d'emploi publiées",
+    "howWeUseItem4": "Améliorer nos services et la performance de notre site web",
+    "cookiesTitle": "Cookies et Suivi",
+    "cookiesP1": "Notre site utilise des cookies afin d'assurer son bon fonctionnement, de mesurer son audience et d'améliorer votre expérience de navigation. Vous pouvez à tout moment configurer votre navigateur pour refuser les cookies, sachant que certaines fonctionnalités du site pourraient alors être limitées.",
+    "cookiesP2": "Nous ne revendons ni ne partageons vos données personnelles avec des tiers à des fins commerciales sans votre consentement explicite.",
+    "rightsTitle": "Vos Droits",
+    "rightsP1": "Vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition concernant vos données personnelles détenues par {{name}}. Pour exercer ces droits, vous pouvez nous contacter directement à l'adresse e-mail indiquée ci-dessous. Nous nous engageons à traiter votre demande dans les meilleurs délais.",
+    "contactTitle": "Contactez-Nous",
+    "contactIntro": "Pour toute question concernant cette politique de confidentialité ou le traitement de vos données personnelles, vous pouvez nous contacter :",
+    "contactByEmail": "Par e-mail : {{email}}",
+    "contactByPhone": "Par téléphone / WhatsApp : {{phone}}",
+    "contactAddress": "À notre adresse : {{address}}"
   }
 }

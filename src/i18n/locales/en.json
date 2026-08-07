@@ -1025,5 +1025,167 @@
         "answer": "Yes, we offer competitive rates suited to the Cameroonian market and provide free quotes for all our services. Contact us to schedule a meeting with our team."
       }
     ]
+  },
+  "about": {
+    "hero": {
+      "description": "Discover a reliable digital partner in Bastos, Yaoundé. Our commitment to quality guarantees expertise, rigor and innovation for your digital projects.",
+      "titleLine1": "Innovation Lab",
+      "titleLine2": "and Digital Agency"
+    },
+    "stats": {
+      "projects": "Projects delivered",
+      "students": "Students trained",
+      "expertise": "Areas of expertise",
+      "founders": "Founding experts"
+    },
+    "timelineLabel": "Our Story",
+    "timelineTitle": "Learn more about us",
+    "timeline": [
+      {
+        "title": "The lab is born",
+        "description": "LaboGraphie is founded in Yaoundé with a simple idea: create an innovation lab capable of supporting Cameroonian businesses through their digital transformation."
+      },
+      {
+        "title": "Our journey",
+        "description": "We expand our offering: design, web and mobile development, digital marketing. Our team grows and our reputation for rigor and creativity takes hold."
+      },
+      {
+        "title": "Our story",
+        "description": "LaboGraphie becomes a recognized digital agency, adding cybersecurity and professional training to its catalog, with over 500 students trained."
+      },
+      {
+        "title": "LaboGraphie today",
+        "description": "Based in Bastos, Yaoundé, we've delivered over 100 projects and provide lasting support to our clients through our IT and network maintenance."
+      }
+    ],
+    "valuesLabel": "Values",
+    "valuesTitle": "Our core values",
+    "valuesDescription": "We believe in the power of teamwork. Our multidisciplinary team collaborates to tackle the most complex digital challenges, in a culture of collaboration and respect.",
+    "coreValues": [
+      {
+        "title": "Expert team",
+        "description": "Our team brings together passionate experts in design, development, marketing and cybersecurity, dedicated to every project."
+      },
+      {
+        "title": "Agile process",
+        "description": "We favor a fast, structured process to deliver your projects in the best possible timeframe."
+      },
+      {
+        "title": "Availability",
+        "description": "Our support and IT maintenance teams are available to respond quickly to our clients' needs."
+      },
+      {
+        "title": "Strong commitment",
+        "description": "We are deeply committed to client satisfaction, with special attention paid to every detail."
+      },
+      {
+        "title": "Accountability",
+        "description": "We uphold the strictest ethical standards and prioritize data security in every engagement."
+      },
+      {
+        "title": "Security first",
+        "description": "Protecting our clients' data is a priority, backed by constant vigilance and the right tools."
+      }
+    ],
+    "missionVisionLabel": "Mission & Vision",
+    "missionTitle": "Our Mission",
+    "missionDescription": "At LaboGraphie, our mission is to provide high-quality digital services that guarantee security, performance and efficiency. We're committed to exceptional client service and expert know-how.",
+    "missionFeatures": [
+      "Exceed our clients' expectations through exceptional, personalized service.",
+      "Cultivate honesty and transparency in all our professional relationships.",
+      "Continuously adopt new technologies to improve our services."
+    ],
+    "visionTitle": "Our Vision",
+    "visionDescription": "Our vision is to become Cameroon's go-to innovation lab and digital agency, driven by integrity, innovation and excellence, setting the quality standard for the digital sector.",
+    "visionFeatures": [
+      "Adopt the most innovative technologies to enrich our service offerings.",
+      "Build lasting client relationships based on integrity and transparency.",
+      "Have a positive impact in the communities we serve across Cameroon."
+    ],
+    "teamLabel": "Our Team",
+    "teamTitle": "Meet our team of experts",
+    "joinTeam": "Join the Team",
+    "careersLabel": "Careers",
+    "careersDescription": "We offer a dynamic, stimulating work environment that fosters professional growth. By joining our team, you'll work on varied and innovative projects.",
+    "loadingPositions": "Loading positions...",
+    "noPositions": "No positions available at the moment.",
+    "missionVisionTitleLine1": "Turning your digital",
+    "missionVisionTitleLine2": "ambitions into reality",
+    "careersTitleLine1": "Opportunities to",
+    "careersTitleLine2": "join our team"
+  },
+  "auth": {
+    "emailInvalid": "Please enter a valid email address",
+    "passwordTooShort": "Password must be at least 6 characters",
+    "phoneInvalid": "Please enter a valid phone number",
+    "phoneTooLong": "Phone number is too long",
+    "invalidCredentials": "Invalid email or password",
+    "emailNotConfirmed": "Please confirm your email address before logging in.",
+    "loginSuccess": "Login successful!",
+    "emailAlreadyRegistered": "This email is already registered. Please log in.",
+    "signupSuccess": "A confirmation email has been sent. Please check your inbox.",
+    "resetSuccess": "Reset instructions sent to your email address.",
+    "unexpectedError": "An unexpected error occurred",
+    "bannerTitle": "Digital excellence.",
+    "bannerSubtitle": "Join the LaboGraphie universe",
+    "welcomeBack": "Welcome Back",
+    "createAccount": "Create an Account",
+    "forgotPassword": "Forgot Password",
+    "loginSubtitle": "Log in to access your space.",
+    "signupSubtitle": "Sign up to start the adventure.",
+    "forgotSubtitle": "Enter your email to reset your password.",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Jordan Nde",
+    "phone": "Phone Number *",
+    "phoneCode": "Code",
+    "email": "Email Address",
+    "password": "Password",
+    "forgotLink": "Forgot?",
+    "pleaseWait": "Please wait...",
+    "logIn": "Log In",
+    "sendLink": "Send Link",
+    "backToLogin": "Back to login",
+    "noAccount": "Don't have an account? Sign up",
+    "hasAccount": "Already have an account? Log in",
+    "sideTitle": "Excellence in the service of your ideas.",
+    "sideDescription": "Join LaboGraphie and access a universe of innovative digital solutions. From visual identity to custom web development, we bring your projects to life."
+  },
+  "updatePassword": {
+    "title": "New Password",
+    "description": "Please enter your new password below.",
+    "label": "New password",
+    "updating": "Updating...",
+    "submit": "Save Password",
+    "success": "Password updated successfully!",
+    "unexpectedError": "An unexpected error occurred"
+  },
+  "notFound": {
+    "description": "It looks like this page doesn't exist, or the URL you entered is incorrect. Here's a way back to safety.",
+    "backHome": "Back to Home"
+  },
+  "privacyPolicy": {
+    "breadcrumbLabel": "Privacy",
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: November 15, 2023",
+    "intro": "At {{name}}, an innovation lab & digital agency based in {{address}}, we place great importance on protecting your personal data. This privacy policy describes the information we collect, how we use it, and the rights you have, in accordance with applicable Cameroonian data protection legislation.",
+    "infoCollectedTitle": "What information we collect",
+    "infoCollectedP1": "When you use our website, request a quote, apply for a job, or contact us, we may collect certain personal information such as your full name, email address, phone number, the company you work for, and the content of your requests or messages.",
+    "infoCollectedP2": "We may also collect technical information, such as your IP address, browser type, and your interactions with our site, in order to improve our services and your user experience.",
+    "howWeUseTitle": "How we use your information",
+    "howWeUseIntro": "The information you provide is used exclusively within the scope of our activities as an innovation lab and digital agency, notably to:",
+    "howWeUseItem1": "Process your quote requests and provide our services (branding, web development, digital marketing, cybersecurity, training)",
+    "howWeUseItem2": "Respond to your messages and contact requests",
+    "howWeUseItem3": "Review your applications to our posted job openings",
+    "howWeUseItem4": "Improve our services and our website's performance",
+    "cookiesTitle": "Cookies and Tracking",
+    "cookiesP1": "Our site uses cookies to ensure it functions properly, measure audience, and improve your browsing experience. You may configure your browser at any time to refuse cookies, though some site features may then be limited.",
+    "cookiesP2": "We do not sell or share your personal data with third parties for commercial purposes without your explicit consent.",
+    "rightsTitle": "Your Rights",
+    "rightsP1": "You have the right to access, rectify, delete, and object to the processing of your personal data held by {{name}}. To exercise these rights, you may contact us directly at the email address below. We're committed to processing your request as promptly as possible.",
+    "contactTitle": "Contact Us",
+    "contactIntro": "For any questions regarding this privacy policy or the processing of your personal data, you may contact us:",
+    "contactByEmail": "By email: {{email}}",
+    "contactByPhone": "By phone / WhatsApp: {{phone}}",
+    "contactAddress": "At our address: {{address}}"
   }
 }
