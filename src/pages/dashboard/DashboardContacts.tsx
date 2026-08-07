@@ -64,12 +64,12 @@ export default function DashboardContacts() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-primary">Messages</h1>
-        <p className="text-black mt-1">
+        <p className="text-foreground mt-1">
           Gérez les messages reçus via le formulaire de contact
         </p>
       </div>
 
-      <Card className="bg-white border border-gray-200">
+      <Card className="bg-card border border-border">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Mail className="h-5 w-5" />
@@ -84,7 +84,7 @@ export default function DashboardContacts() {
               {contacts.map((contact) => (
                 <div
                   key={contact.id}
-                  className="flex flex-col md:flex-row md:items-center gap-4 p-4 rounded-lg border border-gray-200 bg-gray-50"
+                  className="flex flex-col md:flex-row md:items-center gap-4 p-4 rounded-lg border border-border bg-muted"
                 >
                   <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <span className="text-lg font-medium text-primary">
@@ -126,7 +126,7 @@ export default function DashboardContacts() {
                     <select
                       value={contact.status}
                       onChange={(e) => handleContactStatusChange(contact.id, e.target.value)}
-                      className={`text-xs px-3 py-1.5 rounded-full border-0 cursor-pointer ${statusColors[contact.status] || "bg-gray-100 text-gray-700"}`}
+                      className={`text-xs px-3 py-1.5 rounded-full border-0 cursor-pointer ${statusColors[contact.status] || "bg-muted text-muted-foreground"}`}
                     >
                       <option value="new">Nouveau</option>
                       <option value="contacted">Contacté</option>
@@ -137,10 +137,10 @@ export default function DashboardContacts() {
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
                         <button className="p-2 hover:bg-destructive/10 rounded-lg transition-colors group">
-                          <Trash2 className="w-4 h-4 text-slate-400 group-hover:text-destructive" />
+                          <Trash2 className="w-4 h-4 text-muted-foreground group-hover:text-destructive" />
                         </button>
                       </AlertDialogTrigger>
-                      <AlertDialogContent className="bg-white">
+                      <AlertDialogContent className="bg-card">
                         <AlertDialogHeader>
                           <AlertDialogTitle>Êtes-vous absolument sûr ?</AlertDialogTitle>
                           <AlertDialogDescription>
@@ -148,7 +148,7 @@ export default function DashboardContacts() {
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogCancel className="bg-white text-slate-700">Annuler</AlertDialogCancel>
+                          <AlertDialogCancel className="bg-card text-muted-foreground">Annuler</AlertDialogCancel>
                           <AlertDialogAction onClick={() => handleDeleteContact(contact.id)} className="bg-destructive text-white hover:bg-destructive/90">
                             Supprimer
                           </AlertDialogAction>

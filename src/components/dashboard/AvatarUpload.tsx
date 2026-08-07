@@ -58,7 +58,7 @@ export function AvatarUpload({ userId, url, userName, onUpload }: AvatarUploadPr
 
   return (
     <div className="relative group mx-auto w-24 h-24 mb-4">
-      <Avatar className="h-24 w-24 border-2 border-gray-100 shadow-sm">
+      <Avatar className="h-24 w-24 border-2 border-border shadow-sm">
         <AvatarImage src={url || undefined} alt={userName} className="object-cover" />
         <AvatarFallback className="bg-primary text-white text-2xl font-medium">
           {userInitials}

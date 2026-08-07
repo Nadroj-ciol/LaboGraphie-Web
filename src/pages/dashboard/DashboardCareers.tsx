@@ -135,18 +135,18 @@ const DashboardCareers = () => {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-primary">Offres d'emploi</h1>
-          <p className="text-black mt-1">
+          <p className="text-foreground mt-1">
             Gérez vos postes ouverts et recrutements
           </p>
         </div>
         
         <div className="flex items-center gap-3">
-          <div className="hidden sm:flex items-center gap-4 text-sm mr-4 bg-white px-4 py-2 rounded-xl shadow-sm border border-gray-100">
+          <div className="hidden sm:flex items-center gap-4 text-sm mr-4 bg-card px-4 py-2 rounded-xl shadow-sm border border-border">
             <div className="flex flex-col">
               <span className="text-muted-foreground text-xs font-medium">Actives</span>
               <span className="font-bold text-primary">{activeCareers}/{careers?.length || 0}</span>
             </div>
-            <div className="w-px h-8 bg-gray-100"></div>
+            <div className="w-px h-8 bg-muted"></div>
             <div className="flex flex-col">
               <span className="text-muted-foreground text-xs font-medium">Candidatures</span>
               <span className="font-bold text-primary">{totalApplications}</span>
@@ -159,8 +159,8 @@ const DashboardCareers = () => {
                 <Plus className="mr-2 h-4 w-4" /> Ajouter un poste
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-white border-0 shadow-2xl rounded-2xl p-0">
-            <div className="sticky top-0 z-20 bg-white/90 backdrop-blur-md border-b px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-card border-0 shadow-2xl rounded-2xl p-0">
+            <div className="sticky top-0 z-20 bg-card/90 backdrop-blur-md border-b px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <DialogTitle className="text-xl font-bold">
                   {editingCareer ? "Modifier l'offre" : "Créer une offre d'emploi"}
@@ -168,7 +168,7 @@ const DashboardCareers = () => {
                 <p className="text-sm text-muted-foreground mt-1">Détaillez le poste et les prérequis pour attirer les meilleurs talents.</p>
               </div>
               <div className="flex justify-end gap-3">
-                <Button variant="outline" onClick={() => { setIsDialogOpen(false); resetForm(); }} className="rounded-lg text-slate-700 hover:text-primary">
+                <Button variant="outline" onClick={() => { setIsDialogOpen(false); resetForm(); }} className="rounded-lg text-muted-foreground hover:text-primary">
                   Annuler
                 </Button>
                 <Button onClick={handleSubmit} disabled={createCareer.isPending || updateCareer.isPending} className="rounded-lg shadow-sm">
@@ -184,8 +184,8 @@ const DashboardCareers = () => {
                 {/* Colonne de gauche : Infos Générales */}
                 <div className="space-y-6">
                   
-                  <div className="space-y-4 bg-gray-50/50 p-5 rounded-xl border border-gray-100">
-                    <h3 className="text-sm font-semibold text-slate-700 flex items-center gap-2 border-b pb-2 mb-2">
+                  <div className="space-y-4 bg-muted/50 p-5 rounded-xl border border-border">
+                    <h3 className="text-sm font-semibold text-muted-foreground flex items-center gap-2 border-b pb-2 mb-2">
                       <Briefcase className="w-4 h-4" /> Informations de base
                     </h3>
                     
@@ -195,7 +195,7 @@ const DashboardCareers = () => {
                         value={formData.title} 
                         onChange={(e) => setFormData({ ...formData, title: e.target.value, slug: generateSlug(e.target.value) })} 
                         placeholder="ex: Développeur Full-Stack Senior"
-                        className="mt-1 bg-white" 
+                        className="mt-1 bg-card" 
                         required
                       />
                     </div>
@@ -204,7 +204,7 @@ const DashboardCareers = () => {
                       <div>
                         <Label className="text-sm font-medium">Type de contrat</Label>
                         <Select value={formData.type} onValueChange={(v) => setFormData({ ...formData, type: v })}>
-                          <SelectTrigger className="mt-1 bg-white">
+                          <SelectTrigger className="mt-1 bg-card">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -221,28 +221,28 @@ const DashboardCareers = () => {
                           value={formData.location} 
                           onChange={(e) => setFormData({ ...formData, location: e.target.value })} 
                           placeholder="ex: Abidjan, CI (ou Remote)"
-                          className="mt-1 bg-white" 
+                          className="mt-1 bg-card" 
                           required
                         />
                       </div>
                     </div>
                     
                     <div>
-                      <Label className="text-xs text-slate-500 mb-1 block">URL Slug (Généré auto)</Label>
+                      <Label className="text-xs text-muted-foreground mb-1 block">URL Slug (Généré auto)</Label>
                       <Input 
                         value={formData.slug} 
                         onChange={(e) => setFormData({ ...formData, slug: e.target.value })} 
                         placeholder="developpeur-senior" 
-                        className="bg-white text-sm font-mono text-muted-foreground h-8"
+                        className="bg-card text-sm font-mono text-muted-foreground h-8"
                       />
                     </div>
                   </div>
 
-                  <div className="space-y-4 bg-gray-50/50 p-5 rounded-xl border border-gray-100">
-                     <h3 className="text-sm font-semibold text-slate-700 flex items-center gap-2 border-b pb-2 mb-2">
+                  <div className="space-y-4 bg-muted/50 p-5 rounded-xl border border-border">
+                     <h3 className="text-sm font-semibold text-muted-foreground flex items-center gap-2 border-b pb-2 mb-2">
                       <Building2 className="w-4 h-4" /> Statut de l'annonce
                     </h3>
-                    <div className="flex items-center justify-between bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                    <div className="flex items-center justify-between bg-card p-3 rounded-lg border border-border shadow-sm">
                       <div className="space-y-0.5">
                         <Label htmlFor="is_active" className="text-sm font-medium cursor-pointer">Offre active</Label>
                         <p className="text-xs text-muted-foreground">Visible par les candidats sur le site</p>
@@ -268,44 +268,44 @@ const DashboardCareers = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-5 bg-gray-50/50 p-5 rounded-xl border border-gray-100">
+                  <div className="space-y-5 bg-muted/50 p-5 rounded-xl border border-border">
                     <div>
-                      <Label className="text-sm font-medium text-slate-700 mb-1.5 block">À propos du poste</Label>
+                      <Label className="text-sm font-medium text-muted-foreground mb-1.5 block">À propos du poste</Label>
                       <Textarea 
                         value={formData.about_the_role} 
                         onChange={(e) => setFormData({ ...formData, about_the_role: e.target.value })} 
                         rows={3} 
-                        className="bg-white resize-y"
+                        className="bg-card resize-y"
                         placeholder="• Responsabilité 1&#10;• Responsabilité 2"
                       />
                     </div>
                     <div>
-                      <Label className="text-sm font-medium text-slate-700 mb-1.5 block">Ce que vous apportez (Prérequis)</Label>
+                      <Label className="text-sm font-medium text-muted-foreground mb-1.5 block">Ce que vous apportez (Prérequis)</Label>
                       <Textarea 
                         value={formData.what_you_bring} 
                         onChange={(e) => setFormData({ ...formData, what_you_bring: e.target.value })} 
                         rows={3} 
-                        className="bg-white resize-y"
+                        className="bg-card resize-y"
                         placeholder="• Compétence 1&#10;• Compétence 2"
                       />
                     </div>
                     <div>
-                      <Label className="text-sm font-medium text-slate-700 mb-1.5 block">Objectifs à court terme</Label>
+                      <Label className="text-sm font-medium text-muted-foreground mb-1.5 block">Objectifs à court terme</Label>
                       <Textarea 
                         value={formData.short_term_goals} 
                         onChange={(e) => setFormData({ ...formData, short_term_goals: e.target.value })} 
                         rows={3} 
-                        className="bg-white resize-y"
+                        className="bg-card resize-y"
                         placeholder="• Objectif 1&#10;• Objectif 2"
                       />
                     </div>
                     <div>
-                      <Label className="text-sm font-medium text-slate-700 mb-1.5 block">Pourquoi vous allez adorer travailler ici</Label>
+                      <Label className="text-sm font-medium text-muted-foreground mb-1.5 block">Pourquoi vous allez adorer travailler ici</Label>
                       <Textarea 
                         value={formData.why_you_might_love} 
                         onChange={(e) => setFormData({ ...formData, why_you_might_love: e.target.value })} 
                         rows={3} 
-                        className="bg-white resize-y"
+                        className="bg-card resize-y"
                         placeholder="• Avantage 1&#10;• Avantage 2"
                       />
                     </div>
@@ -319,8 +319,8 @@ const DashboardCareers = () => {
       </div>
       </div>
 
-      <Card className="bg-white border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl">
-        <CardHeader className="border-b border-gray-100 bg-gray-50/30 rounded-t-2xl pb-4">
+      <Card className="bg-card border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl">
+        <CardHeader className="border-b border-border bg-muted/30 rounded-t-2xl pb-4">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <CardTitle className="flex items-center gap-2 text-lg">
@@ -333,7 +333,7 @@ const DashboardCareers = () => {
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Rechercher une offre..."
-                className="pl-9 bg-white w-full md:w-[250px] rounded-xl"
+                className="pl-9 bg-card w-full md:w-[250px] rounded-xl"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -346,14 +346,14 @@ const DashboardCareers = () => {
               {filteredCareers.map((career) => (
                 <div 
                   key={career.id} 
-                  className="group relative flex flex-col bg-white border border-gray-200 rounded-xl p-5 hover:border-primary/30 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300"
+                  className="group relative flex flex-col bg-card border border-border rounded-xl p-5 hover:border-primary/30 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300"
                 >
                   <div className="absolute top-4 right-4 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                      <Button 
                         variant="outline" 
                         size="icon" 
                         onClick={() => handleEdit(career)} 
-                        className="h-8 w-8 text-slate-500 hover:text-primary hover:bg-primary/5 hover:border-primary/20 bg-white shadow-sm"
+                        className="h-8 w-8 text-muted-foreground hover:text-primary hover:bg-primary/5 hover:border-primary/20 bg-card shadow-sm"
                       >
                         <Pencil className="h-3.5 w-3.5" />
                       </Button>
@@ -362,12 +362,12 @@ const DashboardCareers = () => {
                           <Button 
                             variant="outline" 
                             size="icon" 
-                            className="h-8 w-8 text-slate-500 hover:text-destructive hover:bg-destructive/10 hover:border-destructive/20 bg-white shadow-sm"
+                            className="h-8 w-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10 hover:border-destructive/20 bg-card shadow-sm"
                           >
                             <Trash2 className="h-3.5 w-3.5" />
                           </Button>
                         </AlertDialogTrigger>
-                        <AlertDialogContent className="bg-white">
+                        <AlertDialogContent className="bg-card">
                           <AlertDialogHeader>
                             <AlertDialogTitle>Êtes-vous absolument sûr ?</AlertDialogTitle>
                             <AlertDialogDescription>
@@ -375,7 +375,7 @@ const DashboardCareers = () => {
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                           <AlertDialogFooter>
-                            <AlertDialogCancel className="bg-white text-slate-700">Annuler</AlertDialogCancel>
+                            <AlertDialogCancel className="bg-card text-muted-foreground">Annuler</AlertDialogCancel>
                             <AlertDialogAction onClick={() => deleteCareer.mutate(career.id)} className="bg-destructive text-white hover:bg-destructive/90">
                               Supprimer l'offre
                             </AlertDialogAction>
@@ -385,12 +385,12 @@ const DashboardCareers = () => {
                   </div>
 
                   <div className="mb-4 pr-16">
-                    <h3 className="font-bold text-lg text-slate-800 leading-tight group-hover:text-primary transition-colors">{career.title}</h3>
+                    <h3 className="font-bold text-lg text-foreground leading-tight group-hover:text-primary transition-colors">{career.title}</h3>
                     <div className="flex flex-wrap gap-2 mt-3">
-                      <Badge variant="outline" className="bg-gray-50 font-normal text-xs text-slate-600 border-gray-200">
+                      <Badge variant="outline" className="bg-muted font-normal text-xs text-muted-foreground border-border">
                         {career.type === 'Full-time' ? 'Temps plein' : career.type === 'Part-time' ? 'Temps partiel' : career.type === 'Internship' ? 'Stage' : 'Freelance'}
                       </Badge>
-                      <Badge variant="outline" className="bg-gray-50 font-normal text-xs text-slate-600 border-gray-200 flex items-center gap-1">
+                      <Badge variant="outline" className="bg-muted font-normal text-xs text-muted-foreground border-border flex items-center gap-1">
                         <MapPin className="w-3 h-3" /> {career.location}
                       </Badge>
                       {getApplicationCount(career.id) > 0 && (
@@ -401,13 +401,13 @@ const DashboardCareers = () => {
                     </div>
                   </div>
                   
-                  <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
-                    <span className="text-xs text-slate-400">
+                  <div className="mt-auto pt-4 border-t border-border flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">
                       Ajouté le {format(new Date(career.created_at), "dd/MM/yyyy")}
                     </span>
                     <Badge 
                       variant={career.is_active ? "default" : "secondary"}
-                      className={`font-medium ${career.is_active ? "bg-green-100 text-green-700 hover:bg-green-200" : "bg-gray-100 text-gray-500"}`}
+                      className={`font-medium ${career.is_active ? "bg-green-100 text-green-700 hover:bg-green-200" : "bg-muted text-muted-foreground"}`}
                     >
                       {career.is_active ? "En ligne" : "Fermé"}
                     </Badge>
@@ -416,12 +416,12 @@ const DashboardCareers = () => {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl">
-              <div className="h-16 w-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
-                <Briefcase className="h-8 w-8 text-gray-300" />
+            <div className="text-center py-12 flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl">
+              <div className="h-16 w-16 bg-muted rounded-full flex items-center justify-center mb-4">
+                <Briefcase className="h-8 w-8 text-muted-foreground" />
               </div>
-              <h3 className="text-lg font-medium text-slate-700">Aucune offre d'emploi</h3>
-              <p className="text-sm text-slate-500 mt-1 max-w-sm mx-auto">
+              <h3 className="text-lg font-medium text-muted-foreground">Aucune offre d'emploi</h3>
+              <p className="text-sm text-muted-foreground mt-1 max-w-sm mx-auto">
                 Commencez par ajouter votre premier poste ouvert en cliquant sur le bouton ci-dessus.
               </p>
             </div>

@@ -69,7 +69,7 @@ export function DashboardSidebar() {
       className={`${collapsed ? "w-14" : "w-60"} border-r-0 shadow-[4px_0_24px_rgba(0,0,0,0.02)] transition-all duration-300 z-30`}
       collapsible="icon"
     >
-      <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-white/80 backdrop-blur-md">
+      <div className="flex items-center justify-between p-4 border-b border-border bg-card/80 backdrop-blur-md">
         {!collapsed && (
           <Link to="/">
             <Logo />
@@ -78,7 +78,7 @@ export function DashboardSidebar() {
         <SidebarTrigger className={collapsed ? "mx-auto" : ""} />
       </div>
 
-      <SidebarContent className="pt-4 bg-white">
+      <SidebarContent className="pt-4 bg-card">
         <SidebarGroup>
           <SidebarGroupLabel className={`${collapsed ? "sr-only" : ""} text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 px-4`}>
             {loading ? "Chargement..." : isAdmin ? "Menu Administrateur" : "Menu Utilisateur"}
@@ -99,7 +99,7 @@ export function DashboardSidebar() {
                       className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 ${
                         isActive(item.url)
                           ? "bg-primary/10 text-primary font-medium shadow-sm" 
-                          : "text-muted-foreground hover:bg-slate-50 hover:text-primary hover:translate-x-1"
+                          : "text-muted-foreground hover:bg-muted/30 hover:text-primary hover:translate-x-1"
                       }`}
                     >
                       <item.icon className="h-5 w-5 flex-shrink-0" />
@@ -119,7 +119,7 @@ export function DashboardSidebar() {
                 <SidebarMenuButton asChild tooltip="Retour au site">
                   <Link
                     to="/"
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 text-muted-foreground hover:bg-slate-50 hover:text-primary hover:translate-x-1"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 text-muted-foreground hover:bg-muted/30 hover:text-primary hover:translate-x-1"
                   >
                     <Home className="h-5 w-5 flex-shrink-0" />
                     {!collapsed && <span>Retour au site</span>}

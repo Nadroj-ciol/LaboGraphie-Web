@@ -149,8 +149,8 @@ const DashboardApplications = () => {
         </div>
       </div>
 
-      <Card className="bg-white border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl">
-        <CardHeader className="border-b border-gray-100 bg-gray-50/30 rounded-t-2xl pb-4">
+      <Card className="bg-card border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl">
+        <CardHeader className="border-b border-border bg-muted/30 rounded-t-2xl pb-4">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <CardTitle className="text-lg">
               Toutes les candidatures <span className="bg-primary/10 text-primary text-sm px-2 py-0.5 rounded-full ml-2">{filteredApps?.length || 0}</span>
@@ -161,14 +161,14 @@ const DashboardApplications = () => {
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   placeholder="Rechercher (nom, email)..."
-                  className="pl-9 bg-white w-[250px]"
+                  className="pl-9 bg-card w-[250px]"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
               
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-[150px] bg-white">
+                <SelectTrigger className="w-[150px] bg-card">
                   <SelectValue placeholder="Statut" />
                 </SelectTrigger>
                 <SelectContent>
@@ -182,7 +182,7 @@ const DashboardApplications = () => {
               </Select>
               
               <Select value={jobFilter} onValueChange={setJobFilter}>
-                <SelectTrigger className="w-[200px] bg-white truncate">
+                <SelectTrigger className="w-[200px] bg-card truncate">
                   <SelectValue placeholder="Poste" />
                 </SelectTrigger>
                 <SelectContent>
@@ -197,13 +197,13 @@ const DashboardApplications = () => {
         </CardHeader>
         <CardContent className="p-0">
           <Table>
-            <TableHeader className="bg-gray-50/50">
-              <TableRow className="border-gray-100 hover:bg-transparent">
-                <TableHead className="font-semibold text-slate-700 py-4 px-6">Candidat</TableHead>
-                <TableHead className="font-semibold text-slate-700 py-4">Poste</TableHead>
-                <TableHead className="font-semibold text-slate-700 py-4">Reçu le</TableHead>
-                <TableHead className="font-semibold text-slate-700 py-4">Statut</TableHead>
-                <TableHead className="font-semibold text-slate-700 py-4 text-right px-6">Actions</TableHead>
+            <TableHeader className="bg-muted/50">
+              <TableRow className="border-border hover:bg-transparent">
+                <TableHead className="font-semibold text-muted-foreground py-4 px-6">Candidat</TableHead>
+                <TableHead className="font-semibold text-muted-foreground py-4">Poste</TableHead>
+                <TableHead className="font-semibold text-muted-foreground py-4">Reçu le</TableHead>
+                <TableHead className="font-semibold text-muted-foreground py-4">Statut</TableHead>
+                <TableHead className="font-semibold text-muted-foreground py-4 text-right px-6">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -215,12 +215,12 @@ const DashboardApplications = () => {
                 </TableRow>
               ) : (
                 filteredApps.map((app) => (
-                  <TableRow key={app.id} className="border-gray-100 hover:bg-gray-50/50 cursor-pointer transition-colors" onClick={() => setSelectedApp(app)}>
+                  <TableRow key={app.id} className="border-border hover:bg-muted/50 cursor-pointer transition-colors" onClick={() => setSelectedApp(app)}>
                     <TableCell className="px-6 py-4">
-                      <div className="font-medium text-slate-900">{app.full_name}</div>
+                      <div className="font-medium text-foreground">{app.full_name}</div>
                       <div className="text-sm text-muted-foreground">{app.email}</div>
                     </TableCell>
-                    <TableCell className="font-medium text-slate-700">{app.job_title}</TableCell>
+                    <TableCell className="font-medium text-muted-foreground">{app.job_title}</TableCell>
                     <TableCell className="text-sm text-muted-foreground">
                       Il y a {formatDistanceToNow(new Date(app.created_at), { locale: fr })}
                     </TableCell>
@@ -241,7 +241,7 @@ const DashboardApplications = () => {
       </Card>
 
       <Sheet open={!!selectedApp} onOpenChange={(open) => !open && setSelectedApp(null)}>
-        <SheetContent className="sm:max-w-xl overflow-y-auto w-full bg-white">
+        <SheetContent className="sm:max-w-xl overflow-y-auto w-full bg-card">
           {selectedApp && (
             <>
               <SheetHeader className="mb-6 border-b pb-6">
@@ -252,8 +252,8 @@ const DashboardApplications = () => {
                   Candidat(e) pour le poste : {selectedApp.job_title}
                 </SheetDescription>
                 
-                <div className="mt-4 flex items-center justify-between bg-gray-50 p-4 rounded-xl">
-                  <span className="text-sm font-medium text-slate-700">Changer le statut :</span>
+                <div className="mt-4 flex items-center justify-between bg-muted p-4 rounded-xl">
+                  <span className="text-sm font-medium text-muted-foreground">Changer le statut :</span>
                   <Select
                     value={selectedApp.status}
                     onValueChange={(value) => {
@@ -261,7 +261,7 @@ const DashboardApplications = () => {
                       setSelectedApp({ ...selectedApp, status: value });
                     }}
                   >
-                    <SelectTrigger className="w-[180px] bg-white font-medium">
+                    <SelectTrigger className="w-[180px] bg-card font-medium">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -278,16 +278,16 @@ const DashboardApplications = () => {
               <div className="space-y-8">
                 {/* Contact Info */}
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">Coordonnées</h3>
+                  <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-4">Coordonnées</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="flex items-center gap-3 bg-gray-50/50 p-3 rounded-xl border border-gray-100">
+                    <div className="flex items-center gap-3 bg-muted/50 p-3 rounded-xl border border-border">
                       <Mail className="h-5 w-5 text-primary" />
                       <div>
                         <p className="text-xs text-muted-foreground">Email</p>
                         <a href={`mailto:${selectedApp.email}`} className="text-sm font-medium hover:underline">{selectedApp.email}</a>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3 bg-gray-50/50 p-3 rounded-xl border border-gray-100">
+                    <div className="flex items-center gap-3 bg-muted/50 p-3 rounded-xl border border-border">
                       <Phone className="h-5 w-5 text-primary" />
                       <div>
                         <p className="text-xs text-muted-foreground">Téléphone</p>
@@ -300,19 +300,19 @@ const DashboardApplications = () => {
                 {/* Pro Info */}
                 {(selectedApp.current_company || selectedApp.linkedin_url) && (
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">Profil Professionnel</h3>
+                    <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-4">Profil Professionnel</h3>
                     <div className="space-y-3">
                       {selectedApp.current_company && (
                         <div className="flex items-center gap-3 text-sm">
                           <Building2 className="h-4 w-4 text-muted-foreground" />
-                          <span className="font-medium text-slate-700">Entreprise actuelle :</span>
+                          <span className="font-medium text-muted-foreground">Entreprise actuelle :</span>
                           <span>{selectedApp.current_company}</span>
                         </div>
                       )}
                       {selectedApp.linkedin_url && (
                         <div className="flex items-center gap-3 text-sm">
                           <Linkedin className="h-4 w-4 text-[#0A66C2]" />
-                          <span className="font-medium text-slate-700">LinkedIn :</span>
+                          <span className="font-medium text-muted-foreground">LinkedIn :</span>
                           <a href={selectedApp.linkedin_url.startsWith('http') ? selectedApp.linkedin_url : `https://${selectedApp.linkedin_url}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline truncate max-w-[300px]">
                             {selectedApp.linkedin_url}
                           </a>
@@ -324,10 +324,10 @@ const DashboardApplications = () => {
 
                 {/* Note / Cover Letter */}
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">Note / Motivation</h3>
+                  <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-4">Note / Motivation</h3>
                   <div className="bg-primary/5 border border-primary/10 rounded-xl p-5">
                     {selectedApp.note ? (
-                      <p className="text-sm text-slate-700 whitespace-pre-wrap leading-relaxed">{selectedApp.note}</p>
+                      <p className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed">{selectedApp.note}</p>
                     ) : (
                       <p className="text-sm text-muted-foreground italic">Aucune note fournie par le candidat.</p>
                     )}
@@ -336,10 +336,10 @@ const DashboardApplications = () => {
 
                 {/* CV */}
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-4 flex items-center gap-2">
                     <FileText className="h-4 w-4" /> Curriculum Vitae (CV)
                   </h3>
-                  <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col items-center justify-center text-center">
+                  <div className="bg-muted border border-border rounded-xl p-6 flex flex-col items-center justify-center text-center">
                     <CVLink cvLink={selectedApp.cv_link} />
                   </div>
                 </div>

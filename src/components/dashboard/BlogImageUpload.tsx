@@ -55,7 +55,7 @@ export function BlogImageUpload({ url, onUpload }: BlogImageUploadProps) {
     <div className="w-full">
       <label 
         className={`relative flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-xl cursor-pointer overflow-hidden transition-colors ${
-          url ? "border-primary/50 bg-primary/5" : "border-gray-300 bg-gray-50 hover:bg-gray-100"
+          url ? "border-primary/50 bg-primary/5" : "border-border bg-muted hover:bg-muted"
         }`}
       >
         {uploading ? (
@@ -74,10 +74,10 @@ export function BlogImageUpload({ url, onUpload }: BlogImageUploadProps) {
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center pt-5 pb-6 text-muted-foreground z-10">
-            <div className="p-3 bg-white rounded-full shadow-sm mb-3">
+            <div className="p-3 bg-card rounded-full shadow-sm mb-3">
               <ImageIcon className="w-6 h-6 text-primary" />
             </div>
-            <p className="mb-1 text-sm font-semibold text-slate-700">Cliquez pour ajouter une image de couverture</p>
+            <p className="mb-1 text-sm font-semibold text-muted-foreground">Cliquez pour ajouter une image de couverture</p>
             <p className="text-xs">PNG, JPG ou WEBP (Max. 5Mo)</p>
           </div>
         )}
