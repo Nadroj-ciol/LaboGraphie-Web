@@ -5,19 +5,21 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/useAuth";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { z } from "zod";
 
-const passwordSchema = z.string().min(6, "Le mot de passe doit contenir au moins 6 caractères");
-
 const UpdatePassword = () => {
+  const { t } = useTranslation();
+  const passwordSchema = z.string().min(6, t("auth.passwordTooShort"));
+
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | undefined>();
-  
+
   const { updatePassword } = useAuth();
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,30 +38,30 @@ const UpdatePassword = () => {
       if (updateError) {
         toast.error(updateError.message);
       } else {
-        toast.success("Mot de passe mis à jour avec succès !");
+        toast.success(t("updatePassword.success"));
         navigate("/dashboard");
       }
     } catch (err) {
-      toast.error("Une erreur inattendue est survenue");
+      toast.error(t("updatePassword.unexpectedError"));
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col">
       <Header />
-      
+
       <div className="flex-1 flex items-center justify-center py-20 px-4">
-        <div className="w-full max-w-md bg-[#f4f4f7] rounded-3xl p-8 shadow-sm">
-          <h2 className="text-2xl font-bold text-primary text-center mb-2">Nouveau Mot de Passe</h2>
+        <div className="w-full max-w-md bg-muted rounded-3xl p-8 shadow-sm">
+          <h2 className="text-2xl font-bold text-primary text-center mb-2">{t("updatePassword.title")}</h2>
           <p className="text-muted-foreground text-center mb-8">
-            Veuillez saisir votre nouveau mot de passe ci-dessous.
+            {t("updatePassword.description")}
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <Label htmlFor="password">Nouveau mot de passe</Label>
+              <Label htmlFor="password">{t("updatePassword.label")}</Label>
               <Input
                 id="password"
                 type="password"
@@ -79,7 +81,7 @@ const UpdatePassword = () => {
               className="w-full rounded-full"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Mise à jour..." : "Enregistrer le mot de passe"}
+              {isSubmitting ? t("updatePassword.updating") : t("updatePassword.submit")}
             </Button>
           </form>
         </div>

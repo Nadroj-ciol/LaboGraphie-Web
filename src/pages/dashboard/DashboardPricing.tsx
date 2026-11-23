@@ -66,6 +66,20 @@ const DashboardPricing = () => {
   };
 
   const handleSaveAll = async () => {
+    if (!Number.isFinite(rates.EUR) || rates.EUR <= 0 || !Number.isFinite(rates.USD) || rates.USD <= 0) {
+      toast.error("Les taux de change EUR et USD doivent être strictement supérieurs à 0.");
+      return;
+    }
+
+    const hasInvalidTjm = services.some((s) => {
+      const current = pricingState[s.slug];
+      return !current || !Number.isFinite(current.local) || current.local < 0 || !Number.isFinite(current.intl) || current.intl < 0;
+    });
+    if (hasInvalidTjm) {
+      toast.error("Tous les TJM doivent être des montants positifs ou nuls.");
+      return;
+    }
+
     setIsSaving(true);
     try {
       // Save Exchange Rates

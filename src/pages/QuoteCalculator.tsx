@@ -18,7 +18,9 @@ import { useUserProfile } from "@/hooks/useUserProfile";
 import { useCreateQuoteRequest } from "@/hooks/useQuoteRequests";
 import { Calendar, Calculator, Check, Clock, DollarSign, Phone, Wrench, Globe } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
 import { useServicePricing, useExchangeRates, DEFAULT_EXCHANGE_RATES } from "@/hooks/usePricing";
@@ -37,15 +39,21 @@ export interface QuoteData {
   currency: string;
 }
 
+interface ComplexityOptionText {
+  label: string;
+  description: string;
+}
+
 const QuoteCalculator = () => {
-  const navigate = useNavigate();
-  const { user } = useAuth();
+  const { t } = useTranslation();
+  const navigate = useLocalizedNavigate();
+  const { user, isAdmin } = useAuth();
   const { data: profile } = useUserProfile(user?.id);
   const createQuoteMutation = useCreateQuoteRequest();
-  
+
   const { data: servicePricingData = [] } = useServicePricing();
   const { data: exchangeRates = DEFAULT_EXCHANGE_RATES } = useExchangeRates();
-  
+
   const [selectedService, setSelectedService] = useState<string>("");
   const [complexity, setComplexity] = useState<number>(0);
   const [urgency, setUrgency] = useState<"standard" | "urgent" | "emergency">("standard");
@@ -62,6 +70,9 @@ const QuoteCalculator = () => {
   }, [profile]);
 
   const service = services.find((s) => s.slug === selectedService);
+  const complexityTexts = service
+    ? (t(`services.items.${service.slug}.complexityOptions`, { returnObjects: true }) as ComplexityOptionText[])
+    : [];
 
   const urgencyMultiplier = {
     standard: 1,
@@ -79,7 +90,7 @@ const QuoteCalculator = () => {
 
     // Marché local (FCFA) vs International (EUR/USD)
     const tjm = currency === "FCFA" ? localTJM : intlTJM;
-    
+
     const complexityOption = service.complexityOptions[complexity];
     if (!complexityOption) return { min: 0, max: 0, daysMin: 0, daysMax: 0 };
 
@@ -104,9 +115,11 @@ const QuoteCalculator = () => {
     if (!service) return;
 
     if (user && !phone.trim()) {
-      toast.error("Veuillez saisir votre numéro de téléphone");
+      toast.error(t("quote.phoneRequired"));
       return;
     }
+
+    const complexityLabel = complexityTexts[complexity]?.label || "";
 
     if (user) {
       setIsSubmitting(true);
@@ -118,8 +131,8 @@ const QuoteCalculator = () => {
           phone: phone.trim(),
           email: user.email || null,
           service_slug: service.slug,
-          service_title: service.title,
-          complexity_label: service.complexityOptions[complexity]?.label || "",
+          service_title: t(`services.items.${service.slug}.title`),
+          complexity_label: complexityLabel,
           complexity_multiplier: 1,
           estimated_hours: avgDays, // Saving avg days instead of hours
           urgency,
@@ -130,12 +143,12 @@ const QuoteCalculator = () => {
           notes: null,
           service_date: serviceDate || null,
         });
-        
-        toast.success("Demande de devis envoyée ! Retrouvez-la dans votre tableau de bord.");
-        navigate("/dashboard/quotes");
+
+        toast.success(t("quote.successSubmit"));
+        navigate(isAdmin ? "/dashboard/quotes" : "/dashboard/my-quotes");
       } catch (error) {
         console.error("Error creating quote:", error);
-        toast.error("Échec de l'envoi du devis. Veuillez réessayer.");
+        toast.error(t("quote.errorSubmit"));
       } finally {
         setIsSubmitting(false);
       }
@@ -145,8 +158,8 @@ const QuoteCalculator = () => {
     const avgDays = Math.round((estimate.daysMin + estimate.daysMax) / 2);
     const quoteData: QuoteData = {
       serviceSlug: service.slug,
-      serviceTitle: service.title,
-      complexityLabel: service.complexityOptions[complexity]?.label || "",
+      serviceTitle: t(`services.items.${service.slug}.title`),
+      complexityLabel,
       complexityMultiplier: 1,
       estimatedHours: avgDays,
       urgency,
@@ -159,6 +172,8 @@ const QuoteCalculator = () => {
     navigate("/contact", { state: { quoteData } });
   };
 
+  const urgencyServiceLabel = urgency === "standard" ? t("quote.serviceStandard") : urgency === "urgent" ? t("quote.serviceUrgent") : t("quote.serviceEmergency");
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -169,73 +184,72 @@ const QuoteCalculator = () => {
           <FadeIn>
             <div className="flex items-center justify-center gap-2 text-sm mb-6">
               <Link to="/" className="text-muted-foreground hover:text-foreground">
-                Accueil
+                {t("common.nav.home")}
               </Link>
               <span className="text-muted-foreground">/</span>
-              <span className="text-primary font-medium">Calculateur de devis</span>
+              <span className="text-primary font-medium">{t("quote.breadcrumbLabel")}</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Obtenez Votre Estimation Gratuite
+              {t("quote.title")}
             </h1>
 
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Utilisez notre calculateur intelligent pour obtenir une estimation de votre projet.
-              Sélectionnez votre devise, votre service, le niveau de complexité, et obtenez une fourchette de prix réaliste.
+              {t("quote.description")}
             </p>
           </FadeIn>
         </div>
       </section>
 
       {/* Calculator Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-background">
         <div className="container-custom section-padding">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Calculator Form */}
             <FadeIn>
-              <div className="bg-[#f3f3f6] sticky top-6 h-max rounded-2xl p-8 shadow-sm">
+              <div className="bg-muted sticky top-6 h-max rounded-2xl p-8 shadow-sm">
                 <div className="flex items-center gap-3 mb-8">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                     <Calculator className="w-6 h-6 text-primary" />
                   </div>
-                  <h2 className="text-2xl font-bold text-black">Calculateur de Devis</h2>
+                  <h2 className="text-2xl font-bold text-foreground">{t("quote.calculatorTitle")}</h2>
                 </div>
 
                 <div className="space-y-8">
                   {/* Currency Selection */}
                   <div className="space-y-3">
-                    <Label className="text-base font-medium text-black">
+                    <Label className="text-base font-medium text-foreground">
                       <Globe className="w-4 h-4 inline mr-2" />
-                      Marché / Devise
+                      {t("quote.currencyLabel")}
                     </Label>
                     <Select value={currency} onValueChange={(v) => setCurrency(v as Currency)}>
-                      <SelectTrigger className="h-14 text-base text-black bg-white">
-                        <SelectValue placeholder="Choisissez une devise..." />
+                      <SelectTrigger className="h-14 text-base text-foreground bg-background">
+                        <SelectValue placeholder={t("quote.currencyPlaceholder")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="FCFA">Afrique Centrale (XAF / FCFA)</SelectItem>
-                        <SelectItem value="EUR">Europe (EUR)</SelectItem>
-                        <SelectItem value="USD">International (USD)</SelectItem>
+                        <SelectItem value="FCFA">{t("quote.currencyFcfa")}</SelectItem>
+                        <SelectItem value="EUR">{t("quote.currencyEur")}</SelectItem>
+                        <SelectItem value="USD">{t("quote.currencyUsd")}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   {/* Service Selection */}
                   <div className="space-y-3">
-                    <Label className="text-base font-medium text-black">
-                      Sélectionner un Service
+                    <Label className="text-base font-medium text-foreground">
+                      {t("quote.serviceLabel")}
                     </Label>
                     <Select value={selectedService} onValueChange={(val) => {
                       setSelectedService(val);
                       setComplexity(0); // Reset complexity when service changes
                     }}>
-                      <SelectTrigger className="h-14 text-base text-black bg-white">
-                        <SelectValue placeholder="Choisissez un service..." />
+                      <SelectTrigger className="h-14 text-base text-foreground bg-background">
+                        <SelectValue placeholder={t("quote.servicePlaceholder")} />
                       </SelectTrigger>
                       <SelectContent>
                         {services.map((s) => (
                           <SelectItem key={s.slug} value={s.slug} className="text-base">
-                            {s.title}
+                            {t(`services.items.${s.slug}.title`)}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -246,8 +260,8 @@ const QuoteCalculator = () => {
                   {service && (
                     <FadeIn>
                       <div className="space-y-3">
-                        <Label className="text-base font-medium text-black">
-                          Envergure du Projet
+                        <Label className="text-base font-medium text-foreground">
+                          {t("quote.complexityLabel")}
                         </Label>
                         <div className="grid gap-3">
                           {service.complexityOptions.map((option, index) => (
@@ -261,9 +275,9 @@ const QuoteCalculator = () => {
                             >
                               <div className="flex items-center justify-between">
                                 <div>
-                                  <p className="font-semibold text-black">{option.label}</p>
+                                  <p className="font-semibold text-foreground">{complexityTexts[index]?.label}</p>
                                   <p className="text-sm text-muted-foreground">
-                                    {option.description}
+                                    {complexityTexts[index]?.description}
                                   </p>
                                 </div>
                                 {complexity === index && (
@@ -283,8 +297,8 @@ const QuoteCalculator = () => {
                   {service && (
                     <FadeIn delay={100}>
                       <div className="space-y-3">
-                        <Label className="text-base font-medium text-black">
-                          Urgence du Projet
+                        <Label className="text-base font-medium text-foreground">
+                          {t("quote.urgencyLabel")}
                         </Label>
                         <div className="grid grid-cols-3 gap-3">
                           <button
@@ -295,8 +309,8 @@ const QuoteCalculator = () => {
                               }`}
                           >
                             <Clock className="w-5 h-5 mx-auto mb-2 text-muted-foreground" />
-                            <p className="font-semibold text-sm text-primary">Standard</p>
-                            <p className="text-xs text-muted-foreground">Tarif normal</p>
+                            <p className="font-semibold text-sm text-primary">{t("quote.urgencyStandard")}</p>
+                            <p className="text-xs text-muted-foreground">{t("quote.urgencyStandardRate")}</p>
                           </button>
                           <button
                             onClick={() => setUrgency("urgent")}
@@ -306,8 +320,8 @@ const QuoteCalculator = () => {
                               }`}
                           >
                             <Clock className="w-5 h-5 mx-auto mb-2 text-yellow-600" />
-                            <p className="font-semibold text-sm text-primary">Urgent</p>
-                            <p className="text-xs text-muted-foreground">Tarif +25%</p>
+                            <p className="font-semibold text-sm text-primary">{t("quote.urgencyUrgent")}</p>
+                            <p className="text-xs text-muted-foreground">{t("quote.urgencyUrgentRate")}</p>
                           </button>
                           <button
                             onClick={() => setUrgency("emergency")}
@@ -317,8 +331,8 @@ const QuoteCalculator = () => {
                               }`}
                           >
                             <Clock className="w-5 h-5 mx-auto mb-2 text-destructive" />
-                            <p className="font-semibold text-sm text-primary">Urgence</p>
-                            <p className="text-xs text-muted-foreground">Tarif +50%</p>
+                            <p className="font-semibold text-sm text-primary">{t("quote.urgencyEmergency")}</p>
+                            <p className="text-xs text-muted-foreground">{t("quote.urgencyEmergencyRate")}</p>
                           </button>
                         </div>
                       </div>
@@ -329,16 +343,16 @@ const QuoteCalculator = () => {
                   {service && user && (
                     <FadeIn delay={200}>
                       <div className="space-y-3">
-                        <Label className="text-base font-medium text-black">
+                        <Label className="text-base font-medium text-foreground">
                           <Phone className="w-4 h-4 inline mr-2" />
-                          Numéro de Contact *
+                          {t("quote.phoneLabel")}
                         </Label>
                         <Input
                           type="tel"
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
                           placeholder="+237 6XX XX XX XX"
-                          className="h-14 text-base text-black bg-white"
+                          className="h-14 text-base text-foreground bg-background"
                         />
                       </div>
                     </FadeIn>
@@ -348,16 +362,16 @@ const QuoteCalculator = () => {
                   {service && user && (
                     <FadeIn delay={300}>
                       <div className="space-y-3">
-                        <Label className="text-base font-medium text-black">
+                        <Label className="text-base font-medium text-foreground">
                           <Calendar className="w-4 h-4 inline mr-2" />
-                          Date de Démarrage Souhaitée
+                          {t("quote.dateLabel")}
                         </Label>
                         <Input
                           type="date"
                           value={serviceDate}
                           onChange={(e) => setServiceDate(e.target.value)}
                           min={new Date().toISOString().split("T")[0]}
-                          className="h-14 text-base text-black bg-white"
+                          className="h-14 text-base text-foreground bg-background"
                         />
                       </div>
                     </FadeIn>
@@ -374,13 +388,13 @@ const QuoteCalculator = () => {
                     <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
                       <DollarSign className="w-6 h-6" />
                     </div>
-                    <h2 className="text-2xl font-bold">Votre Estimation</h2>
+                    <h2 className="text-2xl font-bold">{t("quote.estimateTitle")}</h2>
                   </div>
 
                   {service ? (
                     <div className="space-y-6">
                       <div>
-                        <p className="text-primary-foreground/70 mb-2">Fourchette de Prix Estimée</p>
+                        <p className="text-primary-foreground/70 mb-2">{t("quote.priceRangeLabel")}</p>
                         <p className="text-3xl lg:text-4xl font-bold text-white">
                           {formatCurrency(estimate.min, currency, exchangeRates)} - {formatCurrency(estimate.max, currency, exchangeRates)}
                         </p>
@@ -390,20 +404,20 @@ const QuoteCalculator = () => {
                         <div className="flex items-center gap-3">
                           <Wrench className="w-5 h-5 text-accent shrink-0" />
                           <div>
-                            <p className="font-medium text-white">{service.title}</p>
+                            <p className="font-medium text-white">{t(`services.items.${service.slug}.title`)}</p>
                             <p className="text-sm text-primary-foreground/70">
-                              {service.complexityOptions[complexity]?.label}
+                              {complexityTexts[complexity]?.label}
                             </p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
                           <Clock className="w-5 h-5 text-accent shrink-0" />
-                          <p className="font-medium text-white">Temps estimé : {estimate.daysMin} à {estimate.daysMax} jours</p>
+                          <p className="font-medium text-white">{t("quote.estimatedTime", { min: estimate.daysMin, max: estimate.daysMax })}</p>
                         </div>
                         <div className="flex items-center gap-3">
                           <DollarSign className="w-5 h-5 text-accent shrink-0" />
                           <p className="font-medium capitalize text-white">
-                            Service {urgency === "standard" ? "standard" : urgency === "urgent" ? "urgent" : "en urgence"}
+                            {urgencyServiceLabel}
                           </p>
                         </div>
                       </div>
@@ -416,10 +430,10 @@ const QuoteCalculator = () => {
                           onClick={handleRequestQuote}
                           disabled={isSubmitting}
                         >
-                          {isSubmitting ? "Envoi en cours..." : "Demander un Devis Officiel"}
+                          {isSubmitting ? t("quote.sending") : t("quote.requestOfficialQuote")}
                         </Button>
                         <p className="text-center text-sm text-primary-foreground/60 mt-3">
-                          *Ceci est une estimation. Le prix final et le délai peuvent varier après étude détaillée du projet.
+                          {t("quote.disclaimer")}
                         </p>
                       </div>
                     </div>
@@ -427,15 +441,15 @@ const QuoteCalculator = () => {
                     <div className="text-center py-12">
                       <Calculator className="w-16 h-16 mx-auto mb-4 text-primary-foreground/30" />
                       <p className="text-xl font-medium text-primary-foreground/70">
-                        Sélectionnez un service pour voir votre estimation
+                        {t("quote.selectServicePrompt")}
                       </p>
                     </div>
                   )}
                 </div>
 
                 {/* Service Price List (TJM) */}
-                <div className="bg-[#f3f3f6] rounded-2xl p-6 shadow-sm">
-                  <h3 className="font-bold text-lg mb-4 text-black">Taux Journalier Moyen (TJM)</h3>
+                <div className="bg-muted rounded-2xl p-6 shadow-sm">
+                  <h3 className="font-bold text-lg mb-4 text-foreground">{t("quote.tjmTitle")}</h3>
                   <div className="space-y-3">
                     {services.map((s) => {
                       const dyn = servicePricingData.find(p => p.slug === s.slug);
@@ -447,9 +461,9 @@ const QuoteCalculator = () => {
                           className={`flex items-center justify-between p-3 rounded-lg transition-all ${selectedService === s.slug ? "bg-primary/10" : "hover:bg-primary/10"
                             }`}
                         >
-                          <span className="text-sm font-medium text-black">{s.title}</span>
+                          <span className="text-sm font-medium text-foreground">{t(`services.items.${s.slug}.title`)}</span>
                           <span className="text-sm font-bold text-primary">
-                            {formatCurrency(currency === "FCFA" ? tLoc : tIntl, currency, exchangeRates)} / j
+                            {formatCurrency(currency === "FCFA" ? tLoc : tIntl, currency, exchangeRates)} {t("quote.perDay")}
                           </span>
                         </div>
                       )
@@ -467,49 +481,48 @@ const QuoteCalculator = () => {
         <div className="container-custom section-padding">
           <FadeIn>
             <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
-                Comment Fonctionnent Nos Tarifs
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary-foreground">
+                {t("quote.howItWorksTitle")}
               </h2>
               <p className="text-white/70 text-lg mb-12">
-                Nous croyons en une tarification transparente. Nos estimations sont basées sur le Taux Journalier Moyen (TJM) du marché,
-                multiplié par la complexité (temps requis) et le niveau d'urgence.
+                {t("quote.howItWorksDescription")}
               </p>
             </div>
           </FadeIn>
 
           <div className="grid md:grid-cols-3 gap-8">
             <FadeIn delay={100}>
-              <div className="bg-[#f3f3f6] h-full rounded-2xl p-8 text-center">
+              <div className="bg-muted h-full rounded-2xl p-8 text-center">
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <Globe className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-black">Marché & Devise</h3>
+                <h3 className="text-xl font-bold mb-3 text-foreground">{t("quote.feature1Title")}</h3>
                 <p className="text-muted-foreground">
-                  Nos TJM sont ajustés selon les réalités économiques locales (Afrique Centrale) ou internationales.
+                  {t("quote.feature1Description")}
                 </p>
               </div>
             </FadeIn>
 
             <FadeIn delay={200}>
-              <div className="bg-[#f3f3f6] h-full rounded-2xl p-8 text-center">
+              <div className="bg-muted h-full rounded-2xl p-8 text-center">
                 <div className="w-16 h-16 rounded-full bg-accent/30 flex items-center justify-center mx-auto mb-4">
                   <Calculator className="w-8 h-8 text-primary/50" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-black">Envergure du Projet</h3>
+                <h3 className="text-xl font-bold mb-3 text-foreground">{t("quote.feature2Title")}</h3>
                 <p className="text-muted-foreground">
-                  La complexité détermine le nombre de jours nécessaires à notre équipe pour livrer un travail d'excellence.
+                  {t("quote.feature2Description")}
                 </p>
               </div>
             </FadeIn>
 
             <FadeIn delay={300}>
-              <div className="bg-[#f3f3f6] h-full rounded-2xl p-8 text-center">
+              <div className="bg-muted h-full rounded-2xl p-8 text-center">
                 <div className="w-16 h-16 rounded-full bg-yellow-600/30 flex items-center justify-center mx-auto mb-4">
                   <Clock className="w-8 h-8 text-yellow-600" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-black">Niveau d'Urgence</h3>
+                <h3 className="text-xl font-bold mb-3 text-foreground">{t("quote.feature3Title")}</h3>
                 <p className="text-muted-foreground">
-                  Les services urgents nécessitent de réallouer nos ressources rapidement, impactant la tarification globale.
+                  {t("quote.feature3Description")}
                 </p>
               </div>
             </FadeIn>

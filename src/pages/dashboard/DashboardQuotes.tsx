@@ -17,7 +17,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 import { toast } from "sonner";
 
 const statusColors: Record<string, string> = {
@@ -36,7 +36,7 @@ const urgencyColors: Record<string, string> = {
 
 export default function DashboardQuotes() {
   const { isAdmin, loading } = useAuth();
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
   const { data: quoteRequests, isLoading } = useAllQuoteRequests();
   const updateQuoteStatus = useUpdateQuoteRequestStatus();
   const deleteQuoteRequest = useDeleteQuoteRequest();
@@ -73,12 +73,12 @@ export default function DashboardQuotes() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-primary">Demandes de devis</h1>
-        <p className="text-black mt-1">
+        <p className="text-foreground mt-1">
           Gérez les demandes de devis des clients
         </p>
       </div>
 
-      <Card className="bg-white border border-gray-200">
+      <Card className="bg-card border border-border">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <DollarSign className="h-5 w-5" />
@@ -93,7 +93,7 @@ export default function DashboardQuotes() {
               {quoteRequests.map((quote) => (
                 <div
                   key={quote.id}
-                  className="flex flex-col md:flex-row md:items-center gap-4 p-4 rounded-lg border border-gray-200 bg-gray-50"
+                  className="flex flex-col md:flex-row md:items-center gap-4 p-4 rounded-lg border border-border bg-muted"
                 >
                   <div className="h-12 w-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
                     <DollarSign className="h-6 w-6 text-accent" />
@@ -102,7 +102,7 @@ export default function DashboardQuotes() {
                   <div className="flex-1 min-w-0 space-y-1">
                     <div className="flex items-center gap-2">
                       <p className="font-semibold text-primary">{quote.full_name}</p>
-                      <span className={`text-xs px-2 py-0.5 rounded-full ${urgencyColors[quote.urgency] || "bg-gray-100 text-gray-700"}`}>
+                      <span className={`text-xs px-2 py-0.5 rounded-full ${urgencyColors[quote.urgency] || "bg-muted text-muted-foreground"}`}>
                         {quote.urgency}
                       </span>
                     </div>
@@ -138,7 +138,7 @@ export default function DashboardQuotes() {
                       <select
                         value={quote.status}
                         onChange={(e) => handleQuoteStatusChange(quote.id, e.target.value)}
-                        className={`text-xs px-3 py-1.5 rounded-full border-0 cursor-pointer ${statusColors[quote.status] || "bg-gray-100 text-gray-700"}`}
+                        className={`text-xs px-3 py-1.5 rounded-full border-0 cursor-pointer ${statusColors[quote.status] || "bg-muted text-muted-foreground"}`}
                       >
                         <option value="pending">En attente</option>
                         <option value="contacted">Contacté</option>
@@ -149,10 +149,10 @@ export default function DashboardQuotes() {
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
                           <button className="p-2 hover:bg-destructive/10 rounded-lg transition-colors group">
-                            <Trash2 className="w-4 h-4 text-slate-400 group-hover:text-destructive" />
+                            <Trash2 className="w-4 h-4 text-muted-foreground group-hover:text-destructive" />
                           </button>
                         </AlertDialogTrigger>
-                        <AlertDialogContent className="bg-white">
+                        <AlertDialogContent className="bg-card">
                           <AlertDialogHeader>
                             <AlertDialogTitle>Êtes-vous absolument sûr ?</AlertDialogTitle>
                             <AlertDialogDescription>
@@ -160,7 +160,7 @@ export default function DashboardQuotes() {
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                           <AlertDialogFooter>
-                            <AlertDialogCancel className="bg-white text-slate-700">Annuler</AlertDialogCancel>
+                            <AlertDialogCancel className="bg-card text-muted-foreground">Annuler</AlertDialogCancel>
                             <AlertDialogAction onClick={() => handleDeleteQuote(quote.id)} className="bg-destructive text-white hover:bg-destructive/90">
                               Supprimer
                             </AlertDialogAction>

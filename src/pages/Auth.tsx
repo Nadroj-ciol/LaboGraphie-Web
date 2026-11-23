@@ -5,14 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { z } from "zod";
-
-const emailSchema = z.string().email("Veuillez saisir une adresse e-mail valide");
-const passwordSchema = z.string().min(6, "Le mot de passe doit contenir au moins 6 caractères");
-const phoneSchema = z.string().min(6, "Veuillez saisir un numéro de téléphone valide").max(15, "Le numéro de téléphone est trop long");
 
 const COUNTRY_CODES = [
   { code: "+237", country: "Cameroun (CM)" },
@@ -26,6 +24,11 @@ const COUNTRY_CODES = [
 ];
 
 const Auth = () => {
+  const { t } = useTranslation();
+  const emailSchema = z.string().email(t("auth.emailInvalid"));
+  const passwordSchema = z.string().min(6, t("auth.passwordTooShort"));
+  const phoneSchema = z.string().min(6, t("auth.phoneInvalid")).max(15, t("auth.phoneTooLong"));
+
   const [view, setView] = useState<"login" | "signup" | "forgot_password">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,15 +38,15 @@ const Auth = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string; phone?: string }>({});
 
-  const { user, isAdmin, signIn, signUp, resetPassword } = useAuth();
-  const navigate = useNavigate();
+  const { user, loading, isAdmin, signIn, signUp, resetPassword } = useAuth();
+  const navigate = useLocalizedNavigate();
 
   useEffect(() => {
-    // Only redirect if they navigate to /auth manually but are already logged in
-    if (user && !isSubmitting) {
-      navigate(isAdmin ? "/dashboard" : "/");
+    // Only redirect if they navigate to /auth manually and auth + role check are settled
+    if (user && !loading && !isSubmitting) {
+      navigate(isAdmin ? "/dashboard" : "/", { replace: true });
     }
-  }, [user, isAdmin, navigate, isSubmitting]);
+  }, [user, loading, isAdmin, navigate, isSubmitting]);
 
   const validateForm = () => {
     const newErrors: { email?: string; password?: string; phone?: string } = {};
@@ -83,30 +86,39 @@ const Auth = () => {
         const { error } = await signIn(email, password);
         if (error) {
           if (error.message.includes("Invalid login credentials")) {
-            toast.error("E-mail ou mot de passe invalide");
+            toast.error(t("auth.invalidCredentials"));
           } else if (error.message.includes("Email not confirmed")) {
-            toast.error("Veuillez confirmer votre adresse e-mail avant de vous connecter.");
+            toast.error(t("auth.emailNotConfirmed"));
           } else {
             toast.error(error.message);
           }
         } else {
-          toast.success("Connexion réussie !");
-          // Redirection handled in useEffect or we can force it here:
-          setTimeout(() => {
-            navigate(isAdmin ? "/dashboard" : "/");
-          }, 100);
+          toast.success(t("auth.loginSuccess"));
+          // Vérifier le rôle admin directement avant de rediriger pour éviter toute race condition
+          let redirectTo = "/";
+          const { data: { user: signedInUser } } = await supabase.auth.getUser();
+          if (signedInUser) {
+            const { data: hasAdminRole } = await supabase.rpc("has_role", {
+              _user_id: signedInUser.id,
+              _role: "admin",
+            });
+            if (hasAdminRole) {
+              redirectTo = "/dashboard";
+            }
+          }
+          navigate(redirectTo, { replace: true });
         }
       } else if (view === "signup") {
         const fullPhone = `${countryCode} ${phone}`;
         const { error } = await signUp(email, password, fullName, fullPhone);
         if (error) {
           if (error.message.includes("already registered")) {
-            toast.error("Cet e-mail est déjà enregistré. Veuillez vous connecter.");
+            toast.error(t("auth.emailAlreadyRegistered"));
           } else {
             toast.error(error.message);
           }
         } else {
-          toast.success("Un email de confirmation vous a été envoyé. Veuillez vérifier votre boîte de réception.");
+          toast.success(t("auth.signupSuccess"));
           setView("login");
         }
       } else if (view === "forgot_password") {
@@ -114,73 +126,73 @@ const Auth = () => {
         if (error) {
           toast.error(error.message);
         } else {
-          toast.success("Instructions de réinitialisation envoyées à votre adresse e-mail.");
+          toast.success(t("auth.resetSuccess"));
           setView("login");
         }
       }
     } catch (err) {
-      toast.error("Une erreur inattendue est survenue");
+      toast.error(t("auth.unexpectedError"));
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-50/50 flex flex-col relative">
+    <div className="min-h-screen bg-muted/50 flex flex-col relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent -z-10"></div>
       <Header />
 
       <section className="flex-1 flex items-center justify-center py-12 md:py-24 px-4 sm:px-6 md:px-8 mt-20 md:mt-0">
-        <div className="w-full max-w-5xl bg-white md:bg-[#f4f4f7] rounded-[2rem] md:rounded-[2.5rem] p-3 md:p-2 shadow-2xl md:shadow-xl border border-slate-100 flex flex-col md:flex-row overflow-hidden min-h-0 md:min-h-[700px]">
-          
+        <div className="w-full max-w-5xl bg-background md:bg-muted rounded-[2rem] md:rounded-[2.5rem] p-3 md:p-2 shadow-2xl md:shadow-xl border border-border flex flex-col md:flex-row overflow-hidden min-h-0 md:min-h-[700px]">
+
           {/* Mobile Banner (Hidden on Desktop) */}
           <div className="md:hidden relative h-40 sm:h-48 rounded-3xl overflow-hidden mb-2 shadow-sm shrink-0">
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 to-primary/40 z-10"></div>
-            <img 
-              src="/auth-bg.png" 
-              alt="LaboGraphie" 
+            <img
+              src="/auth-bg.png"
+              alt="LaboGraphie"
               className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-80"
             />
             <div className="relative z-20 flex flex-col items-center justify-center h-full text-white p-6 text-center">
-              <h3 className="text-xl sm:text-2xl font-bold tracking-tight">L'excellence digitale.</h3>
-              <p className="text-white/80 text-xs sm:text-sm mt-1">Rejoignez l'univers LaboGraphie</p>
+              <h3 className="text-xl sm:text-2xl font-bold tracking-tight">{t("auth.bannerTitle")}</h3>
+              <p className="text-white/80 text-xs sm:text-sm mt-1">{t("auth.bannerSubtitle")}</p>
             </div>
           </div>
 
           {/* Left Column - Form */}
-          <div className="w-full md:w-1/2 p-5 sm:p-8 lg:p-16 flex flex-col justify-center bg-white md:bg-transparent rounded-3xl">
+          <div className="w-full md:w-1/2 p-5 sm:p-8 lg:p-16 flex flex-col justify-center bg-background md:bg-transparent rounded-3xl">
             <div className="max-w-md w-full mx-auto">
               <h2 className="text-primary text-center md:text-left mb-2 font-bold text-2xl sm:text-3xl">
-                {view === "login" && "Bon Retour"}
-                {view === "signup" && "Créer un Compte"}
-                {view === "forgot_password" && "Mot de passe oublié"}
+                {view === "login" && t("auth.welcomeBack")}
+                {view === "signup" && t("auth.createAccount")}
+                {view === "forgot_password" && t("auth.forgotPassword")}
               </h2>
               <p className="text-muted-foreground text-center md:text-left mb-10 text-sm">
-                {view === "login" && "Connectez-vous pour accéder à votre espace."}
-                {view === "signup" && "Inscrivez-vous pour commencer l'aventure."}
-                {view === "forgot_password" && "Saisissez votre e-mail pour réinitialiser le mot de passe."}
+                {view === "login" && t("auth.loginSubtitle")}
+                {view === "signup" && t("auth.signupSubtitle")}
+                {view === "forgot_password" && t("auth.forgotSubtitle")}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 {view === "signup" && (
                   <>
                     <div>
-                      <Label htmlFor="fullName">Nom Complet</Label>
+                      <Label htmlFor="fullName">{t("auth.fullName")}</Label>
                       <Input
                         id="fullName"
                         type="text"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
-                        placeholder="Nadroj ciol"
-                        className="mt-2 bg-white"
+                        placeholder={t("auth.fullNamePlaceholder")}
+                        className="mt-2 bg-background"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="phone">Numéro de Téléphone *</Label>
+                      <Label htmlFor="phone">{t("auth.phone")}</Label>
                       <div className="flex gap-2 mt-2">
                         <Select value={countryCode} onValueChange={setCountryCode}>
-                          <SelectTrigger className="w-[120px] bg-white">
-                            <SelectValue placeholder="Code" />
+                          <SelectTrigger className="w-[120px] bg-background">
+                            <SelectValue placeholder={t("auth.phoneCode")} />
                           </SelectTrigger>
                           <SelectContent>
                             {COUNTRY_CODES.map((country) => (
@@ -199,7 +211,7 @@ const Auth = () => {
                             setErrors((prev) => ({ ...prev, phone: undefined }));
                           }}
                           placeholder="6XX XX XX XX"
-                          className="bg-white flex-1"
+                          className="bg-background flex-1"
                         />
                       </div>
                       {errors.phone && (
@@ -210,7 +222,7 @@ const Auth = () => {
                 )}
 
                 <div>
-                  <Label htmlFor="email">Adresse E-mail</Label>
+                  <Label htmlFor="email">{t("auth.email")}</Label>
                   <Input
                     id="email"
                     type="email"
@@ -220,7 +232,7 @@ const Auth = () => {
                       setErrors((prev) => ({ ...prev, email: undefined }));
                     }}
                     placeholder="vous@exemple.com"
-                    className="mt-2 bg-white"
+                    className="mt-2 bg-background"
                   />
                   {errors.email && (
                     <p className="text-destructive text-sm mt-1">{errors.email}</p>
@@ -230,7 +242,7 @@ const Auth = () => {
                 {view !== "forgot_password" && (
                   <div>
                     <div className="flex items-center justify-between">
-                      <Label htmlFor="password">Mot de Passe</Label>
+                      <Label htmlFor="password">{t("auth.password")}</Label>
                       {view === "login" && (
                         <button
                           type="button"
@@ -240,7 +252,7 @@ const Auth = () => {
                           }}
                           className="text-xs text-primary font-medium hover:underline"
                         >
-                          Oublié ?
+                          {t("auth.forgotLink")}
                         </button>
                       )}
                     </div>
@@ -253,7 +265,7 @@ const Auth = () => {
                         setErrors((prev) => ({ ...prev, password: undefined }));
                       }}
                       placeholder="••••••••"
-                      className="mt-2 bg-white"
+                      className="mt-2 bg-background"
                     />
                     {errors.password && (
                       <p className="text-destructive text-sm mt-1">{errors.password}</p>
@@ -267,12 +279,12 @@ const Auth = () => {
                   disabled={isSubmitting}
                 >
                   {isSubmitting
-                    ? "Veuillez patienter..."
+                    ? t("auth.pleaseWait")
                     : view === "login"
-                      ? "Se Connecter"
+                      ? t("auth.logIn")
                       : view === "signup"
-                        ? "Créer un Compte"
-                        : "Envoyer le lien"}
+                        ? t("auth.createAccount")
+                        : t("auth.sendLink")}
                 </Button>
               </form>
 
@@ -284,9 +296,9 @@ const Auth = () => {
                       setView("login");
                       setErrors({});
                     }}
-                    className="text-slate-600 font-medium hover:text-primary transition-colors text-sm"
+                    className="text-muted-foreground font-medium hover:text-primary transition-colors text-sm"
                   >
-                    Retour à la connexion
+                    {t("auth.backToLogin")}
                   </button>
                 )}
 
@@ -297,11 +309,11 @@ const Auth = () => {
                       setView(view === "login" ? "signup" : "login");
                       setErrors({});
                     }}
-                    className="text-slate-600 font-medium hover:text-primary transition-colors text-sm"
+                    className="text-muted-foreground font-medium hover:text-primary transition-colors text-sm"
                   >
                     {view === "login"
-                      ? "Vous n'avez pas de compte ? Inscrivez-vous"
-                      : "Vous avez déjà un compte ? Connectez-vous"}
+                      ? t("auth.noAccount")
+                      : t("auth.hasAccount")}
                   </button>
                 )}
               </div>
@@ -312,17 +324,17 @@ const Auth = () => {
           <div className="hidden md:flex md:w-1/2 relative bg-primary rounded-[2rem] overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent z-10"></div>
             <div className="absolute inset-0 bg-black/20 z-10"></div>
-            <img 
-              src="/auth-bg.png" 
-              alt="LaboGraphie Universe" 
+            <img
+              src="/auth-bg.png"
+              alt="LaboGraphie Universe"
               className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-80 group-hover:scale-105 transition-transform duration-700"
             />
-            
+
             <div className="relative z-20 flex flex-col justify-end p-12 lg:p-16 h-full text-white">
               <div className="w-16 h-1 bg-white/30 rounded-full mb-6"></div>
-              <h3 className="text-3xl lg:text-4xl font-bold mb-4 leading-tight">L'excellence au service de vos idées.</h3>
+              <h3 className="text-3xl lg:text-4xl font-bold mb-4 leading-tight">{t("auth.sideTitle")}</h3>
               <p className="text-white/80 leading-relaxed text-sm lg:text-base">
-                Rejoignez LaboGraphie et accédez à un univers de solutions digitales innovantes. De l'identité visuelle au développement web sur-mesure, nous donnons vie à vos projets.
+                {t("auth.sideDescription")}
               </p>
             </div>
           </div>

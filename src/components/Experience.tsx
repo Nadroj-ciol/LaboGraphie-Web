@@ -1,24 +1,8 @@
 import plumberTeam from "@/assets/hero-2.png";
 import CounterAnimation from "@/components/CounterAnimation";
 import FadeIn from "@/components/FadeIn";
-import { Link } from "react-router-dom";
-
-const stats = [{
-  number: 8,
-  suffix: "+",
-  label: "Ans d'expertise",
-  decimals: 0
-}, {
-  number: 100,
-  suffix: "+",
-  label: "Projets livrés",
-  decimals: 0
-}, {
-  number: 500,
-  suffix: "+",
-  label: "Étudiants formés",
-  decimals: 0
-}];
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { useTranslation } from "react-i18next";
 
 // FlipButton component
 const FlipButton = ({
@@ -26,7 +10,7 @@ const FlipButton = ({
 }: {
   children: React.ReactNode;
 }) => {
-  return <button className="group relative px-8 py-4 bg-white border-primary rounded-full overflow-hidden border">
+  return <button className="group relative px-8 py-4 bg-background border-primary rounded-full overflow-hidden border">
     <span className="relative block overflow-hidden h-6">
       <span className="block transition-transform duration-300 group-hover:-translate-y-full text-primary font-semibold">
         {children}
@@ -39,16 +23,35 @@ const FlipButton = ({
 };
 
 const Experience = () => {
+  const { t } = useTranslation();
+
+  const stats = [{
+    number: 8,
+    suffix: "+",
+    label: t("home.experience.statYears"),
+    decimals: 0
+  }, {
+    number: 100,
+    suffix: "+",
+    label: t("home.experience.statProjects"),
+    decimals: 0
+  }, {
+    number: 500,
+    suffix: "+",
+    label: t("home.experience.statStudents"),
+    decimals: 0
+  }];
+
   return <section className="py-20 lg:py-32 bg-card">
     <div className="container-custom section-padding">
       {/* Top Text */}
       <div className="text-center max-w-5xl mx-auto mb-16">
         <FadeIn>
-          <p className="text-primary font-bold  mb-4">Bienvenue chez LaboGraphie</p>
+          <p className="text-primary font-bold  mb-4">{t("home.experience.welcome")}</p>
         </FadeIn>
         <FadeIn delay={100}>
-          <h2 className="text-black font-bold text-5xl">
-            Un laboratoire créatif et un cabinet de conseil réunis pour transformer votre vision en réalité digitale.
+          <h2 className="text-foreground font-bold text-5xl">
+            {t("home.experience.title")}
           </h2>
         </FadeIn>
       </div>
@@ -67,13 +70,13 @@ const Experience = () => {
         {/* Right - Text Content */}
         <div>
           <FadeIn delay={300}>
-            <h3 className="text-black font-bold mb-6">
-              Une équipe engagée pour la satisfaction et la qualité
+            <h3 className="text-foreground font-bold mb-6">
+              {t("home.experience.subtitle")}
             </h3>
           </FadeIn>
           <FadeIn delay={400}>
             <p className="text-muted-foreground mb-8">
-              Notre équipe pluridisciplinaire met son savoir-faire au service de vos projets digitaux, avec un engagement constant pour la qualité et un accompagnement personnalisé à chaque étape.
+              {t("home.experience.description")}
             </p>
           </FadeIn>
 
@@ -90,13 +93,13 @@ const Experience = () => {
                     suffixClassName="text-tertiary"
                   />
                 </div>
-                <p className="text-black text-sm font-medium">{stat.label}</p>
+                <p className="text-foreground text-sm font-medium">{stat.label}</p>
               </div>
             </FadeIn>)}
           </div>
           <Link to="/about">
             <FadeIn delay={800}>
-              <FlipButton>À propos de nous</FlipButton>
+              <FlipButton>{t("home.experience.aboutUs")}</FlipButton>
             </FadeIn>
           </Link>
         </div>

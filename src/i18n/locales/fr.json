@@ -1,0 +1,1194 @@
+{
+  "common": {
+    "nav": {
+      "home": "Accueil",
+      "about": "À propos",
+      "services": "Services",
+      "work": "Réalisations",
+      "blog": "Blog",
+      "pages": "Pages",
+      "pricing": "Tarifs",
+      "privacy": "Confidentialité",
+      "quote": "Devis",
+      "contact": "Contact",
+      "careers": "Carrières",
+      "serviceDetail": "Détails service",
+      "workDetail": "Détails projet",
+      "blogArticle": "Article de blog"
+    },
+    "header": {
+      "login": "Connexion",
+      "dashboard": "Tableau de bord",
+      "profile": "Profil",
+      "logout": "Déconnexion",
+      "mySpace": "Mon Espace"
+    },
+    "footer": {
+      "description": "Laboratoire d'innovation et cabinet informatique à Yaoundé. Identité visuelle, web, marketing digital, cybersécurité et formations.",
+      "company": "Entreprise",
+      "ourTeam": "Notre équipe",
+      "servicesTitle": "Services",
+      "designBranding": "Design & Branding",
+      "webDevelopment": "Développement Web",
+      "digitalMarketing": "Marketing Digital",
+      "cybersecurity": "Cybersécurité",
+      "onlineQuote": "Devis en ligne",
+      "privacyPolicy": "Politique de confidentialité",
+      "copyright": "Tous droits réservés."
+    },
+    "cta": {
+      "eyebrow": "Besoin d'un accompagnement digital ?",
+      "title": "Parlons de votre projet",
+      "requestQuote": "Demander un devis",
+      "personBlurb": "Je suis à votre écoute pour répondre à toutes vos questions et vous accompagner dans votre projet digital chez LaboGraphie.",
+      "callUs": "Appelez {{phone}}"
+    },
+    "whatsapp": {
+      "needHelp": "Besoin d'aide ?",
+      "chatPrompt": "Discutons sur WhatsApp !"
+    },
+    "offline": {
+      "lostTitle": "Connexion perdue",
+      "lostDescription": "Vous êtes hors ligne. Veuillez vérifier votre connexion internet.",
+      "restoredTitle": "Connexion rétablie !",
+      "restoredDescription": "Vous êtes de nouveau en ligne. Vos actions vont pouvoir reprendre."
+    }
+  },
+  "home": {
+    "hero": {
+      "titleLine1": "Transformez votre",
+      "titleLine2": "vision en",
+      "titleHighlight": "Réalité Digitale.",
+      "description": "De l'identité visuelle à la sécurité informatique, LaboGraphie accompagne votre croissance avec des solutions technologiques de pointe : design, développement web et mobile, marketing digital, cybersécurité et formations professionnelles.",
+      "requestQuote": "Demander un devis",
+      "discoverServices": "Découvrir nos services",
+      "projectsCount": "100+ projets",
+      "projectsDelivered": "livrés avec succès"
+    },
+    "experience": {
+      "welcome": "Bienvenue chez LaboGraphie",
+      "title": "Un laboratoire créatif et un cabinet de conseil réunis pour transformer votre vision en réalité digitale.",
+      "subtitle": "Une équipe engagée pour la satisfaction et la qualité",
+      "description": "Notre équipe pluridisciplinaire met son savoir-faire au service de vos projets digitaux, avec un engagement constant pour la qualité et un accompagnement personnalisé à chaque étape.",
+      "statYears": "Ans d'expertise",
+      "statProjects": "Projets livrés",
+      "statStudents": "Étudiants formés",
+      "aboutUs": "À propos de nous"
+    },
+    "services": {
+      "eyebrow": "Nos Services",
+      "titleLine1": "Des solutions",
+      "titleLine2": "digitales sur mesure",
+      "description": "Nous accompagnons entreprises et institutions dans leur transformation digitale, du branding à la cybersécurité. Notre équipe s'engage à répondre à vos besoins avec rigueur et créativité.",
+      "seeAll": "Voir tous les services"
+    },
+    "featuredWorks": {
+      "eyebrow": "NOTRE PORTFOLIO",
+      "titleLine1": "Projets",
+      "titleLine2": "réalisés",
+      "description": "Découvrez quelques-uns des projets digitaux que nous avons menés pour nos clients. Du branding au développement, chaque réalisation témoigne de notre exigence et de notre créativité.",
+      "novatechDescription": "Refonte complète de l'identité visuelle et développement d'une plateforme web pour cette entreprise technologique.",
+      "candaceDescription": "Application mobile et stratégie de marketing digital pour accompagner le lancement d'une marque de mode.",
+      "petittriDescription": "Site e-commerce et campagne de communication pour une plateforme de gestion de déchets responsable."
+    },
+    "about": {
+      "eyebrow": "Qui sommes-nous",
+      "title": "Le laboratoire digital qui donne vie à vos idées",
+      "description": "LaboGraphie est née de la volonté de fusionner la créativité d'un laboratoire technique avec la rigueur d'un cabinet de conseil. Basée à Bastos, Yaoundé, notre agence accompagne entreprises et institutions dans leur transformation digitale.",
+      "feature1Title": "Équipe experte",
+      "feature1Description": "Une équipe pluridisciplinaire de designers, développeurs et consultants forts de plus de 8 ans d'expertise combinée.",
+      "feature2Title": "Solutions complètes",
+      "feature2Description": "Du branding au développement, en passant par la cybersécurité et la formation, nous couvrons tous vos besoins digitaux.",
+      "callUs": "Appelez {{phone}}"
+    },
+    "solutions": {
+      "eyebrow": "Pourquoi nous choisir",
+      "title": "Des solutions digitales pour tous vos besoins",
+      "description": "Nous bâtissons la confiance de nos clients grâce à un service constamment exceptionnel et une expertise éprouvée face aux défis digitaux les plus exigeants.",
+      "feature1Title": "Expertise de haut niveau",
+      "feature1Description": "Une équipe qualifiée qui contribue de manière concrète à la réussite et à l'efficacité de chaque projet.",
+      "feature2Title": "Accompagnement continu",
+      "feature2Description": "Un support réactif et un suivi rigoureux pour répondre à vos besoins quotidiens comme à vos urgences.",
+      "feature3Title": "Outils innovants",
+      "feature3Description": "Des technologies modernes qui transforment la manière de communiquer, travailler et vendre en ligne.",
+      "callUs": "Appelez {{phone}}"
+    },
+    "testimonials": {
+      "eyebrow": "TÉMOIGNAGES",
+      "titleLine1": "Ce que disent",
+      "titleLine2": "nos clients",
+      "description": "Découvrez les retours de nos clients sur les projets digitaux que nous avons menés ensemble. Chaque témoignage reflète notre engagement pour l'excellence et la satisfaction client.",
+      "quote1": "LaboGraphie a su transformer notre image de marque en un temps record. Leur équipe allie créativité et rigueur, un vrai plaisir de travailler avec eux.",
+      "quote2": "Notre site e-commerce a été livré dans les délais, avec un design moderne et performant. Une équipe à l'écoute et très professionnelle.",
+      "quote3": "La formation dispensée par LaboGraphie a permis à toute notre équipe de monter en compétences sur le digital. Un accompagnement de qualité.",
+      "quote4": "Grâce à leur stratégie marketing digital, notre visibilité en ligne a explosé. Des résultats concrets et mesurables dès les premiers mois.",
+      "quote5": "Un audit de cybersécurité complet et rassurant. LaboGraphie a su identifier nos failles et proposer des solutions adaptées à notre budget."
+    },
+    "blog": {
+      "eyebrow": "CONNAISSANCES",
+      "title": "Notre journal digital",
+      "loading": "Chargement des articles...",
+      "empty": "Aucun article disponible pour le moment.",
+      "seeAll": "Voir tous les articles"
+    }
+  },
+  "services": {
+    "page": {
+      "title": "Nos Services",
+      "description": "Laboratoire d'innovation et cabinet informatique, LaboGraphie accompagne entreprises et institutions camerounaises avec des solutions digitales sur mesure, du design à la cybersécurité.",
+      "startingFrom": "À partir de {{price}} FCFA / jour"
+    },
+    "detail": {
+      "requestQuote": "Demander un devis",
+      "serviceDetailsLabel": "Détails du service",
+      "whatsIncluded": "Ce qui est inclus ?",
+      "ourMethod": "Notre méthode",
+      "howWeWork": "Comment nous travaillons",
+      "methodDescription": "Une méthodologie éprouvée, du premier échange à la livraison finale, pour garantir des résultats concrets et durables pour votre entreprise.",
+      "advantagesLabel": "Avantages",
+      "serviceAdvantages": "Les avantages du service",
+      "advantagesDescription": "Faire appel à LaboGraphie, c'est bénéficier d'une expertise locale, d'un accompagnement de proximité et de solutions digitales adaptées aux réalités du marché camerounais.",
+      "advantagesImageAlt": "Avantages du service",
+      "contactUs": "Contactez-nous",
+      "fullName": "Nom complet",
+      "fullNamePlaceholder": "Entrez votre nom",
+      "phone": "Téléphone",
+      "phonePlaceholder": "Entrez votre numéro de téléphone",
+      "chooseService": "Choisir un service",
+      "chooseServicePlaceholder": "Sélectionnez un service",
+      "message": "Message",
+      "messagePlaceholder": "Écrivez ici..",
+      "sending": "Envoi en cours...",
+      "send": "Envoyer"
+    },
+    "items": {
+      "design-branding": {
+        "title": "Design & Branding",
+        "description": "Logos, chartes graphiques et supports de communication qui captivent votre audience et donnent à votre marque une identité forte et mémorable.",
+        "aboutTitle": "À propos de ce service",
+        "aboutDescription": "Notre laboratoire créatif conçoit des identités visuelles cohérentes et impactantes pour les entreprises et institutions camerounaises. Du logo à la charte graphique complète, chaque élément est pensé pour refléter les valeurs de votre marque et marquer durablement votre audience.\n\nNous travaillons en étroite collaboration avec vous, de la recherche d'identité jusqu'à la livraison des fichiers finaux, en passant par plusieurs itérations pour garantir un résultat qui vous ressemble.",
+        "included": [
+          "Étude de marché et analyse de la concurrence pour positionner votre marque",
+          "Création de logo, charte graphique et déclinaisons pour tous vos supports",
+          "Livraison de fichiers sources et guide d'utilisation de la marque"
+        ],
+        "benefits": [
+          "Une identité visuelle professionnelle qui renforce la crédibilité de votre entreprise",
+          "Une cohérence sur tous vos supports de communication, print et digital",
+          "Un accompagnement personnalisé à chaque étape du projet",
+          "Des livrables adaptés aux réalités du marché camerounais"
+        ],
+        "workSteps": [
+          {
+            "title": "Brief & Analyse",
+            "description": "Nous échangeons sur vos objectifs, votre marché et votre audience pour cadrer le projet."
+          },
+          {
+            "title": "Recherche créative",
+            "description": "Notre équipe explore plusieurs pistes créatives et vous présente des concepts adaptés."
+          },
+          {
+            "title": "Conception & Validation",
+            "description": "Nous affinons la direction retenue avec vous jusqu'à obtenir le résultat parfait."
+          },
+          {
+            "title": "Livraison finale",
+            "description": "Vous recevez tous les fichiers et un guide complet pour utiliser votre marque au quotidien."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Logo simple",
+            "description": "Création de logo et déclinaisons de base"
+          },
+          {
+            "label": "Identité complète",
+            "description": "Logo, charte graphique et supports print"
+          },
+          {
+            "label": "Branding 360°",
+            "description": "Stratégie de marque, charte, packaging et supports"
+          }
+        ]
+      },
+      "developpement-web": {
+        "title": "Développement Web & Mobile",
+        "description": "Sites vitrines, plateformes e-commerce et applications sur mesure : performants, sécurisés et pensés pour convertir vos visiteurs en clients.",
+        "aboutTitle": "À propos de ce service",
+        "aboutDescription": "LaboGraphie conçoit et développe des sites web et applications mobiles sur mesure, alliant performance technique et expérience utilisateur soignée. Que vous ayez besoin d'un site vitrine, d'une boutique en ligne ou d'une application métier, notre équipe vous accompagne de A à Z.\n\nNous utilisons des technologies modernes et robustes pour garantir des solutions rapides, sécurisées et évolutives, adaptées aux réalités de connexion et d'usage au Cameroun.",
+        "included": [
+          "Analyse des besoins et conception UX/UI adaptée à vos utilisateurs",
+          "Développement front-end et back-end avec des technologies modernes",
+          "Tests, mise en ligne et formation à la prise en main de votre plateforme"
+        ],
+        "benefits": [
+          "Un site ou une application rapide, sécurisée et responsive",
+          "Une expérience utilisateur pensée pour convertir vos visiteurs en clients",
+          "Un accompagnement technique après la mise en ligne",
+          "Des solutions évolutives qui grandissent avec votre activité"
+        ],
+        "workSteps": [
+          {
+            "title": "Cadrage du projet",
+            "description": "Nous définissons ensemble le périmètre, les fonctionnalités et le planning de réalisation."
+          },
+          {
+            "title": "Design & Maquettes",
+            "description": "Nous créons des maquettes claires et ergonomiques avant tout développement."
+          },
+          {
+            "title": "Développement & Tests",
+            "description": "Notre équipe code, teste et optimise chaque fonctionnalité de votre plateforme."
+          },
+          {
+            "title": "Mise en ligne",
+            "description": "Nous déployons votre projet et assurons son bon fonctionnement dans la durée."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Site vitrine / Landing Page",
+            "description": "Site de présentation jusqu'à 5 pages"
+          },
+          {
+            "label": "Site e-commerce / App simple",
+            "description": "Boutique en ligne avec paiement ou app standard"
+          },
+          {
+            "label": "Application sur mesure complexe",
+            "description": "Plateforme web ou mobile complexe sur mesure"
+          }
+        ]
+      },
+      "marketing-digital": {
+        "title": "Marketing Digital",
+        "description": "Stratégies SEO, gestion de réseaux sociaux et campagnes publicitaires percutantes pour accroître votre visibilité et générer des leads qualifiés.",
+        "aboutTitle": "À propos de ce service",
+        "aboutDescription": "Notre équipe marketing élabore des stratégies digitales complètes pour renforcer votre présence en ligne et générer des résultats concrets. Référencement naturel, gestion des réseaux sociaux, publicité en ligne : nous mettons en place les leviers adaptés à vos objectifs.\n\nChaque campagne est pilotée avec des indicateurs de performance clairs, pour vous permettre de mesurer le retour sur investissement de vos actions marketing.",
+        "included": [
+          "Audit de votre présence digitale et définition d'une stratégie sur mesure",
+          "Création de contenus et gestion quotidienne de vos réseaux sociaux",
+          "Suivi des performances et rapports mensuels détaillés"
+        ],
+        "benefits": [
+          "Une visibilité accrue auprès de votre audience cible",
+          "Des leads qualifiés grâce à des campagnes ciblées et optimisées",
+          "Un contenu régulier et cohérent avec votre identité de marque",
+          "Des rapports transparents pour suivre vos résultats en temps réel"
+        ],
+        "workSteps": [
+          {
+            "title": "Audit & Stratégie",
+            "description": "Nous analysons votre présence actuelle et définissons les objectifs de la campagne."
+          },
+          {
+            "title": "Planification de contenu",
+            "description": "Nous élaborons un calendrier éditorial adapté à vos canaux et à votre audience."
+          },
+          {
+            "title": "Diffusion & Publicité",
+            "description": "Nous lançons les campagnes et optimisons les budgets pour maximiser l'impact."
+          },
+          {
+            "title": "Analyse des résultats",
+            "description": "Nous mesurons les performances et ajustons la stratégie pour de meilleurs résultats."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Community management (Mensuel)",
+            "description": "Équivalent jours de travail pour un mois de gestion"
+          },
+          {
+            "label": "SEO & création de contenu",
+            "description": "Optimisation de site et rédaction technique"
+          },
+          {
+            "label": "Campagne publicitaire 360°",
+            "description": "Stratégie, création de contenu publicitaire et suivi"
+          }
+        ]
+      },
+      "cybersecurite": {
+        "title": "Cybersécurité",
+        "description": "Audits, tests d'intrusion et solutions de protection contre les cybermenaces pour sécuriser vos données et la continuité de votre activité.",
+        "aboutTitle": "À propos de ce service",
+        "aboutDescription": "Face à la montée des cybermenaces, LaboGraphie propose des solutions de cybersécurité complètes pour protéger vos systèmes, vos données et la continuité de votre activité. Nos experts réalisent des audits approfondis et des tests d'intrusion pour identifier les failles avant qu'elles ne soient exploitées.\n\nNous accompagnons également nos clients dans la mise en conformité et la mise en place de bonnes pratiques de sécurité au quotidien.",
+        "included": [
+          "Audit complet de vos systèmes, réseaux et applications",
+          "Tests d'intrusion applicatifs et réseau réalisés par nos experts",
+          "Plan d'action et recommandations pour renforcer votre sécurité"
+        ],
+        "benefits": [
+          "Une meilleure protection de vos données sensibles et de celles de vos clients",
+          "Une réduction significative des risques de cyberattaques",
+          "Une conformité renforcée avec les bonnes pratiques du secteur",
+          "Un accompagnement continu pour maintenir un haut niveau de sécurité"
+        ],
+        "workSteps": [
+          {
+            "title": "Diagnostic initial",
+            "description": "Nous évaluons l'état actuel de la sécurité de vos systèmes et infrastructures."
+          },
+          {
+            "title": "Tests d'intrusion",
+            "description": "Nos experts simulent des attaques réelles pour identifier les vulnérabilités."
+          },
+          {
+            "title": "Correction des failles",
+            "description": "Nous vous accompagnons dans la mise en place des correctifs nécessaires."
+          },
+          {
+            "title": "Suivi & Prévention",
+            "description": "Nous assurons un suivi régulier pour maintenir votre sécurité dans le temps."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Audit de sécurité basique",
+            "description": "Diagnostic rapide de vos systèmes exposés"
+          },
+          {
+            "label": "Test d'intrusion (Pentest)",
+            "description": "Attaques simulées sur vos applications/réseau"
+          },
+          {
+            "label": "Sécurisation complète & Conformité",
+            "description": "Mise en conformité et plan de protection global"
+          }
+        ]
+      },
+      "formations-pro": {
+        "title": "Formations Pro",
+        "description": "Programmes de coaching digital et de formation continue adaptés à vos équipes : design, développement, bureautique avancée et cybersécurité.",
+        "aboutTitle": "À propos de ce service",
+        "aboutDescription": "LaboGraphie forme depuis plusieurs années des étudiants et professionnels camerounais aux métiers du numérique. Nos programmes couvrent le design, le développement, la bureautique avancée et la cybersécurité, avec une approche pratique et orientée résultats.\n\nAvec plus de 500 étudiants formés, nous mettons un point d'honneur à transmettre des compétences directement applicables sur le marché du travail.",
+        "included": [
+          "Programme pédagogique structuré, adapté au niveau des participants",
+          "Formateurs expérimentés et exercices pratiques sur des cas réels",
+          "Certificat de fin de formation et suivi post-formation"
+        ],
+        "benefits": [
+          "Des compétences directement applicables dans le monde professionnel",
+          "Un accompagnement personnalisé tout au long du parcours",
+          "Des formateurs experts issus du terrain",
+          "Des formats flexibles adaptés aux particuliers et aux entreprises"
+        ],
+        "workSteps": [
+          {
+            "title": "Évaluation des besoins",
+            "description": "Nous identifions vos objectifs et le niveau des participants avant la formation."
+          },
+          {
+            "title": "Conception du programme",
+            "description": "Nous construisons un parcours pédagogique adapté à vos besoins spécifiques."
+          },
+          {
+            "title": "Sessions pratiques",
+            "description": "Les participants apprennent par la pratique, avec des cas concrets et des exercices."
+          },
+          {
+            "title": "Certification & Suivi",
+            "description": "Nous délivrons un certificat et assurons un accompagnement après la formation."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Session découverte",
+            "description": "Formation courte ou masterclass"
+          },
+          {
+            "label": "Parcours complet (Individuel)",
+            "description": "Formation approfondie sur un domaine spécifique"
+          },
+          {
+            "label": "Formation d'équipe sur mesure",
+            "description": "Programme personnalisé pour votre entreprise"
+          }
+        ]
+      },
+      "maintenance-it": {
+        "title": "Maintenance IT & Réseau",
+        "description": "Support technique, infrastructure réseau et maintenance préventive pour garder votre parc informatique fiable, rapide et toujours disponible.",
+        "aboutTitle": "À propos de ce service",
+        "aboutDescription": "Notre équipe technique assure la maintenance et le support de votre parc informatique et de votre infrastructure réseau. Interventions ponctuelles, contrats de maintenance mensuels ou installation complète de réseau : nous garantissons la fiabilité et la disponibilité de vos systèmes.\n\nNotre objectif est de réduire les temps d'arrêt et de vous permettre de vous concentrer sur votre cœur de métier en toute sérénité.",
+        "included": [
+          "Diagnostic et dépannage rapide de vos équipements informatiques",
+          "Maintenance préventive et surveillance continue de votre infrastructure",
+          "Installation et configuration de réseaux fiables et sécurisés"
+        ],
+        "benefits": [
+          "Une réduction significative des pannes et interruptions d'activité",
+          "Un support technique réactif et disponible en cas d'urgence",
+          "Une infrastructure réseau stable et performante",
+          "Un interlocuteur unique pour l'ensemble de votre parc informatique"
+        ],
+        "workSteps": [
+          {
+            "title": "Prise de contact & Diagnostic",
+            "description": "Nous évaluons l'état de votre parc informatique et vos besoins spécifiques."
+          },
+          {
+            "title": "Planification des interventions",
+            "description": "Nous établissons un plan de maintenance adapté à votre activité."
+          },
+          {
+            "title": "Intervention technique",
+            "description": "Nos techniciens interviennent pour réparer, installer ou configurer vos équipements."
+          },
+          {
+            "title": "Suivi & Assistance",
+            "description": "Nous restons disponibles pour toute assistance technique après l'intervention."
+          }
+        ],
+        "complexityOptions": [
+          {
+            "label": "Intervention ponctuelle",
+            "description": "Dépannage et diagnostic rapide"
+          },
+          {
+            "label": "Maintenance préventive (Mensuelle)",
+            "description": "Vérifications et mises à jour régulières"
+          },
+          {
+            "label": "Déploiement d'infrastructure réseau",
+            "description": "Installation et configuration de réseau complet"
+          }
+        ]
+      }
+    }
+  },
+  "work": {
+    "page": {
+      "title": "Nos Réalisations",
+      "description": "Des solutions digitales sur-mesure pensées pour répondre aux besoins de nos clients au Cameroun et en Afrique."
+    },
+    "detail": {
+      "notFoundTitle": "Réalisation introuvable",
+      "backToWork": "Retour aux réalisations",
+      "projectDetailsLabel": "Détails du projet",
+      "overview": "Aperçu",
+      "overviewIntro": "Notre équipe a travaillé en étroite collaboration avec le client afin de garantir un résultat aligné avec ses objectifs stratégiques et sa vision de marque.",
+      "client": "Client",
+      "budget": "Budget",
+      "servicesLabel": "Services",
+      "location": "Localisation",
+      "date": "Date",
+      "share": "Partager",
+      "ourMethod": "Notre méthode",
+      "process": "Le processus que nous suivons",
+      "processDescription": "Une méthodologie éprouvée, de l'analyse initiale à la livraison finale, pour garantir la réussite de chaque projet.",
+      "problemAndSolution": "Problème & Solution",
+      "problemAndSolutionIntro": "Chaque projet chez LaboGraphie part d'un diagnostic précis des enjeux du client, suivi d'une solution digitale sur mesure adaptée à son contexte et à ses objectifs.",
+      "problem": "Problème",
+      "problemIntro": "Avant l'intervention de LaboGraphie, le client faisait face à des défis concrets freinant sa croissance digitale et sa capacité à atteindre efficacement son public cible.",
+      "solutions": "Solutions",
+      "solutionsIntro": "Grâce à une approche structurée et à l'expertise de nos équipes, nous avons mis en place des solutions concrètes générant des résultats mesurables pour le client."
+    },
+    "items": {
+      "identite-visuelle-novatech": {
+        "title": "Identité Visuelle Novatech",
+        "description": "Création complète d'une identité de marque : logo, charte graphique et supports de communication pour une startup tech en pleine croissance à Douala.",
+        "detailTitle": "Une marque forte pour une startup ambitieuse",
+        "detailDescription": "Novatech souhaitait une identité visuelle moderne et mémorable pour se démarquer sur le marché camerounais. Notre équipe a conçu un univers graphique cohérent, du logo aux supports imprimés et digitaux.",
+        "overview": [
+          "Recherche de positionnement et étude de la concurrence locale",
+          "Création du logo, de la palette de couleurs et de la typographie",
+          "Déclinaison sur cartes de visite, réseaux sociaux et signature email"
+        ],
+        "client": "Novatech SARL",
+        "budget": "850 000 FCFA",
+        "servicesUsed": "Design & Branding",
+        "location": "Douala, Cameroun",
+        "date": "20 Février 2026",
+        "workSteps": [
+          {
+            "title": "Brief & Recherche",
+            "description": "Analyse approfondie du marché, des concurrents et des valeurs de la marque pour poser des bases solides."
+          },
+          {
+            "title": "Conception créative",
+            "description": "Élaboration de plusieurs pistes graphiques et sélection collaborative avec le client."
+          },
+          {
+            "title": "Développement & Déclinaisons",
+            "description": "Finalisation du logo et création de l'ensemble des supports de communication."
+          },
+          {
+            "title": "Livraison & Charte graphique",
+            "description": "Remise du dossier de marque complet avec guide d'utilisation de l'identité visuelle."
+          }
+        ],
+        "problems": [
+          "Absence d'identité visuelle cohérente sur les différents supports.",
+          "Faible reconnaissance de la marque auprès du public cible.",
+          "Communication visuelle peu adaptée aux standards du marché numérique."
+        ],
+        "solutions": [
+          "Conception d'une identité de marque moderne, cohérente et différenciante.",
+          "Mise en place d'une charte graphique complète et facile à décliner.",
+          "Accompagnement dans le déploiement de la marque sur tous les canaux."
+        ]
+      },
+      "plateforme-ecommerce-candace": {
+        "title": "Plateforme E-commerce Candace",
+        "description": "Conception et développement d'une boutique en ligne moderne avec paiement mobile money, gestion de stock et tableau de bord administrateur.",
+        "detailTitle": "Une boutique en ligne performante et locale",
+        "detailDescription": "Candace souhaitait vendre ses produits en ligne avec une expérience utilisateur fluide, adaptée aux réalités camerounaises, notamment le paiement via Mobile Money et Orange Money.",
+        "overview": [
+          "Développement d'une boutique en ligne responsive et rapide",
+          "Intégration des paiements Mobile Money et carte bancaire",
+          "Tableau de bord de gestion des commandes et du stock"
+        ],
+        "client": "Candace Boutique",
+        "budget": "1 950 000 FCFA",
+        "servicesUsed": "Développement Web & Mobile",
+        "location": "Yaoundé, Cameroun",
+        "date": "15 Janvier 2026",
+        "workSteps": [
+          {
+            "title": "Cadrage & Maquettage",
+            "description": "Définition des besoins métiers et création des maquettes UX/UI de la plateforme."
+          },
+          {
+            "title": "Développement",
+            "description": "Construction de la boutique en ligne avec un back-office complet et sécurisé."
+          },
+          {
+            "title": "Intégration des paiements",
+            "description": "Connexion des solutions Mobile Money et passerelles de paiement locales."
+          },
+          {
+            "title": "Mise en ligne & Formation",
+            "description": "Déploiement de la plateforme et formation de l'équipe à son utilisation."
+          }
+        ],
+        "problems": [
+          "Absence de canal de vente en ligne adapté au marché local.",
+          "Difficulté à proposer des moyens de paiement accessibles aux clients.",
+          "Gestion manuelle et chronophage des commandes et du stock."
+        ],
+        "solutions": [
+          "Développement d'une plateforme e-commerce moderne et intuitive.",
+          "Intégration de solutions de paiement mobile adaptées au Cameroun.",
+          "Automatisation de la gestion des stocks et du suivi des commandes."
+        ]
+      },
+      "application-gestion-petittri": {
+        "title": "Application de Gestion PetitTri",
+        "description": "Développement d'une application mobile de gestion de tri des déchets, incluant géolocalisation, notifications et interface intuitive pour les usagers.",
+        "detailTitle": "Une application mobile au service de l'écologie urbaine",
+        "detailDescription": "PetitTri avait besoin d'une application mobile capable de coordonner la collecte des déchets triés en zone urbaine, avec géolocalisation en temps réel et notifications automatiques.",
+        "overview": [
+          "Développement natif pour Android et iOS",
+          "Système de géolocalisation des points de collecte",
+          "Notifications push pour les usagers et les agents de collecte"
+        ],
+        "client": "PetitTri Cameroun",
+        "budget": "2 400 000 FCFA",
+        "servicesUsed": "Développement Web & Mobile",
+        "location": "Yaoundé, Cameroun",
+        "date": "10 Décembre 2025",
+        "workSteps": [
+          {
+            "title": "Étude de faisabilité",
+            "description": "Analyse des besoins terrain et définition des fonctionnalités clés de l'application."
+          },
+          {
+            "title": "Conception UX/UI",
+            "description": "Création d'une interface simple et accessible pour tous les profils d'utilisateurs."
+          },
+          {
+            "title": "Développement mobile",
+            "description": "Programmation de l'application avec intégration de la géolocalisation en temps réel."
+          },
+          {
+            "title": "Tests & Déploiement",
+            "description": "Phase de tests utilisateurs suivie du lancement sur les stores mobiles."
+          }
+        ],
+        "problems": [
+          "Manque de coordination entre les usagers et les agents de collecte.",
+          "Absence d'outil de suivi en temps réel des tournées de collecte.",
+          "Faible taux de participation des habitants au tri sélectif."
+        ],
+        "solutions": [
+          "Développement d'une application mobile intuitive et géolocalisée.",
+          "Mise en place de notifications automatiques pour informer les usagers.",
+          "Amélioration de l'engagement grâce à une expérience utilisateur fluide."
+        ]
+      },
+      "refonte-site-institutionnel": {
+        "title": "Refonte Site Institutionnel",
+        "description": "Refonte complète du site web d'une institution publique : nouvelle arborescence, design responsive et optimisation SEO pour une meilleure visibilité.",
+        "detailTitle": "Un site institutionnel moderne et accessible",
+        "detailDescription": "Cette institution disposait d'un site vieillissant, peu lisible et non optimisé pour les moteurs de recherche. LaboGraphie a entièrement repensé l'expérience utilisateur et la structure du contenu.",
+        "overview": [
+          "Refonte de l'arborescence et du parcours utilisateur",
+          "Design responsive adapté à tous les écrans",
+          "Optimisation SEO technique et éditoriale"
+        ],
+        "client": "Institution Publique",
+        "budget": "1 600 000 FCFA",
+        "servicesUsed": "Développement Web & Mobile",
+        "location": "Yaoundé, Cameroun",
+        "date": "28 Novembre 2025",
+        "workSteps": [
+          {
+            "title": "Audit du site existant",
+            "description": "Analyse du site actuel, des contenus et des points de friction pour les utilisateurs."
+          },
+          {
+            "title": "Refonte UX/UI",
+            "description": "Redéfinition de l'arborescence et création de nouvelles maquettes ergonomiques."
+          },
+          {
+            "title": "Développement & SEO",
+            "description": "Intégration technique du nouveau site avec optimisation pour les moteurs de recherche."
+          },
+          {
+            "title": "Mise en ligne",
+            "description": "Déploiement du site et accompagnement pour la gestion de contenu au quotidien."
+          }
+        ],
+        "problems": [
+          "Interface obsolète et peu adaptée aux mobiles.",
+          "Mauvais référencement sur les moteurs de recherche.",
+          "Navigation confuse pour les usagers en quête d'informations."
+        ],
+        "solutions": [
+          "Refonte complète avec un design moderne et responsive.",
+          "Mise en œuvre d'une stratégie SEO technique et éditoriale.",
+          "Simplification de la navigation et de l'accès à l'information."
+        ]
+      },
+      "audit-cybersecurite": {
+        "title": "Audit de Cybersécurité",
+        "description": "Audit approfondi de l'infrastructure numérique d'une entreprise, identification des vulnérabilités et mise en place de mesures de protection renforcées.",
+        "detailTitle": "Sécuriser l'infrastructure numérique d'une entreprise",
+        "detailDescription": "Face à des risques croissants de cyberattaques, cette entreprise a fait appel à LaboGraphie pour réaliser un audit complet de sécurité et renforcer la protection de ses systèmes d'information.",
+        "overview": [
+          "Analyse des vulnérabilités des systèmes et réseaux",
+          "Tests d'intrusion et simulation d'attaques",
+          "Recommandations et plan d'action de sécurisation"
+        ],
+        "client": "Groupe Industriel Privé",
+        "budget": "2 800 000 FCFA",
+        "servicesUsed": "Cybersécurité",
+        "location": "Douala, Cameroun",
+        "date": "5 Octobre 2025",
+        "workSteps": [
+          {
+            "title": "Cartographie du système",
+            "description": "Inventaire complet des infrastructures, applications et flux de données de l'entreprise."
+          },
+          {
+            "title": "Tests de vulnérabilité",
+            "description": "Réalisation de tests d'intrusion pour identifier les failles exploitables."
+          },
+          {
+            "title": "Analyse & Rapport",
+            "description": "Rédaction d'un rapport détaillé des risques identifiés et de leur criticité."
+          },
+          {
+            "title": "Mise en œuvre des correctifs",
+            "description": "Accompagnement dans la mise en place des mesures de sécurité recommandées."
+          }
+        ],
+        "problems": [
+          "Absence de politique de sécurité informatique formalisée.",
+          "Vulnérabilités critiques non détectées sur le réseau interne.",
+          "Sensibilisation insuffisante des équipes aux risques cyber."
+        ],
+        "solutions": [
+          "Réalisation d'un audit de sécurité complet et documenté.",
+          "Correction des failles critiques identifiées sur l'infrastructure.",
+          "Formation des équipes aux bonnes pratiques de cybersécurité."
+        ]
+      },
+      "campagne-social-media": {
+        "title": "Campagne Social Media",
+        "description": "Stratégie et gestion de campagnes sur les réseaux sociaux pour une marque locale, avec création de contenu et augmentation significative de l'engagement.",
+        "detailTitle": "Booster la visibilité d'une marque locale",
+        "detailDescription": "Cette marque souhaitait renforcer sa présence sur les réseaux sociaux et engager davantage sa communauté. LaboGraphie a mis en place une stratégie de contenu et de campagnes publicitaires ciblées.",
+        "overview": [
+          "Élaboration d'une stratégie éditoriale sur mesure",
+          "Création de contenus visuels et vidéos engageants",
+          "Gestion de campagnes publicitaires ciblées et suivi des performances"
+        ],
+        "client": "Marque Locale de Mode",
+        "budget": "650 000 FCFA / mois",
+        "servicesUsed": "Marketing Digital",
+        "location": "Yaoundé, Cameroun",
+        "date": "18 Septembre 2025",
+        "workSteps": [
+          {
+            "title": "Audit & Stratégie",
+            "description": "Analyse de la présence existante et définition des objectifs de communication."
+          },
+          {
+            "title": "Création de contenu",
+            "description": "Production de visuels, vidéos et textes adaptés à chaque plateforme sociale."
+          },
+          {
+            "title": "Diffusion & Publicité",
+            "description": "Mise en place des campagnes publicitaires ciblées selon les audiences définies."
+          },
+          {
+            "title": "Analyse des résultats",
+            "description": "Suivi des performances et ajustement continu de la stratégie pour maximiser l'impact."
+          }
+        ],
+        "problems": [
+          "Faible engagement de la communauté sur les réseaux sociaux.",
+          "Manque de régularité et de cohérence dans la publication de contenu.",
+          "Budget publicitaire mal exploité et peu ciblé."
+        ],
+        "solutions": [
+          "Mise en place d'un calendrier éditorial cohérent et régulier.",
+          "Création de contenus créatifs générant plus d'interactions.",
+          "Optimisation des campagnes publicitaires pour un meilleur retour sur investissement."
+        ]
+      }
+    }
+  },
+  "blog": {
+    "loading": "Chargement...",
+    "list": {
+      "title": "Notre Blog",
+      "description": "Restez informés grâce à nos derniers articles, conseils et actualités sur le design, le développement web, le marketing digital, la cybersécurité et nos formations professionnelles.",
+      "featuredLabel": "Article à la une",
+      "allArticles": "Tous nos articles",
+      "categoryAll": "Tous",
+      "categoryRecent": "Récents",
+      "categoryPopular": "Populaires",
+      "empty": "Aucun article disponible dans cette catégorie pour le moment."
+    },
+    "detail": {
+      "notFoundTitle": "Article introuvable",
+      "backToBlog": "Retour au blog",
+      "shareTitle": "Cet article vous a plu ? Partagez-le !",
+      "shareWhatsapp": "Partager sur WhatsApp",
+      "shareTelegram": "Partager sur Telegram",
+      "shareTwitter": "Partager sur X (Twitter)",
+      "shareFacebook": "Partager sur Facebook",
+      "shareLinkedin": "Partager sur LinkedIn",
+      "copyLink": "Copier le lien",
+      "linkCopied": "Lien copié dans le presse-papiers !",
+      "relatedArticles": "Articles similaires",
+      "defaultContent": {
+        "section1Title": "Éviter des dépenses inutiles",
+        "section1Text": "Une identité visuelle mal pensée ou un site web obsolète peuvent coûter cher à long terme. En investissant tôt dans une stratégie digitale solide, vous évitez des refontes coûteuses et renforcez la confiance de vos clients.",
+        "section1Item1": "Un audit régulier permet d'anticiper les failles de sécurité.",
+        "section1Item2": "Une détection précoce des problèmes techniques évite des coûts élevés.",
+        "section1Item3": "Un accompagnement professionnel garantit un fonctionnement optimal.",
+        "section2Title": "Améliorer la performance",
+        "section2Text": "Les outils digitaux modernes sont bien plus performants que les anciennes solutions. Moderniser vos plateformes permet de réduire les coûts opérationnels tout en améliorant l'expérience de vos utilisateurs.",
+        "section3Title": "Renforcer votre image de marque",
+        "section3Text1": "Une présence digitale bien maîtrisée valorise votre entreprise et attire de nouveaux clients.",
+        "section3Text2": "Un branding cohérent et un site performant sont des atouts différenciants sur le marché."
+      }
+    }
+  },
+  "career": {
+    "breadcrumbLabel": "Carrière",
+    "intro": "Rejoignez notre équipe et faites la différence. Nous recherchons des personnes passionnées, prêtes à faire évoluer leur carrière dans le domaine du digital.",
+    "seeAllPositions": "Voir tous les postes",
+    "noOpeningTitle": "Aucun Poste Ouvert",
+    "noOpeningDescription": "Nous n'avons pas de poste ouvert pour le moment. Revenez bientôt !",
+    "backHome": "Retour à l'accueil",
+    "aboutRole": "À propos du poste",
+    "shortTermGoals": "À court terme, vous allez",
+    "whatYouBring": "Ce que vous apportez",
+    "whyYouLove": "Pourquoi vous allez aimer travailler ici",
+    "form": {
+      "title": "Postuler à cette Offre",
+      "fullName": "Nom Complet",
+      "fullNamePlaceholder": "Entrez votre nom complet",
+      "email": "E-mail",
+      "emailPlaceholder": "Entrez votre e-mail",
+      "currentCompany": "Entreprise Actuelle",
+      "currentCompanyPlaceholder": "Votre entreprise actuelle (optionnel)",
+      "phone": "Téléphone",
+      "phonePlaceholder": "Ex. +237 6XX XX XX XX",
+      "linkedin": "LinkedIn",
+      "linkedinPlaceholder": "Lien vers votre profil LinkedIn",
+      "cv": "Votre CV",
+      "cvMax": "(Max 10 Mo)",
+      "cvRemove": "Retirer",
+      "cvUploading": "Envoi en cours...",
+      "cvDropzone": "Glissez un fichier ou cliquez",
+      "or": "Ou",
+      "cvLinkPlaceholder": "Collez un lien (Drive, Dropbox...)",
+      "note": "Note / Lettre de motivation",
+      "notePlaceholder": "Dites-nous pourquoi ce poste vous intéresse...",
+      "sending": "Envoi en cours...",
+      "submit": "Postuler",
+      "nameRequired": "Le nom est requis",
+      "emailInvalid": "Adresse e-mail invalide",
+      "phoneRequired": "Veuillez saisir un numéro de téléphone valide",
+      "cvTooLarge": "La taille du fichier ne doit pas dépasser 10 Mo.",
+      "cvUnsupportedFormat": "Format non supporté (PDF, DOC, DOCX, RTF ou TXT uniquement).",
+      "cvUploadFailed": "Échec de l'envoi du fichier : {{error}}"
+    },
+    "otherOpenings": "Autres Opportunités"
+  },
+  "quote": {
+    "breadcrumbLabel": "Calculateur de devis",
+    "title": "Obtenez Votre Estimation Gratuite",
+    "description": "Utilisez notre calculateur intelligent pour obtenir une estimation de votre projet. Sélectionnez votre devise, votre service, le niveau de complexité, et obtenez une fourchette de prix réaliste.",
+    "calculatorTitle": "Calculateur de Devis",
+    "currencyLabel": "Marché / Devise",
+    "currencyPlaceholder": "Choisissez une devise...",
+    "currencyFcfa": "Afrique Centrale (XAF / FCFA)",
+    "currencyEur": "Europe (EUR)",
+    "currencyUsd": "International (USD)",
+    "serviceLabel": "Sélectionner un Service",
+    "servicePlaceholder": "Choisissez un service...",
+    "complexityLabel": "Envergure du Projet",
+    "urgencyLabel": "Urgence du Projet",
+    "urgencyStandard": "Standard",
+    "urgencyStandardRate": "Tarif normal",
+    "urgencyUrgent": "Urgent",
+    "urgencyUrgentRate": "Tarif +25%",
+    "urgencyEmergency": "Urgence",
+    "urgencyEmergencyRate": "Tarif +50%",
+    "phoneLabel": "Numéro de Contact *",
+    "dateLabel": "Date de Démarrage Souhaitée",
+    "estimateTitle": "Votre Estimation",
+    "priceRangeLabel": "Fourchette de Prix Estimée",
+    "estimatedTime": "Temps estimé : {{min}} à {{max}} jours",
+    "serviceStandard": "Service standard",
+    "serviceUrgent": "Service urgent",
+    "serviceEmergency": "Service en urgence",
+    "selectServicePrompt": "Sélectionnez un service pour voir votre estimation",
+    "requestOfficialQuote": "Demander un Devis Officiel",
+    "sending": "Envoi en cours...",
+    "disclaimer": "*Ceci est une estimation. Le prix final et le délai peuvent varier après étude détaillée du projet.",
+    "tjmTitle": "Taux Journalier Moyen (TJM)",
+    "perDay": "/ j",
+    "phoneRequired": "Veuillez saisir votre numéro de téléphone",
+    "successSubmit": "Demande de devis envoyée ! Retrouvez-la dans votre tableau de bord.",
+    "errorSubmit": "Échec de l'envoi du devis. Veuillez réessayer.",
+    "howItWorksTitle": "Comment Fonctionnent Nos Tarifs",
+    "howItWorksDescription": "Nous croyons en une tarification transparente. Nos estimations sont basées sur le Taux Journalier Moyen (TJM) du marché, multiplié par la complexité (temps requis) et le niveau d'urgence.",
+    "feature1Title": "Marché & Devise",
+    "feature1Description": "Nos TJM sont ajustés selon les réalités économiques locales (Afrique Centrale) ou internationales.",
+    "feature2Title": "Envergure du Projet",
+    "feature2Description": "La complexité détermine le nombre de jours nécessaires à notre équipe pour livrer un travail d'excellence.",
+    "feature3Title": "Niveau d'Urgence",
+    "feature3Description": "Les services urgents nécessitent de réallouer nos ressources rapidement, impactant la tarification globale."
+  },
+  "contact": {
+    "breadcrumbLabel": "Contact",
+    "titleQuote": "Demande de devis officiel",
+    "titlePlan": "Demande de formule",
+    "titleDefault": "Contactez-nous",
+    "descriptionQuote": "Complétez vos informations ci-dessous et nous vous enverrons un devis officiel basé sur votre estimation.",
+    "descriptionPlan": "Renseignez vos coordonnées et nous vous contacterons au sujet de la formule sélectionnée.",
+    "descriptionDefault": "Contactez notre équipe pour toute question ou pour démarrer un projet.",
+    "quoteSummaryTitle": "Récapitulatif de votre devis",
+    "planSummaryTitle": "Formule sélectionnée",
+    "service": "Service",
+    "estimatedDelay": "Délai estimé",
+    "days": "jour{{s}}",
+    "urgency": "Urgence",
+    "estimation": "Estimation",
+    "planName": "Nom de la formule",
+    "planType": "Type",
+    "rate": "Tarif",
+    "yourInfo": "Vos informations",
+    "fullName": "Nom complet",
+    "phone": "Téléphone",
+    "phonePlaceholder": "Ex. +237 6XX XXX XXX",
+    "email": "Email",
+    "desiredService": "Service souhaité",
+    "chooseServicePlaceholder": "Choisissez un service...",
+    "additionalNotes": "Notes complémentaires",
+    "message": "Message",
+    "messagePlaceholder": "Écrivez ici...",
+    "sending": "Envoi en cours...",
+    "sendQuoteRequest": "Envoyer la demande de devis",
+    "sendRequest": "Envoyer la demande",
+    "send": "Envoyer",
+    "requiredFieldsError": "Veuillez remplir tous les champs obligatoires",
+    "quoteSuccess": "Demande de devis envoyée avec succès ! Nous vous contacterons bientôt.",
+    "genericSuccess": "Demande envoyée avec succès ! Nous vous contacterons bientôt.",
+    "messageSuccess": "Message envoyé avec succès ! Nous vous répondrons rapidement.",
+    "submitError": "Une erreur est survenue. Veuillez réessayer.",
+    "writeUsTitle": "Écrivez-nous",
+    "writeUsDescription": "Envoyez-nous un email pour toute demande",
+    "visitUsTitle": "Visitez nos locaux",
+    "visitUsDescription": "Rendez-nous visite sur rendez-vous",
+    "callUsTitle": "Appelez-nous",
+    "callUsDescription": "Appelez-nous ou écrivez-nous sur WhatsApp"
+  },
+  "pricing": {
+    "breadcrumbLabel": "Tarifs",
+    "title": "Nos Tarifs",
+    "description": "Des solutions digitales expertes et fiables, adaptées à vos besoins de branding, développement, marketing et sécurité, pour garantir qualité, efficacité et satisfaction totale.",
+    "tabResidential": "Particuliers & Startups",
+    "tabCommercial": "Entreprises",
+    "recommended": "Recommandé",
+    "whatsIncluded": "Ce qui est inclus",
+    "getStarted": "Commencer",
+    "monthlyPlan": "Forfait mensuel",
+    "faqTitle": "Encore des questions ?",
+    "plans": {
+      "residential": [
+        {
+          "name": "Essentiel",
+          "features": [
+            "10% de réduction sur tous nos services",
+            "Site vitrine ou refonte légère",
+            "Gestion des réseaux sociaux",
+            "Support par e-mail",
+            "Rapport mensuel de performance"
+          ]
+        },
+        {
+          "name": "Professionnel",
+          "features": [
+            "15% de réduction sur tous nos services",
+            "Identité de marque complète",
+            "Site web ou e-commerce",
+            "Stratégie marketing digital",
+            "Audit de sécurité de base",
+            "Support prioritaire WhatsApp"
+          ]
+        },
+        {
+          "name": "Sur mesure",
+          "features": [
+            "Toutes les prestations Professionnel",
+            "Branding 360° et charte graphique",
+            "Application web ou mobile",
+            "Cybersécurité avancée",
+            "Formations pour vos équipes",
+            "Chargé de compte dédié"
+          ]
+        }
+      ],
+      "commercial": [
+        {
+          "name": "Starter Entreprise",
+          "features": [
+            "10% de réduction sur tous nos services",
+            "Site web professionnel",
+            "Référencement SEO de base",
+            "Maintenance IT ponctuelle",
+            "Assistance réactive"
+          ]
+        },
+        {
+          "name": "Business",
+          "features": [
+            "20% de réduction sur tous nos services",
+            "Plateforme e-commerce complète",
+            "Campagne marketing 360°",
+            "Test d'intrusion & sécurisation",
+            "Support prioritaire 24/7",
+            "Maintenance préventive continue"
+          ]
+        },
+        {
+          "name": "Entreprise",
+          "features": [
+            "Toutes les prestations Business",
+            "Chargé de compte dédié",
+            "Solutions sur mesure",
+            "Infrastructure réseau complète",
+            "Audit annuel de sécurité"
+          ]
+        }
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Quels types de services proposez-vous ?",
+        "answer": "Nous proposons une large gamme de services digitaux : design & branding, développement web et mobile, marketing digital, cybersécurité, formations professionnelles et maintenance IT, pour les particuliers comme pour les entreprises."
+      },
+      {
+        "question": "Combien coûte un projet chez LaboGraphie ?",
+        "answer": "Nos tarifs dépendent du type de service, de la complexité du projet et des délais souhaités. Chaque devis est établi sur mesure après un premier échange avec notre équipe à Bastos, Yaoundé.\n\nContactez-nous pour obtenir une estimation gratuite et personnalisée."
+      },
+      {
+        "question": "Quels types de missions ponctuelles réalisez-vous ?",
+        "answer": "Nous intervenons aussi sur des missions ponctuelles : création de logo, refonte de site, campagne publicitaire, audit de sécurité ou formation d'équipe, selon vos besoins spécifiques."
+      },
+      {
+        "question": "Votre agence est-elle enregistrée et assurée ?",
+        "answer": "Oui, LaboGraphie est un cabinet digital enregistré au Cameroun. Toute notre équipe est composée de professionnels qualifiés, garantissant un travail sérieux et conforme aux normes du secteur."
+      },
+      {
+        "question": "Vos prix sont-ils compétitifs et proposez-vous des devis ?",
+        "answer": "Oui, nous offrons des tarifs compétitifs adaptés au marché camerounais et fournissons des devis gratuits pour tous nos services. Contactez-nous pour planifier un rendez-vous avec notre équipe."
+      }
+    ]
+  },
+  "about": {
+    "hero": {
+      "description": "Découvrez un partenaire digital fiable à Bastos, Yaoundé. Notre engagement pour la qualité garantit à vos projets numériques expertise, rigueur et innovation.",
+      "titleLine1": "Laboratoire d'innovation",
+      "titleLine2": "et cabinet informatique"
+    },
+    "stats": {
+      "projects": "Projets livrés",
+      "students": "Étudiants formés",
+      "expertise": "Domaines d'expertise",
+      "founders": "Experts fondateurs"
+    },
+    "timelineLabel": "Notre histoire",
+    "timelineTitle": "En savoir plus sur nous",
+    "timeline": [
+      {
+        "title": "Naissance du laboratoire",
+        "description": "LaboGraphie voit le jour à Yaoundé avec une idée simple : créer un laboratoire d'innovation capable d'accompagner les entreprises camerounaises dans leur transformation digitale."
+      },
+      {
+        "title": "Notre parcours",
+        "description": "Nous élargissons notre offre : design, développement web et mobile, marketing digital. Notre équipe grandit et notre réputation de rigueur et de créativité s'installe."
+      },
+      {
+        "title": "Notre histoire",
+        "description": "LaboGraphie devient un cabinet informatique reconnu, ajoutant la cybersécurité et les formations professionnelles à son catalogue, avec plus de 500 étudiants formés."
+      },
+      {
+        "title": "LaboGraphie aujourd'hui",
+        "description": "Installés à Bastos, Yaoundé, nous avons livré plus de 100 projets et accompagnons durablement nos clients grâce à notre maintenance IT et réseau."
+      }
+    ],
+    "valuesLabel": "Valeurs",
+    "valuesTitle": "Nos valeurs fondamentales",
+    "valuesDescription": "Nous croyons au pouvoir du travail d'équipe. Notre équipe pluridisciplinaire collabore pour relever les défis digitaux les plus complexes, dans une culture de collaboration et de respect.",
+    "coreValues": [
+      {
+        "title": "Équipe d'experts",
+        "description": "Notre équipe réunit des experts passionnés en design, développement, marketing et cybersécurité au service de chaque projet."
+      },
+      {
+        "title": "Processus agile",
+        "description": "Nous privilégions un processus rapide et structuré pour livrer vos projets dans les meilleurs délais."
+      },
+      {
+        "title": "Disponibilité",
+        "description": "Notre support et notre maintenance IT sont disponibles pour répondre rapidement aux besoins de nos clients."
+      },
+      {
+        "title": "Engagement fort",
+        "description": "Nous sommes profondément engagés envers la satisfaction de nos clients, avec une attention particulière portée aux détails."
+      },
+      {
+        "title": "Responsabilité",
+        "description": "Nous respectons les normes éthiques les plus strictes et priorisons la sécurité des données dans toutes nos missions."
+      },
+      {
+        "title": "Sécurité avant tout",
+        "description": "La protection des données de nos clients est une priorité, grâce à une veille constante et des outils adaptés."
+      }
+    ],
+    "missionVisionLabel": "Mission & Vision",
+    "missionTitle": "Notre mission",
+    "missionDescription": "Chez LaboGraphie, notre mission est de fournir des services digitaux de haute qualité qui garantissent sécurité, performance et efficacité. Nous nous engageons à offrir un service client exceptionnel et un savoir-faire d'expert.",
+    "missionFeatures": [
+      "Dépasser les attentes de nos clients grâce à un service exceptionnel et personnalisé.",
+      "Cultiver l'honnêteté et la transparence dans toutes nos relations professionnelles.",
+      "Adopter en continu de nouvelles technologies pour améliorer nos services."
+    ],
+    "visionTitle": "Notre vision",
+    "visionDescription": "Notre vision est de devenir le laboratoire d'innovation et cabinet informatique de référence au Cameroun, porté par l'intégrité, l'innovation et l'excellence, en fixant la norme de qualité du secteur digital.",
+    "visionFeatures": [
+      "Adopter les technologies les plus innovantes pour enrichir nos offres de services.",
+      "Construire des relations durables avec nos clients basées sur l'intégrité et la transparence.",
+      "Avoir un impact positif dans les communautés que nous servons au Cameroun."
+    ],
+    "teamLabel": "Notre équipe",
+    "teamTitle": "Rencontrez notre équipe d'experts",
+    "teamJordanRole": "Fondateur & CEO · Développeur Full-Stack & Infographe",
+    "teamJordanBio": "Technologue en Génie Logiciel (IUT de Douala), certifié en marketing digital (Google). Concepteur d'architectures logicielles, d'ERP et d'identités visuelles en production.",
+    "viewPortfolio": "Voir le portfolio",
+    "joinTeam": "Rejoindre l'équipe",
+    "careersLabel": "Carrières",
+    "careersDescription": "Nous offrons un environnement de travail dynamique et stimulant qui favorise l'évolution professionnelle. En rejoignant notre équipe, vous travaillerez sur des projets variés et innovants.",
+    "loadingPositions": "Chargement des postes...",
+    "noPositions": "Aucun poste disponible pour le moment.",
+    "missionVisionTitleLine1": "Transformer vos ambitions",
+    "missionVisionTitleLine2": "digitales en réalité",
+    "careersTitleLine1": "Opportunités de",
+    "careersTitleLine2": "rejoindre notre équipe"
+  },
+  "auth": {
+    "emailInvalid": "Veuillez saisir une adresse e-mail valide",
+    "passwordTooShort": "Le mot de passe doit contenir au moins 6 caractères",
+    "phoneInvalid": "Veuillez saisir un numéro de téléphone valide",
+    "phoneTooLong": "Le numéro de téléphone est trop long",
+    "invalidCredentials": "E-mail ou mot de passe invalide",
+    "emailNotConfirmed": "Veuillez confirmer votre adresse e-mail avant de vous connecter.",
+    "loginSuccess": "Connexion réussie !",
+    "emailAlreadyRegistered": "Cet e-mail est déjà enregistré. Veuillez vous connecter.",
+    "signupSuccess": "Un email de confirmation vous a été envoyé. Veuillez vérifier votre boîte de réception.",
+    "resetSuccess": "Instructions de réinitialisation envoyées à votre adresse e-mail.",
+    "unexpectedError": "Une erreur inattendue est survenue",
+    "bannerTitle": "L'excellence digitale.",
+    "bannerSubtitle": "Rejoignez l'univers LaboGraphie",
+    "welcomeBack": "Bon Retour",
+    "createAccount": "Créer un Compte",
+    "forgotPassword": "Mot de passe oublié",
+    "loginSubtitle": "Connectez-vous pour accéder à votre espace.",
+    "signupSubtitle": "Inscrivez-vous pour commencer l'aventure.",
+    "forgotSubtitle": "Saisissez votre e-mail pour réinitialiser le mot de passe.",
+    "fullName": "Nom Complet",
+    "fullNamePlaceholder": "Nadroj ciol",
+    "phone": "Numéro de Téléphone *",
+    "phoneCode": "Code",
+    "email": "Adresse E-mail",
+    "password": "Mot de Passe",
+    "forgotLink": "Oublié ?",
+    "pleaseWait": "Veuillez patienter...",
+    "logIn": "Se Connecter",
+    "sendLink": "Envoyer le lien",
+    "backToLogin": "Retour à la connexion",
+    "noAccount": "Vous n'avez pas de compte ? Inscrivez-vous",
+    "hasAccount": "Vous avez déjà un compte ? Connectez-vous",
+    "sideTitle": "L'excellence au service de vos idées.",
+    "sideDescription": "Rejoignez LaboGraphie et accédez à un univers de solutions digitales innovantes. De l'identité visuelle au développement web sur-mesure, nous donnons vie à vos projets."
+  },
+  "updatePassword": {
+    "title": "Nouveau Mot de Passe",
+    "description": "Veuillez saisir votre nouveau mot de passe ci-dessous.",
+    "label": "Nouveau mot de passe",
+    "updating": "Mise à jour...",
+    "submit": "Enregistrer le mot de passe",
+    "success": "Mot de passe mis à jour avec succès !",
+    "unexpectedError": "Une erreur inattendue est survenue"
+  },
+  "notFound": {
+    "description": "Il semble que cette page n'existe pas, ou que l'URL saisie soit incorrecte. Voici un moyen de revenir en lieu sûr.",
+    "backHome": "Retour à l'Accueil"
+  },
+  "privacyPolicy": {
+    "breadcrumbLabel": "Confidentialité",
+    "title": "Politique de Confidentialité",
+    "lastUpdated": "Dernière mise à jour : 15 novembre 2023",
+    "intro": "Chez {{name}}, laboratoire & cabinet digital basé à {{address}}, nous accordons une grande importance à la protection de vos données personnelles. Cette politique de confidentialité décrit les informations que nous collectons, la manière dont nous les utilisons et les droits dont vous disposez, conformément à la législation camerounaise en vigueur sur la protection des données.",
+    "infoCollectedTitle": "Quelles informations nous collectons",
+    "infoCollectedP1": "Lorsque vous utilisez notre site web, demandez un devis, postulez à une offre d'emploi ou nous contactez, nous pouvons collecter certaines informations personnelles telles que votre nom complet, votre adresse e-mail, votre numéro de téléphone, l'entreprise pour laquelle vous travaillez et le contenu de vos demandes ou messages.",
+    "infoCollectedP2": "Nous pouvons également collecter des informations techniques, comme votre adresse IP, le type de navigateur utilisé et vos interactions avec notre site, dans le but d'améliorer nos services et votre expérience utilisateur.",
+    "howWeUseTitle": "Comment nous utilisons vos informations",
+    "howWeUseIntro": "Les informations que vous nous fournissez sont utilisées exclusivement dans le cadre de nos activités de laboratoire et cabinet digital, notamment pour :",
+    "howWeUseItem1": "Traiter vos demandes de devis et vous fournir nos services (branding, développement web, marketing digital, cybersécurité, formations)",
+    "howWeUseItem2": "Répondre à vos messages et demandes de contact",
+    "howWeUseItem3": "Étudier vos candidatures aux offres d'emploi publiées",
+    "howWeUseItem4": "Améliorer nos services et la performance de notre site web",
+    "cookiesTitle": "Cookies et Suivi",
+    "cookiesP1": "Notre site utilise des cookies afin d'assurer son bon fonctionnement, de mesurer son audience et d'améliorer votre expérience de navigation. Vous pouvez à tout moment configurer votre navigateur pour refuser les cookies, sachant que certaines fonctionnalités du site pourraient alors être limitées.",
+    "cookiesP2": "Nous ne revendons ni ne partageons vos données personnelles avec des tiers à des fins commerciales sans votre consentement explicite.",
+    "rightsTitle": "Vos Droits",
+    "rightsP1": "Vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition concernant vos données personnelles détenues par {{name}}. Pour exercer ces droits, vous pouvez nous contacter directement à l'adresse e-mail indiquée ci-dessous. Nous nous engageons à traiter votre demande dans les meilleurs délais.",
+    "contactTitle": "Contactez-Nous",
+    "contactIntro": "Pour toute question concernant cette politique de confidentialité ou le traitement de vos données personnelles, vous pouvez nous contacter :",
+    "contactByEmail": "Par e-mail : {{email}}",
+    "contactByPhone": "Par téléphone / WhatsApp : {{phone}}",
+    "contactAddress": "À notre adresse : {{address}}"
+  }
+}

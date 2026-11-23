@@ -80,7 +80,7 @@ export default function DashboardServiceInquiries() {
                 </div>
             </div>
 
-            <Card className="bg-white border-gray-200">
+            <Card className="bg-card border-border">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <MessageSquare className="h-5 w-5" />
@@ -98,7 +98,7 @@ export default function DashboardServiceInquiries() {
                         <div className="overflow-x-auto">
                             <Table>
                                 <TableHeader>
-                                    <TableRow className="hover:bg-transparent border-gray-200">
+                                    <TableRow className="hover:bg-transparent border-border">
                                         <TableHead>Client</TableHead>
                                         <TableHead>Service</TableHead>
                                         <TableHead>Téléphone</TableHead>
@@ -110,7 +110,7 @@ export default function DashboardServiceInquiries() {
                                 </TableHeader>
                                 <TableBody>
                                     {inquiries.map((inquiry) => (
-                                        <TableRow key={inquiry.id} className="hover:bg-black/5 border-gray-200">
+                                        <TableRow key={inquiry.id} className="hover:bg-muted border-border">
                                             <TableCell>
                                                 <div className="flex items-center gap-3">
                                                     <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
@@ -175,7 +175,7 @@ export default function DashboardServiceInquiries() {
                                                                 <Trash2 className="h-4 w-4 text-destructive" />
                                                             </Button>
                                                         </AlertDialogTrigger>
-                                                        <AlertDialogContent className="bg-white">
+                                                        <AlertDialogContent className="bg-card">
                                                             <AlertDialogHeader>
                                                                 <AlertDialogTitle>Êtes-vous absolument sûr ?</AlertDialogTitle>
                                                                 <AlertDialogDescription>
@@ -183,7 +183,7 @@ export default function DashboardServiceInquiries() {
                                                                 </AlertDialogDescription>
                                                             </AlertDialogHeader>
                                                             <AlertDialogFooter>
-                                                                <AlertDialogCancel className="bg-white text-slate-700">Annuler</AlertDialogCancel>
+                                                                <AlertDialogCancel className="bg-card text-muted-foreground">Annuler</AlertDialogCancel>
                                                                 <AlertDialogAction onClick={() => handleDelete(inquiry.id)} className="bg-destructive text-white hover:bg-destructive/90">
                                                                     Supprimer
                                                                 </AlertDialogAction>
@@ -200,7 +200,7 @@ export default function DashboardServiceInquiries() {
                     ) : (
                         <div className="text-center py-12">
                             <MessageSquare className="h-12 w-12 mx-auto text-muted-foreground/50 mb-4" />
-                            <h3 className="text-lg font-semibold text-black/80 mb-2">Aucune demande pour le moment</h3>
+                            <h3 className="text-lg font-semibold text-foreground/80 mb-2">Aucune demande pour le moment</h3>
                             <p className="text-muted-foreground">
                                 Les demandes de service apparaîtront ici lorsque les clients les soumettront.
                             </p>

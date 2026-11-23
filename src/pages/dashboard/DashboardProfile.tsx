@@ -98,14 +98,14 @@ export default function DashboardProfile() {
     <div className="space-y-6 max-w-4xl">
       <div>
         <h1 className="text-3xl font-bold text-primary">Profil</h1>
-        <p className="text-black mt-1">
+        <p className="text-foreground mt-1">
           Gérez vos informations personnelles et votre photo
         </p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-3">
         {/* Profile Card */}
-        <Card className="bg-white border border-gray-200 md:col-span-1">
+        <Card className="bg-card border border-border md:col-span-1">
           <CardContent className="pt-6">
             <div className="flex flex-col items-center text-center">
 
@@ -133,7 +133,7 @@ export default function DashboardProfile() {
         </Card>
 
         {/* Account Details Form */}
-        <Card className="bg-white border border-gray-200 md:col-span-2">
+        <Card className="bg-card border border-border md:col-span-2">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <User className="h-5 w-5" />
@@ -166,7 +166,7 @@ export default function DashboardProfile() {
 
               <div className="grid gap-2">
                 <Label className="text-muted-foreground">Adresse e-mail (Non modifiable)</Label>
-                <Input value={user.email || ""} disabled className="bg-gray-50" />
+                <Input value={user.email || ""} disabled className="bg-muted" />
               </div>
 
               <div className="flex items-center gap-2 pt-2 text-sm text-muted-foreground">

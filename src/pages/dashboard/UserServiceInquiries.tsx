@@ -35,7 +35,7 @@ export default function UserServiceInquiries() {
                 </div>
             </div>
 
-            <Card className="bg-white border-gray-200">
+            <Card className="bg-card border-border">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <MessageSquare className="h-5 w-5" />
@@ -53,7 +53,7 @@ export default function UserServiceInquiries() {
                             {inquiries.map((inquiry) => (
                                 <div
                                     key={inquiry.id}
-                                    className="border border-gray-200 rounded-xl p-4 bg-gray-100 transition-colors"
+                                    className="border border-border rounded-xl p-4 bg-muted transition-colors"
                                 >
                                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                                         <div className="space-y-2">
@@ -107,7 +107,7 @@ export default function UserServiceInquiries() {
                     ) : (
                         <div className="text-center py-12">
                             <MessageSquare className="h-12 w-12 mx-auto text-muted-foreground/50 mb-4" />
-                            <h3 className="text-lg font-semibold text-black/80 mb-2">Aucune demande de service pour le moment</h3>
+                            <h3 className="text-lg font-semibold text-foreground/80 mb-2">Aucune demande de service pour le moment</h3>
                             <p className="text-muted-foreground mb-6">
                                 Vous n'avez encore soumis aucune demande de service. Parcourez nos services pour commencer.
                             </p>

@@ -4,40 +4,14 @@ import avatar3 from "@/assets/avatar-3.jpg";
 import avatar4 from "@/assets/avatar-4.jpg";
 import avatar5 from "@/assets/avatar-5.jpg";
 import FadeIn from "@/components/FadeIn";
-
-const testimonials = [{
-  name: "TEFOUET Ange Darlaine",
-  location: "Yaoundé, Cameroun",
-  text: "LaboGraphie a su transformer notre image de marque en un temps record. Leur équipe allie créativité et rigueur, un vrai plaisir de travailler avec eux.",
-  avatar: avatar1
-}, {
-  name: "Nelly Ariane Gounou",
-  location: "Douala, Cameroun",
-  text: "Notre site e-commerce a été livré dans les délais, avec un design moderne et performant. Une équipe à l'écoute et très professionnelle.",
-  avatar: avatar2
-}, {
-  name: "Cecile Emmanuelle Njoh",
-  location: "Yaoundé, Cameroun",
-  text: "La formation dispensée par LaboGraphie a permis à toute notre équipe de monter en compétences sur le digital. Un accompagnement de qualité.",
-  avatar: avatar3
-}, {
-  name: "Michel Pavel Tsobgny Zambou",
-  location: "Bafoussam, Cameroun",
-  text: "Grâce à leur stratégie marketing digital, notre visibilité en ligne a explosé. Des résultats concrets et mesurables dès les premiers mois.",
-  avatar: avatar4
-}, {
-  name: "Alan Miguel Feuwo T.",
-  location: "Douala, Cameroun",
-  text: "Un audit de cybersécurité complet et rassurant. LaboGraphie a su identifier nos failles et proposer des solutions adaptées à notre budget.",
-  avatar: avatar5
-}];
+import { useTranslation } from "react-i18next";
 
 const TestimonialCard = ({
   name,
   location,
   text,
   avatar
-}: typeof testimonials[0]) => <div className="bg-white rounded-2xl p-6 min-w-[320px] max-w-[320px] flex-shrink-0">
+}: { name: string; location: string; text: string; avatar: string }) => <div className="bg-card rounded-2xl p-6 min-w-[320px] max-w-[320px] flex-shrink-0">
     <div className="flex items-center gap-3 mb-4">
       <img src={avatar} alt={name} className="w-12 h-12 rounded-full object-cover" />
       <div>
@@ -49,27 +23,56 @@ const TestimonialCard = ({
   </div>;
 
 const Testimonials = () => {
+  const { t } = useTranslation();
+
+  const testimonials = [{
+    name: "TEFOUET Ange Darlaine",
+    location: "Yaoundé, Cameroun",
+    text: t("home.testimonials.quote1"),
+    avatar: avatar1
+  }, {
+    name: "Nelly Ariane Gounou",
+    location: "Douala, Cameroun",
+    text: t("home.testimonials.quote2"),
+    avatar: avatar2
+  }, {
+    name: "Cecile Emmanuelle Njoh",
+    location: "Yaoundé, Cameroun",
+    text: t("home.testimonials.quote3"),
+    avatar: avatar3
+  }, {
+    name: "Michel Pavel Tsobgny Zambou",
+    location: "Bafoussam, Cameroun",
+    text: t("home.testimonials.quote4"),
+    avatar: avatar4
+  }, {
+    name: "Alan Miguel Feuwo T.",
+    location: "Douala, Cameroun",
+    text: t("home.testimonials.quote5"),
+    avatar: avatar5
+  }];
+
   // Duplicate testimonials for seamless loop
   const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
-  return <section className="py-20 lg:py-32 bg-primary overflow-hidden">
+  return <section className="py-20 lg:py-32 bg-surface-dark overflow-hidden">
     <div className="container-custom section-padding">
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
         <div>
           <FadeIn>
-            <p className="text-tertiary font-medium mb-4">TÉMOIGNAGES</p>
+            <p className="text-tertiary font-medium mb-4">{t("home.testimonials.eyebrow")}</p>
           </FadeIn>
           <FadeIn delay={100}>
             <h2 className="text-white">
-              Ce que disent
+              {t("home.testimonials.titleLine1")}
               <br />
-              nos clients
+              {t("home.testimonials.titleLine2")}
             </h2>
           </FadeIn>
         </div>
         <FadeIn delay={200}>
           <p className="text-white max-w-xl mt-6 lg:mt-0">
-            Découvrez les retours de nos clients sur les projets digitaux que nous avons menés ensemble. Chaque témoignage reflète notre engagement pour l'excellence et la satisfaction client.
+            {t("home.testimonials.description")}
           </p>
         </FadeIn>
       </div>

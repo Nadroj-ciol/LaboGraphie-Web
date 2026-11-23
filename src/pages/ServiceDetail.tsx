@@ -9,7 +9,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { useCreateServiceInquiry } from "@/hooks/useServiceInquiries";
 import { Check, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
 // Import images
@@ -22,166 +24,19 @@ import service6 from "@/assets/service-6.png";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserProfile } from "@/hooks/useUserProfile";
 
+const SERVICE_IMAGES: Record<string, string> = {
+  "design-branding": service1,
+  "developpement-web": service2,
+  "marketing-digital": service3,
+  "cybersecurite": service4,
+  "formations-pro": service5,
+  "maintenance-it": service6,
+};
+const SERVICE_SLUGS = Object.keys(SERVICE_IMAGES);
+
 // Validation schemas
 const nameSchema = z.string().trim().min(1, "Le nom est requis").max(100, "Le nom doit contenir moins de 100 caractères");
 const phoneSchema = z.string().trim().min(1, "Le téléphone est requis").max(20, "Le téléphone doit contenir moins de 20 caractères");
-
-// Service data
-const servicesData: Record<string, {
-  title: string;
-  description: string;
-  image: string;
-  aboutTitle: string;
-  aboutDescription: string;
-  included: string[];
-  benefits: string[];
-  workSteps: { number: string; title: string; description: string }[];
-}> = {
-  "design-branding": {
-    title: "Design & Branding",
-    description: "Logos, chartes graphiques et supports de communication qui captivent votre audience et donnent à votre marque une identité forte et mémorable.",
-    image: service1,
-    aboutTitle: "À propos de ce service",
-    aboutDescription: "Notre laboratoire créatif conçoit des identités visuelles cohérentes et impactantes pour les entreprises et institutions camerounaises. Du logo à la charte graphique complète, chaque élément est pensé pour refléter les valeurs de votre marque et marquer durablement votre audience.\n\nNous travaillons en étroite collaboration avec vous, de la recherche d'identité jusqu'à la livraison des fichiers finaux, en passant par plusieurs itérations pour garantir un résultat qui vous ressemble.",
-    included: [
-      "Étude de marché et analyse de la concurrence pour positionner votre marque",
-      "Création de logo, charte graphique et déclinaisons pour tous vos supports",
-      "Livraison de fichiers sources et guide d'utilisation de la marque"
-    ],
-    benefits: [
-      "Une identité visuelle professionnelle qui renforce la crédibilité de votre entreprise",
-      "Une cohérence sur tous vos supports de communication, print et digital",
-      "Un accompagnement personnalisé à chaque étape du projet",
-      "Des livrables adaptés aux réalités du marché camerounais"
-    ],
-    workSteps: [
-      { number: "01", title: "Brief & Analyse", description: "Nous échangeons sur vos objectifs, votre marché et votre audience pour cadrer le projet." },
-      { number: "02", title: "Recherche créative", description: "Notre équipe explore plusieurs pistes créatives et vous présente des concepts adaptés." },
-      { number: "03", title: "Conception & Validation", description: "Nous affinons la direction retenue avec vous jusqu'à obtenir le résultat parfait." },
-      { number: "04", title: "Livraison finale", description: "Vous recevez tous les fichiers et un guide complet pour utiliser votre marque au quotidien." }
-    ]
-  },
-  "developpement-web": {
-    title: "Développement Web & Mobile",
-    description: "Sites vitrines, plateformes e-commerce et applications sur mesure : performants, sécurisés et pensés pour convertir vos visiteurs en clients.",
-    image: service2,
-    aboutTitle: "À propos de ce service",
-    aboutDescription: "LaboGraphie conçoit et développe des sites web et applications mobiles sur mesure, alliant performance technique et expérience utilisateur soignée. Que vous ayez besoin d'un site vitrine, d'une boutique en ligne ou d'une application métier, notre équipe vous accompagne de A à Z.\n\nNous utilisons des technologies modernes et robustes pour garantir des solutions rapides, sécurisées et évolutives, adaptées aux réalités de connexion et d'usage au Cameroun.",
-    included: [
-      "Analyse des besoins et conception UX/UI adaptée à vos utilisateurs",
-      "Développement front-end et back-end avec des technologies modernes",
-      "Tests, mise en ligne et formation à la prise en main de votre plateforme"
-    ],
-    benefits: [
-      "Un site ou une application rapide, sécurisée et responsive",
-      "Une expérience utilisateur pensée pour convertir vos visiteurs en clients",
-      "Un accompagnement technique après la mise en ligne",
-      "Des solutions évolutives qui grandissent avec votre activité"
-    ],
-    workSteps: [
-      { number: "01", title: "Cadrage du projet", description: "Nous définissons ensemble le périmètre, les fonctionnalités et le planning de réalisation." },
-      { number: "02", title: "Design & Maquettes", description: "Nous créons des maquettes claires et ergonomiques avant tout développement." },
-      { number: "03", title: "Développement & Tests", description: "Notre équipe code, teste et optimise chaque fonctionnalité de votre plateforme." },
-      { number: "04", title: "Mise en ligne", description: "Nous déployons votre projet et assurons son bon fonctionnement dans la durée." }
-    ]
-  },
-  "marketing-digital": {
-    title: "Marketing Digital",
-    description: "Stratégies SEO, gestion de réseaux sociaux et campagnes publicitaires percutantes pour accroître votre visibilité et générer des leads qualifiés.",
-    image: service3,
-    aboutTitle: "À propos de ce service",
-    aboutDescription: "Notre équipe marketing élabore des stratégies digitales complètes pour renforcer votre présence en ligne et générer des résultats concrets. Référencement naturel, gestion des réseaux sociaux, publicité en ligne : nous mettons en place les leviers adaptés à vos objectifs.\n\nChaque campagne est pilotée avec des indicateurs de performance clairs, pour vous permettre de mesurer le retour sur investissement de vos actions marketing.",
-    included: [
-      "Audit de votre présence digitale et définition d'une stratégie sur mesure",
-      "Création de contenus et gestion quotidienne de vos réseaux sociaux",
-      "Suivi des performances et rapports mensuels détaillés"
-    ],
-    benefits: [
-      "Une visibilité accrue auprès de votre audience cible",
-      "Des leads qualifiés grâce à des campagnes ciblées et optimisées",
-      "Un contenu régulier et cohérent avec votre identité de marque",
-      "Des rapports transparents pour suivre vos résultats en temps réel"
-    ],
-    workSteps: [
-      { number: "01", title: "Audit & Stratégie", description: "Nous analysons votre présence actuelle et définissons les objectifs de la campagne." },
-      { number: "02", title: "Planification de contenu", description: "Nous élaborons un calendrier éditorial adapté à vos canaux et à votre audience." },
-      { number: "03", title: "Diffusion & Publicité", description: "Nous lançons les campagnes et optimisons les budgets pour maximiser l'impact." },
-      { number: "04", title: "Analyse des résultats", description: "Nous mesurons les performances et ajustons la stratégie pour de meilleurs résultats." }
-    ]
-  },
-  "cybersecurite": {
-    title: "Cybersécurité",
-    description: "Audits, tests d'intrusion et solutions de protection contre les cybermenaces pour sécuriser vos données et la continuité de votre activité.",
-    image: service4,
-    aboutTitle: "À propos de ce service",
-    aboutDescription: "Face à la montée des cybermenaces, LaboGraphie propose des solutions de cybersécurité complètes pour protéger vos systèmes, vos données et la continuité de votre activité. Nos experts réalisent des audits approfondis et des tests d'intrusion pour identifier les failles avant qu'elles ne soient exploitées.\n\nNous accompagnons également nos clients dans la mise en conformité et la mise en place de bonnes pratiques de sécurité au quotidien.",
-    included: [
-      "Audit complet de vos systèmes, réseaux et applications",
-      "Tests d'intrusion applicatifs et réseau réalisés par nos experts",
-      "Plan d'action et recommandations pour renforcer votre sécurité"
-    ],
-    benefits: [
-      "Une meilleure protection de vos données sensibles et de celles de vos clients",
-      "Une réduction significative des risques de cyberattaques",
-      "Une conformité renforcée avec les bonnes pratiques du secteur",
-      "Un accompagnement continu pour maintenir un haut niveau de sécurité"
-    ],
-    workSteps: [
-      { number: "01", title: "Diagnostic initial", description: "Nous évaluons l'état actuel de la sécurité de vos systèmes et infrastructures." },
-      { number: "02", title: "Tests d'intrusion", description: "Nos experts simulent des attaques réelles pour identifier les vulnérabilités." },
-      { number: "03", title: "Correction des failles", description: "Nous vous accompagnons dans la mise en place des correctifs nécessaires." },
-      { number: "04", title: "Suivi & Prévention", description: "Nous assurons un suivi régulier pour maintenir votre sécurité dans le temps." }
-    ]
-  },
-  "formations-pro": {
-    title: "Formations Pro",
-    description: "Programmes de coaching digital et de formation continue adaptés à vos équipes : design, développement, bureautique avancée et cybersécurité.",
-    image: service5,
-    aboutTitle: "À propos de ce service",
-    aboutDescription: "LaboGraphie forme depuis plusieurs années des étudiants et professionnels camerounais aux métiers du numérique. Nos programmes couvrent le design, le développement, la bureautique avancée et la cybersécurité, avec une approche pratique et orientée résultats.\n\nAvec plus de 500 étudiants formés, nous mettons un point d'honneur à transmettre des compétences directement applicables sur le marché du travail.",
-    included: [
-      "Programme pédagogique structuré, adapté au niveau des participants",
-      "Formateurs expérimentés et exercices pratiques sur des cas réels",
-      "Certificat de fin de formation et suivi post-formation"
-    ],
-    benefits: [
-      "Des compétences directement applicables dans le monde professionnel",
-      "Un accompagnement personnalisé tout au long du parcours",
-      "Des formateurs experts issus du terrain",
-      "Des formats flexibles adaptés aux particuliers et aux entreprises"
-    ],
-    workSteps: [
-      { number: "01", title: "Évaluation des besoins", description: "Nous identifions vos objectifs et le niveau des participants avant la formation." },
-      { number: "02", title: "Conception du programme", description: "Nous construisons un parcours pédagogique adapté à vos besoins spécifiques." },
-      { number: "03", title: "Sessions pratiques", description: "Les participants apprennent par la pratique, avec des cas concrets et des exercices." },
-      { number: "04", title: "Certification & Suivi", description: "Nous délivrons un certificat et assurons un accompagnement après la formation." }
-    ]
-  },
-  "maintenance-it": {
-    title: "Maintenance IT & Réseau",
-    description: "Support technique, infrastructure réseau et maintenance préventive pour garder votre parc informatique fiable, rapide et toujours disponible.",
-    image: service6,
-    aboutTitle: "À propos de ce service",
-    aboutDescription: "Notre équipe technique assure la maintenance et le support de votre parc informatique et de votre infrastructure réseau. Interventions ponctuelles, contrats de maintenance mensuels ou installation complète de réseau : nous garantissons la fiabilité et la disponibilité de vos systèmes.\n\nNotre objectif est de réduire les temps d'arrêt et de vous permettre de vous concentrer sur votre cœur de métier en toute sérénité.",
-    included: [
-      "Diagnostic et dépannage rapide de vos équipements informatiques",
-      "Maintenance préventive et surveillance continue de votre infrastructure",
-      "Installation et configuration de réseaux fiables et sécurisés"
-    ],
-    benefits: [
-      "Une réduction significative des pannes et interruptions d'activité",
-      "Un support technique réactif et disponible en cas d'urgence",
-      "Une infrastructure réseau stable et performante",
-      "Un interlocuteur unique pour l'ensemble de votre parc informatique"
-    ],
-    workSteps: [
-      { number: "01", title: "Prise de contact & Diagnostic", description: "Nous évaluons l'état de votre parc informatique et vos besoins spécifiques." },
-      { number: "02", title: "Planification des interventions", description: "Nous établissons un plan de maintenance adapté à votre activité." },
-      { number: "03", title: "Intervention technique", description: "Nos techniciens interviennent pour réparer, installer ou configurer vos équipements." },
-      { number: "04", title: "Suivi & Assistance", description: "Nous restons disponibles pour toute assistance technique après l'intervention." }
-    ]
-  }
-};
 
 // FlipButton component
 const FlipButton = ({
@@ -195,10 +50,10 @@ const FlipButton = ({
   return (
     <button className={`group relative px-8 py-4 ${bgClass} rounded-full overflow-hidden`}>
       <span className="relative block overflow-hidden h-6">
-        <span className="block transition-transform duration-300 group-hover:-translate-y-full text-white font-semibold">
+        <span className="block transition-transform duration-300 group-hover:-translate-y-full text-primary-foreground font-semibold">
           {children}
         </span>
-        <span className="absolute top-full left-0 block transition-transform duration-300 group-hover:-translate-y-full text-white font-semibold">
+        <span className="absolute top-full left-0 block transition-transform duration-300 group-hover:-translate-y-full text-primary-foreground font-semibold">
           {children}
         </span>
       </span>
@@ -206,16 +61,35 @@ const FlipButton = ({
   );
 };
 
+interface WorkStep {
+  title: string;
+  description: string;
+}
+
 const ServiceDetail = () => {
-  const { slug } = useParams<{ slug: string }>();
-  const service = servicesData[slug || ""] || servicesData["developpement-web"];
+  const { t } = useTranslation();
+  const { slug: rawSlug } = useParams<{ slug: string }>();
+  const slug = rawSlug && SERVICE_SLUGS.includes(rawSlug) ? rawSlug : "developpement-web";
+
+  const service = {
+    slug,
+    image: SERVICE_IMAGES[slug],
+    title: t(`services.items.${slug}.title`),
+    description: t(`services.items.${slug}.description`),
+    aboutTitle: t(`services.items.${slug}.aboutTitle`),
+    aboutDescription: t(`services.items.${slug}.aboutDescription`),
+    included: t(`services.items.${slug}.included`, { returnObjects: true }) as string[],
+    benefits: t(`services.items.${slug}.benefits`, { returnObjects: true }) as string[],
+    workSteps: t(`services.items.${slug}.workSteps`, { returnObjects: true }) as WorkStep[],
+  };
+
   const { user } = useAuth();
   const { data: profile } = useUserProfile(user?.id);
 
   // Form state
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
-  const [selectedService, setSelectedService] = useState(slug || "developpement-web");
+  const [selectedService, setSelectedService] = useState(slug);
   const [note, setNote] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -260,7 +134,7 @@ const ServiceDetail = () => {
 
     if (!validateForm()) return;
 
-    const serviceName = servicesData[selectedService]?.title || service.title;
+    const serviceName = t(`services.items.${selectedService}.title`);
 
     await createInquiry.mutateAsync({
       service_name: serviceName,
@@ -279,7 +153,7 @@ const ServiceDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <Header />
 
       {/* Service Title Section */}
@@ -287,16 +161,16 @@ const ServiceDetail = () => {
         <div className="container-custom section-padding py-12">
           {/* Breadcrumb */}
           <div className="text-muted-foreground text-sm mb-6">
-            <Link to="/" className="hover:text-primary transition-colors">Accueil</Link>
+            <Link to="/" className="hover:text-primary transition-colors">{t("common.nav.home")}</Link>
             <span className="mx-2">/</span>
-            <Link to="/services" className="hover:text-primary transition-colors">Services</Link>
+            <Link to="/services" className="hover:text-primary transition-colors">{t("common.nav.services")}</Link>
           </div>
 
           <FadeIn>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-4">
-              <h2 className="text-black text-5xl md:text-7xl font-bold">{service.title}</h2>
+              <h2 className="text-foreground text-5xl md:text-7xl font-bold">{service.title}</h2>
               <Link to="/quote">
-                <FlipButton variant="primary">Demander un devis</FlipButton>
+                <FlipButton variant="primary">{t("services.detail.requestQuote")}</FlipButton>
               </Link>
             </div>
           </FadeIn>
@@ -325,8 +199,8 @@ const ServiceDetail = () => {
             {/* Left - About Content */}
             <div className="w-full max-w-[640px]">
               <FadeIn>
-                <p className="text-primary font-semibold mb-4">Détails du service</p>
-                <h3 className="text-4xl md:text-5xl font-bold text-black mb-6">{service.aboutTitle}</h3>
+                <p className="text-primary font-semibold mb-4">{t("services.detail.serviceDetailsLabel")}</p>
+                <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-6">{service.aboutTitle}</h3>
               </FadeIn>
 
               <FadeIn delay={100}>
@@ -336,12 +210,12 @@ const ServiceDetail = () => {
               </FadeIn>
 
               <FadeIn delay={200}>
-                <h4 className="text-2xl font-bold text-black mb-4">Ce qui est inclus ?</h4>
+                <h4 className="text-2xl font-bold text-foreground mb-4">{t("services.detail.whatsIncluded")}</h4>
                 <div className="space-y-4">
                   {service.included.map((item, index) => (
                     <div key={index} className="flex gap-3">
                       <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1">
-                        <Check className="w-3 h-3 text-white" />
+                        <Check className="w-3 h-3 text-primary-foreground" />
                       </div>
                       <p className="text-muted-foreground">{item}</p>
                     </div>
@@ -351,10 +225,10 @@ const ServiceDetail = () => {
               <section className=" py-16 lg:py-32">
                 <div className="container-custom">
                   <FadeIn>
-                    <p className="text-primary font-bold mb-4">Notre méthode</p>
-                    <h3 className="text-4xl md:text-5xl font-bold text-black mb-4">Comment nous travaillons</h3>
+                    <p className="text-primary font-bold mb-4">{t("services.detail.ourMethod")}</p>
+                    <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-4">{t("services.detail.howWeWork")}</h3>
                     <p className="text-muted-foreground max-w-2xl mb-12">
-                      Une méthodologie éprouvée, du premier échange à la livraison finale, pour garantir des résultats concrets et durables pour votre entreprise.
+                      {t("services.detail.methodDescription")}
                     </p>
                   </FadeIn>
 
@@ -363,10 +237,10 @@ const ServiceDetail = () => {
                       <FadeIn key={index} delay={index * 100}>
                         <div className="flex flex-col gap-4">
                           <div className="w-14 h-14 rounded-full border border-secondary flex items-center justify-center flex-shrink-0">
-                            <span className="text-secondary font-bold">{step.number}</span>
+                            <span className="text-secondary font-bold">{String(index + 1).padStart(2, "0")}</span>
                           </div>
                           <div>
-                            <h5 className="text-2xl font-bold text-black mb-2">{step.title}</h5>
+                            <h5 className="text-2xl font-bold text-foreground mb-2">{step.title}</h5>
                             <p className="text-muted-foreground font-medium">{step.description}</p>
                           </div>
                         </div>
@@ -383,10 +257,10 @@ const ServiceDetail = () => {
                     {/* Left - Benefits Content */}
                     <div>
                       <FadeIn>
-                        <p className="text-primary font-bold mb-4">Avantages</p>
-                        <h3 className="text-3xl md:text-5xl font-bold text-black mb-6">Les avantages du service</h3>
+                        <p className="text-primary font-bold mb-4">{t("services.detail.advantagesLabel")}</p>
+                        <h3 className="text-3xl md:text-5xl font-bold text-foreground mb-6">{t("services.detail.serviceAdvantages")}</h3>
                         <p className="text-muted-foreground font-medium mb-8">
-                          Faire appel à LaboGraphie, c'est bénéficier d'une expertise locale, d'un accompagnement de proximité et de solutions digitales adaptées aux réalités du marché camerounais.
+                          {t("services.detail.advantagesDescription")}
                         </p>
                       </FadeIn>
 
@@ -395,7 +269,7 @@ const ServiceDetail = () => {
                           {service.benefits.map((benefit, index) => (
                             <div key={index} className="flex gap-3">
                               <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1">
-                                <Check className="w-3 h-3 text-white" />
+                                <Check className="w-3 h-3 text-primary-foreground" />
                               </div>
                               <p className="text-muted-foreground font-medium">{benefit}</p>
                             </div>
@@ -409,7 +283,7 @@ const ServiceDetail = () => {
                       <div className="rounded-xl overflow-hidden">
                         <img
                           src={service.image}
-                          alt="Avantages du service"
+                          alt={t("services.detail.advantagesImageAlt")}
                           className="w-full h-[400px] object-cover"
                         />
                       </div>
@@ -422,17 +296,17 @@ const ServiceDetail = () => {
             {/* Right - Contact Form */}
             <div className="flex sticky top-10 h-fit justify-end">
               <FadeIn className="w-[460px]" delay={300}>
-                <div className="bg-[#f4f4f7]  p-8 rounded-xl">
-                  <h4 className="text-3xl font-bold text-black mb-6">Contactez-nous</h4>
+                <div className="bg-muted p-8 rounded-xl">
+                  <h4 className="text-3xl font-bold text-foreground mb-6">{t("services.detail.contactUs")}</h4>
 
                   <form className="space-y-8" onSubmit={handleSubmit}>
                     <div>
-                      <label className=" font-bold text-black mb-2 block">Nom complet</label>
+                      <label className=" font-bold text-foreground mb-2 block">{t("services.detail.fullName")}</label>
                       <Input
                         className="bg-transparent h-12"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
-                        placeholder="Entrez votre nom"
+                        placeholder={t("services.detail.fullNamePlaceholder")}
                       />
                       {errors.fullName && (
                         <p className="text-destructive text-sm mt-1">{errors.fullName}</p>
@@ -440,12 +314,12 @@ const ServiceDetail = () => {
                     </div>
 
                     <div>
-                      <label className=" font-bold text-black mb-2 block">Téléphone</label>
+                      <label className=" font-bold text-foreground mb-2 block">{t("services.detail.phone")}</label>
                       <Input
                         className="bg-transparent border-border h-12"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                        placeholder="Entrez votre numéro de téléphone"
+                        placeholder={t("services.detail.phonePlaceholder")}
                       />
                       {errors.phone && (
                         <p className="text-destructive text-sm mt-1">{errors.phone}</p>
@@ -453,26 +327,23 @@ const ServiceDetail = () => {
                     </div>
 
                     <div>
-                      <label className=" font-bold text-black mb-2 block">Choisir un service</label>
+                      <label className=" font-bold text-foreground mb-2 block">{t("services.detail.chooseService")}</label>
                       <Select value={selectedService} onValueChange={setSelectedService}>
                         <SelectTrigger className="bg-transparent h-12 border-border">
-                          <SelectValue placeholder="Sélectionnez un service" />
+                          <SelectValue placeholder={t("services.detail.chooseServicePlaceholder")} />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="design-branding">Design & Branding</SelectItem>
-                          <SelectItem value="developpement-web">Développement Web & Mobile</SelectItem>
-                          <SelectItem value="marketing-digital">Marketing Digital</SelectItem>
-                          <SelectItem value="cybersecurite">Cybersécurité</SelectItem>
-                          <SelectItem value="formations-pro">Formations Pro</SelectItem>
-                          <SelectItem value="maintenance-it">Maintenance IT & Réseau</SelectItem>
+                          {SERVICE_SLUGS.map((s) => (
+                            <SelectItem key={s} value={s}>{t(`services.items.${s}.title`)}</SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     </div>
 
                     <div>
-                      <label className=" font-bold text-black mb-2 block">Message</label>
+                      <label className=" font-bold text-foreground mb-2 block">{t("services.detail.message")}</label>
                       <Textarea
-                        placeholder="Écrivez ici.."
+                        placeholder={t("services.detail.messagePlaceholder")}
                         className="bg-transparent border-border min-h-[100px]"
                         value={note}
                         onChange={(e) => setNote(e.target.value)}
@@ -481,16 +352,16 @@ const ServiceDetail = () => {
 
                     <Button
                       type="submit"
-                      className="w-full bg-primary hover:bg-secondary/90 text-white py-6"
+                      className="w-full bg-primary hover:bg-secondary/90 text-primary-foreground py-6"
                       disabled={createInquiry.isPending}
                     >
                       {createInquiry.isPending ? (
                         <>
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          Envoi en cours...
+                          {t("services.detail.sending")}
                         </>
                       ) : (
-                        "Envoyer"
+                        t("services.detail.send")
                       )}
                     </Button>
                   </form>

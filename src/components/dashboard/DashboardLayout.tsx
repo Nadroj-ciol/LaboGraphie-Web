@@ -1,7 +1,8 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 import { DashboardSidebar } from "./DashboardSidebar";
 
 // Admin-only dashboard sub-routes. Non-admin authenticated users are
@@ -18,7 +19,7 @@ const ADMIN_ONLY_PATHS = [
 
 export function DashboardLayout() {
   const { user, loading, isAdmin } = useAuth();
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export function DashboardLayout() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-card flex items-center justify-center">
         <div className="animate-pulse text-muted-foreground">Chargement...</div>
       </div>
     );
@@ -58,12 +59,12 @@ export function DashboardLayout() {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-slate-50">
+      <div className="min-h-screen flex w-full bg-muted/30">
         <DashboardSidebar />
 
         <div className="flex-1 flex flex-col min-w-0 transition-all duration-300">
           {/* Mobile Header with Menu Trigger - Glassmorphism effect */}
-          <header className="md:hidden sticky top-0 z-20 flex items-center gap-3 border-b border-gray-200/50 bg-white/80 backdrop-blur-md p-4 shadow-sm">
+          <header className="md:hidden sticky top-0 z-20 flex items-center gap-3 border-b border-border/50 bg-card/80 backdrop-blur-md p-4 shadow-sm">
             <SidebarTrigger className="-ml-1" />
             <h1 className="text-lg font-semibold tracking-tight">Tableau de bord</h1>
           </header>

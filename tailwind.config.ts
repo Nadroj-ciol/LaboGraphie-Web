@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -20,7 +21,7 @@ export default {
   	extend: {
   		fontFamily: {
   			clash: [
-  				'Clash Grotesk"',
+  				'"Clash Grotesk"',
   				'Verdana',
   				'sans-serif'
   			],
@@ -119,6 +120,10 @@ export default {
   			tertiary: {
   				DEFAULT: 'hsl(var(--tertiary))',
   				foreground: 'hsl(var(--tertiary-foreground))'
+  			},
+  			'surface-dark': {
+  				DEFAULT: 'hsl(var(--surface-dark))',
+  				foreground: 'hsl(var(--surface-dark-foreground))'
   			},
   			destructive: {
   				DEFAULT: 'hsl(var(--destructive))',
@@ -311,5 +316,5 @@ export default {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

@@ -1,10 +1,12 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { useTranslation } from "react-i18next";
 
 const NotFound = () => {
+  const { t } = useTranslation();
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <Header />
 
       {/* 404 Content */}
@@ -35,7 +37,7 @@ const NotFound = () => {
 
           {/* Subtitle */}
           <p className="text-muted-foreground text-sm md:text-base max-w-md mx-auto mb-10">
-            Il semble que cette page n'existe pas, ou que l'URL saisie soit incorrecte. Voici un moyen de revenir en lieu sûr.
+            {t("notFound.description")}
           </p>
 
           {/* Button */}
@@ -43,7 +45,7 @@ const NotFound = () => {
             to="/"
             className="inline-block bg-primary text-primary-foreground px-8 py-4 rounded-full font-medium hover:bg-primary/90 transition-colors"
           >
-            Retour à l'Accueil
+            {t("notFound.backHome")}
           </Link>
         </div>
       </section>

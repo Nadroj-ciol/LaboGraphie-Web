@@ -7,10 +7,14 @@ import Header from "@/components/Header";
 import { useBlog, usePublishedBlogs } from "@/hooks/useBlogs";
 import DOMPurify from "dompurify";
 import { Facebook, Twitter, Linkedin, Link2, MessageCircle, Send } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
 const BlogDetail = () => {
+  const { t, i18n } = useTranslation();
+  const dateLocale = i18n.language === "en" ? "en-US" : "fr-FR";
   const { slug } = useParams();
   const { data: post, isLoading } = useBlog(slug || "");
   const { data: allBlogs } = usePublishedBlogs();
@@ -19,20 +23,20 @@ const BlogDetail = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-muted-foreground">Chargement...</p>
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <p className="text-muted-foreground">{t("blog.loading")}</p>
       </div>
     );
   }
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-background">
         <Header />
         <section className="py-32 md:py-40 text-center">
-          <h1 className="text-primary">Article introuvable</h1>
+          <h1 className="text-primary">{t("blog.detail.notFoundTitle")}</h1>
           <Link to="/blog" className="text-secondary hover:underline mt-4 inline-block">
-            Retour au blog
+            {t("blog.detail.backToBlog")}
           </Link>
         </section>
         <Footer />
@@ -40,7 +44,7 @@ const BlogDetail = () => {
     );
   }
 
-  const formattedDate = new Date(post.created_at).toLocaleDateString('fr-FR', {
+  const formattedDate = new Date(post.created_at).toLocaleDateString(dateLocale, {
     month: 'long',
     day: 'numeric',
     year: 'numeric'
@@ -48,19 +52,19 @@ const BlogDetail = () => {
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
-    toast.success("Lien copié dans le presse-papiers !");
+    toast.success(t("blog.detail.linkCopied"));
   };
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareTitle = post.title;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <Header />
 
       {/* Hero Section */}
       <FadeIn>
-        <section className="pt-32 pb-8 bg-white">
+        <section className="pt-32 pb-8 bg-background">
           <div className="container-custom section-padding">
             {/* Meta */}
             <p className="text-muted-foreground text-sm text-center mb-4">
@@ -86,7 +90,7 @@ const BlogDetail = () => {
 
       {/* Content Section */}
       <FadeIn>
-        <section className="py-8 bg-white">
+        <section className="py-8 bg-background">
           <div className="container-custom section-padding">
             <div className="max-w-5xl mx-auto">
               {/* Intro Paragraph */}
@@ -109,29 +113,29 @@ const BlogDetail = () => {
               ) : (
                 <>
                   {/* Default content sections */}
-                  <h4 className="text-primary mb-4">Éviter des dépenses inutiles</h4>
+                  <h4 className="text-primary mb-4">{t("blog.detail.defaultContent.section1Title")}</h4>
                   <p className="text-muted-foreground mb-4 leading-relaxed">
-                    Une identité visuelle mal pensée ou un site web obsolète peuvent coûter cher à long terme. En investissant tôt dans une stratégie digitale solide, vous évitez des refontes coûteuses et renforcez la confiance de vos clients.
+                    {t("blog.detail.defaultContent.section1Text")}
                   </p>
                   <ul className="list-disc pl-6 text-muted-foreground mb-8 space-y-2">
-                    <li>Un audit régulier permet d'anticiper les failles de sécurité.</li>
-                    <li>Une détection précoce des problèmes techniques évite des coûts élevés.</li>
-                    <li>Un accompagnement professionnel garantit un fonctionnement optimal.</li>
+                    <li>{t("blog.detail.defaultContent.section1Item1")}</li>
+                    <li>{t("blog.detail.defaultContent.section1Item2")}</li>
+                    <li>{t("blog.detail.defaultContent.section1Item3")}</li>
                   </ul>
 
-                  <h4 className="text-primary mb-4">Améliorer la performance</h4>
+                  <h4 className="text-primary mb-4">{t("blog.detail.defaultContent.section2Title")}</h4>
                   <p className="text-muted-foreground mb-4 leading-relaxed">
-                    Les outils digitaux modernes sont bien plus performants que les anciennes solutions. Moderniser vos plateformes permet de réduire les coûts opérationnels tout en améliorant l'expérience de vos utilisateurs.
+                    {t("blog.detail.defaultContent.section2Text")}
                   </p>
 
                   <div className="grid lg:grid-cols-2 gap-8 mb-8">
                     <div>
-                      <h4 className="text-primary mb-4">Renforcer votre image de marque</h4>
+                      <h4 className="text-primary mb-4">{t("blog.detail.defaultContent.section3Title")}</h4>
                       <p className="text-muted-foreground mb-4 leading-relaxed">
-                        Une présence digitale bien maîtrisée valorise votre entreprise et attire de nouveaux clients.
+                        {t("blog.detail.defaultContent.section3Text1")}
                       </p>
                       <p className="text-muted-foreground leading-relaxed">
-                        Un branding cohérent et un site performant sont des atouts différenciants sur le marché.
+                        {t("blog.detail.defaultContent.section3Text2")}
                       </p>
                     </div>
                     <div className="rounded-2xl overflow-hidden">
@@ -146,15 +150,15 @@ const BlogDetail = () => {
               )}
 
               {/* Share Section */}
-              <div className="flex flex-col sm:flex-row items-center justify-between py-6 px-6 sm:px-8 rounded-2xl bg-[#F4F4F7] border border-gray-200 shadow-sm gap-4">
-                <span className="text-secondary text-base font-bold">Cet article vous a plu ? Partagez-le !</span>
+              <div className="flex flex-col sm:flex-row items-center justify-between py-6 px-6 sm:px-8 rounded-2xl bg-muted border border-border shadow-sm gap-4">
+                <span className="text-secondary text-base font-bold">{t("blog.detail.shareTitle")}</span>
                 <div className="flex flex-wrap justify-center gap-3">
                   <a
                     href={`https://wa.me/?text=${encodeURIComponent(shareTitle + " : " + currentUrl)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-500 hover:bg-[#25D366] hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
-                    title="Partager sur WhatsApp"
+                    className="w-12 h-12 rounded-full bg-background flex items-center justify-center text-slate-500 hover:bg-[#25D366] hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
+                    title={t("blog.detail.shareWhatsapp")}
                   >
                     <MessageCircle className="h-5 w-5" />
                   </a>
@@ -162,8 +166,8 @@ const BlogDetail = () => {
                     href={`https://t.me/share/url?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareTitle)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-500 hover:bg-[#0088cc] hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
-                    title="Partager sur Telegram"
+                    className="w-12 h-12 rounded-full bg-background flex items-center justify-center text-slate-500 hover:bg-[#0088cc] hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
+                    title={t("blog.detail.shareTelegram")}
                   >
                     <Send className="h-5 w-5" />
                   </a>
@@ -171,8 +175,8 @@ const BlogDetail = () => {
                     href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareTitle)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-500 hover:bg-[#1DA1F2] hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
-                    title="Partager sur X (Twitter)"
+                    className="w-12 h-12 rounded-full bg-background flex items-center justify-center text-slate-500 hover:bg-[#1DA1F2] hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
+                    title={t("blog.detail.shareTwitter")}
                   >
                     <Twitter className="h-5 w-5" />
                   </a>
@@ -180,8 +184,8 @@ const BlogDetail = () => {
                     href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-500 hover:bg-[#1877F2] hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
-                    title="Partager sur Facebook"
+                    className="w-12 h-12 rounded-full bg-background flex items-center justify-center text-slate-500 hover:bg-[#1877F2] hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
+                    title={t("blog.detail.shareFacebook")}
                   >
                     <Facebook className="h-5 w-5" />
                   </a>
@@ -189,15 +193,15 @@ const BlogDetail = () => {
                     href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-500 hover:bg-[#0A66C2] hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
-                    title="Partager sur LinkedIn"
+                    className="w-12 h-12 rounded-full bg-background flex items-center justify-center text-slate-500 hover:bg-[#0A66C2] hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
+                    title={t("blog.detail.shareLinkedin")}
                   >
                     <Linkedin className="h-5 w-5" />
                   </a>
                   <button
                     onClick={handleCopyLink}
-                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-500 hover:bg-slate-800 hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1 cursor-pointer"
-                    title="Copier le lien"
+                    className="w-12 h-12 rounded-full bg-background flex items-center justify-center text-slate-500 hover:bg-slate-800 hover:text-white transition-all shadow-sm hover:shadow-md hover:-translate-y-1 cursor-pointer"
+                    title={t("blog.detail.copyLink")}
                   >
                     <Link2 className="h-5 w-5" />
                   </button>
@@ -211,9 +215,9 @@ const BlogDetail = () => {
       {/* Related Blogs Section */}
       {relatedPosts.length > 0 && (
         <FadeIn>
-          <section className="pt-16 bg-white">
+          <section className="pt-16 bg-background">
             <div className="container-custom section-padding">
-              <h2 className="text-primary text-center mb-12">Articles similaires</h2>
+              <h2 className="text-primary text-center mb-12">{t("blog.detail.relatedArticles")}</h2>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {relatedPosts.map((relatedPost, index) => (
@@ -234,7 +238,7 @@ const BlogDetail = () => {
                           {relatedPost.title}
                         </h5>
                         <p className="text-muted-foreground text-sm">
-                          {new Date(relatedPost.created_at).toLocaleDateString('fr-FR', { month: 'long', day: 'numeric', year: 'numeric' })} · {relatedPost.read_time}
+                          {new Date(relatedPost.created_at).toLocaleDateString(dateLocale, { month: 'long', day: 'numeric', year: 'numeric' })} · {relatedPost.read_time}
                         </p>
                       </article>
                     </Link>

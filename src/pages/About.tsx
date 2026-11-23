@@ -2,7 +2,7 @@ import plumberTeam from "@/assets/about-hero-1.png";
 import mission from "@/assets/mission-1.png";
 import vision from "@/assets/mission-2.png";
 import profile1 from "@/assets/profile-1.png";
-import profile2 from "@/assets/profile-2.png";
+import jordanPortrait from "@/assets/jordan-portrait-pro.webp";
 import profile3 from "@/assets/profile-3.png";
 import heroGrid1 from "@/assets/timeline-1.png";
 import heroGrid2 from "@/assets/timeline-2.png";
@@ -14,101 +14,56 @@ import FadeIn from "@/components/FadeIn";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { useCareers } from "@/hooks/useCareers";
-import { ArrowUpRight, Briefcase, CheckCircle2, Clock3, Heart, MapPin, Shield, ShieldCheck, Users, Zap } from "lucide-react";
+import { ArrowUpRight, Briefcase, CheckCircle2, Clock3, ExternalLink, Github, Heart, Linkedin, MapPin, Shield, ShieldCheck, Users, Zap } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-const stats = [{
-  value: 100,
-  suffix: "+",
-  label: "Projets livrés",
-  decimals: 0
-}, {
-  value: 500,
-  suffix: "+",
-  label: "Étudiants formés",
-  decimals: 0
-}, {
-  value: 6,
-  suffix: "",
-  label: "Domaines d'expertise",
-  decimals: 0
-}, {
-  value: 3,
-  suffix: "",
-  label: "Experts fondateurs",
-  decimals: 0
-}];
-const timelineData = [{
-  year: "2019",
-  title: "Naissance du laboratoire",
-  description: "LaboGraphie voit le jour a Yaounde avec une idee simple : creer un laboratoire d'innovation capable d'accompagner les entreprises camerounaises dans leur transformation digitale.",
-  image: heroGrid1,
-  position: "left"
-}, {
-  year: "2021",
-  title: "Notre parcours",
-  description: "Nous elargissons notre offre : design, developpement web et mobile, marketing digital. Notre equipe grandit et notre reputation de rigueur et de creativite s'installe.",
-  image: heroGrid2,
-  position: "right"
-}, {
-  year: "2023",
-  title: "Notre histoire",
-  description: "LaboGraphie devient un cabinet informatique reconnu, ajoutant la cybersecurite et les formations professionnelles a son catalogue, avec plus de 500 etudiants formes.",
-  image: heroGrid3,
-  position: "left"
-}, {
-  year: "2024",
-  title: "LaboGraphie aujourd'hui",
-  description: "Installes a Bastos, Yaounde, nous avons livre plus de 100 projets et accompagnons durablement nos clients grace a notre maintenance IT et reseau.",
-  image: heroGrid4,
-  position: "right"
-}];
-const coreValues = [{
-  title: "Equipe d'experts",
-  description: "Notre equipe reunit des experts passionnes en design, developpement, marketing et cybersecurite au service de chaque projet.",
-  icon: Users
-}, {
-  title: "Processus agile",
-  description: "Nous privilegions un processus rapide et structure pour livrer vos projets dans les meilleurs delais.",
-  icon: Zap
-}, {
-  title: "Disponibilite",
-  description: "Notre support et notre maintenance IT sont disponibles pour repondre rapidement aux besoins de nos clients.",
-  icon: Clock3
-}, {
-  title: "Engagement fort",
-  description: "Nous sommes profondement engages envers la satisfaction de nos clients, avec une attention particuliere portee aux details.",
-  icon: Heart
-}, {
-  title: "Responsabilite",
-  description: "Nous respectons les normes ethiques les plus strictes et priorisons la securite des donnees dans toutes nos missions.",
-  icon: Shield
-}, {
-  title: "Securite avant tout",
-  description: "La protection des donnees de nos clients est une priorite, grace a une veille constante et des outils adaptes.",
-  icon: ShieldCheck
-}];
-const missionFeatures = ["Dépasser les attentes de nos clients grâce à un service exceptionnel et personnalisé.", "Cultiver l’honnêteté et la transparence dans toutes nos relations professionnelles.", "Adopter en continu de nouvelles technologies pour améliorer nos services."];
-const visionFeatures = ["Adopter les technologies les plus innovantes pour enrichir nos offres de services.", "Construire des relations durables avec nos clients basées sur l’intégrité et la transparence.", "Avoir un impact positif dans les communautés que nous servons au Cameroun."];
-const teamMembers = [{
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { useTranslation } from "react-i18next";
+
+// Données non traduisibles (images, positions, icônes), associées par index
+// aux textes traduits dans about.timeline / about.coreValues.
+const timelineMeta = [
+  { year: "2019", image: heroGrid1, position: "left" },
+  { year: "2021", image: heroGrid2, position: "right" },
+  { year: "2023", image: heroGrid3, position: "left" },
+  { year: "2024", image: heroGrid4, position: "right" },
+];
+
+const coreValuesIcons = [Users, Zap, Clock3, Heart, Shield, ShieldCheck];
+
+interface TeamMember {
+  name: string;
+  role: string;
+  bio?: string;
+  image: string;
+  portfolioUrl?: string;
+  githubUrl?: string;
+  linkedinUrl?: string;
+}
+
+const getTeamMembers = (t: (key: string) => string): TeamMember[] => [{
   name: "FUNGA BIADJEU Brinda",
   role: "Chief Technology Officer",
   image: profile1
 }, {
-  name: "NDE Jordan L.",
-  role: "Chief Executive Officer",
-  image: profile2
+  name: "NDE Jordan Loïc",
+  role: t("about.teamJordanRole"),
+  bio: t("about.teamJordanBio"),
+  image: jordanPortrait,
+  portfolioUrl: "https://nadroj-ciol.github.io/Portfolio-website-perso/",
+  githubUrl: "https://github.com/Nadroj-ciol",
+  linkedinUrl: "https://www.linkedin.com/in/jordan-lo%C3%AFc-nde-63b041427/",
 }, {
   name: "NONO NOUTCHANG Yvanna",
   role: "Chief Marketing Officer & Product Manager",
   image: profile3
 }];
+
 const FlipButton = ({
   children
 }: {
   children: React.ReactNode;
 }) => {
-  return <button className="group relative px-8 py-4 bg-white border-primary rounded-full overflow-hidden border">
+  return <button className="group relative px-8 py-4 bg-background border-primary rounded-full overflow-hidden border">
     <span className="relative block overflow-hidden h-6">
       <span className="block transition-transform duration-300 group-hover:-translate-y-full text-primary font-semibold">
         {children}
@@ -121,10 +76,27 @@ const FlipButton = ({
 };
 
 const About = () => {
+  const { t } = useTranslation();
   const timelineRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [animatedYears, setAnimatedYears] = useState<Set<number>>(new Set());
   const { data: careers, isLoading: careersLoading } = useCareers();
+
+  const stats = [
+    { value: 100, suffix: "+", label: t("about.stats.projects"), decimals: 0 },
+    { value: 500, suffix: "+", label: t("about.stats.students"), decimals: 0 },
+    { value: 6, suffix: "", label: t("about.stats.expertise"), decimals: 0 },
+    { value: 3, suffix: "", label: t("about.stats.founders"), decimals: 0 },
+  ];
+
+  const translatedTimeline = t("about.timeline", { returnObjects: true }) as { title: string; description: string }[];
+  const timelineData = translatedTimeline.map((item, i) => ({ ...item, ...timelineMeta[i] }));
+
+  const translatedCoreValues = t("about.coreValues", { returnObjects: true }) as { title: string; description: string }[];
+  const coreValues = translatedCoreValues.map((value, i) => ({ ...value, icon: coreValuesIcons[i] }));
+
+  const missionFeatures = t("about.missionFeatures", { returnObjects: true }) as string[];
+  const visionFeatures = t("about.visionFeatures", { returnObjects: true }) as string[];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -156,7 +128,7 @@ const About = () => {
     handleScroll(); // Initial calculation
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [animatedYears]);
+  }, [animatedYears, timelineData]);
   return <div className="min-h-screen">
     <Header />
     <main>
@@ -166,13 +138,13 @@ const About = () => {
           <FadeIn>
             <div className="flex lg:flex-row w-full flex-col gap-12 items-end justify-between mb-12">
               <div>
-                <h1 className="leading-tight text-black font-bold text-6xl">
-                  Laboratoire d'innovation<br />et cabinet informatique
+                <h1 className="leading-tight text-foreground font-bold text-6xl">
+                  {t("about.hero.titleLine1")}<br />{t("about.hero.titleLine2")}
                 </h1>
               </div>
               <div className="flex max-w-[468px] items-center">
-                <p className="text-black text-justify">
-                  Découvrez un partenaire digital fiable à Bastos, Yaoundé. Notre engagement pour la qualité garantit à vos projets numériques expertise, rigueur et innovation.
+                <p className="text-foreground text-justify">
+                  {t("about.hero.description")}
                 </p>
               </div>
             </div>
@@ -185,8 +157,8 @@ const About = () => {
               </div>
 
               {/* Stats Overlay */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded-2xl shadow-xl px-8 py-6">
-                <div className="flex divide-x divide-gray-200">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-background rounded-2xl shadow-xl px-8 py-6">
+                <div className="flex divide-x divide-border">
                   {stats.map((stat, index) => <div key={index} className="px-6 first:pl-0 last:pr-0 text-center">
                     <div className="flex items-baseline justify-center gap-0.5 text-4xl md:text-5xl font-bold mb-1 text-primary">
                       <CounterAnimation
@@ -207,11 +179,11 @@ const About = () => {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-32 lg:py-40 bg-primary">
+      <section className="py-32 lg:py-40 bg-surface-dark">
         <div className="container-custom section-padding">
           <div className="text-center mb-16">
-            <p className="text-tertiary font-bold mb-4">Notre histoire</p>
-            <h2 className="text-white">En savoir plus sur nous</h2>
+            <p className="text-tertiary font-bold mb-4">{t("about.timelineLabel")}</p>
+            <h2 className="text-white">{t("about.timelineTitle")}</h2>
           </div>
 
           {/* Timeline */}
@@ -245,10 +217,6 @@ const About = () => {
                         <div className="rounded-2xl overflow-hidden">
                           <img src={item.image} alt={item.title} className="w-full h-64 object-cover" />
                         </div>
-                        {item.position === 'left' && <div className="mt-6 lg:block hidden">
-                          <h4 className="text-white font-bold mb-2">{item.title === "Notre parcours" || item.title === "LaboGraphie aujourd'hui" ? item.title : ""}</h4>
-                          {(item.title === "Notre parcours" || item.title === "LaboGraphie aujourd'hui") && <p className="text-white/60 text-sm">{item.description}</p>}
-                        </div>}
                       </div>
 
                       {/* Year Badge */}
@@ -283,17 +251,17 @@ const About = () => {
       </section>
 
       {/* Core Values Section */}
-      <section className="py-20 lg:py-32 bg-[#F0F3F8]">
+      <section className="py-20 lg:py-32 bg-muted">
         <div className="container-custom section-padding">
           {/* Header Grid */}
           <div className="grid lg:grid-cols-2 gap-8 mb-16">
             <div>
-              <p className="text-secondary font-bold mb-4">Valeurs</p>
-              <h2 className="text-primary">Nos valeurs fondamentales</h2>
+              <p className="text-secondary font-bold mb-4">{t("about.valuesLabel")}</p>
+              <h2 className="text-primary">{t("about.valuesTitle")}</h2>
             </div>
             <div className="flex items-center">
               <p className="text-muted-foreground">
-                Nous croyons au pouvoir du travail d'équipe. Notre équipe pluridisciplinaire collabore pour relever les défis digitaux les plus complexes, dans une culture de collaboration et de respect.
+                {t("about.valuesDescription")}
               </p>
             </div>
           </div>
@@ -301,7 +269,7 @@ const About = () => {
           {/* 6 Cards Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {coreValues.map((value, index) => <FadeIn key={index} delay={index * 100}>
-              <div className="bg-white rounded-2xl p-8 border border-gray-100 h-full">
+              <div className="bg-background rounded-2xl p-8 border border-border h-full">
                 <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center mb-6">
                   <value.icon className="w-6 h-6 text-tertiary" />
                 </div>
@@ -314,11 +282,11 @@ const About = () => {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="py-20 lg:py-32 bg-white">
+      <section className="py-20 lg:py-32 bg-background">
         <div className="container-custom section-padding">
           <div className="text-center mb-20">
-            <p className="text-secondary font-bold mb-4">Mission & Vision</p>
-            <h2 className="text-black font-bold">Transformer vos ambitions<br />digitales en réalité</h2>
+            <p className="text-secondary font-bold mb-4">{t("about.missionVisionLabel")}</p>
+            <h2 className="text-foreground font-bold">{t("about.missionVisionTitleLine1")}<br />{t("about.missionVisionTitleLine2")}</h2>
           </div>
 
           <div className="space-y-24">
@@ -329,9 +297,9 @@ const About = () => {
                   <img src={mission} alt="Our Mission" className="w-full h-80 lg:h-96 object-cover" />
                 </div>
                 <div>
-                  <h3 className="text-black font-bold mb-4">Notre mission</h3>
+                  <h3 className="text-foreground font-bold mb-4">{t("about.missionTitle")}</h3>
                   <p className="text-muted-foreground mb-8 font-semibold text-justify leading-relaxed">
-                    Chez LaboGraphie, notre mission est de fournir des services digitaux de haute qualité qui garantissent sécurité, performance et efficacité. Nous nous engageons à offrir un service client exceptionnel et un savoir-faire d'expert.
+                    {t("about.missionDescription")}
                   </p>
                   <ul className="space-y-4">
                     {missionFeatures.map((feature, index) => <li key={index} className="flex items-start gap-3">
@@ -346,9 +314,9 @@ const About = () => {
               <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
                 <div>
-                  <h3 className="text-black font-bold mb-4">Notre vision</h3>
+                  <h3 className="text-foreground font-bold mb-4">{t("about.visionTitle")}</h3>
                   <p className="text-muted-foreground mb-8 font-semibold text-justify leading-relaxed">
-                    Notre vision est de devenir le laboratoire d'innovation et cabinet informatique de référence au Cameroun, porté par l'intégrité, l'innovation et l'excellence, en fixant la norme de qualité du secteur digital.
+                    {t("about.visionDescription")}
                   </p>
                   <ul className="space-y-4">
                     {visionFeatures.map((feature, index) => <li key={index} className="flex items-start gap-3">
@@ -367,43 +335,85 @@ const About = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 lg:py-32 bg-[#F5F7FA]">
+      <section className="py-20 lg:py-32 bg-muted">
         <div className="container-custom section-padding">
           <div className="text-center mb-16">
-            <p className="text-secondary font-bold mb-4">Notre équipe</p>
-            <h2 className="text-primary">Rencontrez notre équipe d'experts</h2>
+            <p className="text-secondary font-bold mb-4">{t("about.teamLabel")}</p>
+            <h2 className="text-primary">{t("about.teamTitle")}</h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {teamMembers.map((member, index) => <FadeIn key={index} delay={index * 80}>
-              <div className="bg-white rounded-2xl p-6 transition-all duration-300 group">
-                <div className="rounded-xl overflow-hidden mb-4 group-hover:bg-accent bg-[#E8ECF4]">
-                  <img src={member.image} alt={member.name} className="h-[460px] object-cover group-hover:scale-105 transition-all duration-300" />
+            {getTeamMembers(t).map((member, index) => <FadeIn key={index} delay={index * 80} className="h-full">
+              <div className="bg-background rounded-2xl p-6 transition-all duration-300 group h-full flex flex-col">
+                <div className="rounded-xl overflow-hidden mb-4 group-hover:bg-accent bg-muted">
+                  <img src={member.image} alt={member.name} className="w-full h-[460px] object-cover object-top group-hover:scale-105 transition-all duration-300" />
                 </div>
                 <h5 className="text-secondary font-bold transition-colors">{member.name}</h5>
                 <p className="text-muted-foreground text-base transition-colors">{member.role}</p>
+                {member.bio && (
+                  <p className="text-muted-foreground/90 text-sm mt-3 leading-relaxed">
+                    {member.bio}
+                  </p>
+                )}
+                {(member.portfolioUrl || member.githubUrl || member.linkedinUrl) && (
+                  <div className="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-border/60">
+                    {member.portfolioUrl && (
+                      <a
+                        href={member.portfolioUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground text-xs font-semibold transition-colors"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" />
+                        {t("about.viewPortfolio")}
+                      </a>
+                    )}
+                    {member.githubUrl && (
+                      <a
+                        href={member.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`GitHub ${member.name}`}
+                        className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-muted text-foreground/80 hover:bg-primary hover:text-primary-foreground transition-colors"
+                      >
+                        <Github className="h-4 w-4" />
+                      </a>
+                    )}
+                    {member.linkedinUrl && (
+                      <a
+                        href={member.linkedinUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`LinkedIn ${member.name}`}
+                        className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-muted text-foreground/80 hover:bg-primary hover:text-primary-foreground transition-colors"
+                      >
+                        <Linkedin className="h-4 w-4" />
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             </FadeIn>)}
           </div>
           <Link to={"/career"} className="flex items-center justify-center">
-            <FlipButton>Rejoindre l'équipe</FlipButton>
+            <FlipButton>{t("about.joinTeam")}</FlipButton>
           </Link>
         </div>
       </section>
 
       {/* Job Openings Section */}
-      <section className="pt-20 lg:pt-32 bg-white">
+      <section className="pt-20 lg:pt-32 bg-background">
         <div className="container-custom section-padding">
           <div className="grid lg:grid-cols-2 gap-8 mb-12">
             <div>
-              <p className="text-secondary font-bold mb-4">Carrières</p>
+              <p className="text-secondary font-bold mb-4">{t("about.careersLabel")}</p>
               <h2 className="text-primary text-4xl lg:text-5xl">
-                Opportunités de<br />rejoindre notre équipe
+                {t("about.careersTitleLine1")}<br />{t("about.careersTitleLine2")}
               </h2>
             </div>
             <div className="flex items-end">
               <p className="text-muted-foreground">
-                Nous offrons un environnement de travail dynamique et stimulant qui favorise l'évolution professionnelle. En rejoignant notre équipe, vous travaillerez sur des projets variés et innovants.
+                {t("about.careersDescription")}
               </p>
             </div>
           </div>
@@ -412,14 +422,14 @@ const About = () => {
             {careersLoading ? (
               <div className="text-center py-12">
                 <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4" />
-                <p className="text-muted-foreground">Chargement des postes...</p>
+                <p className="text-muted-foreground">{t("about.loadingPositions")}</p>
               </div>
             ) : careers && careers.length > 0 ? (
               careers.map((otherJob, index) => (
                 <FadeIn key={index} delay={index * 100}>
                   <Link
                     to={`/career/${otherJob.slug}`}
-                    className={`bg-[#E8ECF4] cursor-pointer rounded-xl px-6 py-5 flex items-center justify-between hover:bg-accent transition-all group duration-300`}
+                    className={`bg-muted cursor-pointer rounded-xl px-6 py-5 flex items-center justify-between hover:bg-accent transition-all group duration-300`}
                   >
                     <div className="flex items-center gap-8 flex-wrap">
                       <h5 className="text-primary font-bold min-w-[200px]">
@@ -442,7 +452,7 @@ const About = () => {
               ))
             ) : (
               <div className="text-center py-12">
-                <p className="text-muted-foreground">Aucun poste disponible pour le moment.</p>
+                <p className="text-muted-foreground">{t("about.noPositions")}</p>
               </div>
             )}
           </div>
