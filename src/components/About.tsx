@@ -1,5 +1,5 @@
-import plumberTeam from "@/assets/hero-4.png";
-import plumberTeam1 from "@/assets/hero-41.png";
+import plumberTeam from "@/assets/real-team-studio.webp";
+import plumberTeam1 from "@/assets/real-design-branding.webp";
 import FadeIn from "@/components/FadeIn";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Phone } from "lucide-react";
@@ -83,11 +83,11 @@ const About = () => {
               </div>
             </FadeIn>)}
           </div>
-          <Link to={site.phoneHref}>
+          <a href={site.phoneHref}>
             <FadeIn delay={600}>
               <FlipButton>{t("home.about.callUs", { phone: site.phone })}</FlipButton>
             </FadeIn>
-          </Link>
+          </a>
         </div>
       </div>
     </div>

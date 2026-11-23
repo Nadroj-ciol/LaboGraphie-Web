@@ -75,11 +75,11 @@ const Solutions = () => {
           </div>
 
 
-          <Link to={site.phoneHref}>
+          <a href={site.phoneHref}>
             <FadeIn delay={600}>
               <FlipButton>{t("home.solutions.callUs", { phone: site.phone })}</FlipButton>
             </FadeIn>
-          </Link>
+          </a>
         </div>
         {/* Left - Image */}
         <FadeIn className="h-[90%]">

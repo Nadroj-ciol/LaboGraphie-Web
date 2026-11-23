@@ -39,7 +39,8 @@ const FlipLink = ({
 };
 
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const country = i18n.language === "en" ? "Cameroon" : "Cameroun";
 
   const footerLinks = {
     company: [
@@ -124,7 +125,7 @@ const Footer = () => {
               <a href="https://www.google.com/maps/search/?api=1&query=Bastos,+Yaound%C3%A9,+Cameroun" className="text-white/60 text-sm" target="_blank" rel="noopener noreferrer">
                 Bastos,
                 <br />
-                Yaoundé, Cameroun
+                Yaoundé, {country}
               </a>
             </li>
           </ul>
@@ -137,8 +138,8 @@ const Footer = () => {
           <p className="text-white/40 text-sm">
             © {new Date().getFullYear()} LaboGraphie. {t("common.footer.copyright")}
           </p>
-          <div className="flex gap-6">
-            {footerLinks.resources.slice(2).map(link => <Link key={link.name} to={link.href} className="text-white/40 hover:text-white transition-colors text-sm">
+          <div className="flex flex-wrap gap-6">
+            {footerLinks.resources.map(link => <Link key={link.name} to={link.href} className="text-white/40 hover:text-white transition-colors text-sm">
               {link.name}
             </Link>)}
           </div>

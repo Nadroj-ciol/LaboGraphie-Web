@@ -55,7 +55,7 @@ export function LanguageSwitcher({ isDark = false, className = "" }: LanguageSwi
           aria-pressed={currentLang === code}
           className={`rounded-full px-2.5 py-1 uppercase transition-colors duration-300 ${
             currentLang === code
-              ? "bg-tertiary text-primary shadow-sm"
+              ? "bg-tertiary text-tertiary-foreground shadow-sm"
               : isDark
                 ? "text-white/70 hover:text-white"
                 : "text-muted-foreground hover:text-foreground"

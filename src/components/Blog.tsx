@@ -40,7 +40,7 @@ const Blog = () => {
                           className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer"
                         />
                       </Link>
-                      <span className="absolute top-4 left-4 bg-tertiary text-primary text-xs font-medium px-3 py-1 rounded-full pointer-events-none">
+                      <span className="absolute top-4 left-4 bg-tertiary text-tertiary-foreground text-xs font-medium px-3 py-1 rounded-full pointer-events-none">
                         {post.category}
                       </span>
                       <ShareMenu post={post} className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

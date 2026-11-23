@@ -1,4 +1,4 @@
-import avatar6 from "@/assets/avatar-6.png";
+import avatar6 from "@/assets/avatar-6.webp";
 import ctaStudioBanner from "@/assets/cta-studio-banner.webp";
 import FadeIn from "@/components/FadeIn";
 import { Button } from "@/components/ui/button";

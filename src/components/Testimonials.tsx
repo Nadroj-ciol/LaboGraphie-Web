@@ -1,8 +1,8 @@
-import avatar1 from "@/assets/avatar-1.jpg";
-import avatar2 from "@/assets/avatar-2.jpg";
-import avatar3 from "@/assets/avatar-3.jpg";
-import avatar4 from "@/assets/avatar-4.jpg";
-import avatar5 from "@/assets/avatar-5.jpg";
+import avatar1 from "@/assets/avatar-1.webp";
+import avatar2 from "@/assets/avatar-2.webp";
+import avatar3 from "@/assets/avatar-3.webp";
+import avatar4 from "@/assets/avatar-4.webp";
+import avatar5 from "@/assets/avatar-5.webp";
 import FadeIn from "@/components/FadeIn";
 import { useTranslation } from "react-i18next";
 
@@ -23,31 +23,32 @@ const TestimonialCard = ({
   </div>;
 
 const Testimonials = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const country = i18n.language === "en" ? "Cameroon" : "Cameroun";
 
   const testimonials = [{
     name: "TEFOUET Ange Darlaine",
-    location: "Yaoundé, Cameroun",
+    location: `Yaoundé, ${country}`,
     text: t("home.testimonials.quote1"),
     avatar: avatar1
   }, {
     name: "Nelly Ariane Gounou",
-    location: "Douala, Cameroun",
+    location: `Douala, ${country}`,
     text: t("home.testimonials.quote2"),
     avatar: avatar2
   }, {
     name: "Cecile Emmanuelle Njoh",
-    location: "Yaoundé, Cameroun",
+    location: `Yaoundé, ${country}`,
     text: t("home.testimonials.quote3"),
     avatar: avatar3
   }, {
     name: "Michel Pavel Tsobgny Zambou",
-    location: "Bafoussam, Cameroun",
+    location: `Bafoussam, ${country}`,
     text: t("home.testimonials.quote4"),
     avatar: avatar4
   }, {
     name: "Alan Miguel Feuwo T.",
-    location: "Douala, Cameroun",
+    location: `Douala, ${country}`,
     text: t("home.testimonials.quote5"),
     avatar: avatar5
   }];

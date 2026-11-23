@@ -80,7 +80,7 @@ const Blog = () => {
                 <div className="grid lg:grid-cols-2 gap-12">
                   <div className="relative pl-12 py-10">
                     <img src={featuredPost.image_url || blogFallbackImage} alt={featuredPost.title} className="w-full h-[420px] object-cover rounded-2xl" />
-                    <span className="absolute top-16 left-16 bg-tertiary text-primary text-sm font-medium px-4 py-1 rounded-full">
+                    <span className="absolute top-16 left-16 bg-tertiary text-tertiary-foreground text-sm font-medium px-4 py-1 rounded-full">
                       {featuredPost.category}
                     </span>
                   </div>
@@ -122,7 +122,7 @@ const Blog = () => {
                       <Link to={`/blog/${post.slug}`}>
                         <img src={post.image_url || blogFallbackImage} alt={post.title} className="w-full h-[340px] object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" />
                       </Link>
-                      <span className="absolute top-4 left-4 bg-tertiary text-primary text-xs font-medium px-3 py-1 rounded-full pointer-events-none">
+                      <span className="absolute top-4 left-4 bg-tertiary text-tertiary-foreground text-xs font-medium px-3 py-1 rounded-full pointer-events-none">
                         {post.category}
                       </span>
                       <ShareMenu post={post} className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
