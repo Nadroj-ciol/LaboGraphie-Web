@@ -1,12 +1,12 @@
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
 import avatar3 from "@/assets/avatar-3.jpg";
-import heroGrid1 from "@/assets/service-design-branding.webp";
-import heroGrid2 from "@/assets/service-web-mobile.webp";
-import heroGrid3 from "@/assets/studio-team-hero.webp";
-import heroGrid4 from "@/assets/work-cybersecurity-audit.webp";
-import heroGrid5 from "@/assets/work-marketing-web.webp";
-import heroGrid6 from "@/assets/cta-studio-banner.webp";
+import heroGrid1 from "@/assets/real-branding-3d.webp";
+import heroGrid2 from "@/assets/real-dev-erp.webp";
+import heroGrid3 from "@/assets/real-work-social-fosaa.webp";
+import heroGrid4 from "@/assets/real-cybersecurity.webp";
+import heroGrid5 from "@/assets/real-work-acuvera.webp";
+import heroGrid6 from "@/assets/real-formations-pro.webp";
 import { Button } from "@/components/ui/button";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { useTranslation } from "react-i18next";

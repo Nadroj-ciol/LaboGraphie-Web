@@ -6,12 +6,12 @@ import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { useTranslation } from "react-i18next";
 
 // Import existing images for works
-import work1 from "@/assets/service-design-branding.webp";
-import work2 from "@/assets/work-2.png";
-import work3 from "@/assets/service-web-mobile.webp";
-import work4 from "@/assets/work-marketing-web.webp";
-import work5 from "@/assets/work-cybersecurity-audit.webp";
-import work6 from "@/assets/studio-team-hero.webp";
+import work1 from "@/assets/real-branding-3d.webp";
+import work2 from "@/assets/real-work-candace.webp";
+import work3 from "@/assets/real-dev-erp.webp";
+import work4 from "@/assets/real-dev-web.webp";
+import work5 from "@/assets/real-cybersecurity.webp";
+import work6 from "@/assets/real-work-social-fosaa.webp";
 
 const WORK_IMAGES: Record<string, string> = {
   "identite-visuelle-novatech": work1,

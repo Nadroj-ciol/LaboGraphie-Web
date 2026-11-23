@@ -15,12 +15,12 @@ import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
 // Import images
-import service1 from "@/assets/service-design-branding.webp";
-import service2 from "@/assets/service-web-mobile.webp";
-import service3 from "@/assets/service-3.png";
-import service4 from "@/assets/service-4.png";
-import service5 from "@/assets/service-5.png";
-import service6 from "@/assets/service-6.png";
+import service1 from "@/assets/real-design-branding.webp";
+import service2 from "@/assets/real-dev-erp.webp";
+import service3 from "@/assets/real-service-marketing.webp";
+import service4 from "@/assets/real-cybersecurity.webp";
+import service5 from "@/assets/real-formations-pro.webp";
+import service6 from "@/assets/real-maintenance-it.webp";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserProfile } from "@/hooks/useUserProfile";
 
