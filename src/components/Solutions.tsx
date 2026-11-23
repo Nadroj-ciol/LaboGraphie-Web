@@ -1,5 +1,5 @@
-import heroPlumber from "@/assets/real-consultation-it.webp";
-import teamPlumber from "@/assets/real-dev-web.webp";
+import heroPlumber from "@/assets/contact-studio-consultation.webp";
+import teamPlumber from "@/assets/real-work-acuvera.webp";
 import FadeIn from "@/components/FadeIn";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Phone } from "lucide-react";

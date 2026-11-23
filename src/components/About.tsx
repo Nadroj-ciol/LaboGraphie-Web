@@ -1,4 +1,4 @@
-import plumberTeam from "@/assets/real-team-studio.webp";
+import plumberTeam from "@/assets/studio-team-hero.webp";
 import plumberTeam1 from "@/assets/real-design-branding.webp";
 import FadeIn from "@/components/FadeIn";
 import { Button } from "@/components/ui/button";

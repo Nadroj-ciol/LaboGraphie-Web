@@ -1,4 +1,4 @@
-import plumberTeam from "@/assets/real-team-studio.webp";
+import plumberTeam from "@/assets/studio-team-hero.webp";
 import CounterAnimation from "@/components/CounterAnimation";
 import FadeIn from "@/components/FadeIn";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";

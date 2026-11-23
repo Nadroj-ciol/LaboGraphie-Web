@@ -1,8 +1,8 @@
 import service1 from "@/assets/real-design-branding.webp";
-import service2 from "@/assets/real-dev-erp.webp";
+import service2 from "@/assets/service-web-mobile.webp";
 import service3 from "@/assets/real-service-marketing.webp";
-import service4 from "@/assets/real-cybersecurity.webp";
-import service5 from "@/assets/real-formations-pro.webp";
+import service4 from "@/assets/work-cybersecurity-audit.webp";
+import service5 from "@/assets/formations-pro-workshop.webp";
 import service6 from "@/assets/real-maintenance-it.webp";
 
 export interface Service {

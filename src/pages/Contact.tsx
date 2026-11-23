@@ -1,4 +1,4 @@
-import contact from "@/assets/real-consultation-it.webp";
+import contact from "@/assets/contact-studio-consultation.webp";
 import FadeIn from "@/components/FadeIn";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
