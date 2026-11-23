@@ -14,16 +14,15 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 import { toast } from "sonner";
 
 const statusColors: Record<string, string> = {
-  new: "bg-blue-100 text-blue-700",
-  pending: "bg-amber-100 text-amber-700",
-  contacted: "bg-purple-100 text-purple-700",
-  completed: "bg-green-100 text-green-700",
-  cancelled: "bg-red-100 text-red-700",
+  new: "bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300",
+  contacted: "bg-purple-100 text-purple-700 dark:bg-purple-500/20 dark:text-purple-300",
+  completed: "bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-300",
+  cancelled: "bg-red-100 text-red-700 dark:bg-red-500/20 dark:text-red-300",
 };
 
 export default function DashboardContacts() {
@@ -32,6 +31,11 @@ export default function DashboardContacts() {
   const { data: contacts, isLoading } = useAllContacts();
   const updateContactStatus = useUpdateContactStatus();
   const deleteContact = useDeleteContact();
+  const [statusFilter, setStatusFilter] = useState<string>("all");
+
+  const filteredContacts = (contacts || []).filter(
+    (c) => statusFilter === "all" || c.status === statusFilter,
+  );
 
   useEffect(() => {
     if (!loading && !isAdmin) {
@@ -70,18 +74,40 @@ export default function DashboardContacts() {
       </div>
 
       <Card className="bg-card border border-border">
-        <CardHeader>
+        <CardHeader className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <CardTitle className="flex items-center gap-2">
             <Mail className="h-5 w-5" />
-            Tous les messages ({contacts?.length || 0})
+            Tous les messages ({filteredContacts.length})
           </CardTitle>
+          <div className="flex flex-wrap gap-2">
+            {[
+              { value: "all", label: "Tous" },
+              { value: "new", label: "Nouveau" },
+              { value: "contacted", label: "Contacté" },
+              { value: "completed", label: "Terminé" },
+              { value: "cancelled", label: "Annulé" },
+            ].map((tab) => (
+              <button
+                key={tab.value}
+                type="button"
+                onClick={() => setStatusFilter(tab.value)}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
+                  statusFilter === tab.value
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </CardHeader>
         <CardContent>
           {isLoading ? (
             <div className="text-center py-8 text-primary">Chargement...</div>
-          ) : contacts && contacts.length > 0 ? (
+          ) : filteredContacts.length > 0 ? (
             <div className="space-y-4">
-              {contacts.map((contact) => (
+              {filteredContacts.map((contact) => (
                 <div
                   key={contact.id}
                   className="flex flex-col md:flex-row md:items-center gap-4 p-4 rounded-lg border border-border bg-muted"

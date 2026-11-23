@@ -82,6 +82,7 @@ export const useUpdateServiceInquiry = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["service-inquiries"] });
+      queryClient.invalidateQueries({ queryKey: ["user-service-inquiries"] });
       toast.success("Statut de la demande mis à jour");
     },
     onError: (error) => {
@@ -102,6 +103,7 @@ export const useDeleteServiceInquiry = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["service-inquiries"] });
+      queryClient.invalidateQueries({ queryKey: ["user-service-inquiries"] });
       toast.success("Demande supprimée");
     },
     onError: (error) => {

@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/table";
 import { useDeleteServiceInquiry, useServiceInquiries, useUpdateServiceInquiry } from "@/hooks/useServiceInquiries";
 import { format } from "date-fns";
+import { fr } from "date-fns/locale";
 import { MessageSquare, Phone, Trash2, User } from "lucide-react";
 import {
     AlertDialog,
@@ -145,7 +146,7 @@ export default function DashboardServiceInquiries() {
                                             </TableCell>
                                             <TableCell>
                                                 <span className="text-sm text-muted-foreground">
-                                                    {format(new Date(inquiry.created_at), "MMM d, yyyy")}
+                                                    {format(new Date(inquiry.created_at), "d MMM yyyy", { locale: fr })}
                                                 </span>
                                             </TableCell>
                                             <TableCell>

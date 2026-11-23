@@ -2,6 +2,7 @@ import novatechWork from "@/assets/real-branding-3d.webp";
 import candaceWork from "@/assets/real-work-candace.webp";
 import petittriWork from "@/assets/real-dev-erp.webp";
 import FadeIn from "@/components/FadeIn";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -13,16 +14,19 @@ const FeaturedWorks = () => {
   const projects = [
     {
       title: "Novatech",
+      slug: "identite-visuelle-novatech",
       description: t("home.featuredWorks.novatechDescription"),
       image: novatechWork,
     },
     {
       title: "Candace",
+      slug: "plateforme-ecommerce-candace",
       description: t("home.featuredWorks.candaceDescription"),
       image: candaceWork,
     },
     {
       title: "PetitTri",
+      slug: "application-gestion-petittri",
       description: t("home.featuredWorks.petittriDescription"),
       image: petittriWork,
     },
@@ -65,9 +69,10 @@ const FeaturedWorks = () => {
         <FadeIn delay={300}>
           <div className="flex gap-4">
             {projects.map((project, index) => (
-              <div
-                key={index}
-                className="relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-1000 ease-in-out"
+              <Link
+                key={project.slug}
+                to={`/work/${project.slug}`}
+                className="relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-1000 ease-in-out block"
                 style={{ width: getCardWidth(index) }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
@@ -85,7 +90,7 @@ const FeaturedWorks = () => {
                 <div className={`absolute top-4 right-4 transition-opacity duration-300 ${hoveredIndex === index || (hoveredIndex === null && index === 0) ? "opacity-100" : "opacity-0"
                   }`}>
                   <div className="w-10 h-10 rounded-full bg-tertiary flex items-center justify-center">
-                    <ArrowUpRight className="h-5 w-5 text-primary" />
+                    <ArrowUpRight className="h-5 w-5 text-tertiary-foreground" />
                   </div>
                 </div>
 
@@ -97,7 +102,7 @@ const FeaturedWorks = () => {
                     {project.description}
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </FadeIn>

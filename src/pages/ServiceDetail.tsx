@@ -171,7 +171,7 @@ const ServiceDetail = () => {
           <FadeIn>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-4">
               <h2 className="text-foreground text-5xl md:text-7xl font-bold">{service.title}</h2>
-              <Link to="/quote">
+              <Link to={`/quote?service=${service.slug}`}>
                 <FlipButton variant="primary">{t("services.detail.requestQuote")}</FlipButton>
               </Link>
             </div>

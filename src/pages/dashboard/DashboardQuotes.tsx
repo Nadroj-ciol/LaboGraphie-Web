@@ -16,22 +16,27 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 import { toast } from "sonner";
 
 const statusColors: Record<string, string> = {
-  new: "bg-blue-100 text-blue-700",
-  pending: "bg-amber-100 text-amber-700",
-  contacted: "bg-purple-100 text-purple-700",
-  completed: "bg-green-100 text-green-700",
-  cancelled: "bg-red-100 text-red-700",
+  pending: "bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-300",
+  contacted: "bg-purple-100 text-purple-800 dark:bg-purple-500/20 dark:text-purple-300",
+  completed: "bg-green-100 text-green-800 dark:bg-green-500/20 dark:text-green-300",
+  cancelled: "bg-red-100 text-red-800 dark:bg-red-500/20 dark:text-red-300",
 };
 
 const urgencyColors: Record<string, string> = {
-  emergency: "bg-red-100 text-red-700",
-  urgent: "bg-amber-100 text-amber-700",
-  standard: "bg-blue-100 text-blue-700",
+  emergency: "bg-red-100 text-red-700 dark:bg-red-500/20 dark:text-red-300",
+  urgent: "bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300",
+  standard: "bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300",
+};
+
+const urgencyLabels: Record<string, string> = {
+  standard: "Standard",
+  urgent: "Urgent",
+  emergency: "Très urgent",
 };
 
 export default function DashboardQuotes() {
@@ -41,6 +46,11 @@ export default function DashboardQuotes() {
   const updateQuoteStatus = useUpdateQuoteRequestStatus();
   const deleteQuoteRequest = useDeleteQuoteRequest();
   const { data: exchangeRates = DEFAULT_EXCHANGE_RATES } = useExchangeRates();
+  const [statusFilter, setStatusFilter] = useState<string>("all");
+
+  const filteredQuotes = (quoteRequests || []).filter(
+    (q) => statusFilter === "all" || q.status === statusFilter,
+  );
 
   useEffect(() => {
     if (!loading && !isAdmin) {
@@ -79,18 +89,40 @@ export default function DashboardQuotes() {
       </div>
 
       <Card className="bg-card border border-border">
-        <CardHeader>
+        <CardHeader className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <CardTitle className="flex items-center gap-2">
             <DollarSign className="h-5 w-5" />
-            Tous les devis ({quoteRequests?.length || 0})
+            Tous les devis ({filteredQuotes.length})
           </CardTitle>
+          <div className="flex flex-wrap gap-2">
+            {[
+              { value: "all", label: "Tous" },
+              { value: "pending", label: "En attente" },
+              { value: "contacted", label: "Contacté" },
+              { value: "completed", label: "Terminé" },
+              { value: "cancelled", label: "Annulé" },
+            ].map((tab) => (
+              <button
+                key={tab.value}
+                type="button"
+                onClick={() => setStatusFilter(tab.value)}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
+                  statusFilter === tab.value
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </CardHeader>
         <CardContent>
           {isLoading ? (
             <div className="text-center py-8 text-primary">Chargement...</div>
-          ) : quoteRequests && quoteRequests.length > 0 ? (
+          ) : filteredQuotes.length > 0 ? (
             <div className="space-y-4">
-              {quoteRequests.map((quote) => (
+              {filteredQuotes.map((quote) => (
                 <div
                   key={quote.id}
                   className="flex flex-col md:flex-row md:items-center gap-4 p-4 rounded-lg border border-border bg-muted"
@@ -103,31 +135,43 @@ export default function DashboardQuotes() {
                     <div className="flex items-center gap-2">
                       <p className="font-semibold text-primary">{quote.full_name}</p>
                       <span className={`text-xs px-2 py-0.5 rounded-full ${urgencyColors[quote.urgency] || "bg-muted text-muted-foreground"}`}>
-                        {quote.urgency}
+                        {urgencyLabels[quote.urgency] || quote.urgency}
                       </span>
                     </div>
                     <p className="text-sm font-medium text-primary">{quote.service_title}</p>
-                    <div className="flex flex-wrap gap-4 text-sm text-muted-primary">
+                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1">
                         <Phone className="h-3 w-3" />
                         {quote.phone}
                       </span>
-                      <span className="flex items-center gap-1">
-                        <Mail className="h-3 w-3" />
-                        {quote.email}
-                      </span>
+                      {quote.email && (
+                        <span className="flex items-center gap-1">
+                          <Mail className="h-3 w-3" />
+                          {quote.email}
+                        </span>
+                      )}
                       <span className="flex items-center gap-1">
                         <Clock className="h-3 w-3" />
                         {quote.estimated_hours} jour{quote.estimated_hours > 1 ? "s" : ""}
                       </span>
                       <span className="flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
-                        {new Date(quote.created_at).toLocaleDateString()}
+                        {new Date(quote.created_at).toLocaleDateString("fr-FR")}
                       </span>
+                      {quote.service_date && (
+                        <span className="flex items-center gap-1 text-primary/80 font-medium">
+                          Souhaité : {new Date(quote.service_date).toLocaleDateString("fr-FR")}
+                        </span>
+                      )}
                     </div>
-                    <p className="text-sm text-muted-primary">
+                    <p className="text-sm text-muted-foreground">
                       Complexité : {quote.complexity_label}
                     </p>
+                    {quote.notes && (
+                      <p className="text-sm text-foreground/80 bg-background/60 rounded-md px-3 py-2 mt-2 border border-border/60">
+                        <span className="font-medium">Note client :</span> {quote.notes}
+                      </p>
+                    )}
                   </div>
 
                   <div className="flex flex-col items-end gap-2">
@@ -173,7 +217,7 @@ export default function DashboardQuotes() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-8 text-muted-primary">
+            <div className="text-center py-8 text-muted-foreground">
               Aucune demande de devis pour le moment.
             </div>
           )}
