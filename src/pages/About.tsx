@@ -2,7 +2,7 @@ import studioTeamHero from "@/assets/real-team-studio.webp";
 import mission from "@/assets/real-consultation-it.webp";
 import vision from "@/assets/real-dev-web.webp";
 import profile1 from "@/assets/profile-1.png";
-import jordanPortrait from "@/assets/jordan-portrait-pro.webp";
+import jordanPortrait from "@/assets/jordan-cutout.webp";
 import profile3 from "@/assets/profile-3.png";
 import heroGrid1 from "@/assets/real-branding-3d.webp";
 import heroGrid2 from "@/assets/real-dev-erp.webp";
@@ -35,6 +35,7 @@ interface TeamMember {
   role: string;
   bio?: string;
   image: string;
+  hoverBgClass: string;
   portfolioUrl?: string;
   githubUrl?: string;
   linkedinUrl?: string;
@@ -44,12 +45,16 @@ const getTeamMembers = (t: (key: string) => string): TeamMember[] => [{
   name: "FUNGA BIADJEU Brinda",
   role: t("about.teamBrindaRole"),
   bio: t("about.teamBrindaBio"),
-  image: profile1
+  image: profile1,
+  // Bleu marine assorti à sa veste
+  hoverBgClass: "group-hover:bg-[#1B3168] group-active:bg-[#1B3168]",
 }, {
   name: "NDE Jordan Loïc",
   role: t("about.teamJordanRole"),
   bio: t("about.teamJordanBio"),
   image: jordanPortrait,
+  // Taupe/camel chaud assorti à son pull sans manches (contraste avec sa chemise bleu ciel)
+  hoverBgClass: "group-hover:bg-[#A68B73] group-active:bg-[#A68B73]",
   portfolioUrl: "https://nadroj-ciol.github.io/Portfolio-website-perso/",
   githubUrl: "https://github.com/Nadroj-ciol",
   linkedinUrl: "https://www.linkedin.com/in/jordan-lo%C3%AFc-nde-63b041427/",
@@ -57,7 +62,9 @@ const getTeamMembers = (t: (key: string) => string): TeamMember[] => [{
   name: "NONO NOUTCHANG Yvanna",
   role: t("about.teamYvannaRole"),
   bio: t("about.teamYvannaBio"),
-  image: profile3
+  image: profile3,
+  // Rouge carmin assorti à son bandeau (fait ressortir son gilet jaune vif)
+  hoverBgClass: "group-hover:bg-[#DC2626] group-active:bg-[#DC2626]",
 }];
 
 const FlipButton = ({
@@ -335,7 +342,7 @@ const About = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {getTeamMembers(t).map((member, index) => <FadeIn key={index} delay={index * 80} className="h-full">
               <div className="bg-background rounded-2xl p-6 transition-all duration-300 group h-full flex flex-col">
-                <div className="rounded-xl overflow-hidden mb-4 group-hover:bg-accent bg-muted">
+                <div className={`rounded-xl overflow-hidden mb-4 bg-muted transition-colors duration-500 ${member.hoverBgClass}`}>
                   <img src={member.image} alt={member.name} className="w-full h-[460px] object-cover object-top group-hover:scale-105 transition-all duration-300" />
                 </div>
                 <h5 className="text-secondary font-bold transition-colors">{member.name}</h5>
