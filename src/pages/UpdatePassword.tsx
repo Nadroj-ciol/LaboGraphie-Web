@@ -15,10 +15,11 @@ const UpdatePassword = () => {
   const passwordSchema = z.string().min(6, t("auth.passwordTooShort"));
 
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | undefined>();
 
-  const { updatePassword } = useAuth();
+  const { session, loading, updatePassword } = useAuth();
   const navigate = useLocalizedNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -27,6 +28,11 @@ const UpdatePassword = () => {
     const result = passwordSchema.safeParse(password);
     if (!result.success) {
       setError(result.error.errors[0].message);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError(t("updatePassword.mismatch", "Les mots de passe ne correspondent pas."));
       return;
     }
 
@@ -59,31 +65,63 @@ const UpdatePassword = () => {
             {t("updatePassword.description")}
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <Label htmlFor="password">{t("updatePassword.label")}</Label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setError(undefined);
-                }}
-                placeholder="••••••••"
-                className="mt-2 bg-transparent"
-              />
-              {error && <p className="text-destructive text-sm mt-1">{error}</p>}
+          {!loading && !session ? (
+            <div className="space-y-4 text-center">
+              <p className="text-sm text-muted-foreground">
+                {t("updatePassword.noSession", "Votre lien de réinitialisation est expiré ou invalide. Demandez un nouveau lien depuis la page de connexion.")}
+              </p>
+              <Button
+                type="button"
+                className="w-full rounded-full"
+                onClick={() => navigate("/auth")}
+              >
+                {t("common.header.login")}
+              </Button>
             </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <Label htmlFor="password">{t("updatePassword.label")}</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setError(undefined);
+                  }}
+                  placeholder="••••••••"
+                  className="mt-2 bg-transparent"
+                />
+              </div>
 
-            <Button
-              type="submit"
-              className="w-full rounded-full"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? t("updatePassword.updating") : t("updatePassword.submit")}
-            </Button>
-          </form>
+              <div>
+                <Label htmlFor="confirmPassword">
+                  {t("updatePassword.confirmLabel", "Confirmer le mot de passe")}
+                </Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                    setError(undefined);
+                  }}
+                  placeholder="••••••••"
+                  className="mt-2 bg-transparent"
+                />
+                {error && <p className="text-destructive text-sm mt-1">{error}</p>}
+              </div>
+
+              <Button
+                type="submit"
+                className="w-full rounded-full"
+                disabled={isSubmitting || loading}
+              >
+                {isSubmitting ? t("updatePassword.updating") : t("updatePassword.submit")}
+              </Button>
+            </form>
+          )}
         </div>
       </div>
 

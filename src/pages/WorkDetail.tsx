@@ -8,26 +8,26 @@ import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { useTranslation } from "react-i18next";
 
 // Import images
-import completedBathroom from "@/assets/completed-bathroom.jpg";
-import completedKitchen from "@/assets/completed-kitchen.jpg";
-import drainCleaning from "@/assets/drain-cleaning.jpg";
-import neutralBrandMockup from "@/assets/hero-plumber.jpg";
-import heroGrid1 from "@/assets/hero-grid-1.jpg";
-import heroGrid2 from "@/assets/hero-grid-2.jpg";
-import heroGrid3 from "@/assets/hero-grid-3.jpg";
-import heroGrid4 from "@/assets/hero-grid-4.jpg";
+import novatechWork from "@/assets/service-design-branding.webp";
+import candaceWork from "@/assets/work-2.png";
+import petittriWork from "@/assets/service-web-mobile.webp";
+import cybersecurityWork from "@/assets/work-cybersecurity-audit.webp";
+import heroGrid1 from "@/assets/work-marketing-web.webp";
+import heroGrid2 from "@/assets/service-design-branding.webp";
+import heroGrid3 from "@/assets/service-web-mobile.webp";
+import heroGrid4 from "@/assets/studio-team-hero.webp";
 import problem1 from "@/assets/problem-1.png";
 import problem2 from "@/assets/problem-11.png";
 import solution1 from "@/assets/solution-1.png";
 import solution2 from "@/assets/solution-11.png";
 
 const WORK_IMAGES: Record<string, string> = {
-  "identite-visuelle-novatech": completedBathroom,
-  "plateforme-ecommerce-candace": completedKitchen,
-  "application-gestion-petittri": drainCleaning,
-  "refonte-site-institutionnel": drainCleaning,
-  "audit-cybersecurite": neutralBrandMockup,
-  "campagne-social-media": heroGrid1,
+  "identite-visuelle-novatech": novatechWork,
+  "plateforme-ecommerce-candace": candaceWork,
+  "application-gestion-petittri": petittriWork,
+  "refonte-site-institutionnel": heroGrid1,
+  "audit-cybersecurite": cybersecurityWork,
+  "campagne-social-media": heroGrid4,
 };
 
 interface WorkStep {

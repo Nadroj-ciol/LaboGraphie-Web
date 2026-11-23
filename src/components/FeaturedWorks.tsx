@@ -1,6 +1,6 @@
-import completedBathroom from "@/assets/completed-bathroom.jpg";
-import completedKitchen from "@/assets/completed-kitchen.jpg";
-import drainCleaning from "@/assets/drain-cleaning.jpg";
+import novatechWork from "@/assets/service-design-branding.webp";
+import candaceWork from "@/assets/work-2.png";
+import petittriWork from "@/assets/service-web-mobile.webp";
 import FadeIn from "@/components/FadeIn";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
@@ -14,17 +14,17 @@ const FeaturedWorks = () => {
     {
       title: "Novatech",
       description: t("home.featuredWorks.novatechDescription"),
-      image: completedBathroom,
+      image: novatechWork,
     },
     {
       title: "Candace",
       description: t("home.featuredWorks.candaceDescription"),
-      image: completedKitchen,
+      image: candaceWork,
     },
     {
       title: "PetitTri",
       description: t("home.featuredWorks.petittriDescription"),
-      image: drainCleaning,
+      image: petittriWork,
     },
   ];
 

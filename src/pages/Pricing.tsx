@@ -6,6 +6,8 @@ import { Check, X } from "lucide-react";
 import { useState } from "react";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
+import { useExchangeRates, DEFAULT_EXCHANGE_RATES, type ExchangeRates } from "@/hooks/usePricing";
+import { type Currency, formatCurrency } from "@/lib/currency";
 import { useTranslation } from "react-i18next";
 
 
@@ -28,8 +30,6 @@ const FlipButton = ({
     </span>
   </button>;
 };
-
-const formatFCFA = (amount: number) => `${amount.toLocaleString("fr-FR").replace(/,/g, " ")} FCFA`;
 
 // Prix et statut "recommandé" : non traduits, associés par index aux
 // noms/caractéristiques traduits dans pricing.plans.<planType>.
@@ -62,11 +62,15 @@ const PricingCard = ({
   plan,
   index,
   planType,
+  currency,
+  exchangeRates,
   onSelectPlan,
 }: {
   plan: PricingPlan;
   index: number;
   planType: "residential" | "commercial";
+  currency: Currency;
+  exchangeRates: ExchangeRates;
   onSelectPlan: (plan: PricingPlan, planType: "residential" | "commercial") => void;
 }) => {
   const { t } = useTranslation();
@@ -97,7 +101,7 @@ const PricingCard = ({
 
           <div className="mt-4 mb-2">
             <span className={`text-4xl md:text-5xl font-bold ${isRecommended ? "text-primary-foreground" : "text-foreground"}`}>
-              {formatFCFA(plan.price)}
+              {formatCurrency(plan.price, currency, exchangeRates)}
             </span>
           </div>
 
@@ -192,9 +196,11 @@ const FAQItem = ({
 const Pricing = () => {
   const { t } = useTranslation();
   const navigate = useLocalizedNavigate();
+  const { data: exchangeRates = DEFAULT_EXCHANGE_RATES } = useExchangeRates();
   const [activeTab, setActiveTab] = useState<"residential" | "commercial">(
     "residential"
   );
+  const [currency, setCurrency] = useState<Currency>("FCFA");
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
   const translatedPlans = t(`pricing.plans.${activeTab}`, { returnObjects: true }) as { name: string; features: string[] }[];
@@ -212,6 +218,7 @@ const Pricing = () => {
           planName: plan.name,
           planType,
           price: plan.price,
+          currency,
         },
       },
     });
@@ -242,27 +249,45 @@ const Pricing = () => {
             </p>
           </FadeIn>
 
-          {/* Toggle */}
+          {/* Toggle & Currency Switcher */}
           <FadeIn delay={100}>
-            <div className="inline-flex bg-card rounded-full p-1.5 mt-10">
-              <button
-                onClick={() => setActiveTab("residential")}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all ${activeTab === "residential"
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground"
-                  }`}
-              >
-                {t("pricing.tabResidential")}
-              </button>
-              <button
-                onClick={() => setActiveTab("commercial")}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all ${activeTab === "commercial"
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground "
-                  }`}
-              >
-                {t("pricing.tabCommercial")}
-              </button>
+            <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
+              <div className="inline-flex bg-muted rounded-full p-1.5">
+                <button
+                  onClick={() => setActiveTab("residential")}
+                  className={`px-6 py-3 rounded-full text-sm font-medium transition-all ${activeTab === "residential"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground"
+                    }`}
+                >
+                  {t("pricing.tabResidential")}
+                </button>
+                <button
+                  onClick={() => setActiveTab("commercial")}
+                  className={`px-6 py-3 rounded-full text-sm font-medium transition-all ${activeTab === "commercial"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground "
+                    }`}
+                >
+                  {t("pricing.tabCommercial")}
+                </button>
+              </div>
+
+              <div className="inline-flex bg-muted rounded-full p-1.5" role="group" aria-label="Currency">
+                {(["FCFA", "EUR", "USD"] as Currency[]).map((curr) => (
+                  <button
+                    key={curr}
+                    type="button"
+                    onClick={() => setCurrency(curr)}
+                    className={`px-4 py-2.5 rounded-full text-xs font-semibold transition-all ${currency === curr
+                      ? "bg-accent text-accent-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                      }`}
+                  >
+                    {curr}
+                  </button>
+                ))}
+              </div>
             </div>
           </FadeIn>
         </div>
@@ -274,10 +299,12 @@ const Pricing = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {pricingPlans.map((plan, index) => (
               <PricingCard
-                key={plan.name}
+                key={`${activeTab}-${plan.name}`}
                 plan={plan}
                 index={index}
                 planType={activeTab}
+                currency={currency}
+                exchangeRates={exchangeRates}
                 onSelectPlan={handleSelectPlan}
               />
             ))}

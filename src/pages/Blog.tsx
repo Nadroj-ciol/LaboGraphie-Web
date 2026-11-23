@@ -1,4 +1,4 @@
-import blogFallbackImage from "@/assets/hero-plumber.jpg";
+import blogFallbackImage from "@/assets/cta-studio-banner.webp";
 import CTA from "@/components/CTA";
 import FadeIn from "@/components/FadeIn";
 import Footer from "@/components/Footer";

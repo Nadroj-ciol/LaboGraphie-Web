@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -60,6 +61,7 @@ const QuoteCalculator = () => {
   const [currency, setCurrency] = useState<Currency>("FCFA");
   const [phone, setPhone] = useState<string>("");
   const [serviceDate, setServiceDate] = useState<string>("");
+  const [notes, setNotes] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Pre-fill phone from profile
@@ -140,7 +142,7 @@ const QuoteCalculator = () => {
           estimated_min: estimate.min,
           estimated_max: estimate.max,
           currency,
-          notes: null,
+          notes: notes.trim() || null,
           service_date: serviceDate || null,
         });
 
@@ -372,6 +374,24 @@ const QuoteCalculator = () => {
                           onChange={(e) => setServiceDate(e.target.value)}
                           min={new Date().toISOString().split("T")[0]}
                           className="h-14 text-base text-foreground bg-background"
+                        />
+                      </div>
+                    </FadeIn>
+                  )}
+
+                  {/* Project Notes - Only for logged in users */}
+                  {service && user && (
+                    <FadeIn delay={350}>
+                      <div className="space-y-3">
+                        <Label className="text-base font-medium text-foreground">
+                          {t("contact.additionalNotes")}
+                        </Label>
+                        <Textarea
+                          value={notes}
+                          onChange={(e) => setNotes(e.target.value)}
+                          placeholder={t("contact.messagePlaceholder")}
+                          rows={3}
+                          className="text-base text-foreground bg-background resize-none"
                         />
                       </div>
                     </FadeIn>

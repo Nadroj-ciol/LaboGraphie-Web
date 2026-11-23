@@ -1,4 +1,4 @@
-import contact from "@/assets/contact-1.png";
+import contact from "@/assets/studio-team-hero.webp";
 import FadeIn from "@/components/FadeIn";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -36,7 +36,7 @@ const Contact = () => {
   const { data: profile } = useUserProfile(user?.id);
 
   const quoteData = location.state?.quoteData as QuoteData | undefined;
-  const planData = location.state?.planData as { planName: string; planType: string; price: number } | undefined;
+  const planData = location.state?.planData as { planName: string; planType: string; price: number; currency?: string } | undefined;
   const { data: exchangeRates = DEFAULT_EXCHANGE_RATES } = useExchangeRates();
 
   const contactInfo = [
@@ -144,7 +144,7 @@ const Contact = () => {
           base_price: planData.price,
           estimated_min: planData.price,
           estimated_max: planData.price,
-          currency: "FCFA",
+          currency: planData.currency || "FCFA",
           notes: formData.notes || null,
         });
 

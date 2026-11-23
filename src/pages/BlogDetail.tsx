@@ -1,5 +1,5 @@
-import heroGrid2 from "@/assets/hero-grid-2.jpg";
-import blogFallbackImage from "@/assets/hero-plumber.jpg";
+import heroGrid2 from "@/assets/service-design-branding.webp";
+import blogFallbackImage from "@/assets/cta-studio-banner.webp";
 import CTA from "@/components/CTA";
 import FadeIn from "@/components/FadeIn";
 import Footer from "@/components/Footer";
