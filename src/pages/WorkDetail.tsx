@@ -8,14 +8,14 @@ import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { useTranslation } from "react-i18next";
 
 // Import images
-import novatechWork from "@/assets/service-design-branding.webp";
-import candaceWork from "@/assets/work-2.png";
-import petittriWork from "@/assets/service-web-mobile.webp";
-import cybersecurityWork from "@/assets/work-cybersecurity-audit.webp";
-import heroGrid1 from "@/assets/work-marketing-web.webp";
-import heroGrid2 from "@/assets/service-design-branding.webp";
-import heroGrid3 from "@/assets/service-web-mobile.webp";
-import heroGrid4 from "@/assets/studio-team-hero.webp";
+import novatechWork from "@/assets/real-branding-3d.webp";
+import candaceWork from "@/assets/real-work-candace.webp";
+import petittriWork from "@/assets/real-dev-erp.webp";
+import cybersecurityWork from "@/assets/real-cybersecurity.webp";
+import heroGrid1 from "@/assets/real-dev-web.webp";
+import heroGrid2 from "@/assets/real-design-branding.webp";
+import heroGrid3 from "@/assets/real-work-acuvera.webp";
+import heroGrid4 from "@/assets/real-work-social-fosaa.webp";
 import problem1 from "@/assets/problem-1.png";
 import problem2 from "@/assets/problem-11.png";
 import solution1 from "@/assets/solution-1.png";
