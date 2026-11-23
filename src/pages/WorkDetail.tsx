@@ -16,10 +16,10 @@ import heroGrid1 from "@/assets/real-dev-web.webp";
 import heroGrid2 from "@/assets/real-design-branding.webp";
 import heroGrid3 from "@/assets/real-work-acuvera.webp";
 import heroGrid4 from "@/assets/real-work-social-fosaa.webp";
-import problem1 from "@/assets/problem-1.png";
-import problem2 from "@/assets/problem-11.png";
-import solution1 from "@/assets/solution-1.png";
-import solution2 from "@/assets/solution-11.png";
+import problem1 from "@/assets/real-consultation-it.webp";
+import problem2 from "@/assets/real-service-marketing.webp";
+import solution1 from "@/assets/real-dev-web.webp";
+import solution2 from "@/assets/real-work-acuvera.webp";
 
 const WORK_IMAGES: Record<string, string> = {
   "identite-visuelle-novatech": novatechWork,

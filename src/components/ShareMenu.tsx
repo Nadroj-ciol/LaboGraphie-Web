@@ -29,7 +29,7 @@ export const ShareMenu = ({ post, className }: ShareMenuProps) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button 
-            className="w-10 h-10 bg-white/90 backdrop-blur-sm shadow-sm rounded-full flex items-center justify-center text-slate-700 hover:text-primary hover:bg-white transition-all cursor-pointer"
+            className="w-10 h-10 bg-background/90 backdrop-blur-sm shadow-sm rounded-full flex items-center justify-center text-foreground hover:text-tertiary-foreground hover:bg-tertiary transition-all cursor-pointer"
             title="Partager l'article"
           >
             <Share2 className="w-4 h-4" />

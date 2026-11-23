@@ -1,13 +1,13 @@
 import studioTeamHero from "@/assets/real-team-studio.webp";
-import mission from "@/assets/mission-1.png";
-import vision from "@/assets/mission-2.png";
+import mission from "@/assets/real-consultation-it.webp";
+import vision from "@/assets/real-dev-web.webp";
 import profile1 from "@/assets/team-brinda.webp";
 import jordanPortrait from "@/assets/jordan-portrait-pro.webp";
 import profile3 from "@/assets/team-yvanna.webp";
-import heroGrid1 from "@/assets/timeline-1.png";
-import heroGrid2 from "@/assets/timeline-2.png";
-import heroGrid3 from "@/assets/timeline-3.png";
-import heroGrid4 from "@/assets/timeline-4.png";
+import heroGrid1 from "@/assets/real-branding-3d.webp";
+import heroGrid2 from "@/assets/real-dev-erp.webp";
+import heroGrid3 from "@/assets/real-formations-pro.webp";
+import heroGrid4 from "@/assets/real-work-acuvera.webp";
 import CounterAnimation from "@/components/CounterAnimation";
 import CTA from "@/components/CTA";
 import FadeIn from "@/components/FadeIn";
@@ -225,7 +225,7 @@ const About = () => {
                       <div className="lg:w-2/12 flex justify-center relative">
                         <div
                           className={`font-bold px-4 py-2 rounded-full text-sm z-10 transition-all duration-500 ${isActive
-                            ? 'bg-tertiary text-primary scale-110'
+                            ? 'bg-tertiary text-tertiary-foreground scale-110'
                             : 'bg-white/20 text-white/60'
                             }`}
                         >

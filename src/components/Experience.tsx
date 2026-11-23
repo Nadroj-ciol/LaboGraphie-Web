@@ -26,7 +26,7 @@ const Experience = () => {
   const { t } = useTranslation();
 
   const stats = [{
-    number: 8,
+    number: 7,
     suffix: "+",
     label: t("home.experience.statYears"),
     decimals: 0
