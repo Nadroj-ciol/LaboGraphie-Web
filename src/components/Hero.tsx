@@ -1,12 +1,12 @@
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
 import avatar3 from "@/assets/avatar-3.jpg";
-import heroGrid1 from "@/assets/hero-grid-1.jpg";
-import heroGrid2 from "@/assets/hero-grid-2.jpg";
-import heroGrid3 from "@/assets/hero-grid-3.jpg";
-import heroGrid4 from "@/assets/hero-grid-4.jpg";
-import heroGrid5 from "@/assets/hero-grid-5.jpg";
-import heroGrid6 from "@/assets/hero-grid-6.jpg";
+import heroGrid1 from "@/assets/service-design-branding.webp";
+import heroGrid2 from "@/assets/service-web-mobile.webp";
+import heroGrid3 from "@/assets/studio-team-hero.webp";
+import heroGrid4 from "@/assets/work-cybersecurity-audit.webp";
+import heroGrid5 from "@/assets/work-marketing-web.webp";
+import heroGrid6 from "@/assets/cta-studio-banner.webp";
 import { Button } from "@/components/ui/button";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { useTranslation } from "react-i18next";

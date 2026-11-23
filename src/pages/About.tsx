@@ -1,4 +1,4 @@
-import plumberTeam from "@/assets/about-hero-1.png";
+import studioTeamHero from "@/assets/studio-team-hero.webp";
 import mission from "@/assets/mission-1.png";
 import vision from "@/assets/mission-2.png";
 import profile1 from "@/assets/profile-1.png";
@@ -155,7 +155,7 @@ const About = () => {
             {/* Hero Image with Stats */}
             <div className="relative">
               <div className="rounded-3xl overflow-hidden">
-                <img src={plumberTeam} alt="Équipe LaboGraphie" className="w-full h-[400px] lg:h-[500px] object-cover" />
+                <img src={studioTeamHero} alt="Équipe LaboGraphie" className="w-full h-[400px] lg:h-[500px] object-cover" />
               </div>
 
               {/* Stats Overlay */}

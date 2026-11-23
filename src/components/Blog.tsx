@@ -1,4 +1,4 @@
-import blogFallbackImage from "@/assets/hero-plumber.jpg";
+import blogFallbackImage from "@/assets/cta-studio-banner.webp";
 import FadeIn from "@/components/FadeIn";
 import { usePublishedBlogs } from "@/hooks/useBlogs";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";

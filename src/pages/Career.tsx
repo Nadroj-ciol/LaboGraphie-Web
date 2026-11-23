@@ -1,4 +1,4 @@
-import heroPlumber from "@/assets/hero-plumber.jpg";
+import studioBanner from "@/assets/cta-studio-banner.webp";
 import FadeIn from "@/components/FadeIn";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -262,7 +262,7 @@ const Career = () => {
                 {/* Hero Image */}
                 <div className="rounded-2xl overflow-hidden mb-12">
                   <img
-                    src={heroPlumber}
+                    src={studioBanner}
                     alt={job.title}
                     className="w-full h-[300px] md:h-[400px] object-cover"
                   />

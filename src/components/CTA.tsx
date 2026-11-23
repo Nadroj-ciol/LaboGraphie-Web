@@ -1,5 +1,5 @@
 import avatar6 from "@/assets/avatar-6.png";
-import heroPlumber from "@/assets/hero-plumber.jpg";
+import ctaStudioBanner from "@/assets/cta-studio-banner.webp";
 import FadeIn from "@/components/FadeIn";
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
@@ -43,7 +43,7 @@ const CTA = () => {
             <div className="lg:col-span-2 rounded-3xl overflow-hidden relative min-h-[320px]">
               {/* Background Image */}
               <img
-                src={heroPlumber}
+                src={ctaStudioBanner}
                 alt="Équipe LaboGraphie au travail"
                 className="absolute inset-0 w-full h-full object-cover object-center"
               />
