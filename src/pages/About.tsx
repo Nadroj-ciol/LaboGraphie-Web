@@ -25,7 +25,7 @@ const timelineMeta = [
   { year: "2019", image: heroGrid1, position: "left" },
   { year: "2021", image: heroGrid2, position: "right" },
   { year: "2023", image: heroGrid3, position: "left" },
-  { year: "2024", image: heroGrid4, position: "right" },
+  { year: String(new Date().getFullYear()), image: heroGrid4, position: "right" },
 ];
 
 const coreValuesIcons = [Users, Zap, Clock3, Heart, Shield, ShieldCheck];
@@ -201,21 +201,14 @@ const About = () => {
 
             <div className="space-y-16">
               {timelineData.map((item, index) => {
-                const itemProgress = (index + 1) / timelineData.length;
+                const itemProgress = index / Math.max(timelineData.length - 1, 1);
                 const isActive = scrollProgress >= itemProgress - 0.15;
-                const hasBeenAnimated = animatedYears.has(index);
-                const shouldAnimate = hasBeenAnimated && isActive;
 
                 return (
-                  <FadeIn key={index} delay={index * 150}>
+                  <FadeIn key={index} delay={index * 120}>
                     <div className={`flex flex-col lg:flex-row items-center gap-8 ${item.position === 'right' ? 'lg:flex-row-reverse' : ''}`}>
                       {/* Image Side */}
-                      <div className={`w-full lg:w-5/12 transition-all duration-700 ${shouldAnimate
-                        ? 'opacity-100 translate-y-0'
-                        : hasBeenAnimated
-                          ? 'opacity-100 translate-y-0'
-                          : 'opacity-0 translate-y-8'
-                        }`}>
+                      <div className="w-full lg:w-5/12 transition-all duration-700">
                         <div className="rounded-2xl overflow-hidden">
                           <img src={item.image} alt={item.title} className="w-full h-64 object-cover" />
                         </div>
@@ -234,14 +227,9 @@ const About = () => {
                       </div>
 
                       {/* Content Side */}
-                      <div className={`w-full lg:w-5/12 transition-all duration-700 ${shouldAnimate
-                        ? 'opacity-100 translate-y-0'
-                        : hasBeenAnimated
-                          ? 'opacity-100 translate-y-0'
-                          : 'opacity-0 translate-y-8'
-                        }`}>
-                        <h4 className={`font-bold mb-3 transition-colors duration-500 ${isActive ? 'text-white' : 'text-white/60'}`}>{item.title}</h4>
-                        <p className={`text-sm leading-relaxed transition-colors duration-500 ${isActive ? 'text-white/80' : 'text-white/40'}`}>{item.description}</p>
+                      <div className="w-full lg:w-5/12 transition-all duration-700">
+                        <h4 className={`font-bold mb-3 transition-colors duration-500 ${isActive ? 'text-white' : 'text-white/80'}`}>{item.title}</h4>
+                        <p className={`text-sm leading-relaxed transition-colors duration-500 ${isActive ? 'text-white/80' : 'text-white/60'}`}>{item.description}</p>
                       </div>
                     </div>
                   </FadeIn>
