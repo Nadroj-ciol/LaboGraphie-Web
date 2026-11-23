@@ -2,7 +2,7 @@ import plumberTeam from "@/assets/about-hero-1.png";
 import mission from "@/assets/mission-1.png";
 import vision from "@/assets/mission-2.png";
 import profile1 from "@/assets/profile-1.png";
-import profile2 from "@/assets/profile-2.png";
+import jordanPortrait from "@/assets/jordan-portrait-pro.webp";
 import profile3 from "@/assets/profile-3.png";
 import heroGrid1 from "@/assets/timeline-1.png";
 import heroGrid2 from "@/assets/timeline-2.png";
@@ -14,7 +14,7 @@ import FadeIn from "@/components/FadeIn";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { useCareers } from "@/hooks/useCareers";
-import { ArrowUpRight, Briefcase, CheckCircle2, Clock3, Heart, MapPin, Shield, ShieldCheck, Users, Zap } from "lucide-react";
+import { ArrowUpRight, Briefcase, CheckCircle2, Clock3, ExternalLink, Github, Heart, Linkedin, MapPin, Shield, ShieldCheck, Users, Zap } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { useTranslation } from "react-i18next";
@@ -30,14 +30,28 @@ const timelineMeta = [
 
 const coreValuesIcons = [Users, Zap, Clock3, Heart, Shield, ShieldCheck];
 
-const teamMembers = [{
+interface TeamMember {
+  name: string;
+  role: string;
+  bio?: string;
+  image: string;
+  portfolioUrl?: string;
+  githubUrl?: string;
+  linkedinUrl?: string;
+}
+
+const getTeamMembers = (t: (key: string) => string): TeamMember[] => [{
   name: "FUNGA BIADJEU Brinda",
   role: "Chief Technology Officer",
   image: profile1
 }, {
-  name: "NDE Jordan L.",
-  role: "Chief Executive Officer",
-  image: profile2
+  name: "NDE Jordan Loïc",
+  role: t("about.teamJordanRole"),
+  bio: t("about.teamJordanBio"),
+  image: jordanPortrait,
+  portfolioUrl: "https://nadroj-ciol.github.io/Portfolio-website-perso/",
+  githubUrl: "https://github.com/Nadroj-ciol",
+  linkedinUrl: "https://www.linkedin.com/in/jordan-lo%C3%AFc-nde-63b041427/",
 }, {
   name: "NONO NOUTCHANG Yvanna",
   role: "Chief Marketing Officer & Product Manager",
@@ -329,13 +343,55 @@ const About = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {teamMembers.map((member, index) => <FadeIn key={index} delay={index * 80}>
-              <div className="bg-background rounded-2xl p-6 transition-all duration-300 group">
+            {getTeamMembers(t).map((member, index) => <FadeIn key={index} delay={index * 80} className="h-full">
+              <div className="bg-background rounded-2xl p-6 transition-all duration-300 group h-full flex flex-col">
                 <div className="rounded-xl overflow-hidden mb-4 group-hover:bg-accent bg-muted">
-                  <img src={member.image} alt={member.name} className="h-[460px] object-cover group-hover:scale-105 transition-all duration-300" />
+                  <img src={member.image} alt={member.name} className="w-full h-[460px] object-cover object-top group-hover:scale-105 transition-all duration-300" />
                 </div>
                 <h5 className="text-secondary font-bold transition-colors">{member.name}</h5>
                 <p className="text-muted-foreground text-base transition-colors">{member.role}</p>
+                {member.bio && (
+                  <p className="text-muted-foreground/90 text-sm mt-3 leading-relaxed">
+                    {member.bio}
+                  </p>
+                )}
+                {(member.portfolioUrl || member.githubUrl || member.linkedinUrl) && (
+                  <div className="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-border/60">
+                    {member.portfolioUrl && (
+                      <a
+                        href={member.portfolioUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground text-xs font-semibold transition-colors"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" />
+                        {t("about.viewPortfolio")}
+                      </a>
+                    )}
+                    {member.githubUrl && (
+                      <a
+                        href={member.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`GitHub ${member.name}`}
+                        className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-muted text-foreground/80 hover:bg-primary hover:text-primary-foreground transition-colors"
+                      >
+                        <Github className="h-4 w-4" />
+                      </a>
+                    )}
+                    {member.linkedinUrl && (
+                      <a
+                        href={member.linkedinUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`LinkedIn ${member.name}`}
+                        className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-muted text-foreground/80 hover:bg-primary hover:text-primary-foreground transition-colors"
+                      >
+                        <Linkedin className="h-4 w-4" />
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             </FadeIn>)}
           </div>
