@@ -1,7 +1,7 @@
 import Logo from "@/components/Logo";
 import { site } from "@/data/site";
 import { Button } from "@/components/ui/button";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { useTranslation } from "react-i18next";
 
@@ -53,6 +53,8 @@ const Footer = () => {
       { name: t("common.footer.webDevelopment"), href: "/services/developpement-web" },
       { name: t("common.footer.digitalMarketing"), href: "/services/marketing-digital" },
       { name: t("common.footer.cybersecurity"), href: "/services/cybersecurite" },
+      { name: t("services.items.formations-pro.title"), href: "/services/formations-pro" },
+      { name: t("services.items.maintenance-it.title"), href: "/services/maintenance-it" },
     ],
     resources: [
       { name: t("common.nav.blog"), href: "/blog" },
@@ -100,16 +102,22 @@ const Footer = () => {
         </div>
 
         {/* Contact Info */}
-        <div>
+        <div className="min-w-0">
           <h6 className="text-white font-semibold mb-4">{t("common.nav.contact")}</h6>
           <ul className="space-y-4">
             <li className="flex items-start gap-3">
               <Phone className="h-5 w-5 text-tertiary flex-shrink-0 mt-0.5" />
-              <a href={site.phoneHref} className="text-white/60 text-sm">{site.phone}</a>
+              <a href={site.phoneHref} className="text-white/60 hover:text-tertiary transition-colors text-sm">{site.phone}</a>
+            </li>
+            <li className="flex items-start gap-3">
+              <MessageCircle className="h-5 w-5 text-tertiary flex-shrink-0 mt-0.5" />
+              <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-tertiary transition-colors text-sm">
+                WhatsApp : +237 679 27 94 47
+              </a>
             </li>
             <li className="flex items-start gap-3">
               <Mail className="h-5 w-5 text-tertiary flex-shrink-0 mt-0.5" />
-              <a href={`mailto:${site.email}`} className="text-white/60 text-sm">{site.email}</a>
+              <a href={`mailto:${site.email}`} className="text-white/60 hover:text-tertiary transition-colors text-sm break-all">{site.email}</a>
             </li>
             <li className="flex items-start gap-3">
               <MapPin className="h-5 w-5 text-tertiary flex-shrink-0 mt-0.5" />

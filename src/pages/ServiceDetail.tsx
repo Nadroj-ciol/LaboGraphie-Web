@@ -164,6 +164,8 @@ const ServiceDetail = () => {
             <Link to="/" className="hover:text-primary transition-colors">{t("common.nav.home")}</Link>
             <span className="mx-2">/</span>
             <Link to="/services" className="hover:text-primary transition-colors">{t("common.nav.services")}</Link>
+            <span className="mx-2">/</span>
+            <span className="text-primary">{service.title}</span>
           </div>
 
           <FadeIn>

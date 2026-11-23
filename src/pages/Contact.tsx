@@ -327,7 +327,7 @@ const Contact = () => {
                     </label>
                     <Input
                       type="email"
-                      placeholder="your@email.com"
+                      placeholder={t("contact.emailPlaceholder")}
                       className="bg-transparent border-border"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}

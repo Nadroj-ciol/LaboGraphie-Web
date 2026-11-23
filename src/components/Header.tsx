@@ -227,7 +227,7 @@ const Header = ({
   return (
     <>
       {/* Placeholder to prevent layout shift since header is fixed */}
-      <div className="h-20 w-full shrink-0" />
+      <div className={`h-20 w-full shrink-0 ${isDark ? "bg-surface-dark" : "bg-background"}`} />
 
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
@@ -235,7 +235,7 @@ const Header = ({
         } ${
           isScrolled
             ? "bg-surface-dark/75 backdrop-blur-lg border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] py-0"
-            : `py-2 backdrop-blur-sm ${isDark ? 'bg-primary/0' : 'bg-background'}`
+            : `py-2 backdrop-blur-sm ${isDark ? 'bg-surface-dark' : 'bg-background'}`
         }`}
         style={isScrolled ? { WebkitBackdropFilter: "blur(16px)", backdropFilter: "blur(16px)" } : {}}
       >

@@ -62,18 +62,18 @@ const Services = () => {
               <div className="group px-6 py-8 md:px-12 md:py-[41px] rounded-2xl cursor-pointer transition-all duration-500 bg-card hover:bg-tertiary">
                 <div className="flex items-start gap-4 md:gap-6 px-0 ">
                   {/* Number Circle */}
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border flex items-center justify-center flex-shrink-0 transition-colors duration-500 border-primary text-primary">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border flex items-center justify-center flex-shrink-0 transition-colors duration-500 border-primary text-primary group-hover:border-tertiary-foreground group-hover:text-tertiary-foreground">
                     <span className="font-medium text-sm md:text-base">{service.number}</span>
                   </div>
 
                   {/* Content */}
                   <div className="flex-1">
-                    <h5 className="mb-2 text-2xl md:text-3xl font-bold transition-colors duration-500 text-primary group-hover:text-primary">
-                      {service.title}
+                    <h5 className="mb-2 text-2xl md:text-3xl font-bold transition-colors duration-500 text-primary group-hover:text-tertiary-foreground">
+                      {t(`services.items.${service.slug}.title`)}
                     </h5>
 
-                    <p className="text-base md:text-lg font-medium transition-colors duration-500 text-muted-foreground group-hover:text-primary/80">
-                      {service.description}
+                    <p className="text-base md:text-lg font-medium transition-colors duration-500 text-muted-foreground group-hover:text-tertiary-foreground/80">
+                      {t(`services.items.${service.slug}.description`)}
                     </p>
                   </div>
 

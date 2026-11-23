@@ -15,8 +15,8 @@ const FlipButton = ({
   variant?: "light" | "dark";
 }) => {
   const bgClass = variant === "light"
-    ? "bg-tertiary text-primary hover:bg-tertiary/90"
-    : "bg-primary text-primary-foreground hover:bg-primary/90";
+    ? "bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
+    : "bg-surface-dark text-white hover:bg-surface-dark/90";
   return (
     <Button size="default" className={`group relative overflow-hidden font-semibold rounded-full px-6 ${bgClass}`}>
       <span className="flex items-center gap-2 font-bold transition-all duration-300 group-hover:-translate-y-full group-hover:opacity-0">
@@ -74,13 +74,13 @@ const CTA = () => {
                 </div>
               </div>
               {/* Text */}
-              <p className="text-primary font-semibold text-xl leading-relaxed mb-8">
+              <p className="text-tertiary-foreground font-semibold text-xl leading-relaxed mb-8">
                 {t("common.cta.personBlurb")}
               </p>
               {/* Button */}
-              <Link to={site.phoneHref}>
+              <a href={site.phoneHref}>
                 <FlipButton variant="dark">{t("common.cta.callUs", { phone: site.phone })}</FlipButton>
-              </Link>
+              </a>
             </div>
           </div>
         </FadeIn>

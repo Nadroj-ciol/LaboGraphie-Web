@@ -42,7 +42,8 @@ interface TeamMember {
 
 const getTeamMembers = (t: (key: string) => string): TeamMember[] => [{
   name: "FUNGA BIADJEU Brinda",
-  role: "Chief Technology Officer",
+  role: t("about.teamBrindaRole"),
+  bio: t("about.teamBrindaBio"),
   image: profile1
 }, {
   name: "NDE Jordan Loïc",
@@ -54,7 +55,8 @@ const getTeamMembers = (t: (key: string) => string): TeamMember[] => [{
   linkedinUrl: "https://www.linkedin.com/in/jordan-lo%C3%AFc-nde-63b041427/",
 }, {
   name: "NONO NOUTCHANG Yvanna",
-  role: "Chief Marketing Officer & Product Manager",
+  role: t("about.teamYvannaRole"),
+  bio: t("about.teamYvannaBio"),
   image: profile3
 }];
 
@@ -294,7 +296,7 @@ const About = () => {
             <FadeIn>
               <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 <div className="rounded-2xl overflow-hidden">
-                  <img src={mission} alt="Our Mission" className="w-full h-80 lg:h-96 object-cover" />
+                  <img src={mission} alt={t("about.missionTitle")} className="w-full h-80 lg:h-96 object-cover" />
                 </div>
                 <div>
                   <h3 className="text-foreground font-bold mb-4">{t("about.missionTitle")}</h3>
@@ -326,7 +328,7 @@ const About = () => {
                   </ul>
                 </div>
                 <div className="rounded-2xl overflow-hidden">
-                  <img src={vision} alt="Our Vision" className="w-full h-80 lg:h-96 object-cover" />
+                  <img src={vision} alt={t("about.visionTitle")} className="w-full h-80 lg:h-96 object-cover" />
                 </div>
               </div>
             </FadeIn>
