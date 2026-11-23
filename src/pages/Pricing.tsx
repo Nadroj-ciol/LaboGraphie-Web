@@ -89,14 +89,16 @@ const PricingCard = ({
             }`}
         >
           <p
-            className={`font-medium ${isRecommended ? "text-white" : "text-muted-foreground"
+            className={`font-medium ${isRecommended ? "text-primary-foreground" : "text-muted-foreground"
               }`}
           >
             {plan.name}
           </p>
 
           <div className="mt-4 mb-2">
-            <span className="text-4xl md:text-5xl font-bold">{formatFCFA(plan.price)}</span>
+            <span className={`text-4xl md:text-5xl font-bold ${isRecommended ? "text-primary-foreground" : "text-foreground"}`}>
+              {formatFCFA(plan.price)}
+            </span>
           </div>
 
           <p
@@ -174,7 +176,7 @@ const FAQItem = ({
           {faq.question}
         </span>
         <div className="flex-shrink-0 ml-4">
-          <X className={`w-5 h-5 text-accent-foreground transition-transform ${isOpen ? "" : "rotate-45"}`} />
+          <X className={`w-5 h-5 transition-transform ${isOpen ? "text-accent-foreground" : "text-foreground rotate-45"}`} />
         </div>
       </button>
       <div
