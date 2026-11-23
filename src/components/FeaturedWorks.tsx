@@ -1,6 +1,6 @@
 import novatechWork from "@/assets/real-branding-3d.webp";
 import candaceWork from "@/assets/real-work-candace.webp";
-import petittriWork from "@/assets/real-dev-erp.webp";
+import petittriWork from "@/assets/service-web-mobile.webp";
 import FadeIn from "@/components/FadeIn";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { ArrowUpRight } from "lucide-react";

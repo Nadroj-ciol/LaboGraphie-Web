@@ -1,4 +1,4 @@
-import studioBanner from "@/assets/real-team-studio.webp";
+import studioBanner from "@/assets/cta-studio-banner.webp";
 import FadeIn from "@/components/FadeIn";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
