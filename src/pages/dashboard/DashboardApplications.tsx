@@ -81,6 +81,18 @@ function CVLink({ cvLink }: { cvLink: string | null }) {
     );
   }
 
+  let isSafeExternalUrl = false;
+  try {
+    const parsed = new URL(cvLink);
+    isSafeExternalUrl = parsed.protocol === "https:" || parsed.protocol === "http:";
+  } catch {
+    isSafeExternalUrl = false;
+  }
+
+  if (!isSafeExternalUrl) {
+    return <p className="text-sm text-destructive">Lien CV invalide</p>;
+  }
+
   return (
     <a href={cvLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors text-sm font-medium">
       <ExternalLink className="h-4 w-4" />
