@@ -58,6 +58,7 @@ export const useUpdateQuoteRequestStatus = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["quote_requests"] });
+      queryClient.invalidateQueries({ queryKey: ["user_quotes"] });
     },
   });
 };

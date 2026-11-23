@@ -38,7 +38,7 @@ const DashboardCareers = () => {
   const [formData, setFormData] = useState({
     title: "",
     slug: "",
-    type: "Full-time",
+    type: "Temps plein",
     location: "",
     about_the_role: "",
     short_term_goals: "",
@@ -51,7 +51,7 @@ const DashboardCareers = () => {
     setFormData({
       title: "",
       slug: "",
-      type: "Full-time",
+      type: "Temps plein",
       location: "",
       about_the_role: "",
       short_term_goals: "",
@@ -85,14 +85,18 @@ const DashboardCareers = () => {
       is_active: formData.is_active,
     };
 
-    if (editingCareer) {
-      await updateCareer.mutateAsync({ id: editingCareer, updates: careerData });
-    } else {
-      await createCareer.mutateAsync(careerData);
-    }
+    try {
+      if (editingCareer) {
+        await updateCareer.mutateAsync({ id: editingCareer, updates: careerData });
+      } else {
+        await createCareer.mutateAsync(careerData);
+      }
 
-    setIsDialogOpen(false);
-    resetForm();
+      setIsDialogOpen(false);
+      resetForm();
+    } catch (error) {
+      console.error("Erreur lors de la sauvegarde de l'offre :", error);
+    }
   };
 
   const handleEdit = (career: { id: string; title: string; slug: string; type: string; location: string; about_the_role: string[]; short_term_goals: string[]; what_you_bring: string[]; why_you_might_love: string[]; is_active: boolean; }) => {

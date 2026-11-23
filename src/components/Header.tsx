@@ -132,13 +132,7 @@ const Header = ({
       name: t("common.nav.services"),
       href: "/services"
     }, {
-      name: t("common.nav.serviceDetail"),
-      href: "/services"
-    }, {
       name: t("common.nav.work"),
-      href: "/work"
-    }, {
-      name: t("common.nav.workDetail"),
       href: "/work"
     }]
   }, {
@@ -151,9 +145,6 @@ const Header = ({
       href: "/career"
     }, {
       name: t("common.nav.blog"),
-      href: "/blog"
-    }, {
-      name: t("common.nav.blogArticle"),
       href: "/blog"
     }, {
       name: t("common.nav.contact"),

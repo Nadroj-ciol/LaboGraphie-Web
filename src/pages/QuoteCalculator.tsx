@@ -19,6 +19,7 @@ import { useUserProfile } from "@/hooks/useUserProfile";
 import { useCreateQuoteRequest } from "@/hooks/useQuoteRequests";
 import { Calendar, Calculator, Check, Clock, DollarSign, Phone, Wrench, Globe } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 import { useTranslation } from "react-i18next";
@@ -55,7 +56,11 @@ const QuoteCalculator = () => {
   const { data: servicePricingData = [] } = useServicePricing();
   const { data: exchangeRates = DEFAULT_EXCHANGE_RATES } = useExchangeRates();
 
-  const [selectedService, setSelectedService] = useState<string>("");
+  const [searchParams] = useSearchParams();
+  const initialServiceParam = searchParams.get("service") || "";
+  const validInitialService = services.some((s) => s.slug === initialServiceParam) ? initialServiceParam : "";
+
+  const [selectedService, setSelectedService] = useState<string>(validInitialService);
   const [complexity, setComplexity] = useState<number>(0);
   const [urgency, setUrgency] = useState<"standard" | "urgent" | "emergency">("standard");
   const [currency, setCurrency] = useState<Currency>("FCFA");

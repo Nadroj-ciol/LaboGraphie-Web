@@ -1,5 +1,6 @@
 import Logo from "@/components/Logo";
 import { NavLink } from "@/components/NavLink";
+import ThemeToggle from "@/components/ThemeToggle";
 import {
   Sidebar,
   SidebarContent,
@@ -114,6 +115,12 @@ export function DashboardSidebar() {
 
         <SidebarGroup className="mt-auto mb-4">
           <SidebarGroupContent>
+            {!collapsed && (
+              <div className="flex items-center justify-between px-3 py-2 mb-2 rounded-xl bg-muted/40">
+                <span className="text-xs font-medium text-muted-foreground">Thème</span>
+                <ThemeToggle />
+              </div>
+            )}
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Retour au site">

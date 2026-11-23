@@ -6,17 +6,24 @@ import { useUserQuoteRequests } from "@/hooks/useQuoteRequests";
 import { useExchangeRates, DEFAULT_EXCHANGE_RATES } from "@/hooks/usePricing";
 import { formatCurrency, toCurrency } from "@/lib/currency";
 import { format } from "date-fns";
+import { fr } from "date-fns/locale";
 import { Clock, DollarSign, Plus, Wrench } from "lucide-react";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
+
+const urgencyLabels: Record<string, string> = {
+  standard: "Standard",
+  urgent: "Urgent",
+  emergency: "Très urgent",
+};
 
 const getStatusBadge = (status: string) => {
   switch (status) {
     case "pending":
       return <Badge variant="secondary">En attente</Badge>;
     case "contacted":
-      return <Badge className="bg-purple-500">Contacté</Badge>;
+      return <Badge className="bg-purple-600 text-white">Contacté</Badge>;
     case "completed":
-      return <Badge className="bg-primary">Terminé</Badge>;
+      return <Badge className="bg-green-600 text-white">Terminé</Badge>;
     case "cancelled":
       return <Badge variant="destructive">Annulé</Badge>;
     default:
@@ -91,14 +98,14 @@ export default function UserQuotes() {
                           <DollarSign className="h-4 w-4" />
                           {formatCurrency(quote.estimated_min, toCurrency(quote.currency), exchangeRates)} - {formatCurrency(quote.estimated_max, toCurrency(quote.currency), exchangeRates)}
                         </span>
-                        <span className="capitalize">{quote.urgency}</span>
+                        <span>{urgencyLabels[quote.urgency] || quote.urgency}</span>
                       </div>
                     </div>
 
                     <div className="flex flex-col items-end gap-2">
                       {getStatusBadge(quote.status)}
                       <span className="text-xs text-muted-foreground">
-                        {format(new Date(quote.created_at), "MMM d, yyyy")}
+                        {format(new Date(quote.created_at), "d MMM yyyy", { locale: fr })}
                       </span>
                     </div>
                   </div>

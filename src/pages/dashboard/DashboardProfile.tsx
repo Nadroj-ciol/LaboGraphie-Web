@@ -57,7 +57,7 @@ export default function DashboardProfile() {
         data: { avatar_url: url }
       });
 
-      queryClient.invalidateQueries({ queryKey: ["userProfile", user.id] });
+      queryClient.invalidateQueries({ queryKey: ["user_profile", user.id] });
 
       toast.success("Photo de profil mise à jour avec succès.");
     } catch (error) {
@@ -84,7 +84,7 @@ export default function DashboardProfile() {
         data: { full_name: fullName, phone: phone }
       });
 
-      queryClient.invalidateQueries({ queryKey: ["userProfile", user.id] });
+      queryClient.invalidateQueries({ queryKey: ["user_profile", user.id] });
 
       toast.success("Vos informations ont été enregistrées avec succès.");
     } catch (error) {
@@ -117,7 +117,7 @@ export default function DashboardProfile() {
               />
 
               <h3 className="text-xl font-semibold">{userNameDisplay}</h3>
-              <p className="text-sm text-muted-primary">{user.email}</p>
+              <p className="text-sm text-muted-foreground">{user.email}</p>
 
               {isAdmin && (
                 <div className="mt-4 flex items-center gap-2">
@@ -150,7 +150,7 @@ export default function DashboardProfile() {
                   id="fullName"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  placeholder="Nadroj ciol"
+                  placeholder="Votre nom complet"
                 />
               </div>
 

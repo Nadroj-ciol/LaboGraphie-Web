@@ -3,16 +3,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserServiceInquiries } from "@/hooks/useServiceInquiries";
 import { format } from "date-fns";
+import { fr } from "date-fns/locale";
 import { Clock, MessageSquare, Phone, Wrench } from "lucide-react";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 
 const getStatusBadge = (status: string) => {
     switch (status) {
         case "new":
-            return <Badge className="bg-blue-500">Nouveau</Badge>;
+            return <Badge className="bg-blue-600 text-white">Nouveau</Badge>;
         case "contacted":
-            return <Badge className="bg-yellow-500">Contacté</Badge>;
+            return <Badge className="bg-amber-500 text-white">Contacté</Badge>;
         case "resolved":
-            return <Badge className="bg-green-500">Résolu</Badge>;
+            return <Badge className="bg-green-600 text-white">Résolu</Badge>;
         case "closed":
             return <Badge variant="secondary">Fermé</Badge>;
         default:
@@ -78,7 +80,7 @@ export default function UserServiceInquiries() {
                                                 </span>
                                                 <span className="flex items-center gap-1">
                                                     <Clock className="h-4 w-4" />
-                                                    {format(new Date(inquiry.created_at), "MMM d, yyyy")}
+                                                    {format(new Date(inquiry.created_at), "d MMM yyyy", { locale: fr })}
                                                 </span>
                                             </div>
 
@@ -111,12 +113,12 @@ export default function UserServiceInquiries() {
                             <p className="text-muted-foreground mb-6">
                                 Vous n'avez encore soumis aucune demande de service. Parcourez nos services pour commencer.
                             </p>
-                            <a
-                                href="/services"
-                                className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white hover:bg-primary/90 transition-colors"
+                            <Link
+                                to="/services"
+                                className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
                             >
                                 Découvrir les services
-                            </a>
+                            </Link>
                         </div>
                     )}
                 </CardContent>

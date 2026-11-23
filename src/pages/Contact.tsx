@@ -17,6 +17,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { useExchangeRates, DEFAULT_EXCHANGE_RATES } from "@/hooks/usePricing";
 import { supabase } from "@/integrations/supabase/client";
+import { useQueryClient } from "@tanstack/react-query";
 import { formatCurrency, toCurrency } from "@/lib/currency";
 import { Clock, DollarSign, Mail, MapPin, Phone, Wrench } from "lucide-react";
 import { site } from "@/data/site";
@@ -32,6 +33,7 @@ const Contact = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useLocalizedNavigate();
+  const queryClient = useQueryClient();
   const { user } = useAuth();
   const { data: profile } = useUserProfile(user?.id);
 
@@ -126,6 +128,8 @@ const Contact = () => {
 
         if (error) throw error;
 
+        queryClient.invalidateQueries({ queryKey: ["user_quotes"] });
+        queryClient.invalidateQueries({ queryKey: ["quote_requests"] });
         toast.success(t("contact.quoteSuccess"));
         navigate("/contact", { replace: true, state: null });
       } else if (planData) {
@@ -150,6 +154,8 @@ const Contact = () => {
 
         if (error) throw error;
 
+        queryClient.invalidateQueries({ queryKey: ["user_quotes"] });
+        queryClient.invalidateQueries({ queryKey: ["quote_requests"] });
         toast.success(t("contact.genericSuccess"));
         navigate("/contact", { replace: true, state: null });
       } else {
@@ -164,6 +170,7 @@ const Contact = () => {
 
         if (error) throw error;
 
+        queryClient.invalidateQueries({ queryKey: ["contacts"] });
         toast.success(t("contact.messageSuccess"));
       }
 

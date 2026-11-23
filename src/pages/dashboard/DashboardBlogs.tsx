@@ -86,7 +86,7 @@ export default function DashboardBlogs() {
     content: "",
     image_url: "",
     category: "Design & Branding",
-    read_time: "5 min read",
+    read_time: "5 min de lecture",
     is_featured: false,
     published: false,
   });
@@ -105,7 +105,7 @@ export default function DashboardBlogs() {
       content: "",
       image_url: "",
       category: "Design & Branding",
-      read_time: "5 min read",
+      read_time: "5 min de lecture",
       is_featured: false,
       published: false,
     });
@@ -487,7 +487,7 @@ export default function DashboardBlogs() {
 
                     <div className="flex items-center justify-end gap-2 w-full mt-auto">
                       <a
-                        href={`/blog/${blog.slug}`}
+                        href={`/fr/blog/${blog.slug}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-input bg-transparent text-muted-foreground hover:text-primary hover:bg-primary/5 hover:border-primary/20 transition-colors"

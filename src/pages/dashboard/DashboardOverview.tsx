@@ -4,7 +4,7 @@ import { useAllBlogs } from "@/hooks/useBlogs";
 import { useAllContacts } from "@/hooks/useContacts";
 import { useJobApplications } from "@/hooks/useJobApplications";
 import { useAllQuoteRequests, useUserQuoteRequests } from "@/hooks/useQuoteRequests";
-import { useServiceInquiries } from "@/hooks/useServiceInquiries";
+import { useServiceInquiries, useUserServiceInquiries } from "@/hooks/useServiceInquiries";
 import { useExchangeRates, DEFAULT_EXCHANGE_RATES } from "@/hooks/usePricing";
 import { formatCurrency, toCurrency } from "@/lib/currency";
 import { Briefcase, Clock, DollarSign, FileText, Mail, MessageSquare, Users } from "lucide-react";
@@ -34,30 +34,35 @@ function AdminOverview() {
       value: contacts?.length || 0,
       description: `${newContacts} nouveaux (${newContactsThisWeek} cette semaine)`,
       icon: Mail,
+      href: "/dashboard/contacts",
     },
     {
       title: "Demandes de devis",
       value: quoteRequests?.length || 0,
       description: `${pendingQuotes} en attente`,
       icon: DollarSign,
+      href: "/dashboard/quotes",
     },
     {
       title: "Demandes de service",
       value: serviceInquiries?.length || 0,
       description: `${newInquiries} nouvelles`,
       icon: MessageSquare,
+      href: "/dashboard/service-inquiries",
     },
     {
       title: "Candidatures",
       value: applications?.length || 0,
       description: `${pendingApplications} en attente`,
       icon: Briefcase,
+      href: "/dashboard/applications",
     },
     {
       title: "Articles",
       value: blogs?.length || 0,
       description: `${publishedBlogs} publiés`,
       icon: FileText,
+      href: "/dashboard/blogs",
     },
   ];
 
@@ -76,23 +81,25 @@ function AdminOverview() {
 
       {/* Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-        {stats.map((stat, i) => (
-          <Card key={stat.title} className="group bg-card border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300">
-            <CardHeader className="flex flex-row items-center justify-between pb-4">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                {stat.title}
-              </CardTitle>
-              <div className="h-10 w-10 rounded-xl bg-muted/30 flex items-center justify-center text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
-                <stat.icon className="h-5 w-5" />
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold tracking-tight text-foreground">{stat.value}</div>
-              <div className="flex items-center gap-2 mt-2">
-                <span className="text-xs font-medium text-muted-foreground bg-muted px-2 py-1 rounded-md">{stat.description}</span>
-              </div>
-            </CardContent>
-          </Card>
+        {stats.map((stat) => (
+          <Link key={stat.title} to={stat.href} className="block">
+            <Card className="group bg-card border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 h-full cursor-pointer">
+              <CardHeader className="flex flex-row items-center justify-between pb-4">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
+                  {stat.title}
+                </CardTitle>
+                <div className="h-10 w-10 rounded-xl bg-muted/30 flex items-center justify-center text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
+                  <stat.icon className="h-5 w-5" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold tracking-tight text-foreground">{stat.value}</div>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="text-xs font-medium text-muted-foreground bg-muted px-2 py-1 rounded-md">{stat.description}</span>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
         ))}
       </div>
 
@@ -227,9 +234,12 @@ function AdminOverview() {
 function UserOverview() {
   const { user } = useAuth();
   const { data: userQuotes } = useUserQuoteRequests(user?.id);
+  const { data: userInquiries } = useUserServiceInquiries(user?.id);
 
   const totalQuotes = userQuotes?.length || 0;
   const pendingQuotes = userQuotes?.filter(q => q.status === "pending").length || 0;
+  const totalInquiries = userInquiries?.length || 0;
+  const openInquiries = userInquiries?.filter(i => i.status === "new" || i.status === "contacted").length || 0;
 
   return (
     <div className="space-y-6">
@@ -241,56 +251,70 @@ function UserOverview() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="group bg-card border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300">
-          <CardHeader className="flex flex-row items-center justify-between pb-4">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Mes devis
-            </CardTitle>
-            <div className="h-10 w-10 rounded-xl bg-muted/30 flex items-center justify-center text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
-              <DollarSign className="h-5 w-5" />
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{totalQuotes}</div>
-            <p className="text-xs text-muted-foreground mt-1">
-              {totalQuotes === 0 ? "Aucune demande de devis pour le moment" : `${totalQuotes} devis au total`}
-            </p>
-          </CardContent>
-        </Card>
+        <Link to="/dashboard/my-quotes" className="block">
+          <Card className="group bg-card border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 h-full cursor-pointer">
+            <CardHeader className="flex flex-row items-center justify-between pb-4">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Mes devis
+              </CardTitle>
+              <div className="h-10 w-10 rounded-xl bg-muted/30 flex items-center justify-center text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
+                <DollarSign className="h-5 w-5" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{totalQuotes}</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                {totalQuotes === 0
+                  ? "Aucune demande de devis pour le moment"
+                  : pendingQuotes > 0
+                    ? `${pendingQuotes} en attente d'examen`
+                    : `${totalQuotes} devis au total`}
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
 
-        <Card className="group bg-card border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300">
-          <CardHeader className="flex flex-row items-center justify-between pb-4">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Demandes en attente
-            </CardTitle>
-            <div className="h-10 w-10 rounded-xl bg-muted/30 flex items-center justify-center text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
-              <Clock className="h-5 w-5" />
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{pendingQuotes}</div>
-            <p className="text-xs text-muted-foreground mt-1">
-              {pendingQuotes === 0 ? "Toutes les demandes sont traitées" : `${pendingQuotes} en attente d'examen`}
-            </p>
-          </CardContent>
-        </Card>
+        <Link to="/dashboard/my-inquiries" className="block">
+          <Card className="group bg-card border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 h-full cursor-pointer">
+            <CardHeader className="flex flex-row items-center justify-between pb-4">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Mes demandes de service
+              </CardTitle>
+              <div className="h-10 w-10 rounded-xl bg-muted/30 flex items-center justify-center text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
+                <MessageSquare className="h-5 w-5" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{totalInquiries}</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                {totalInquiries === 0
+                  ? "Aucune demande de service pour le moment"
+                  : openInquiries > 0
+                    ? `${openInquiries} en cours de traitement`
+                    : `${totalInquiries} demande${totalInquiries > 1 ? "s" : ""} traitée${totalInquiries > 1 ? "s" : ""}`}
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
 
-        <Card className="group bg-card border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300">
-          <CardHeader className="flex flex-row items-center justify-between pb-4">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Statut du compte
-            </CardTitle>
-            <div className="h-10 w-10 rounded-xl bg-muted/30 flex items-center justify-center text-green-500 group-hover:bg-green-100 transition-colors duration-300">
-              <Users className="h-5 w-5" />
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-green-600">Actif</div>
-            <p className="text-xs text-muted-foreground mt-1">
-              Votre compte est en règle
-            </p>
-          </CardContent>
-        </Card>
+        <Link to="/dashboard/profile" className="block">
+          <Card className="group bg-card border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 h-full cursor-pointer">
+            <CardHeader className="flex flex-row items-center justify-between pb-4">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Statut du compte
+              </CardTitle>
+              <div className="h-10 w-10 rounded-xl bg-muted/30 flex items-center justify-center text-green-500 group-hover:bg-green-100 transition-colors duration-300">
+                <Users className="h-5 w-5" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-green-600">Actif</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                Votre compte est en règle · Gérer mon profil
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
       </div>
 
       <Card className="bg-card border-0 shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl">
