@@ -47,30 +47,35 @@ const Career = () => {
   const [note, setNote] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const prefilledUserIdRef = useRef<string | null>(null);
 
   const createApplication = useCreateJobApplication();
 
-  // Auto-fill form when user is logged in
+  // Auto-fill form once when user/profile loads without overwriting manual edits
   useEffect(() => {
-    if (user) {
-      // Set email from user auth
-      if (user.email && !email) {
-        setEmail(user.email);
-      }
-
-      // Set full name from profile or user metadata
-      if (!fullName) {
-        const name = profile?.full_name || user.user_metadata?.full_name || "";
-        setFullName(name);
-      }
-
-      // Set phone from profile or user metadata
-      if (!phone) {
-        const userPhone = profile?.phone || user.user_metadata?.phone || "";
-        setPhone(userPhone);
-      }
+    if (!user) {
+      prefilledUserIdRef.current = null;
+      return;
     }
-  }, [user, profile, email, fullName, phone]);
+
+    const profileLoaded = profile !== undefined;
+    if (prefilledUserIdRef.current === `${user.id}:${profileLoaded}`) return;
+    prefilledUserIdRef.current = `${user.id}:${profileLoaded}`;
+
+    if (user.email) {
+      setEmail((prev) => prev || user.email || "");
+    }
+
+    const name = profile?.full_name || user.user_metadata?.full_name || "";
+    if (name) {
+      setFullName((prev) => prev || name);
+    }
+
+    const userPhone = profile?.phone || user.user_metadata?.phone || "";
+    if (userPhone) {
+      setPhone((prev) => prev || userPhone);
+    }
+  }, [user, profile]);
 
   // Get first career as default if no slug or career not found
   const job = currentCareer || (careers && careers.length > 0 ? careers[0] : null);
@@ -234,13 +239,15 @@ const Career = () => {
             <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
               {t("career.intro")}
             </p>
-            <a
-              href="#openings"
-              className="inline-flex items-center gap-2 text-secondary font-bold hover:underline"
-            >
-              {t("career.seeAllPositions")}
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
+            {otherJobs.length > 0 && (
+              <a
+                href="#openings"
+                className="inline-flex items-center gap-2 text-secondary font-bold hover:underline"
+              >
+                {t("career.seeAllPositions")}
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+            )}
           </FadeIn>
         </div>
       </section>

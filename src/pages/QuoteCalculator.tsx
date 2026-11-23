@@ -47,7 +47,7 @@ interface ComplexityOptionText {
 const QuoteCalculator = () => {
   const { t } = useTranslation();
   const navigate = useLocalizedNavigate();
-  const { user } = useAuth();
+  const { user, isAdmin } = useAuth();
   const { data: profile } = useUserProfile(user?.id);
   const createQuoteMutation = useCreateQuoteRequest();
 
@@ -145,7 +145,7 @@ const QuoteCalculator = () => {
         });
 
         toast.success(t("quote.successSubmit"));
-        navigate("/dashboard/quotes");
+        navigate(isAdmin ? "/dashboard/quotes" : "/dashboard/my-quotes");
       } catch (error) {
         console.error("Error creating quote:", error);
         toast.error(t("quote.errorSubmit"));

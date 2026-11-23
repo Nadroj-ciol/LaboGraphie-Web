@@ -95,7 +95,7 @@ const DashboardCareers = () => {
     resetForm();
   };
 
-  const handleEdit = (career: any) => {
+  const handleEdit = (career: { id: string; title: string; slug: string; type: string; location: string; about_the_role: string[]; short_term_goals: string[]; what_you_bring: string[]; why_you_might_love: string[]; is_active: boolean; }) => {
     setFormData({
       title: career.title,
       slug: career.slug,

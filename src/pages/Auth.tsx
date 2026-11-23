@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
 import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 import { useTranslation } from "react-i18next";
@@ -37,15 +38,15 @@ const Auth = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string; phone?: string }>({});
 
-  const { user, isAdmin, signIn, signUp, resetPassword } = useAuth();
+  const { user, loading, isAdmin, signIn, signUp, resetPassword } = useAuth();
   const navigate = useLocalizedNavigate();
 
   useEffect(() => {
-    // Only redirect if they navigate to /auth manually but are already logged in
-    if (user && !isSubmitting) {
-      navigate(isAdmin ? "/dashboard" : "/");
+    // Only redirect if they navigate to /auth manually and auth + role check are settled
+    if (user && !loading && !isSubmitting) {
+      navigate(isAdmin ? "/dashboard" : "/", { replace: true });
     }
-  }, [user, isAdmin, navigate, isSubmitting]);
+  }, [user, loading, isAdmin, navigate, isSubmitting]);
 
   const validateForm = () => {
     const newErrors: { email?: string; password?: string; phone?: string } = {};
@@ -93,10 +94,19 @@ const Auth = () => {
           }
         } else {
           toast.success(t("auth.loginSuccess"));
-          // Redirection handled in useEffect or we can force it here:
-          setTimeout(() => {
-            navigate(isAdmin ? "/dashboard" : "/");
-          }, 100);
+          // Vérifier le rôle admin directement avant de rediriger pour éviter toute race condition
+          let redirectTo = "/";
+          const { data: { user: signedInUser } } = await supabase.auth.getUser();
+          if (signedInUser) {
+            const { data: hasAdminRole } = await supabase.rpc("has_role", {
+              _user_id: signedInUser.id,
+              _role: "admin",
+            });
+            if (hasAdminRole) {
+              redirectTo = "/dashboard";
+            }
+          }
+          navigate(redirectTo, { replace: true });
         }
       } else if (view === "signup") {
         const fullPhone = `${countryCode} ${phone}`;

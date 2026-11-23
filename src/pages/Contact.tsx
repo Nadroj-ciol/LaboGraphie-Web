@@ -22,6 +22,7 @@ import { Clock, DollarSign, Mail, MapPin, Phone, Wrench } from "lucide-react";
 import { site } from "@/data/site";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
@@ -30,6 +31,7 @@ import type { QuoteData } from "./QuoteCalculator";
 const Contact = () => {
   const { t } = useTranslation();
   const location = useLocation();
+  const navigate = useLocalizedNavigate();
   const { user } = useAuth();
   const { data: profile } = useUserProfile(user?.id);
 
@@ -50,7 +52,7 @@ const Contact = () => {
       title: t("contact.visitUsTitle"),
       description: t("contact.visitUsDescription"),
       value: site.address,
-      href: "https://www.google.com/maps",
+      href: "https://www.google.com/maps/search/?api=1&query=Bastos,+Yaound%C3%A9,+Cameroun",
     },
     {
       icon: Phone,
@@ -105,6 +107,7 @@ const Contact = () => {
       if (quoteData) {
         // Submit quote request to database
         const { error } = await supabase.from("quote_requests").insert({
+          user_id: user?.id ?? null,
           full_name: formData.fullName,
           phone: formData.phone,
           email: formData.email || null,
@@ -124,9 +127,11 @@ const Contact = () => {
         if (error) throw error;
 
         toast.success(t("contact.quoteSuccess"));
+        navigate("/contact", { replace: true, state: null });
       } else if (planData) {
         // Submit plan inquiry to database
         const { error } = await supabase.from("quote_requests").insert({
+          user_id: user?.id ?? null,
           full_name: formData.fullName,
           phone: formData.phone,
           email: formData.email || null,
@@ -146,6 +151,7 @@ const Contact = () => {
         if (error) throw error;
 
         toast.success(t("contact.genericSuccess"));
+        navigate("/contact", { replace: true, state: null });
       } else {
         // Regular contact form - save to contacts table
         const { error } = await supabase.from("contacts").insert({

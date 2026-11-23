@@ -255,11 +255,11 @@ const Header = ({
           <LanguageSwitcher isDark={isDark} />
           <ThemeToggle isDark={isDark} />
           {/* CTA Button & Cart */}
-          <Link to={site.phoneHref} className="hidden xl:flex">
+          <a href={site.phoneHref} className="hidden xl:flex">
             <FlipButton isDark={isDark}>
               <Phone className="h-4 w-4" />
               {site.phone}</FlipButton>
-          </Link>
+          </a>
           <div className="hidden grow items-center justify-end gap-6 lg:flex">
             {!user ? (
               <FlipButton

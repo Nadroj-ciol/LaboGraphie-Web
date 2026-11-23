@@ -82,10 +82,10 @@ export const useUpdateServiceInquiry = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["service-inquiries"] });
-      toast.success("Inquiry status updated");
+      toast.success("Statut de la demande mis à jour");
     },
     onError: (error) => {
-      toast.error(`Failed to update inquiry: ${error.message}`);
+      toast.error(`Échec de la mise à jour : ${error.message}`);
     },
   });
 };
@@ -102,10 +102,10 @@ export const useDeleteServiceInquiry = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["service-inquiries"] });
-      toast.success("Inquiry deleted");
+      toast.success("Demande supprimée");
     },
     onError: (error) => {
-      toast.error(`Failed to delete inquiry: ${error.message}`);
+      toast.error(`Échec de la suppression : ${error.message}`);
     },
   });
 };

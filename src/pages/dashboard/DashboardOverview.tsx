@@ -18,7 +18,11 @@ function AdminOverview() {
   const { data: serviceInquiries } = useServiceInquiries();
   const { data: exchangeRates = DEFAULT_EXCHANGE_RATES } = useExchangeRates();
 
+  const oneWeekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
   const newContacts = contacts?.filter(c => c.status === "new").length || 0;
+  const newContactsThisWeek = contacts?.filter(
+    c => c.status === "new" && new Date(c.created_at).getTime() >= oneWeekAgo,
+  ).length || 0;
   const pendingQuotes = quoteRequests?.filter(q => q.status === "pending").length || 0;
   const publishedBlogs = blogs?.filter(b => b.published).length || 0;
   const pendingApplications = applications?.filter(a => a.status === "pending").length || 0;
@@ -28,7 +32,7 @@ function AdminOverview() {
     {
       title: "Total messages",
       value: contacts?.length || 0,
-      description: `${newContacts} nouveaux cette semaine`,
+      description: `${newContacts} nouveaux (${newContactsThisWeek} cette semaine)`,
       icon: Mail,
     },
     {

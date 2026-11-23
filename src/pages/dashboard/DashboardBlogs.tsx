@@ -149,8 +149,8 @@ export default function DashboardBlogs() {
       }
       setIsDialogOpen(false);
       resetForm();
-    } catch (error: any) {
-      toast.error(error.message || "Échec de l'enregistrement de l'article");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Échec de l'enregistrement de l'article");
     }
   };
 
@@ -158,8 +158,8 @@ export default function DashboardBlogs() {
     try {
       await deleteBlog.mutateAsync(id);
       toast.success("Article supprimé avec succès");
-    } catch (error: any) {
-      toast.error(error.message || "Échec de la suppression de l'article");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Échec de la suppression de l'article");
     }
   };
 

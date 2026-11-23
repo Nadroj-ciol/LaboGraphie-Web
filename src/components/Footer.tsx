@@ -73,9 +73,9 @@ const Footer = () => {
           </p>
 
           <div className="mt-6">
-            <Link to={site.phoneHref}>
+            <a href={site.phoneHref}>
               <FlipButton>{site.phone}</FlipButton>
-            </Link>
+            </a>
           </div>
         </div>
 
